@@ -1,8 +1,8 @@
 # syntax=docker/dockerfile:1
 
 FROM openjdk:8-alpine3.9 AS builder
-COPY gradlew ./gradle
-COPY gradle ./
+COPY gradlew ./
+COPY gradle ./gradle
 COPY build.gradle ./
 COPY settings.gradle ./
 COPY src ./src
