@@ -10,10 +10,10 @@ resources:
 
 variables:
   # Container registry service connection established during pipeline creation
-  dockerRegistryServiceConnection: '07b3f04e-d300-47c5-8a08-432829113cfb'
-  imageRepository: 'javadocker'
+  dockerRegistryServiceConnection: '6410b9c6-1418-4108-8023-29d8b9d85579'
+  imageRepository: 'nodamenpipelinesjavadocker'
   containerRegistry: 'acrdev0327.azurecr.io'
-  dockerfilePath: '$(Build.SourcesDirectory)/app/Dockerfile'
+  dockerfilePath: '**/Dockerfile'
   tag: '$(Build.BuildId)'
 
   # Agent VM image name
