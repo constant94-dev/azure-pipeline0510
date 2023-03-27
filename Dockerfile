@@ -7,7 +7,7 @@ COPY build.gradle .
 COPY settings.gradle .
 COPY src ./src
 RUN chmod +x ./gradlew
-RUN ./gradlew bootJar
+RUN ./gradlew clean build
 
 FROM nginx:1.23-alpine-slim
 COPY --from=builder build/libs/*.jar /usr/share/nginx/html/app.jar
