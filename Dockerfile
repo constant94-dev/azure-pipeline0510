@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 
-FROM openjdk:8-alpine AS builder
+FROM adoptopenjdk:11-jdk-hotspot-focal AS builder
 COPY gradlew .
 COPY gradle ./gradle
 COPY build.gradle .
