@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:remove="tag" th:replace="common/common-meta.html :: headMeta"></div>
+    <div th:remove="tag" th:replace="common/common-link.html :: headLink"></div>
+    <div th:remove="tag" th:replace="common/common-head-script.html :: headScript"></div>
+    <title id="html_title">PATRON</title>
+    <meta name="Description" CONTENT="Paint your time with Patron. At a time when you need a break Fill your time with pictures and music.">
+<!--    <link rel="stylesheet" th:href="@{/css_v1_3/artstream/artstream.css}">-->
+    <link rel="stylesheet" th:href="@{/css_v1_3/common/thumbnail-component.css}">
+    <link rel="stylesheet" th:href="@{/css_v1_3/home/home.css}">
+</head>
+<body>
+<div th:replace="common/header.html"></div>
+<main>
+    <div id="preload-black-page"></div>
+    <div class="wrap event-modal-wrap modal-content" id="event_modal">
+        <div class="event-modal">
+            <img class="event-img" th:src="@{'https://stpatron001.blob.core.windows.net/container-patron-renewal/Artwork/THEREYJ97_74c1cea34d899f7e/HD.jpg'}" alt="event_img">
+            <section class="event-buttons-container">
+                <a class="anchor-see-more" id="anchor_see_more" th:href="${'https://patron.digital'}" th:text="#{home.moreDetail}">자세히 보기</a>
+                <div class="event-buttons">
+                    <button type="button" class="btn-see-no-more" id="btn_see_no_more" onclick="seeNoMoreToggle(this);">
+                        <img class="btn-img" th:src="@{'/img/icon_check_active1.png'}" th:alt="${'icon_check_active'}">
+                        <span class="see-no-more-guide" th:text="#{home.dontShowAgain}">다시 보지 않기</span>
+                    </button>
+                    <button type="button" class="btn-close" id="btn_close" onclick="closeEventModalWrap(this); setAdCookie(); preventsScroll();" th:text="#{close}">닫기</button>
+                </div>
+            </section>
+        </div>
+    </div>
+    <div class="wrap home-main-wrap">
+        <!--section 1-->
+        <section class="catch-phrase">
+            <div class="home-main-section-title" sec:authorize="!isAuthenticated()">
+                <h1>Paint Your Time</h1>
+                <p style="white-space: pre-line" th:text="#{home.sectionTitle}">휴식이 필요한 순간 <br>그림과 음악으로 시간을 채워보세요.</p>
+            </div>
+        </section>
+        <section class="home-main-section curation-contents-section fade-in-section">
+            <h2 class="section-title" th:text="#{home.mainExhibition}">추천 큐레이션</h2>
+            <div class="owl-carousel carousel-wrap">
+                <div th:each="mainExhibition : ${mainExhibitions}">
+                    <div class="contents-wrap-div">
+                        <div class="curation-item">
+                            <a th:href="'/'+${language}+'/player?exh_id='+${mainExhibition.getId()}">
+                                <img class="icon-curation" th:src="@{/img/icon_exhibition.png}" alt="icon_curation">
+                                <div class="item-img-wrap">
+                                    <img th:src="${mainExhibition.getArtworkExhibitions()[0].getArtwork().getContentsHd().getDefaultImg()}" th:each="detail : ${mainExhibition.getArtworkExhibitions()[0].getArtwork().getArtworkDetails()}" th:if="${detail.getLanguage().equals(language)}" th:alt="${detail.getArtworkName()}">
+                                    <div class="item-text-wrap">
+                                        <span th:text="${mainExhibitionStat.index + 1}">1</span>/<span th:text="${mainExhibitions.size()}">3</span>
+                                    </div>
+                                </div>
+                                <p class="item-title" th:each="detail : ${mainExhibition.getExhibitionDetails()}" th:if="${detail.getLanguage().equals(language)}" th:text="${detail.getExhibitionName()}">여름과 겨울 사이</p>
+                                <p class="item-artist">
+                                    <span th:each="detail : ${mainExhibition.getArtistExhibitions()[0].getArtist().getArtistDetails()}" th:if="${detail.getLanguage().equals(language)}" th:text="${detail.getArtistName()}"></span>
+                                    <span th:if="${mainExhibition.getArtistExhibitions().size() > 1}">
+                                        <span th:each="detail : ${mainExhibition.getArtistExhibitions()[1].getArtist().getArtistDetails()}" th:if="${detail.getLanguage().equals(language)}" th:text="${', ' + detail.getArtistName()}"></span>
+                                    </span>
+                                    <span th:if="${mainExhibition.getArtistExhibitions().size() > 2}">
+                                        <span th:each="detail : ${mainExhibition.getArtistExhibitions()[2].getArtist().getArtistDetails()}" th:if="${detail.getLanguage().equals(language)}" th:text="${', ' + detail.getArtistName()}"></span>
+                                    </span>
+                                    <span th:if="${mainExhibition.getArtistExhibitions().size() > 3}">
+                                        <span th:text="' ' + #{mypage.other} + ' ' + ${mainExhibition.getArtistExhibitions().size()-3} + #{more}"></span>
+                                    </span>
+                                </p>
+                                <div class="info-wrap">
+                                    <span class="total-artwork" th:text="${mainExhibition.getArtworkExhibitions().size()} + #{artwork}">16작품</span> · <span class="total-time" th:text="${exhibitionDuration[mainExhibitionStat.index]}">42분 </span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div class="wrap" th:if="${watchedArtworks != null && watchedArtworks.size() != 0}">
+        <!--section 2-->
+        <section class="curation-contents-section fade-in-section">
+            <h2 class="section-title"><span th:text="#{home.watchedArtworkBy}">최근 본 아트워크</span></h2>
+            <div class=" carousel-wrap">
+                <div class="owl-carousel">
+                    <div class="carousel-item" th:each="watchedArtwork : ${watchedArtworks}">
+                        <a th:href="'/'+${language}+'/player?art_id=' + ${watchedArtwork.getId()}">
+                            <div class="carousel-img-wrap">
+                                <img th:src="${watchedArtwork.getContentsThumbnail().getDefaultImg()}"  th:each="detail : ${watchedArtwork.getArtworkDetails()}" th:if="${detail.getLanguage().equals(language)}" th:alt="${detail.getArtworkName()}">
+                            </div>
+                            <p class="carousel-text carousel-artwork-title" th:each="detail : ${watchedArtwork.getArtworkDetails()}" th:if="${detail.getLanguage().equals(language)}" th:text="${detail.getArtworkName()}">Artwork Title</p>
+                        </a>
+                        <p class="carousel-text carousel-artwork-artist" >
+                            <span class="artist-name korean-name" th:each="detail : ${watchedArtwork.getArtist().getArtistDetails()}"  th:if="${detail.getLanguage().equals(language)}" th:text="${detail.getArtistName()}">작가명</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div class="wrap" th:if="${likedArtworks != null && likedArtworks.size() != 0}">
+        <!--section 2-->
+        <section class="curation-contents-section fade-in-section">
+            <h2 class="section-title"><span th:text="#{likedArtworks}">최근 본 아트워크</span></h2>
+            <div class=" carousel-wrap">
+                <div class="owl-carousel">
+                    <div class="carousel-item" th:each="likedArtwork : ${likedArtworks}">
+                        <a th:href="'/'+${language}+'/player?art_id=' + ${likedArtwork.getId()}">
+                            <div class="carousel-img-wrap">
+                                <img th:src="${likedArtwork.getContentsThumbnail().getDefaultImg()}"  th:each="detail : ${likedArtwork.getArtworkDetails()}" th:if="${detail.getLanguage().equals(language)}" th:alt="${detail.getArtworkName()}">
+                            </div>
+                            <p class="carousel-text carousel-artwork-title" th:each="detail : ${likedArtwork.getArtworkDetails()}" th:if="${detail.getLanguage().equals(language)}" th:text="${detail.getArtworkName()}">Artwork Title</p>
+                        </a>
+                        <p class="carousel-text carousel-artwork-artist" >
+                            <span class="artist-name korean-name" th:each="detail : ${likedArtwork.getArtist().getArtistDetails()}"  th:if="${detail.getLanguage().equals(language)}" th:text="${detail.getArtistName()}">작가명</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div class="wrap" th:if="${newlyRegisteredArtworks != null && newlyRegisteredArtworks.size() != 0}">
+        <!--section 3 새로운 아트워크-->
+        <section class="curation-contents-section fade-in-section">
+            <h2 class="section-title" th:text="#{newlyRegisteredArtworks}">새로운 아트워크</h2>
+            <div class="carousel-wrap">
+                <div class="owl-carousel">
+                    <div class="carousel-item" th:each="newlyRegisteredArtwork : ${newlyRegisteredArtworks}">
+                        <a th:href="'/'+${language}+'/player?art_id=' + ${newlyRegisteredArtwork.getId()}">
+                            <div class="carousel-text carousel-new" th:text="#{home.new}"></div>
+                            <div class="carousel-img-wrap">
+                                <img th:src=" ${newlyRegisteredArtwork.getContentsThumbnail().getDefaultImg()}"  th:each="detail : ${newlyRegisteredArtwork.getArtworkDetails()}" th:if="${detail.getLanguage().equals(language)}" th:alt="${detail.getArtworkName()}">
+                            </div>
+                            <p class="carousel-text carousel-artwork-title" th:each="detail : ${newlyRegisteredArtwork.getArtworkDetails()}" th:if="${detail.getLanguage().equals(language)}" th:text="${detail.getArtworkName()}">Artwork Title</p>
+                        </a>
+                        <p class="carousel-text carousel-artwork-artist">
+                            <span class="artist-name korean-name" th:each="detail : ${newlyRegisteredArtwork.getArtist().getArtistDetails()}" th:if="${detail.getLanguage().equals(language)}" th:text="${detail.getArtistName()}">작가명</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div class="wrap" th:if="${theme1 != null}">
+        <!--section 4-->
+        <section class="curation-contents-section art-stream-exh-section fade-in-section">
+            <h2 class="section-title" th:each="detail : ${theme1.getExhibitionDetails()}" th:if="${detail.getLanguage().equals(language)}" th:text="${detail.getExhibitionName()}">시간 정지, 브뤼겔</h2>
+            <div class="curation-info-wrap">
+                <span class="curation-total-artwork" th:text="${theme1.getArtworkExhibitions().size()} + #{artwork}">9작품</span> · <span class="exh-total-time" th:text="${theme1DurationTime}">56분</span><a th:href="'/'+${language}+'/player?exh_id='+${theme1.getId()}" class="exh-artwork">
+                <!--                <span>더 자세히 보기</span> >-->
+            </a>
+            </div>
+            <div class="carousel-wrap">
+                <div class="owl-carousel">
+                    <div class="carousel-item" th:each="artwork1 : ${theme1.getArtworkExhibitions()}">
+                        <a th:href="'/'+${language}+'/player?exh_id='+${theme1.getId()} + '&art_id=' + ${artwork1.getArtwork().getId()}">
+
+                            <div class="carousel-img-wrap">
+                                <img th:src="${artwork1.getArtwork().getContentsThumbnail().getDefaultImg()}"  th:each="detail : ${artwork1.getArtwork().getArtworkDetails()}" th:if="${detail.getLanguage().equals(language)}" th:alt="${detail.getArtworkName()}">
+                            </div>
+                            <p class="carousel-text carousel-exh-title" th:each="detail : ${artwork1.getArtwork().getArtworkDetails()}" th:if="${detail.getLanguage().equals(language)}" th:text="${detail.getArtworkName()}">Exhibition Title</p>
+                        </a>
+                        <p class="carousel-text carousel-exh-artist">
+                            <span class="artist-name korean-name" th:each="detail : ${artwork1.getArtwork().getArtist().getArtistDetails()}" th:if="${detail.getLanguage().equals(language)}" th:text="${detail.getArtistName()}">작가명</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div class="wrap" th:if="${theme2 != null}">
+        <!--section 5-->
+        <section class="curation-contents-section art-stream-exh-section fade-in-section">
+            <h2 class="section-title" th:each="detail : ${theme2.getExhibitionDetails()}" th:if="${detail.getLanguage().equals(language)}" th:text="${detail.getExhibitionName()}">신나군, 잃어버린 마법을 찾아서</h2>
+            <div class="curation-info-wrap">
+                <span class="curation-total-artwork" th:text="${theme2.getArtworkExhibitions().size()} + #{artwork}">16작품</span> · <span class="exh-total-time" th:text="${theme2DurationTime}">1시간 12분</span><a th:href="'/'+${language}+'/player?exh_id='+${theme2.getId()}" class="exh-artwork">
+                <!--                <span>더 자세히 보기</span> >-->
+            </a>
+            </div>
+            <div class="carousel-wrap">
+                <div class="owl-carousel">
+                    <div class="carousel-item" th:each="artwork2 : ${theme2.getArtworkExhibitions()}">
+                        <a th:href="'/'+${language}+'/player?exh_id='+${theme2.getId()} + '&art_id=' + ${artwork2.getArtwork().getId()}">
+
+                            <div class="carousel-img-wrap">
+                                <img th:src="${artwork2.getArtwork().getContentsThumbnail().getDefaultImg()}"  th:each="detail : ${artwork2.getArtwork().getArtworkDetails()}" th:if="${detail.getLanguage().equals(language)}" th:alt="${detail.getArtworkName()}">
+                            </div>
+                            <p class="carousel-text carousel-exh-title" th:each="detail : ${artwork2.getArtwork().getArtworkDetails()}" th:if="${detail.getLanguage().equals(language)}" th:text="${detail.getArtworkName()}">Exhibition Title</p>
+                        </a>
+                        <p class="carousel-text carousel-exh-artist">
+                            <span class="artist-name korean-name" th:each="detail : ${artwork2.getArtwork().getArtist().getArtistDetails()}" th:if="${detail.getLanguage().equals(language)}" th:text="${detail.getArtistName()}">작가명</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div class="wrap" th:if="${exhibitions != null && exhibitions.size() != 0}">
+        <!--section 6-->
+        <section class="curation-contents-section art-stream-waiting-exh-section fade-in-section">
+            <h2 class="section-title" th:text="#{waitingExhibition}">공개예정 큐레이션</h2>
+            <div class="art-stream-carousel owl-carousel">
+                <div sec:authorize="!isAuthenticated()" class="carousel-item" th:each="exhibition : ${exhibitions}">
+                    <div class="btn-add-coming-soon-collection" onclick="NonMemberInAccessible()">
+                        <div class="carousel-text carousel-d-day" th:if="${leftTimeTillExhibition[exhibitionStat.index]!=0}">
+                            D-<span th:text="${leftTimeTillExhibition[exhibitionStat.index]}">3</span>
+                        </div>
+                        <img class="icon-exhibition" th:src="@{/img/icon_exhibition.png}" alt="icon_exhibition">
+                        <div class="art-stream-carousel-img-wrap carousel-img-wrap">
+                            <img th:src="${exhibition.getArtworkExhibitions().isEmpty() ? null : exhibition.getArtworkExhibitions()[0].getArtwork().getContentsHd().getDefaultImg()}" th:each="detail : ${exhibition.getArtworkExhibitions()[0].getArtwork().getArtworkDetails()}" th:if="${detail.getLanguage().equals(language)}" th:alt="${detail.getArtworkName()}">
+                        </div>
+                        <div class="carousel-text-wrap">
+<!--                            <p class="carousel-text carousel-artist-type" th:text="#{scheduledExhibition}">예정 전시</p>-->
+                            <p class="carousel-text carousel-exh-title" th:each="detail : ${exhibition.getExhibitionDetails()}" th:if="${detail.getLanguage().equals(language)}" th:text="${detail.getExhibitionName()}">Exhibition Title</p>
+                            <p class="carousel-text carousel-exh-artist">
+                                <span class="korean-name" th:each="detail : ${exhibition.getArtistExhibitions()[0].getArtist().getArtistDetails()}" th:if="${detail.getLanguage().equals(language)}" th:text="${detail.getArtistName()}"></span>
+                                <span th:if="${exhibition.getArtistExhibitions().size() > 1}">
+                                    <span th:each="detail : ${exhibition.getArtistExhibitions()[1].getArtist().getArtistDetails()}" th:if="${detail.getLanguage().equals(language)}" th:text="${', ' + detail.getArtistName()}"></span>
+                                </span>
+                                <span th:if="${exhibition.getArtistExhibitions().size() > 2}">
+                                    <span th:each="detail : ${exhibition.getArtistExhibitions()[2].getArtist().getArtistDetails()}" th:if="${detail.getLanguage().equals(language)}" th:text="${', ' + detail.getArtistName()}"></span>
+                                </span>
+                                <span th:if="${exhibition.getArtistExhibitions().size()-3 > 0}">
+                                    <span class="etc-number-of-artists" th:text="' ' + #{mypage.other} + ' ' + ${exhibition.getArtistExhibitions().size()-3} + #{more}"></span>
+                                </span>
+                            </p>
+                            <p class="curation-total-artwork"><span th:text="${exhibition.getArtworkExhibitions().size()} + #{artwork}">11작품</span>&nbsp;·&nbsp;<span th:text="${exhibitionsDurationTime[exhibitionStat.index]}">36분 감상</span></p>
+                            <button sec:authorize="!isAuthenticated()" type="button" class="more-contents-anchor" th:text="#{home.wantToWatchExhibition}">저장</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div sec:authorize="isAuthenticated()" class="carousel-item" th:each="exhibition : ${exhibitions}">
+                    <div class="btn-add-coming-soon-collection" th:onclick="'controlComingCollection('+${exhibition.getId()}+', this)'">
+                        <div class="carousel-text carousel-d-day" th:if="${leftTimeTillExhibition[exhibitionStat.index]>0}">
+                            D-<span th:text="${leftTimeTillExhibition[exhibitionStat.index]}">3</span>
+                        </div>
+                        <div class="carousel-text carousel-d-day" th:if="${leftTimeTillExhibition[exhibitionStat.index]==0}">
+                            <span>D-day</span>
+                        </div>
+                        <img class="icon-exhibition" th:src="@{/img/icon_exhibition.png}" alt="icon_exhibition">
+                        <div class="art-stream-carousel-img-wrap carousel-img-wrap">
+                            <img th:src="${exhibition.getArtworkExhibitions().isEmpty() ? null : exhibition.getArtworkExhibitions()[0].getArtwork().getContentsHd().getDefaultImg()}" th:each="detail : ${exhibition.getArtworkExhibitions()[0].getArtwork().getArtworkDetails()}" th:if="${detail.getLanguage().equals(language)}" th:alt="${detail.getArtworkName()}">
+                        </div>
+                        <div class="carousel-text-wrap">
+<!--                            <p class="carousel-text carousel-artist-type">예정 전시</p>-->
+                            <p class="carousel-text carousel-exh-title" th:each="detail : ${exhibition.getExhibitionDetails()}" th:if="${detail.getLanguage().equals(language)}" th:text="${detail.getExhibitionName}">Exhibition Title</p>
+                            <p class="carousel-text carousel-exh-artist">
+                                <span class="artist-name korean-name" th:each="detail : ${exhibition.getArtworkExhibitions()[0].getArtwork().getArtist().getArtistDetails()}" th:if="${detail.getLanguage().equals(language)}" th:text="${detail.getArtistName()}">작가명</span>
+                                <span th:if="${exhibition.getArtistExhibitions().size() > 1}">
+                                    <span th:each="detail : ${exhibition.getArtistExhibitions()[1].getArtist().getArtistDetails()}" th:if="${detail.getLanguage().equals(language)}" th:text="${', ' + detail.getArtistName()}"></span>
+                                </span>
+                                <span th:if="${exhibition.getArtistExhibitions().size() > 2}">
+                                    <span th:each="detail : ${exhibition.getArtistExhibitions()[2].getArtist().getArtistDetails()}" th:if="${detail.getLanguage().equals(language)}" th:text="${', ' + detail.getArtistName()}"></span>
+                                </span>
+                                <span th:if="${exhibition.getArtistExhibitions().size()-3 > 0}">
+                                    <span class="etc-number-of-artists" th:text="' ' + #{mypage.other} + ' ' + ${exhibition.getArtistExhibitions().size()-3} + #{more}"></span>
+                                </span>
+                            </p>
+                            <p class="curation-total-artwork"><span th:text="${exhibition.getArtworkExhibitions().size()} + #{artwork}">11작품</span>&nbsp;·&nbsp;<span th:text="${exhibitionsDurationTime[exhibitionStat.index]}">36분 감상</span></p>
+                            <button sec:authorize="isAuthenticated()" th:if="${alreadyWaiting[exhibitionStat.index]} == false" type="button" class="more-contents-anchor" th:text="#{home.wantToWatchExhibition}">저장</button>
+                            <button sec:authorize="isAuthenticated()" th:if="${alreadyWaiting[exhibitionStat.index]} == true" type="button" class="more-contents-anchor saved-exhibition">
+                                <img class="coming-soon-confirm-icon" src="/img/icon_confirm_white.png" alt="confirm-icon">
+                                <span th:text="#{addedToCollection}">보관함에 담겨있어요</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div class="wrap" th:if="${theme3 != null}">
+        <!--section 8-->
+        <section class="curation-contents-section art-stream-exh-section fade-in-section">
+            <h2 class="section-title" th:each="detail : ${theme3.getExhibitionDetails()}" th:if="${detail.getLanguage().equals(language)}" th:text="${detail.getExhibitionName()}">권명광, 한국 그래픽디자인의 선구자</h2>
+            <div class="curation-info-wrap">
+                <span class="curation-total-artwork" th:text="${theme3.getArtworkExhibitions().size()} + #{artwork}">16작품</span> · <span class="exh-total-time" th:text="${theme3DurationTime}">1시간 12분</span><a th:href="'/'+${language}+'/player?exh_id='+${theme3.getId()}" class="exh-artwork">
+                <!--                <span>더 자세히 보기</span> >-->
+            </a>
+            </div>
+            <div class="carousel-wrap">
+                <div class="owl-carousel">
+                    <a th:each="artwork3 : ${theme3.getArtworkExhibitions()}" th:href="'/'+${language}+'/player?exh_id='+${theme3.getId()} + '&art_id=' + ${artwork3.getArtwork().getId()}" class="carousel-item">
+
+                        <div class="carousel-img-wrap">
+                            <img th:src="${artwork3.getArtwork().getContentsThumbnail().getDefaultImg()}"  th:each="detail : ${artwork3.getArtwork().getArtworkDetails()}" th:if="${detail.getLanguage().equals(language)}" th:alt="${detail.getArtworkName()}">
+                        </div>
+                        <div class="carousel-text-wrap">
+                            <p class="carousel-text carousel-exh-title" th:each="detail : ${artwork3.getArtwork().getArtworkDetails()}" th:if="${detail.getLanguage().equals(language)}" th:text="${detail.getArtworkName()}">行不言之敎 행불언지교</p>
+                            <p class="carousel-text carousel-exh-artist">
+                                <span class="artist-name korean-name" th:each="detail : ${artwork3.getArtwork().getArtist().getArtistDetails()}" th:if="${detail.getLanguage().equals(language)}" th:text="${detail.getArtistName()}">작가명</span>
+                            </p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div class="wrap" th:if="${theme4 != null}">
+        <!--section 9-->
+        <section class="curation-contents-section art-stream-exh-section fade-in-section">
+            <h2 class="section-title" th:each="detail : ${theme4.getExhibitionDetails()}" th:if="${detail.getLanguage().equals(language)}" th:text="${detail.getExhibitionName()}">생의 욕망, 에곤 실레</h2>
+            <div class="curation-info-wrap">
+                <span class="curation-total-artwork" th:text="${theme4.getArtworkExhibitions().size()} + #{artwork}">9작품</span> · <span class="exh-total-time" th:text="${theme4DurationTime}">48분</span><a th:href="'/'+${language}+'/player?exh_id='+${theme4.getId()}" class="exh-artwork">
+                <!--                <span>더 자세히 보기</span> >-->
+            </a>
+            </div>
+            <div class="carousel-wrap">
+                <div class="owl-carousel">
+                    <a th:each="artwork4 : ${theme4.getArtworkExhibitions()}" th:href="'/'+${language}+'/player?exh_id='+${theme4.getId()} + '&art_id=' + ${artwork4.getArtwork().getId()}" class="carousel-item">
+
+                        <div class="carousel-img-wrap">
+                            <img th:src="${artwork4.getArtwork().getContentsThumbnail().getDefaultImg()}"  th:each="detail : ${artwork4.getArtwork().getArtworkDetails()}" th:if="${detail.getLanguage().equals(language)}" th:alt="${detail.getArtworkName()}">
+                        </div>
+                        <div class="carousel-text-wrap">
+                            <p class="carousel-text carousel-exh-title" th:each="detail : ${artwork4.getArtwork().getArtworkDetails()}" th:if="${detail.getLanguage().equals(language)}" th:text="${detail.getArtworkName()}">생의 욕망, 에곤 실레</p>
+                            <p class="carousel-text carousel-exh-artist">
+                                <span class="artist-name korean-name" th:each="detail : ${artwork4.getArtwork().getArtist().getArtistDetails()}" th:if="${detail.getLanguage().equals(language)}" th:text="${detail.getArtistName()}">작가명</span>
+                            </p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div class="wrap" th:if="${theme5 != null}">
+        <!--section 10-->
+        <section class="curation-contents-section art-stream-exh-section fade-in-section">
+            <h2 class="section-title" th:each="detail : ${theme5.getExhibitionDetails()}" th:if="${detail.getLanguage().equals(language)}" th:text="${detail.getExhibitionName()}">겨울에서 봄까지 가는 길</h2>
+            <div class="curation-info-wrap">
+                <span class="curation-total-artwork" th:text="${theme5.getArtworkExhibitions().size()} + #{artwork}">16작품</span> · <span class="exh-total-time" th:text="${theme5DurationTime}">1시간 12분</span><a th:href="'/'+${language}+'/player?exh_id='+${theme5.getId()}" class="exh-artwork">
+                <!--                <span>더 자세히 보기</span> > -->
+            </a>
+            </div>
+            <div class="carousel-wrap">
+                <div class="owl-carousel">
+                    <a class="carousel-item" th:each="artwork5 : ${theme5.getArtworkExhibitions()}" th:href="'/'+${language}+'/player?exh_id='+${theme5.getId()} + '&art_id=' + ${artwork5.getArtwork().getId()}">
+
+                        <div class="carousel-img-wrap">
+                            <img th:src="${artwork5.getArtwork().getContentsThumbnail().getDefaultImg()}"  th:each="detail : ${artwork5.getArtwork().getArtworkDetails()}" th:if="${detail.getLanguage().equals(language)}" th:alt="${detail.getArtworkName()}">
+                        </div>
+                        <div class="carousel-text-wrap">
+                            <p class="carousel-text carousel-exh-title" th:each="detail : ${artwork5.getArtwork().getArtworkDetails()}" th:if="${detail.getLanguage().equals(language)}" th:text="${detail.getArtworkName()}">남도여행</p>
+                            <p class="carousel-text carousel-exh-artist">
+                                <span class="artist-name korean-name" th:each="detail : ${artwork5.getArtwork().getArtist().getArtistDetails()}" th:if="${detail.getLanguage().equals(language)}" th:text="${detail.getArtistName()}">작가명</span>
+                            </p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+<!--            <a th:href="'/'+${language}+'/artwork/all'" class="btn-see-all">-->
+<!--                <span th:text="#{home.allArtwork}">모든 아트워크</span>-->
+<!--            </a>-->
+            <a href="javascript:void(0)" onclick="checkGAEvent('home_go_artwork');goToAllArtwork();" class="btn-see-all">
+                <span th:text="#{home.allArtwork}">모든 아트워크</span>
+            </a>
+        </section>
+    </div>
+    <div class="wrap home-enjoy-wrap">
+        <!--section 3-->
+        <section class="home-enjoy-section fade-in-section">
+            <p class="home-section-sub-title" th:text="#{home.watchTv}">TV 감상</p>
+            <h2 class="home-section-main-title" th:text="#{home.watchTvDesctiption1}">디지털 아트,<br>
+                이젠 더 크게 감상하세요</h2>
+            <p class="home-section-main-content" th:text="#{home.watchTvDesctiption2}">작은 화면에서 감상하느라 많이 답답하셨죠? TV App으로 만나보세요.</p>
+            <img class="home-section-img" th:src="@{/img/tv_appreciation_img.png}" alt="tv_appreciation_img">
+<!--            <a sec:authorize="isAuthenticated()" class="tv-link-button" th:href="@{/mypage/connect/tv}">TV 연결</a>-->
+<!--            <button sec:authorize="!isAuthenticated()" type="button" class="cta-button" onclick="NonMemberInAccessible();">TV 연결</button>-->
+<!--            <a th:href="'/'+${language}+'/mypage/use-tv'" class="more-contents-anchor tv-anchor" th:text="#{home.tvInstallMethod}">TV 설치방법</a>-->
+            <a href="javascript:void(0)" onclick="checkGAEvent('home_go_tv_guide'); goToTvGuide();" class="more-contents-anchor tv-anchor" th:text="#{home.tvInstallMethod}">TV 설치방법</a>
+        </section>
+    </div>
+    <div class="wrap" th:if="${artists != null && artists.size() != 0}">
+        <!--section 2-->
+        <section class="home-artist-section fade-in-section">
+            <h2 class="home-artist-section-title" th:text="#{home.recommendedArtists}">추천 아티스트</h2>
+            <div class="home-artist-carousel-wrap carousel-wrap">
+                <div id="home_artist_carousel" class="home-artist-carousel owl-carousel">
+                    <div class="artist-item" th:each="artist: ${artists}">
+                        <a th:href="'/'+${language}+'/artists/detail?artist_id='+${artist.getId()}">
+<!--                            <div class="item-gradation"></div>-->
+                            <div class="item-img-wrap">
+                                <img th:src="${artist.getProfileImg()}" th:each="detail : ${artist.getArtistDetails()}" th:if="${detail.getLanguage().equals(language)}" th:alt="${detail.getArtistName()}">
+                            </div>
+                            <p class="artist-name">
+                                <span class="artist-name korean-name" th:each="detail : ${artist.getArtistDetails()}" th:if="${detail.getLanguage().equals(language)}" th:text="${detail.getArtistName()}">작가명</span>
+                            </p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+<!--            <a th:href="'/'+${language}+'/artists'" class="btn-see-all">-->
+<!--                <span th:text="#{home.allArtist}">모든 아티스트</span>-->
+<!--&lt;!&ndash;                <img th:src="@{/img/icon_go.png}" alt="btn_go">&ndash;&gt;-->
+<!--            </a>-->
+            <a href="javascript:void(0)" onclick="checkGAEvent('home_go_artist'); goToAllArtists();" class="btn-see-all">
+                <span th:text="#{home.allArtist}">모든 아티스트</span>
+                <!--                <img th:src="@{/img/icon_go.png}" alt="btn_go">-->
+            </a>
+        </section>
+    </div>
+    <div class="wrap semi-light">
+        <!--section 5-->
+        <section class="home-store-section fade-in-section">
+            <p class="home-section-sub-title" th:text="#{store}">스토어</p>
+            <h2 class="home-section-main-title" th:text="#{home.wantToBuyDescription1}">지금 감상하는 작품을 구매할 수 있나요?</h2>
+            <p class="home-section-main-content" th:text="#{home.wantToBuyDescription2}">감상 중인 작품의 원작 또는 에디션 작품을 스토어에서 구매할 수 있습니다.</p>
+            <img class="home-section-img store-img" th:src="@{/img/store_img.png}" alt="store_img">
+<!--            <a th:href="@{https://patron-gallery.com/}" th:target="_blank" class="anchor-to-purchase" th:text="#{home.buyRightNow}">바로 구매</a>-->
+            <a href="javascript:void(0)" onclick="checkGAEvent('home_go_store'); goToStore();" class="anchor-to-purchase" th:text="#{home.buyRightNow}">바로 구매</a>
+        </section>
+    </div>
+<!--    <div class="wrap" th:if="${artMagazines != null && artMagazines.size() != 0}">-->
+<!--        &lt;!&ndash;section 6&ndash;&gt;-->
+<!--        <section class="home-artMagazine-section">-->
+<!--            <h2 class="home-artMagazine-section-title">아트 매거진</h2>-->
+<!--            <div class="home-artMagazine-carousel-wrap carousel-wrap">-->
+<!--                <div id="home_artMagazine_carousel" class="home-artMagazine-carousel owl-carousel">-->
+<!--                    <div th:each="artMagazine : ${artMagazines}">-->
+<!--                        <a class="carousel-item"  th:href="'/art-magazine-detail?artMagazineId='+${artMagazine.getId()}">-->
+<!--                            <div class="carousel-text carousel-artMagazine-number">-->
+<!--                                <span class="carousel-artMagazine-number-now" th:text="${artMagazineStat.index + 1}">1</span>/<span class="carousel-artMagazine-number-total" th:text="${artMagazines.size()}">3</span>-->
+<!--                            </div>-->
+<!--                            <div class="home-artMagazine-carousel-img-wrap">-->
+<!--                                <img th:src="${artMagazine.getThumbnail()}" class="d-block w-100" th:alt="${artMagazine.getTitle()}">-->
+<!--                            </div>-->
+<!--                            <div class="carousel-text-wrap">-->
+<!--                                <p class="carousel-text carousel-artMagazine-type">추천 매거진</p>-->
+<!--                                <p class="carousel-text carousel-artMagazine-name" th:text="${artMagazine.getTitle()}">에곤 실레, 생의 욕망</p>-->
+<!--                                <p class="carousel-text carousel-artMagazine-content" th:text="${artMagazine.getIntro()}">"어떤 작가 좋아해요?" 라고 물어보면 근래엔 에곤 실레의 이름을 심심치 않게 들어볼 수...</p>-->
+<!--                            </div>-->
+<!--                        </a>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <a th:href="@{/art-magazine}" class="more-contents-anchor">더 보고 싶어요</a>-->
+<!--            <img id="scroll_to_top" th:src="@{/img/icon_gotop.png}" onclick="moveTop()" alt="icon_gotop">-->
+<!--        </section>-->
+<!--    </div>-->
+</main>
+<input type="hidden" class="loggedIn" th:if="${generalMember}" th:value="${generalMember.getId()}">
+<input type="hidden" id="deviceId" th:if="${deviceId}" th:value="${deviceId}">
+<input type="hidden" id="tvLoginSuccess" th:if="${tvLoginSuccess}" th:value="${tvLoginSuccess}">
+<input type="hidden" class="loggedIn" th:unless="${generalMember}" th:value="null">
+<div th:replace="common/footer.html"></div>
+
+<!-- script 위치 시작 -->
+<script th:inline="javascript">
+    var needToLogin = [[#{needToLogin}]];
+    var signup = [[#{signup}]];
+    var joinPatron = [[#{joinPatron}]];
+    var login = [[#{login}]];
+    var cancel = [[#{cancel}]];
+    var loginSucceed = [[#{home.loginSucceed}]];
+    var addedToWaitingExhibition = [[#{addedToWaitingExhibition}]];
+    var removedFromWaitingExhibition = [[#{removedFromWaitingExhibition}]];
+    var wantToWatchExhibition = [[#{home.wantToWatchExhibition}]];
+    var addedToCollection = [[#{addedToCollection}]];
+    var addedToChosenCollection = [[#{addedToChosenCollection}]];
+    var tvLoginFailed = [[#{loginTv.loginFailed }]];
+</script>
+<script th:src="@{/js_v1_3/common/jquery.min.js}"></script>
+<script th:src="@{/js_v1_3/common/jsCookie.js}"></script>
+<script th:src="@{/js_v1_3/common/owl.carousel.js}"></script>
+<!--<script th:src="@{/js/common/sockjs.min.js}"></script>-->
+<!--<script th:src="@{/js/common/stomp.min.js}"></script>-->
+<script th:src="@{/js_v1_3/common/header.js}"></script>
+<script th:src="@{/js_v1_3/common/common.js}"></script>
+<script th:src="@{/js_v1_3/home/home.js}"></script>
+<!-- script 위치 종료 -->
+</body>
+
+</html>

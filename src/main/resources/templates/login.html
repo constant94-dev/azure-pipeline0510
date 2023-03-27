@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:remove="tag" th:replace="common/common-meta.html :: headMeta"></div>
+    <div th:remove="tag" th:replace="common/common-link.html :: headLink"></div>
+    <div th:remove="tag" th:replace="common/common-head-script.html :: headScript"></div>
+    <title>Nodamen</title>
+</head>
+<body>
+<!--header 상단메뉴-->
+<main>
+    <div class="login_wrap">
+        <div th:if="${message != null}" class="alert alert-info" th:utext="${message}">message</div>
+        <div th:if="${provider != null}" class="alert alert-info" th:utext="${provider}">message</div>
+        <form class="login_box" th:action="@{/api/login}" method="post" novalidate>
+            <h1 class="login_title">LOGIN</h1>
+
+            <input class="email_id login_small_box " type="email"  placeholder="이메일" id="email" name="email" spellcheck="false">
+            <input class="login_pw login_small_box " type="password"  placeholder="비밀번호" id="password" name="password" spellcheck="false">
+            <div><div class="checkbox"><input type="checkbox" id="check_account">
+                <!--                <label for="check_account"></label></div><span class="login_memory">계정 기억하기</span></div>-->
+                <div><div class="checkbox_auto"><input type="checkbox" id="rememberMe" name="remember-me" checked>
+                    <label for="rememberMe" aria-describedby="rememberMeHelp"></label></div><span class="login_auto">자동 로그인</span></div>
+                <input class="login_submit" type="submit" value="로그인" spellcheck="false">
+                <a class="login_sign_up" th:href="@{/main/sign-up-author}">회원가입</a>
+                <a class="login_find_id" th:href="@{/main/login-find-pw}">비밀번호가 기억나지 않으세요?</a>
+            </div>
+            </div>
+        </form>
+
+        <div class="container unauthenticated">
+            With Google: <a href="/oauth2/authorization/google">click here</a>
+            With Facebook: <a href="/oauth2/authorization/facebook">click here</a>
+            <a href="https://kauth.kakao.com/oauth/authorize?client_id=48f54d2f32584082c6d37da47a366f3c&redirect_uri=https://patron.digital&response_type=code">
+                LOGIN KAKAO
+            </a>
+            <a href="https://kauth.kakao.com/oauth/logout?client_id=48f54d2f32584082c6d37da47a366f3c&logout_redirect_uri=https://patron.digital">
+                LOGOUT KAKAO
+            </a>
+        </div>
+        <div class="container authenticated" style="display:none">
+            Logged in as: <span id="user"></span>
+        </div>
+    </div>
+</main>
+
+<!--<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>-->
+<!--<script>-->
+<!--    window.Kakao.init("da1fee3add758b28330cf06dd2f04b15");-->
+
+<!--    function kakaoLogin(){-->
+<!--        window.Kakao.Auth.login({-->
+<!--           scope:'account_email',-->
+<!--            success: function(authObj){-->
+<!--               console.log(authObj);-->
+<!--               window.Kakao.API.request({-->
+<!--                   url:'z`',-->
+<!--                   success: res=>{-->
+<!--                       const kakao_account = res.kakao_account;-->
+<!--                       console.log(kakao_account);-->
+<!--                   }-->
+<!--               });-->
+<!--            }-->
+<!--        });-->
+<!--    }-->
+<!--</script>-->
+
+<!--footer 하단메뉴-->
+</body>
+</html>

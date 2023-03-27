@@ -1,0 +1,26 @@
+<div class="mypage-modal-header">
+    <div id="nav_menu" class="nav_menu">
+        <a onclick="closeProfileEditModal();" class="btn-cancel" th:text="#{cancel}">취소</a>
+    </div>
+</div>
+
+
+<div class="wrap">
+    <!-- 프로필 편집 - 사용자 이름 -->
+    <div class="wrap light edit-username">
+        <div class="hidden-area">
+            <section class="edit-username-section">
+                <div>
+                    <h2 class="edit-username-title" th:text="#{profileName.nameInput}">이름을 입력하세요</h2>
+                    <p class="edit-username-guide" th:text="#{profileName.nameInputDescription}">파트론 서비스에서 사용할 이름을 알려주세요.</p>
+                    <div class="edit-username-input-area">
+                        <p class="edit-username-input-title" th:text="#{userName}">사용자 이름</p>
+                        <label class="label-hidden" for="edit_username" th:text="#{userName}">사용자 이름</label>
+                        <input type="text" maxlength="16" name="edit-username" id="edit_username" class="edit-username-input" th:value="${generalMember.getName()}" onkeyup="btnActivation(this,'btn_save');" autofocus spellcheck="false">
+                        <button id="btn_save" class="btn-save" disabled onclick="editProfile('edit_username','name')" th:text="#{save}">저장</button>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>

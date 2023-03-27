@@ -1,0 +1,477 @@
+@charset "UTF-8";
+.collection-new-section .selected-artworks-info .delete-mode,
+.collection-edit-section .selected-artworks-info .delete-mode {
+  font-family: RobotoMedium, notoSansMedium, serif;
+  color: #ffffff;
+  font-size: 16px;
+  text-decoration: underline;
+}
+
+.collection-new-section .add-collection,
+.collection-edit-section .add-collection {
+  font-family: RobotoMedium, notoSansMedium, serif;
+  color: #2841FA;
+  font-size: 14px;
+  text-decoration: underline;
+}
+
+.collection-new-section .remove-collection,
+.collection-edit-section .remove-collection {
+  font-family: RobotoMedium, notoSansMedium, serif;
+  color: #ea6600;
+  font-size: 16px;
+  text-decoration: underline;
+}
+
+body {
+  background-color: #0A0A0A;
+}
+
+header {
+  height: 50px;
+}
+
+.nav_menu {
+  display: flex;
+  justify-content: space-between;
+  height: 48px;
+  background-color: #0A0A0A;
+}
+.nav_menu .btn-cancel {
+  position: initial;
+  background-color: transparent;
+  font-size: 14px;
+  color: #f5f5f5;
+  text-decoration: underline;
+  margin-right: 20px;
+}
+
+.wrap {
+  height: 100vh;
+}
+
+/* 새 컬렉션 만들기 */
+.collection-new-section .collection-title,
+.collection-edit-section .collection-title {
+  font-family: notoSansBold, serif;
+  font-size: 24px;
+  color: #f5f5f5;
+  padding-top: 72px;
+  margin-bottom: 24px;
+}
+.collection-new-section div,
+.collection-edit-section div {
+  position: relative;
+}
+.collection-new-section input,
+.collection-edit-section input {
+  width: 304px;
+  height: 24px;
+  padding: 10px 12px;
+  border: none;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.08);
+  font-family: notoSansRegular, serif;
+  font-size: 16px;
+  line-height: 23px;
+  color: #ffffff;
+  opacity: 0.65;
+  caret-color: #2841fa;
+  margin-bottom: 24px;
+}
+@media screen and (min-width: 481px) {
+  .collection-new-section input,
+  .collection-edit-section input {
+    width: 768rem;
+    height: auto;
+    padding: 10px 12rem;
+    box-sizing: border-box;
+  }
+}
+.collection-new-section .btn-erase,
+.collection-edit-section .btn-erase {
+  width: 28px;
+  height: 28px;
+  position: absolute;
+  right: 10px;
+  top: 6px;
+  background-color: transparent;
+  opacity: 0;
+}
+.collection-new-section .btn-erase img,
+.collection-edit-section .btn-erase img {
+  width: inherit;
+}
+.collection-new-section .selected-artworks-info,
+.collection-edit-section .selected-artworks-info {
+  font-family: notoSansRegular, serif;
+  color: #f5f5f5;
+  font-size: 16px;
+  margin-bottom: 12px;
+  display: none;
+  justify-content: space-between;
+}
+.collection-new-section .selected-artworks-info span:nth-of-type(1),
+.collection-edit-section .selected-artworks-info span:nth-of-type(1) {
+  opacity: 0.65;
+}
+.collection-new-section .selected-artworks-info .delete-mode,
+.collection-edit-section .selected-artworks-info .delete-mode {
+  cursor: pointer;
+}
+.collection-new-section .add-collection,
+.collection-edit-section .add-collection {
+  cursor: pointer;
+  width: 200px;
+  margin-bottom: 135px;
+}
+.collection-new-section .remove-collection,
+.collection-edit-section .remove-collection {
+  display: flex;
+  justify-content: flex-start;
+}
+.collection-new-section .selected-artworks-list,
+.collection-edit-section .selected-artworks-list {
+  margin-bottom: 24px;
+}
+.collection-new-section .selected-artworks-list > li,
+.collection-edit-section .selected-artworks-list > li {
+  display: flex;
+  margin-bottom: 12px;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  gap: 13px;
+  align-items: center;
+}
+.collection-new-section .selected-artworks-list .selected-artworks,
+.collection-edit-section .selected-artworks-list .selected-artworks {
+  display: flex;
+  flex-direction: row;
+  width: 300px;
+  height: 45px;
+  background: transparent;
+}
+@media screen and (min-width: 481px) {
+  .collection-new-section .selected-artworks-list .selected-artworks,
+  .collection-edit-section .selected-artworks-list .selected-artworks {
+    width: 768rem;
+  }
+}
+.collection-new-section .selected-artworks-list .selected-artworks img,
+.collection-edit-section .selected-artworks-list .selected-artworks img {
+  width: 80px;
+  height: 45px;
+  border-radius: 4px;
+}
+.collection-new-section .selected-artworks-list .artwork-txt-info,
+.collection-edit-section .selected-artworks-list .artwork-txt-info {
+  width: 200px;
+  margin-left: 12px;
+}
+.collection-new-section .selected-artworks-list .artwork-txt-info li,
+.collection-edit-section .selected-artworks-list .artwork-txt-info li {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  margin-bottom: 3px;
+}
+.collection-new-section .selected-artworks-list .artwork-txt-info li:nth-of-type(1),
+.collection-edit-section .selected-artworks-list .artwork-txt-info li:nth-of-type(1) {
+  font-family: RobotoRegular, notoSansRegular, serif;
+  font-size: 16px;
+  text-align: left;
+  line-height: 19px;
+  color: #f5f5f5;
+}
+.collection-new-section .selected-artworks-list .artwork-txt-info li:nth-of-type(2),
+.collection-edit-section .selected-artworks-list .artwork-txt-info li:nth-of-type(2) {
+  font-family: RobotoRegular, notoSansRegular, serif;
+  font-size: 14px;
+  text-align: left;
+  line-height: 20px;
+  color: #f5f5f5;
+  opacity: 0.65;
+}
+.collection-new-section .selected-artworks-list .btn-move,
+.collection-edit-section .selected-artworks-list .btn-move {
+  width: 28px;
+  height: 28px;
+  background-color: transparent;
+  font-family: notoSansMedium, serif;
+}
+.collection-new-section .selected-artworks-list .btn-move img,
+.collection-edit-section .selected-artworks-list .btn-move img {
+  width: 28px;
+  height: 28px;
+}
+.collection-new-section .selected-artworks-list .icon-show-option,
+.collection-edit-section .selected-artworks-list .icon-show-option {
+  width: 28px;
+  height: 28px;
+  background: transparent;
+}
+.collection-new-section .selected-artworks-list .icon-show-option img,
+.collection-edit-section .selected-artworks-list .icon-show-option img {
+  width: inherit;
+}
+.collection-new-section .selected-artworks-list .icon-show-option span,
+.collection-edit-section .selected-artworks-list .icon-show-option span {
+  display: none;
+}
+.collection-new-section .btn-save,
+.collection-edit-section .btn-save {
+  position: fixed;
+  bottom: 40px;
+  width: inherit;
+  font-size: 16px;
+  font-weight: normal;
+  background-color: #424242;
+  color: white;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  line-height: 46px;
+  border-radius: 12px;
+}
+@media screen and (min-width: 481px) {
+  .collection-new-section .btn-save,
+  .collection-edit-section .btn-save {
+    width: 768rem;
+  }
+}
+.collection-new-section .btn-save.blue,
+.collection-edit-section .btn-save.blue {
+  background-color: #2841fa;
+}
+
+/* 다른 작품 더 추가하기 */
+.collection-add-section .collection-add-title {
+  font-family: notoSansBold, serif;
+  font-size: 24px;
+  color: #f5f5f5;
+  padding-top: 72px;
+  margin-bottom: 24px;
+}
+.collection-add-section .artwork-nav {
+  font-family: notoSansMedium, serif;
+  font-size: 16px;
+  line-height: 23px;
+  margin-bottom: 24px;
+}
+.collection-add-section .artwork-nav ul {
+  display: flex;
+  align-items: baseline;
+}
+.collection-add-section .artwork-nav li {
+  margin-right: 12px;
+  padding-bottom: 4px;
+}
+.collection-add-section .artwork-nav li button {
+  font-family: notoSansRegular, serif;
+  background-color: transparent;
+  color: rgba(245, 245, 245, 0.65);
+}
+.collection-add-section .artwork-nav li.blue {
+  border-bottom: 3px solid #2841fa;
+}
+.collection-add-section .artwork-nav li.blue button {
+  font-family: notoSansMedium, serif;
+  background-color: transparent;
+  color: #f5f5f5;
+}
+.collection-add-section .select-artworks {
+  position: relative;
+}
+@media screen and (max-width: 481px) {
+  .collection-add-section .select-artworks {
+    width: inherit;
+  }
+}
+.collection-add-section .recent-artworks-list {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin-bottom: 85px;
+  font-family: notoSansRegular, serif;
+  width: inherit;
+  height: 500px;
+  overflow-y: scroll;
+}
+@media screen and (min-width: 481px) {
+  .collection-add-section .recent-artworks-list {
+    width: 768rem;
+  }
+}
+.collection-add-section .recent-artworks-list::-webkit-scrollbar {
+  display: none;
+}
+.collection-add-section .recent-artworks-list > li {
+  display: flex;
+  margin-bottom: 12px;
+}
+.collection-add-section .recent-artworks-list .recent-artworks {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  height: 45px;
+  background: transparent;
+}
+.collection-add-section .recent-artworks-list .recent-artworks .artwork-info-wrap {
+  display: flex;
+}
+.collection-add-section .recent-artworks-list .recent-artworks .already-contained-text {
+  position: absolute;
+  z-index: 1;
+  left: 50%;
+  top: 50%;
+  width: inherit;
+  font-family: RobotoRegular, notoSansRegular, serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 14px;
+  color: #FFFFFF;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+}
+.collection-add-section .recent-artworks-list .recent-artworks.disabled .recent-artworks-img-wrap {
+  position: relative;
+}
+.collection-add-section .recent-artworks-list .recent-artworks.disabled .recent-artworks-img-wrap .already-contained-text {
+  opacity: 1;
+}
+.collection-add-section .recent-artworks-list .recent-artworks.disabled .recent-artworks-img-wrap img {
+  opacity: 0.5;
+}
+.collection-add-section .recent-artworks-list .recent-artworks.disabled .artwork-txt-info {
+  opacity: 0.5;
+}
+.collection-add-section .recent-artworks-list .recent-artworks.disabled .btn-img {
+  opacity: 0;
+}
+.collection-add-section .recent-artworks-list .recent-artworks img {
+  width: 80px;
+  height: 45px;
+  border-radius: 4px;
+}
+.collection-add-section .recent-artworks-list .recent-artworks img.btn-img {
+  width: 28px;
+  height: 28px;
+}
+.collection-add-section .recent-artworks-list .artwork-txt-info {
+  width: 200px;
+  margin-left: 12px;
+}
+@media screen and (min-width: 481px) {
+  .collection-add-section .recent-artworks-list .artwork-txt-info {
+    flex-basis: 4545rem;
+  }
+}
+.collection-add-section .recent-artworks-list .artwork-txt-info .artwork-info {
+  display: flex;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  margin-bottom: 3px;
+}
+.collection-add-section .recent-artworks-list .artwork-txt-info .artwork-name {
+  font-family: RobotoRegular, notoSansRegular, serif;
+  font-size: 16px;
+  text-align: left;
+  line-height: 19px;
+  color: #f5f5f5;
+}
+.collection-add-section .recent-artworks-list .artwork-txt-info .artist-name {
+  font-family: RobotoRegular, notoSansRegular, serif;
+  font-size: 14px;
+  text-align: left;
+  line-height: 20px;
+  color: #f5f5f5;
+  opacity: 0.65;
+}
+.collection-add-section .recent-artworks-list .select-check {
+  display: inline-block;
+  width: 28px;
+  height: 28px;
+  background-size: cover;
+  background-image: url(../../img/icon_check_inactive2.png);
+  border: none;
+  border-radius: 50%;
+}
+.collection-add-section .recent-artworks-list .select-check.active {
+  background-image: url(../../img/icon_check_active1.png);
+}
+.collection-add-section .recent-artworks-list .select-input {
+  display: none;
+}
+.collection-add-section .recent-artworks-list .btn-select {
+  width: 28px;
+  height: 28px;
+  background-color: transparent;
+}
+.collection-add-section .recent-artworks-list .btn-select img {
+  width: 28px;
+  height: 28px;
+}
+.collection-add-section .recent-artworks-list .icon-show-option {
+  width: 28px;
+  height: 28px;
+  background: transparent;
+}
+.collection-add-section .recent-artworks-list .icon-show-option img {
+  width: inherit;
+}
+.collection-add-section .recent-artworks-list .icon-show-option span {
+  display: none;
+}
+.collection-add-section .btn-save {
+  position: fixed;
+  bottom: 40px;
+  width: inherit;
+  font-size: 16px;
+  font-weight: normal;
+  background-color: #EBEBEB;
+  color: white;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  line-height: 46px;
+  border-radius: 12px;
+}
+@media screen and (min-width: 481px) {
+  .collection-add-section .btn-save {
+    width: 768rem;
+  }
+}
+.collection-add-section .btn-save.blue {
+  background-color: #2841fa;
+}
+
+@media screen and (min-width: 481px) {
+  header {
+    width: 768rem;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .collection-edit-section, .collection-add-section {
+    width: 768rem;
+  }
+  .collection-edit-section .collection-input {
+    width: 768rem;
+  }
+}
+.collection-edit-section {
+  padding-bottom: 124px;
+}
+.collection-edit-section .collection-input {
+  width: inherit;
+}
+.collection-edit-section .collection-input input {
+  width: inherit;
+  height: auto;
+  box-sizing: border-box;
+}
+
+/*# sourceMappingURL=collection-new.css.map */

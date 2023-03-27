@@ -1,0 +1,394 @@
+@import '../common/library';
+//common
+a{
+  display: block;
+  width: inherit;
+  -webkit-filter: grayscale(100%);
+}
+.artist-name{
+  white-space: nowrap;
+  width: auto;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+// section 1
+.artist-main-section {
+  padding: 88px 0 40px 0;
+  background: $grayscale8;
+  .artist-main-section-title{
+    margin-bottom: 12px;
+    h1 {
+      font-family: $bothBold;
+      font-style: normal;
+      font-weight: 700;
+      font-size: 32px;
+      line-height: 46px;
+      text-align: left;
+      color: $text-lightest;
+    }
+    p {
+      margin-top: 16px;
+      font-family: $bothRegular;
+      font-style: normal;
+      font-weight: 400;
+      font-size: $fontsize-regular;
+      line-height: 23px;
+      text-align: center;
+      color: $grayscale3
+    }
+  }
+  //carousel
+  .owl-carousel{
+    .owl-stage-outer{
+      overflow: inherit;
+    }
+  }
+  .artist-carousel{
+    .carousel-item{
+      height: 389px;
+      background: rgba(255, 255, 255, 0.08);
+      a{
+        height: inherit;
+      }
+      .carousel-text-wrap{
+        height: 143px;
+      }
+      .artist-carousel-img-wrap{
+        height: 246px;
+      }
+      .carousel-artist-name{
+        font-family: $bothRegular;
+        font-size: $fontsize-regular-big;
+        color: $text-light;
+      }
+      .carousel-exh-artist,
+      .carousel-artwork-artist{
+        margin-bottom: 24px;
+        color: $opacity-level1-light
+      }
+      .carousel-artist-number{
+        position: absolute;
+        z-index: 1;
+        top: 214px;
+        right: 12px;
+        width: 37px;
+        height: 20px;
+        line-height: 20px;
+        text-align: center;
+        background: rgba(0, 0, 0, 0.2);
+        color: rgba(255, 255, 255, 0.8);
+        border-radius: $border-radius-breadcrumbs;
+        font-family: $bothRegular;
+        font-size: 10px;
+      }
+      .carousel-artist-type{
+        font-family: $bothRegular;
+      }
+      .carousel-artist-content{
+        font-family: $bothRegular;
+      }
+      .carousel-artist-name{
+        margin-bottom: 24px;
+        color: $text-light;
+      }
+    }
+  }
+}
+//section 2, 3, 4, 5
+.artist-contents-section{
+  padding: 0 0 40px 0;
+  background: $grayscale8;
+  .artist-section-title {
+    font-family: $bothBold;
+    font-style: normal;
+    font-size: $fontsize-regular-big;
+    line-height: 26.06px;
+    color: $text-lightest;
+    margin-bottom: 8px;
+  }
+  .carousel-item{
+    width: 160px;
+    height: 229px;
+    box-sizing: border-box;
+    border-radius: 0;
+    .carousel-img-wrap{
+      height: 184.5px;
+      border-radius: $border-radius-default;
+      overflow: hidden;
+      img{
+        width: auto;
+        height: inherit;
+      }
+    }
+    .item-img-wrap{
+      width: 160px;
+      height: 184.5px;
+      border-radius: $border-radius-default;
+      box-sizing: border-box;
+      overflow: hidden;
+      img{
+        width: inherit;
+      }
+    }
+    .carousel-artist-name{
+      height: 24px;
+      font-family: $bothRegular;
+      font-size: $fontsize-regular;
+      color: $text-light;
+    }
+    .carousel-content-wrap{
+      position: relative;
+      padding: 4.5px 0 0 0;
+    }
+    .like-count{
+      height: 14px;
+      font-family: $bothMedium;
+      font-size: $fontsize-small;
+      line-height: 14px;
+      color: $opacity-level1-light;
+      img{
+        float: left;
+        width: 16px;
+      }
+    }
+  }
+}
+// section 6
+.apply-for-artist-section{
+  background: $grayscale1;
+  padding: 60px 0 60px 0;
+  .apply-for-artist-main-title{
+    font-family: $bothBold;
+    font-style: normal;
+    font-weight: 700;
+    font-size: $fontsize-big;
+    line-height: 35px;
+    color: #000000;
+    margin-bottom: 16px;
+  }
+  .apply-for-artist-sub-title{
+    font-family: $bothBold;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 17px;
+    color: $primary-color;
+    margin-bottom: 6px;
+  }
+  .apply-for-artist-main-content {
+    font-family: $notoSansRegular;
+    font-style: normal;
+    font-weight: 400;
+    font-size: $fontsize-regular;
+    line-height: 23px;
+    color: $grayscale8;
+    margin-bottom: 40px;
+  }
+  .cta-button {
+    width: auto;
+    padding: 0 24px;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    @media screen and (min-width: 481px) {
+      margin-left: 0%;
+      transform: translateX(0%);
+    }
+  }
+}
+//section 7
+.all-artist-section{
+  position: relative;
+  padding-top: 68px;
+  .artist-section-title{
+    height: 36px;
+    margin-bottom: 28px;
+    font-family: $bothBold;
+    font-size: $fontsize-big-big;
+    line-height: 35px;
+    color: $text-lightest;
+  }
+  .contents-wrap{
+    //width: 328px;
+    min-width: 328px;
+    width: auto;
+    display: flex;
+    justify-content: space-evenly;
+    gap: 28px 12px;
+    flex-wrap: wrap;
+    padding-bottom: 40px;
+    @media screen and (min-width: 481px){
+      width: 768rem;
+    }
+    .artist-item{
+      position: relative;
+      flex-basis: 154px;
+      width: 154px;
+      height: auto;
+      margin-bottom: 0;
+      .artist-name{
+        height: 24px;
+        font-family: $bothRegular;
+        font-size: $fontsize-regular;
+        line-height: 23px;
+        color: $text-light;
+        margin-top: 4px;
+        text-align: center;
+      }
+      .like-count{
+        height: 14px;
+        font-family: $bothMedium;
+        font-size: $fontsize-small;
+        line-height: 14px;
+        color: $opacity-level1-light;
+        img{
+          float: left;
+          width: 16px;
+        }
+      }
+      .item-img-wrap{
+        box-sizing: border-box;
+        overflow: hidden;
+        width: 154px;
+        height: 154px;
+        border-radius: 154px;
+        img{
+          position: relative;
+          width: inherit;
+          top: 50%;
+          transform: translateY(-50%);
+        }
+      }
+      .item-gradation{
+        position: absolute;
+        width: 160px;
+        height: 184.5px;
+        background: linear-gradient(180deg, rgba(10, 10, 10, 0) 72.87%, #0A0A0A 100%);
+        border-radius: $border-radius-default;
+      }
+    }
+  }
+  .btn-sorting{
+    position: absolute;
+    top: 75px;
+    right: 0;
+    height: 21px;
+    line-height: 21px;
+    background: transparent;
+    font-family: $bothMedium;
+    text-decoration: underline;
+    font-size: 16px;
+    color: $text-lightest;
+    img{
+      width: 16px;
+      height: 16px;
+      transform: translateY(3px);
+    }
+  }
+}
+
+.sorting-option-box{
+  display: none;
+  position: fixed;
+  left: 0;
+  z-index: 1001;
+  width: 100vw;
+  height: 100%;
+  background: linear-gradient(180deg, rgba(10, 10, 10, 0.5) 0%, #0A0A0A 30.21%);
+  .sorting-options{
+    position: absolute;
+    bottom: 160px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    li {
+      width: 360px;
+      height: 48px;
+      img {
+        position: absolute;
+        //margin-left: 21px;
+        //margin-top: 6px;
+        margin-left: 30px;
+        margin-top: 14px;
+        width: 18px;
+        height: 18px;
+      }
+    }
+    .sorting-option-title{
+      height: 48px;
+      font-family: $bothBold;
+      font-size: 19px;
+      line-height: 48px;
+      color: $text-lightest;
+    }
+    button{
+      background: transparent;
+      width: 50%;
+      height: 48px;
+      text-align: center;
+      .sort-standard-box{
+        img{
+          opacity: 0;
+          width: 16px;
+          height: 16px;
+        }
+        span{
+          font-family: $bothRegular;
+          font-size: $fontsize-regular;
+          line-height: 23px;
+          color: $text-light;
+        }
+      }
+    }
+  }
+  .btn-sort-close{
+    width: 56px;
+    height: 56px;
+    position: absolute;
+    left: 50%;
+    bottom: 60px;
+    transform: translateX(-50%);
+    background: transparent;
+    img{
+      width: inherit;
+    }
+  }
+}
+
+
+//loading spinner
+.loading{
+  position: relative;
+  left: 50%;
+  width: 32px;
+  height: 32px;
+  padding-bottom: 40px;
+  img{
+    width: 32px;
+    height: 32px;
+    animation: spin 2s ease-in-out infinite;
+    animation-delay: .5s;
+  }
+}
+@keyframes spin{
+  from{
+    transform: translateX(-50%) rotate(0deg);
+  }
+  to{
+    transform: translateX(-50%) rotate(360deg);
+  }
+}
+
+//carousel web css
+@media screen and (min-width: 481px) {
+  .artist-main-section, .artist-contents-section, .artist-contents-section, .apply-for-artist-section, .all-artist-section {
+    width: 768rem;
+  }
+  .carousel-wrap {
+    width: 768rem;
+    overflow: hidden;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+

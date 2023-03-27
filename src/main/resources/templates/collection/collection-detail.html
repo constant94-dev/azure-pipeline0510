@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="robots" content="noindex,nofollow">
+    <div th:remove="tag" th:replace="common/common-meta.html :: headMeta"></div>
+    <div th:remove="tag" th:replace="common/common-link.html :: headLink"></div>
+    <div th:remove="tag" th:replace="common/common-head-script.html :: headScript"></div>
+    <title id="html_title" th:text="'PATRON | ' + ${collection.getCollectionName()}"></title>
+    <link rel="stylesheet" th:href="@{/css_v1_3/artstream/artstream-detail.css}">
+    <link rel="stylesheet" th:href="@{/css_v1_3/collection/collection-detail.css}">
+</head>
+<body>
+
+<!--TV연결모델명-->
+<!--<label for="deviceName" class="label-hidden">연결된 TV 모델명</label>-->
+<!--<input type="text" id="deviceName" th:value="${deviceName}" style="display: none">-->
+<div th:replace="common/header-depth-goback.html"></div>
+
+<main>
+    <div class="wrap exh-info-container">
+        <div class="player-wrap" id="player_wrap">
+<!--            <div id="tv_connection_notice" class="tv-connection-notice">-->
+<!--                <p class="connect-text-ui"><span class="tv-model-name"></span>와(과) 연결 중</p>-->
+<!--                <button type="button" class="btn-disconnection connect-text-ui" id="btn_disconnection" onclick="closeModal('#tv_connection_notice'); disconnectSocket();">연결 취소</button>-->
+<!--            </div>-->
+            <div class="player-background"></div>
+            <div id="player_box">
+                <div class="play-step-3">
+                    <div class="player-gradation"></div>
+                    <img th:src="${collectionArtwork[0].getArtwork().getContentsHd().getDefaultImg()}" alt="artwork_image" id="artwork_image">
+                    <ul class="controllers">
+                        <li>
+                            <button type="button" id="btn_prev_artwork" class="btn-prev-artwork" onclick="fillCurrentArtworkInfo('Prev');" style="display: none">
+                                <img src="/img/icon_previous_artwork.png" alt="icon_previous_artwork">
+                            </button>
+                        </li>
+                        <li id="btn_play_status_container">
+                            <button type="button" id="btn_pause" class="btn-pause" onclick="fillCurrentArtworkInfo('index',0).then();">
+                                <img src="/img/icon_play_large.png" alt="icon_pause_large">
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button" id="btn_next_artwork" class="btn-next-artwork" onclick="fillCurrentArtworkInfo('Next');"  style="display: none">
+                                <img src="/img/icon_next_artwork.png" alt="icon_next_artwork">
+                            </button>
+                        </li>
+                    </ul>
+                    <div class="play-time" >
+                        <span id="current"></span>
+                    </div>
+                    <div class="play-bar">
+                        <span class="fixed-bar"></span>
+                        <span class="playing-bar"></span>
+                    </div>
+                    <div id="fullScreen" onclick="fullscreen()" style="display: none">
+                        <img th:src="@{/img/icon_fullScreen.png}" alt="fullScreen" style="display: none">
+                    </div>
+                </div>
+            </div>
+            <audio id="played_audio" style="display: none;" controls>
+                <source src="https://stpatron001.blob.core.windows.net/container-patron-renewal/Sound/nonesound.mp3" type="audio/mp3">
+            </audio>
+            <!--            <div class="wrap current-artwork-wrap" id="current_artwork_wrap"></div>-->
+        </div>
+        <!--section 1-->
+        <!--section 1-->
+        <section class="collection-info-section">
+            <span id="exhibition_id" style="display:none;"></span>
+<!--            <h1 class="collection-sub-title" th:text="#{myCollection}">내 컬렉션</h1>-->
+            <p id="collection_title" class="collection-title" th:text="${collection.getCollectionName()}">Exhibition Title</p>
+            <div class="collection-info-wrap1" th:if="${collection.getCollectionArtworks().size()>0}">
+                <span class="collection-total-artwork" th:text="${collection.getCollectionArtworks().size()} + #{artwork}">16작품</span>&nbsp;·&nbsp;<span class="collection-total-time" th:text="${artworkCollectionDuration}">1시간 12분</span>
+            </div>
+            <div class="collection-info-wrap1" th:unless="${collection.getCollectionArtworks().size()>0}">
+                <span th:text="#{noArtworks}">작품 없음</span>
+            </div>
+            <div class="collection-info-wrap2">
+                <div class="button-group">
+                    <a class="collection-info-anchor" th:href="'/' + ${language} + '/collection-edit?col_id=' + ${collection.getId()}">
+                        <!--                    <span class="carousel-text collection-edit" th:text="#{collectionDetail.editCollection}">컬렉션 편집</span>-->
+                        <img src="/img/icon_collection_edit.png" alt="icon_more">
+                    </a>
+                    <button id="btn_remove_collection" class="btn-remove-collection" onclick="ShowModalDeleteCollection()">
+                        <img th:src="@{/img/icon_collection_del.png}" alt="icon_delete">
+                    </button>
+                </div>
+                <div id="player_button" class="player-button">
+                    <button class="btn_play" id="btn_play_blue" onclick="fillCurrentArtworkInfo('index',0).then();">
+                        <img id="play_blue_img" th:src="@{/img/icon_play_blue.png}" alt="play button">
+                    </button>
+                </div>
+            </div>
+<!--            <div class="now-playing-info" id="now_playing_info" style="display:none;">-->
+<!--                <ul>-->
+<!--                    <li style="position: relative;">-->
+<!--                        <img id="now_playing_info_img" alt="playing_artwork">-->
+<!--                        <img class="playing-gif" id="playing_gif" th:src="@{/img/icon_playing.gif}" alt="icon_play">-->
+<!--                    </li>-->
+<!--                    <li>-->
+<!--                        <p id="now_playing_info_artwork"></p>-->
+<!--                        <p id="now_playing_info_artist">-->
+<!--                            <span class="korean-name"></span>-->
+<!--                            <span class="bracket-english-name"></span>-->
+<!--                            <span class="english-name"></span>-->
+<!--                        </p>-->
+<!--                        <p style="display: none" id="now_playing_info_artwork_id"></p>-->
+<!--                        <p style="display: none" id="now_playing_info_artist_id"></p>-->
+<!--                    <li>-->
+<!--                        <button class="btn-more-now-playing" id="btn_more_now_playing" onclick="showModal('#artwork_option_box'); setNowPlayedArtworkModalData(this)">-->
+<!--                            <img th:src="@{/img/icon_show_option_white.png}" alt="icon_show_option">-->
+<!--                        </button>-->
+<!--                        <a href="" class="shared-link" style="display: none"></a>-->
+<!--                    </li>-->
+<!--                </ul>-->
+<!--            </div>-->
+            <a id="btn_shop_url" target="_blank" class="btn-shop-url" th:href="@{'https://patron-gallery.com/'}">
+                <img th:src="@{/img/icon_store.png}" alt="icon_buy"><span th:text="#{purchaseArtwork}">작품구매</span>
+            </a>
+        </section>
+    </div>
+    <div class="wrap">
+        <!--한 번에 모든 작품 출력-->
+        <div class="collection-artworks-section" th:if="${collectionArtwork.size() > 0}">
+<!--            <h2 class="collection-artworks-title" th:text="#{artworkInCollection}">담겨있는 작품</h2>-->
+            <a class="collection-artworks-all" th:if="${collectionArtwork.size()>3}" th:text="#{seeAll}">모두 보기</a>
+            <ul class="collection-artworks-list" id="exh_artworks_list">
+                <li th:each="artwork,index : ${collectionArtwork}" class="artwork-list">
+                    <div class="artwork-container-box">
+                        <button type="button" class="collection-artworks" th:onclick="'fillCurrentArtworkInfo(\'index\','+${index.index}+',this).then()'">
+                            <input type="hidden" class="artwork-id" th:value="${artwork.getArtwork().getId()}" th:name="artwork-id">
+                            <span class="collection-artworks-img-wrap">
+                                <img th:src="${artwork.getArtwork().getContentsThumbnail().getDefaultImg()}" th:each="detail : ${artwork.getArtwork().getArtworkDetails()}" th:if="${detail.getLanguage().equals(language)}" th:alt="${detail.getArtworkName()}">
+                                <img class="playing-gif" th:src="@{/img/icon_playing.gif}" alt="icon_play">
+                            </span>
+                            <span class="artwork-txt-info">
+                            <span class="artwork-name artwork-info" th:each="detail : ${artwork.getArtwork().getArtworkDetails()}" th:if="${detail.getLanguage().equals(language)}" th:text="${detail.getArtworkName()}">What's for BrEakfAsT</span>
+                            <span class="artwork-info">
+                                <span class="artist-name korean-name" th:each="detail : ${artwork.getArtwork().getArtist().getArtistDetails()}" th:if="${detail.getLanguage().equals(language)}" th:text="${detail.getArtistName()}">작가명</span>
+                            </span>
+                        </span>
+                        </button>
+                        <button type="button"  class="icon-show-option" onclick="showModal('#artwork_option_box'); setModalData(this);">
+                            <img th:src="@{/img/icon_show_option_white.png}" alt="icon_show_option">
+                            <input type="hidden" class="artwork-id" th:value="${artwork.getArtwork().getId()}" th:name="artwork-id">
+                            <input type="hidden" class="artist-id" th:value="${artwork.getArtwork().getArtist().getId()}" th:name="artist-id">
+                        </button>
+                        <a th:href="'/' + ${language} + '/player?art_id='+${artwork.getArtwork().getId()}"
+                           class="shared-link"></a>
+                    </div>
+                </li>
+            </ul>
+<!--            <button class="more-contents-anchor" id="anchor_see_more_item" onclick="showMoreList('.artwork-list')">더 보기</button>-->
+        </div>
+    </div>
+<!--    <div class="wrap" th:if="${collectionExhibitions != null && collectionExhibitions.size() != 0}">-->
+<!--        <section class="art-stream-similar-collection-section">-->
+<!--            <h2 class="art-stream-section-title" th:text="#{collectionDetail.relatedExhibitions}">관련있는 전시</h2>-->
+<!--            <div class="art-stream-carousel owl-carousel carousel-wrap">-->
+<!--                <div th:each="exhibition,index : ${collectionExhibitions}">-->
+<!--                    <div class="contents-wrap-div">-->
+<!--                        <div class="exh-item">-->
+<!--                            <a th:href="'/' + ${language} + '/player?exh_id='+${exhibition.getId()}">-->
+<!--                                <div class="item-gradation"></div>-->
+<!--                                <img class="icon-exhibition" th:src="@{/img/icon_exhibition.png}" alt="icon_exhibition">-->
+<!--                                <div class="item-img-wrap">-->
+<!--                                    <img th:src="${exhibition.getArtworkExhibitions()[0].getArtwork().getContentsThumbnail().getDefaultImg()}" th:each="detail : ${exhibition.getExhibitionDetails()}" th:if="${detail.getLanguage().equals(language)}" th:alt="${detail.getExhibitionName()}">-->
+<!--                                </div>-->
+<!--                                <p class="item-exh-title" th:each="detail : ${exhibition.getExhibitionDetails()}" th:if="${detail.getLanguage().equals(language)}" th:text="${detail.getExhibitionName()}">여름과 겨울 사이</p>-->
+<!--                            </a>-->
+<!--                            <div class="item-text-wrap">-->
+<!--                                <p class="item-exh-artist">-->
+<!--                                    <span class="korean-name" th:each="detail : ${exhibition.getArtistExhibitions()[0].getArtist().getArtistDetails()}" th:if="${detail.getLanguage().equals(language)}" th:text="${detail.getArtistName()}"></span>-->
+<!--                                    <span th:if="${exhibition.getArtistExhibitions().size() > 1}">-->
+<!--                                        <span th:each="detail : ${exhibition.getArtistExhibitions()[1].getArtist().getArtistDetails()}" th:if="${detail.getLanguage().equals(language)}" th:text="${', ' + detail.getArtistName()}"></span>-->
+<!--                                    </span>-->
+<!--                                    <span th:if="${exhibition.getArtistExhibitions().size() > 2}">-->
+<!--                                        <span th:each="detail : ${exhibition.getArtistExhibitions()[2].getArtist().getArtistDetails()}" th:if="${detail.getLanguage().equals(language)}" th:text="${', ' + detail.getArtistName()}"></span>-->
+<!--                                    </span>-->
+<!--&lt;!&ndash;                                    <span th:if="${exhibition.getArtistExhibitions().size() - 3 != 0}">&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <span class="etc-number-of-artists" th:text="' ' + #{mypage.other} + ' ' + ${exhibition.getArtistExhibitions().size()-3} + #{more}"></span>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    </span>&ndash;&gt;-->
+<!--                                </p>-->
+<!--                                <div class="exh-info-wrap">-->
+<!--                                    <span class="exh-total-artwork" th:text="${exhibition.getArtworkExhibitions().size()} + #{artwork}">16작품</span>, <span class="exh-total-time" th:text="${collectionExhibitionDuration[index.index]}">42분 </span>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </section>-->
+<!--    </div>-->
+
+<!--    <div class="wrap" th:if="${collectionArtists != null && collectionArtists.size() != 0}">-->
+<!--        <section class="art-stream-similar-artist-section">-->
+<!--            <h2 class="art-stream-section-title" th:text="#{collectionDetail.relatedArtists}">관련있는 아티스트</h2>-->
+<!--            <div class="art-stream-carousel owl-carousel carousel-wrap">-->
+<!--                <div  class="artist-item" th:each="artist : ${collectionArtists}">-->
+<!--                    <a th:href="'/' + ${language} + '/artists/detail?artist_id='+${artist.getId()}">-->
+<!--                        <div class="item-gradation"></div>-->
+<!--                        <div class="item-img-wrap">-->
+<!--                            <img th:src="${artist.getProfileImg()}" th:each="detail : ${artist.getArtistDetails()}" th:if="${detail.getLanguage().equals(language)}" th:alt="${detail.getArtistName()}">-->
+<!--                        </div>-->
+<!--                        <p class="artist-name">-->
+<!--                            <span class="artist-name korean-name" th:each="detail : ${artist.getArtistDetails()}" th:if="${detail.getLanguage().equals(language)}" th:text="${detail.getArtistName()}">작가명</span>-->
+<!--                        </p>-->
+<!--                    </a>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </section>-->
+<!--    </div>-->
+    <input type="hidden" class="loggedIn" sec:authorize="isAuthenticated()" th:value="true">
+    <input type="hidden" class="loggedIn" sec:authorize="!isAuthenticated()" th:value="false">
+</main>
+
+<!--&lt;!&ndash;재연결 모달&ndash;&gt;-->
+<!--<div id="reconnection_modal_container" class="connection_modal_container modal-container" style="display: none">-->
+<!--    <div class="modal-gradation-box" onclick="closeModal('#reconnection_modal_container')"></div>-->
+<!--    <div class="modal-content modal-connected">-->
+<!--        <div class="modal-area">-->
+<!--            <p class="modal-title">일시적 오류로 연결이 끊어졌습니다.-->
+<!--                <span class="tv-model-name">Samsung Q70 Series</span>와(과)-->
+<!--                다시 연결하시겠습니까?</p>-->
+<!--            <button type="button" id="btn_reconnection_okay" class="btn">재연결</button>-->
+<!--            <button type="button" class="btn-cancel" onclick="closeModal('#reconnection_modal_container')">종료</button>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+<!--&lt;!&ndash; 이미 연결중인 TV가 있음 &ndash;&gt;-->
+<!--<div id="disconnect_modal_container" class="connection_modal_container" style="display: none">-->
+<!--    <div class="modal-disconnect modal-content">-->
+<!--        <div class="modal-area">-->
+<!--            <p class="modal-title">-->
+<!--                이미 연결중인 TV가 있습니다.<br>-->
+<!--                연결 해제 후 계속하시겠습니까?</p>-->
+<!--            <div>-->
+<!--                <p class="modal-guide">연결된 TV</p>-->
+<!--                <p class="tv-model" th:text="${deviceName}">LG 2021 OLED 07</p>-->
+<!--            </div>-->
+<!--            <button type="button" id="btn_disconnect" class="btn" onclick="logoutTv()">연결 해제</button>-->
+<!--            <button type="button" class="btn-cancel" onclick="modalClose()">취소</button>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+<!--작품 옵션 선택 창 (setModalData(selector) 참고)-->
+<div id="artwork_option_box" class="artwork-option-box modal-container"></div>
+<!--컬렉션 담기 모달-->
+<div style="display: none" id="docent_div" th:text="${exhibitionDocent}"></div>
+<div style="display: none" id="collectionFirstImage" th:text="${collectionArtwork[0].getArtwork().getContentsHd().getDefaultImg()}"></div>
+<div style="display: none" id="directArtworkId" th:if="${directArtworkId!=null}" th:text="${directArtworkId}"></div>
+<div class="collection-addition-modal wrap" id="collection_addition_modal"></div>
+<!--공유 옵션 선택 창-->
+<div id="share_option_box" class="share-option-box" th:if="${collectionArtwork.size() > 0}">
+    <div class="modal-gradation-box" onclick="closeModal('#share_option_box')"></div>
+    <a class="shared-link"
+       th:href="'/' + ${language} + '/player?art_id='+${collectionArtwork[0].getArtwork().getId()}"></a>
+    <ul id="share_options" class="share-options">
+        <li class="share-option-title" th:text="#{share}">
+            공유
+        </li>
+        <li>
+            <button type="button" id="btn_share_kakaotalk" onclick="closeModal('#share_option_box'); shareKakaoTalk();">
+                <span th:text="#{kakaotalk}">카카오톡</span>
+                <span id="ogText" style="display: none"></span>
+                <span id="ogImg" style="display: none"></span>
+            </button>
+        </li>
+        <li>
+            <button type="button" id="btn_share_facebook" onclick="closeModal('#share_option_box'); shareFacebook();">
+                <span th:text="#{facebook}">페이스북</span>
+            </button>
+        </li>
+        <li>
+            <button type="button" id="btn_share_twitter" onclick="closeModal('#share_option_box'); shareTwitter();">
+                <span th:text="#{twitter}">트위터</span>
+            </button>
+        </li>
+        <li>
+            <button type="button" id="btn_copy_link" onclick="closeModal('#share_option_box')">
+                <span th:text="#{copyLink}">링크 복사</span>
+            </button>
+        </li>
+    </ul>
+    <button type="button" id="btn_share_close" class="btn-share-close" onclick="closeModal('#share_option_box')">
+        <img th:src="@{/img/icon_close_popup.png}" alt="icon_close_popup">
+    </button>
+</div>
+<!--상세 정보 창-->
+<div id="artwork_detail_box" class="artwork-detail-box wrap"></div>
+<!-- 아트스트림 이동 모달 -->
+<!--<div id="connection_modal_container" class="connection_modal_container">-->
+<!--    <div class="modal-content modal-connected">-->
+<!--        <div class="modal-area">-->
+<!--            <p class="modal-title">컬렉션은 TV와 연결할 수 없습니다. TV 감상을 위해-->
+<!--                작품 플레이어로 이동하시겠습니까?</p>-->
+<!--            <button type="button" id="btn_connection_okay" class="btn" onclick="location.href='/player?exh_id='+document.getElementById('exhibition_id').innerText+'&art_id='+document.getElementById('now_playing_info_artwork_id').innerText">이동</button>-->
+<!--            <button type="button" class="btn-cancel" onclick="modalClose('connection_modal_container'); " >취소</button>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+<!-- script 위치 시작 -->
+<script th:inline="javascript">
+    var save = [[#{save}]];
+    var like = [[#{like}]];
+    var liked = [[#{liked}]];
+    var alreadySaved = [[#{alreadySaved}]];
+    var saveExhibition = [[#{saveExhibition}]];
+    var watchThisArtwork = [[#{watchThisArtwork}]];
+    var addToCollection = [[#{addToCollection}]];
+    var shareTo = [[#{shareTo}]]
+    var artistInfo = [[#{artistInfo}]]
+    var detailInfo = [[#{detailInfo}]];
+    var artworkTitle = [[#{artworkTitle}]];
+    var artistNameTitle = [[#{artistNameTitle}]];
+    var techniqueTitle = [[#{techniqueTitle}]];
+    var sizeTitle = [[#{sizeTitle}]];
+    var yearTitle = [[#{yearTitle}]];
+    var soundNameTitle = [[#{soundNameTitle}]];
+    var soundCreatorTitle = [[#{soundCreatorTitle}]];
+    var soundLicenseTitle = [[#{soundLicenseTitle}]];
+    var likeExhibition = [[#{likeExhibition}]];
+    var unlikeExhibition = [[#{unlikeExhibition}]];
+    var shareText = [[#{shareText}]];
+    var goToWeb = [[#{goToWeb}]];
+    var saved = [[#{saved}]];
+    var removedFromCollection = [[#{removedFromCollection}]];
+    var cancel = [[#{cancel}]];
+    var copied = [[#{copied}]];
+    var allCollections = [[#{allCollections}]];
+    var addedToChosenCollection = [[#{addedToChosenCollection}]];
+    var toBeDeleted = [[#{toBeDeleted}]];
+    var ogText = [[#{ogText}]];
+    var recentlyUsed = [[#{recentlyUsed}]];
+    var cantDeleteCollection = [[#{collectionEdit.cantDeleteCollection}]];
+    var collectionModalTitle = [[#{collectionModal.title}]];
+    var collectionModalDelete = [[#{collectionModal.delete}]];
+    var collectionModalCancel = [[#{collectionModal.cancel}]];
+    var firstArtwork = [[#{firstArtwork}]];
+</script>
+<script th:src="@{/js_v1_3/common/jquery.min.js}"></script>
+<script th:src="@{/js_v1_3/common/jsCookie.js}"></script>
+<script th:src="@{/js_v1_3/common/owl.carousel.js}"></script>
+<script th:src="@{https://developers.kakao.com/sdk/js/kakao.js}"></script>
+<script>
+    Kakao.init('da1fee3add758b28330cf06dd2f04b15');
+</script>
+<!--<script th:src="@{/js/common/sockjs.min.js}"></script>-->
+<!--<script th:src="@{/js/common/stomp.min.js}"></script>-->
+<script th:src="@{/js_v1_3/common/header.js}"></script>
+<!--<script th:src="@{/js/common/sockjs.min.js}"></script>-->
+<!--<script th:src="@{/js/common/stomp.min.js}"></script>-->
+<script th:src="@{/js_v1_3/common/common.js}"></script>
+<script th:src="@{/js_v1_3/artstream/artstream-detail.js}"></script>
+<!--<script th:src="@{/js/artstream/tv-socket-connection.js}"></script>-->
+<script th:src="@{/js_v1_3/collection/collection-detail.js}"></script>
+<!-- script 위치 종료 -->
+</body>
+</html>

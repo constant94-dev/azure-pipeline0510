@@ -1,0 +1,134 @@
+@import '../common/library';
+
+.wrap {
+  font-family: $notoSansRegular;
+  color: rgba(245, 245, 245, 0.65);
+}
+
+.appreciate-history-contents {
+  width: inherit;
+  padding-top: 72px;
+
+  div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 4px;
+    h2 {
+      font-size: 24px;
+      color: #f5f5f5;
+    }
+    .btn-remove-all {
+      cursor: pointer;
+      @extend %second-text-button-style;
+    }
+  }
+
+  .appreciate-history-guide {
+    font-size: 14px;
+    margin-bottom: 24px;
+  }
+}
+
+.watched-artwork-img-wrap img {
+  width: 80px;
+  height: auto;
+}
+
+.watched-artworks {
+  display: flex;
+  flex-direction: row;
+  width: 300px;
+  height: 45px;
+  background: transparent;
+}
+
+.watched-artworks-img-wrap {
+  width: 80px;
+  height: 45px;
+  border-radius: 4px;
+  overflow: hidden;
+  img{
+    width: inherit;
+  }
+}
+.watched-artworks-list-box{
+  width: inherit;
+}
+.watched-artworks-list {
+  margin-bottom: 85px;
+  width: inherit;
+  display: flex;
+  flex-direction: column;
+  @media screen and (min-width: 481px){
+    width: 768rem;
+  }
+
+  > li {
+    display: flex;
+    margin-bottom: 12px;
+    width: inherit;
+    justify-content: space-between;
+  }
+
+  .artwork-txt-info{
+    width: 200px;
+    margin-left: 12px;
+
+    li {
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      margin-bottom: 3px;
+    }
+
+    li:nth-of-type(1) {
+      font-family: $bothRegular;
+      font-size: $fontsize-regular;
+      text-align: left;
+      line-height: 19px;
+      color: $text-light;
+    }
+
+    li:nth-of-type(2) {
+      font-family: $bothRegular;
+      font-size: $fontsize-small-regular;
+      text-align: left;
+      line-height: 20px;
+      color: $text-light;
+      opacity: $opacity-level1;
+    }
+  }
+
+  .btn-remove {
+    width: 28px;
+    height: 28px;
+    background-color: transparent;
+
+    img {
+      width: 28px;
+      height: 28px;
+    }
+  }
+  .icon-show-option {
+    width: 28px;
+    height: 28px;
+    background: transparent;
+
+    img {
+      width: inherit;
+    }
+
+    span {
+      display: none;
+    }
+  }
+}
+
+//carousel web css
+@media screen and (min-width: 481px) {
+  .appreciate-history-section {
+    width: 768rem;
+  }
+}
+

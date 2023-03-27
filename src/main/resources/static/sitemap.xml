@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+        <loc>https://patron.digital/home</loc>
+        <lastmod>2022-10-04T04:21:47+00:00</lastmod>
+    </url>
+    <url>
+        <loc>https://patron.digital/mypage/use-tv</loc>
+        <lastmod>2022-10-04T04:21:47+00:00</lastmod>
+    </url>
+    <url>
+        <loc>https://patron.digital/mypage/use-tv?type=samsung</loc>
+        <lastmod>2022-10-04T04:21:47+00:00</lastmod>
+    </url>
+    <url>
+        <loc>https://patron.digital/mypage/use-tv?type=lg</loc>
+        <lastmod>2022-10-04T04:21:47+00:00</lastmod>
+    </url>
+    <url>
+        <loc>https://patron.digital/mypage/use-tv?type=kt</loc>
+        <lastmod>2022-10-04T04:21:47+00:00</lastmod>
+    </url>
+</urlset>

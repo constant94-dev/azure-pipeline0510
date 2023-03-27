@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="robots" content="noindex,nofollow">
+    <div th:remove="tag" th:replace="common/common-meta.html :: headMeta"></div>
+    <div th:remove="tag" th:replace="common/common-link.html :: headLink"></div>
+    <div th:remove="tag" th:replace="common/common-head-script.html :: headScript"></div>
+    <title id="html_title">PATRON | Artist</title>
+    <meta name="Description" CONTENT="PATRON Artist">
+    <link rel="stylesheet" th:href="@{/css_v1_3/artist/artist.css}">
+</head>
+
+<body>
+<div th:replace="common/header-depth-goback.html"></div>
+<main>
+<!--    <div class="wrap">-->
+<!--        &lt;!&ndash;section 1&ndash;&gt;-->
+<!--        <section class="artist-main-section">-->
+<!--            <div class="artist-main-section-title">-->
+<!--                <h1>아티스트</h1>-->
+<!--            </div>-->
+<!--            <div class="artist-carousel owl-carousel carousel-wrap" th:if="${recommendedArtists != null && recommendedArtists.size() != 0}">-->
+<!--                <div class="carousel-item" th:each="recommendedArtist: ${recommendedArtists}" >-->
+<!--                    <a th:href="@{'/artists/detail?artist_id='+${recommendedArtist.getId()}}">-->
+<!--                        <div class="carousel-text carousel-artist-number">-->
+<!--                            <span class="carousel-artist-number-now" th:text="${recommendedArtistStat.index + 1}">1</span>/<span class="carousel-artist-number-total" th:text="${recommendedArtists.size()}">3</span>-->
+<!--                        </div>-->
+<!--                        <div class="artist-carousel-img-wrap carousel-img-wrap">-->
+<!--                            <img th:src="${recommendedArtist.getArtworks()[0].getContentsThumbnail().getDefaultImg()}" th:alt="${recommendedArtist.getArtworks()[0].getArtworkName()}">-->
+<!--                        </div>-->
+<!--                        <div class="carousel-text-wrap">-->
+<!--                            <p class="carousel-text carousel-artist-type">추천 작가</p>-->
+<!--                            <p class="carousel-text carousel-artist-name">-->
+<!--                                <span class="artist-name korean-name" th:text="${recommendedArtist.getKorName()}">작가명</span>-->
+<!--                                <span class="bracket-english-name" th:if="${recommendedArtist.getNationality() != '대한민국' && recommendedArtist.getNationality() !='한국'}">-->
+<!--                                    (<span class= "artist-english-name" th:text="${recommendedArtist.getEngName()}"></span>)-->
+<!--                                </span>-->
+<!--                                <span class="english-name" th:text="${recommendedArtist.getEngName()}">작가명</span>-->
+<!--                            </p>-->
+<!--                            <p class="carousel-text carousel-artist-content" th:text="${recommendedArtist.getIntro()}">-->
+<!--                                그의 작품과 처음 마주한 순간, 압도한 것은 두터운 층으로 구현된 아스라한 形이었다. 끈적 아스라한 形이었다. 끈적 아스라한 形이었다. 끈적-->
+<!--                            </p>-->
+<!--                        </div>-->
+<!--                    </a>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </section>-->
+<!--    </div>-->
+<!--    <div class="wrap" th:if="${watchedArtists != null && watchedArtists.size() != 0}">-->
+<!--        &lt;!&ndash;section 2&ndash;&gt;-->
+<!--        <section class="artist-contents-section">-->
+<!--            <h2 class="artist-section-title"><span th:text="${generalMember.getName()}">김윤재</span>님이 감상한 작품의 작가</h2>-->
+<!--            <div class=" carousel-wrap">-->
+<!--                <div class="owl-carousel">-->
+<!--                    <div class="carousel-item" th:each="watchedArtist: ${watchedArtists}">-->
+<!--                        <a th:href="@{'/artists/detail?artist_id='+${watchedArtist.getId()}}">-->
+<!--                            -->
+<!--                            <div class="item-img-wrap">-->
+<!--                                <img th:src="${watchedArtist.getArtworks()[0].getArtist().getProfileImg()}" th:alt="${watchedArtist.getArtworks()[0].getArtist().getEngName()}">-->
+<!--                            </div>-->
+<!--                            <p class="carousel-text carousel-artist-name">-->
+<!--                                <span class="artist-name korean-name" th:text="${watchedArtist.getKorName()}">작가명</span>-->
+<!--                                <span class="bracket-english-name" th:if="${watchedArtist.getNationality() != '대한민국' && watchedArtist.getNationality() !='한국'}">-->
+<!--                                    (<span class= "artist-english-name" th:text="${watchedArtist.getEngName()}"></span>)-->
+<!--                                </span>-->
+<!--                                <span class="english-name" th:text="${watchedArtist.getEngName()}">작가명</span>-->
+<!--                            </p>-->
+<!--                        </a>-->
+<!--                        <div class="carousel-content-wrap">-->
+<!--                            <div class="like-count">-->
+<!--                                <img th:src="@{/img/icon_heart.png}" alt="icon_heart"><span th:text="${watchedArtist.getNumberOfLikes()}">5</span>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </section>-->
+<!--    </div>-->
+<!--    <div class="wrap" th:if="${likedArtists != null && likedArtists.size() != 0}">-->
+<!--        &lt;!&ndash;section 5&ndash;&gt;-->
+<!--        <section class="artist-contents-section">-->
+<!--            <h2 class="artist-section-title"><span th:text="${generalMember.getName()}">김윤재</span>님이 좋아한 작품의 작가</h2>-->
+<!--            <div class="carousel-wrap">-->
+<!--                <div class="owl-carousel">-->
+<!--                    <div class="carousel-item" th:each="likedArtist: ${likedArtists}">-->
+<!--                        <a th:href="@{'/artists/detail?artist_id='+${likedArtist.getId()}}">-->
+<!--                            -->
+<!--                            <div class="item-img-wrap">-->
+<!--                                <img th:src="${likedArtist.getArtworks()[0].getArtist().getProfileImg()}" th:alt="${likedArtist.getArtworks()[0].getArtist().getEngName()}">-->
+<!--                            </div>-->
+<!--                            <p class="carousel-text carousel-artist-name">-->
+<!--                                <span class="artist-name korean-name" th:text="${likedArtist.getKorName()}">작가명</span>-->
+<!--                                <span class="bracket-english-name" th:if="${likedArtist.getNationality() != '대한민국' && likedArtist.getNationality() !='한국'}">-->
+<!--                                    (<span class= "artist-english-name" th:text="${likedArtist.getEngName()}"></span>)-->
+<!--                                </span>-->
+<!--                                <span class="english-name" th:text="${likedArtist.getEngName()}">작가명</span>-->
+<!--                            </p>-->
+<!--                        </a>-->
+<!--                        <div class="carousel-content-wrap">-->
+<!--                            <div class="like-count">-->
+<!--                                <img th:src="@{/img/icon_heart.png}" alt="icon_heart"><span th:text="${likedArtist.getNumberOfLikes()}">5</span>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </section>-->
+<!--    </div>-->
+<!--    <div class="wrap semi-light">-->
+<!--        &lt;!&ndash;section 6&ndash;&gt;-->
+<!--        <section class="apply-for-artist-section">-->
+<!--            <p class="apply-for-artist-sub-title">작가 신청</p>-->
+<!--            <h2 class="apply-for-artist-main-title">혹시<br>저희가 찾는 작가님이신가요</h2>-->
+<!--            <p class="apply-for-artist-main-content">디지털 전시라고 다르지 않습니다. 전시 기획부터 작품 선정까지 파트론과 함께 디지털 전시를 만들어갈 작가님을 기다리고 있습니다.</p>-->
+<!--            <button type="button" class="cta-button">작가 신청하기</button>-->
+<!--        </section>-->
+<!--    </div>-->
+    <div class="wrap" th:if="${firstNArtists != null && firstNArtists.size() != 0}">
+        <!--section 7-->
+        <section class="all-artist-section fade-in-section">
+            <h2 class="artist-section-title" th:text="#{artist}">아티스트</h2>
+            <button type="button" id="btn_sorting" class="btn-sorting" onclick="showModal('#sorting_option_box'); checkNowSortingStandard(this)">
+                <span th:text="#{latestReleaseOrder}">최신순</span><img th:src="@{/img/icon_sorting.png}" alt="icon_sorting">
+            </button>
+            <div class="contents-wrap">
+                <div class="artist-item" th:each="firstNArtist: ${firstNArtists}">
+                    <a th:href="'/' + ${language} + '/artists/detail?artist_id='+${firstNArtist.getId()}">
+                        <div class="item-img-wrap">
+                            <img th:src="${firstNArtist.getProfileImg()}" th:each="detail : ${firstNArtist.getArtistDetails()}" th:if="${detail.getLanguage().equals(language)}" th:alt="${detail.getArtistName()}">
+                        </div>
+                        <p class="artist-name">
+                            <span class="artist-name korean-name" th:each="detail : ${firstNArtist.getArtistDetails()}" th:if="${detail.getLanguage().equals(language)}" th:text="${detail.getArtistName()}">작가명</span>
+                        </p>
+                    </a>
+<!--                    <div class="like-count">-->
+<!--                        <img th:src="@{/img/icon_heart.png}" alt="icon_heart"><span th:text="${firstNArtist.getNumberOfLikes()}">5</span>-->
+<!--                    </div>-->
+                </div>
+            </div>
+            <div class="loading">
+                <img th:src="@{/img/spinner.png}" alt="spinner">
+            </div>
+        </section>
+    </div>
+    <div id="sorting_option_box" class="sorting-option-box modal-container">
+        <div class="modal-gradation-box" onclick="closeModal('#sorting_option_box')"></div>
+        <ul id="sorting_options" class="sorting-options">
+            <li class="sorting-option-title" th:text="#{sort}">정렬</li>
+            <li>
+                <img class="icon-confirm" th:src="@{/img/icon_confirm_white.png}" th:alt="icon_confirm_white">
+                <button type="button" id="btn_sort_latest" class="btn-sort-latest" onclick="changeText('#btn_sorting span',this); closeModal('#sorting_option_box'); sortArtists('latest')">
+                    <span class="sort-standard-box">
+                        <span class="sort-standard-text" th:text="#{latestReleaseOrder}">최신순</span>
+                    </span>
+                </button>
+            </li>
+            <li>
+                <img class="icon-confirm" th:src="@{/img/icon_confirm_white.png}" th:alt="icon_confirm_white">
+                <button type="button" id="btn_sort_popularity" class="btn-sort-popularity" onclick="changeText('#btn_sorting span',this); closeModal('#sorting_option_box'); sortArtists('popular')">
+                    <span class="sort-standard-box">
+                        <span class="sort-standard-text" th:text="#{popularOrder}">인기순</span>
+                    </span>
+                </button>
+            </li>
+<!--            <li>-->
+<!--                <img class="icon-confirm" th:src="@{/img/icon_confirm_white.png}" th:alt="icon_confirm_white">-->
+<!--                <button type="button" id="btn_sort_alphabetical" class="btn-sort-alphabetical" onclick="changeText('#btn_sorting span',this); closeModal('#sorting_option_box'); sortArtists('alphabet')">-->
+<!--                    <span class="sort-standard-box">-->
+<!--                        <span class="sort-standard-text" th:text="#{alphabetOrder}">가나다순</span>-->
+<!--                    </span>-->
+<!--                </button>-->
+<!--            </li>-->
+            <li>
+                <img class="icon-confirm" th:src="@{/img/icon_confirm_white.png}" th:alt="icon_confirm_white">
+                <button type="button" id="btn_sort_share" class="btn-sort-share" onclick="changeText('#btn_sorting span',this); closeModal('#sorting_option_box'); sortArtists('share')">
+                    <span class="sort-standard-box">
+                        <span class="sort-standard-text" th:text="#{numberOfSharesOrder}">공유순</span>
+                    </span>
+                </button>
+            </li>
+        </ul>
+        <button type="button" id="btn_sort_close" class="btn-sort-close" onclick="closeModal('#sorting_option_box')">
+            <img th:src="@{/img/icon_close_popup.png}" alt="icon_close_popup">
+        </button>
+    </div>
+</main>
+
+<!-- script 위치 시작 -->
+<script th:inline="javascript">
+    var emailCopied = [[#{emailCopied}]];
+</script>
+<script th:src="@{/js_v1_3/common/jquery.min.js}"></script>
+<script th:src="@{/js_v1_3/common/jsCookie.js}"></script>
+<script th:src="@{/js_v1_3/common/owl.carousel.js}"></script>
+<!--<script th:src="@{/js/common/sockjs.min.js}"></script>-->
+<!--<script th:src="@{/js/common/stomp.min.js}"></script>-->
+<script th:src="@{/js_v1_3/common/header.js}"></script>
+<script th:src="@{/js_v1_3/common/common.js}"></script>
+<script th:src="@{/js_v1_3/artist/artist.js}"></script>
+<!-- script 위치 종료 -->
+</body>
+
+</html>

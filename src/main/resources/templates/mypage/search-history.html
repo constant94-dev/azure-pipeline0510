@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="robots" content="noindex,nofollow">
+    <div th:remove="tag" th:replace="common/common-meta.html :: headMeta"></div>
+    <div th:remove="tag" th:replace="common/common-link.html :: headLink"></div>
+    <div th:remove="tag" th:replace="common/common-head-script.html :: headScript"></div>
+    <title id="html_title">PATRON | Search History</title>
+    <link rel="stylesheet" th:href="@{/css_v1_3/mypage/search-history.css}">
+</head>
+<body style="background-color: #0a0a0a">
+
+<!--설정 헤더-->
+<div th:replace="common/header-depth-goback.html" class="header-depth"></div>
+
+<main>
+    <div class="wrap">
+        <section class="appreciate-history-section">
+            <div class="appreciate-history-contents">
+                <div>
+                    <h2 th:text="#{searchHistory.searchHistory}">검색 기록</h2>
+                    <span class="remove-all" onclick="removeAllHistory('search-history')" th:text="#{searchHistory.clear}">지우기</span>
+                </div>
+                <p class="appreciate-history-guide" th:text="#{searchHistory.description}">회원님이 검색한 기록을 확인하고 관리할 수 있습니다.</p>
+                <div class="search-keyword-list-box">
+                    <ul class="search-keyword-list watched-artworks-list">
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </div>
+</main>
+
+
+<!-- script 위치 시작 -->
+<script th:src="@{/js_v1_3/common/jquery.min.js}"></script>
+<script th:src="@{/js_v1_3/common/jsCookie.js}"></script>
+<!--<script th:src="@{/js/common/sockjs.min.js}"></script>-->
+<!--<script th:src="@{/js/common/stomp.min.js}"></script>-->
+<script th:src="@{/js_v1_3/common/header.js}"></script>
+<script th:src="@{/js_v1_3/common/common.js}"></script>
+<script th:src="@{/js_v1_3/mypage/setting.js}"></script>
+<script>
+    $.ajax({
+        url:"/api/search-history",
+            method: "POST",
+            dataType: "json",
+            success: function(data){
+                let html = '';
+                for(let i=0; i<data.length; i++){
+                    html += `<li>
+                                <button class="search-keyword" th:data-url="'/' + ${location.pathname.split('/')[1]} + '/search-result?keyword=' + ${data[i]}" onclick="location.href=this.dataset.url">
+                                    <span class="search-keyword-wrap">
+                                        <img src="/img/icon_search.png" alt="icon_search">
+                                    </span>
+                                    <span class="search-keyword">${data[i]}</span>
+                                </button>
+                                <button type="button" class="icon-show-option" onclick="deleteSearchHistory(this,'${data[i]}');">
+                                    <img src="/img/icon_delete.png" alt="icon_show_option">
+                                </button>
+                            </li>`
+                }
+                document.querySelector('.search-keyword-list').innerHTML = html;
+            },
+            error: function(request){
+                // console.log("실패")
+                // if(request.status === 403){
+                //     return adminLogout();
+                // }
+            }
+    })
+
+</script>
+<!-- script 위치 종료 -->
+</body>
+</html>

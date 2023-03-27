@@ -1,0 +1,456 @@
+@import '../common/library';
+body{
+  background-color: $background-dark;
+}
+header{
+  height: 50px;
+}
+.nav_menu {
+  display: flex;
+  justify-content: space-between;
+  height: 48px;
+  background-color: $background-dark;
+
+  .btn-cancel {
+    position: initial;
+    background-color: transparent;
+    font-size: 14px;
+    color: $text-light;
+    text-decoration: underline;
+    margin-right: 20px;
+  }
+}
+
+.wrap {
+  height: 100vh;
+}
+
+/* 새 컬렉션 만들기 */
+.collection-new-section,
+.collection-edit-section {
+  .collection-title {
+    font-family: $notoSansBold;
+    font-size: $fontsize-big;
+    color: $text-light;
+    padding-top: 72px;
+    margin-bottom: 24px;
+  }
+  div {
+    position: relative;
+  }
+  input {
+    width: 304px;
+    height: 24px;
+    padding: 10px 12px;
+    border: none;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.08);
+    font-family: $notoSansRegular;
+    font-size: $fontsize-regular;
+    line-height: 23px;
+    color: $text-lightest;
+    opacity: 0.65;
+    caret-color: $primary-color;
+    margin-bottom: 24px;
+    @media screen and (min-width: 481px){
+      width: 768rem;
+      height: auto;
+      padding: 10px 12rem;
+      box-sizing: border-box;
+    }
+  }
+  .btn-erase {
+    width: 28px;
+    height: 28px;
+    position: absolute;
+    right: 10px;
+    top: 6px;
+    background-color: transparent;
+    opacity: 0;
+    img {
+      width: inherit;
+    }
+  }
+  .selected-artworks-info {
+    font-family: $notoSansRegular;
+    color: $text-light;
+    font-size: 16px;
+    margin-bottom: 12px;
+    display: none;
+    justify-content: space-between;
+    span:nth-of-type(1){
+      opacity: 0.65;
+    }
+    .delete-mode {
+      cursor: pointer;
+      @extend %first-text-button-style;
+    }
+  }
+  //.add-collection-box{
+  //  padding-bottom: 24px;
+  //}
+  .add-collection {
+    cursor: pointer;
+    width: 200px;
+    margin-bottom: 135px;
+    @extend %fourth-text-button-style
+  }
+  .remove-collection {
+    display: flex;
+    justify-content: flex-start;
+    @extend %fifth-text-button-style
+  }
+  .selected-artworks-list {
+    margin-bottom: 24px;
+
+    > li {
+      display: flex;
+      margin-bottom: 12px;
+      flex-direction: row-reverse;
+      justify-content: flex-end;
+      gap: 13px;
+      align-items: center;
+    }
+
+    .selected-artworks {
+      display: flex;
+      flex-direction: row;
+      width: 300px;
+      height: 45px;
+      background: transparent;
+      @media screen and (min-width: 481px){
+        width: 768rem;
+      }
+      img {
+        width: 80px;
+        height: 45px;
+        border-radius: 4px;
+      }
+    }
+
+    .artwork-txt-info {
+      width: 200px;
+      margin-left: 12px;
+
+      li {
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        margin-bottom: 3px;
+      }
+
+      li:nth-of-type(1) {
+        font-family: $bothRegular;
+        font-size: $fontsize-regular;
+        text-align: left;
+        line-height: 19px;
+        color: $text-light;
+      }
+
+      li:nth-of-type(2) {
+        font-family: $bothRegular;
+        font-size: $fontsize-small-regular;
+        text-align: left;
+        line-height: 20px;
+        color: $text-light;
+        opacity: $opacity-level1;
+      }
+    }
+
+    .btn-move {
+      width: 28px;
+      height: 28px;
+      background-color: transparent;
+      font-family: $notoSansMedium;
+
+      img {
+        width: 28px;
+        height: 28px;
+      }
+    }
+    .icon-show-option {
+      width: 28px;
+      height: 28px;
+      background: transparent;
+
+      img {
+        width: inherit;
+      }
+
+      span {
+        display: none;
+      }
+    }
+  }
+  .btn-save{
+    position: fixed;
+    bottom: 40px;
+    width: inherit;
+    font-size: 16px;
+    font-weight: normal;
+    background-color: #424242;
+    color: white;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    line-height: 46px;
+    border-radius: 12px;
+    @media screen and (min-width: 481px){
+      width: 768rem;
+    }
+  }
+  .btn-save.blue {
+    background-color: $primary-color;
+  }
+}
+
+/* 다른 작품 더 추가하기 */
+.collection-add-section {
+  .collection-add-title {
+    font-family: $notoSansBold;
+    font-size: $fontsize-big;
+    color: $text-light;
+    padding-top: 72px;
+    margin-bottom: 24px;
+  }
+
+  .artwork-nav {
+    font-family: $notoSansMedium;
+    font-size: $fontsize-regular;
+    line-height: 23px;
+    margin-bottom: 24px;
+
+    ul {
+      display: flex;
+      align-items: baseline;
+    }
+    li {
+      margin-right: 12px;
+      padding-bottom: 4px;
+      button {
+        font-family: $notoSansRegular;
+        background-color: transparent;
+        color: rgba(245, 245, 245, 0.65);
+      }
+    }
+    li.blue {
+      border-bottom: 3px solid #2841fa;
+      button {
+        font-family: $notoSansMedium;
+        background-color: transparent;
+        color: $text-light;
+      }
+    }
+  }
+  .select-artworks{
+    position: relative;
+    @media screen and (max-width: 481px){
+      width: inherit;
+    }
+  }
+  .recent-artworks-list {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-bottom: 85px;
+    font-family: $notoSansRegular;
+    width: inherit;
+    height: 500px;
+    overflow-y: scroll;
+    @media screen and (min-width: 481px){
+      width: 768rem;
+    }
+    &::-webkit-scrollbar{
+      display: none;
+    }
+    > li {
+      display: flex;
+      margin-bottom: 12px;
+    }
+
+    .recent-artworks {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      width: 100%;
+      height: 45px;
+      background: transparent;
+      .artwork-info-wrap {
+        display: flex;
+      }
+      .already-contained-text{
+        position: absolute;
+        z-index: 1;
+        left: 50%;
+        top: 50%;
+        width: inherit;
+        font-family: $bothRegular;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 10px;
+        line-height: 14px;
+        color: #FFFFFF;
+        transform: translate(-50%,-50%);
+        opacity: 0;
+      }
+      &.disabled{
+        .recent-artworks-img-wrap{
+          position: relative;
+          .already-contained-text{
+            opacity: 1;
+          }
+          img{
+            opacity: 0.5;
+          }
+        }
+        .artwork-txt-info{
+          opacity: 0.5;
+        }
+        .btn-img{
+          opacity: 0;
+        }
+      }
+      img {
+        &.btn-img{
+          width: 28px;
+          height: 28px;
+        }
+        width: 80px;
+        height: 45px;
+        border-radius: 4px;
+      }
+    }
+
+    .artwork-txt-info {
+      width: 200px;
+      margin-left: 12px;
+      @media screen and (min-width: 481px){
+        flex-basis: 4545rem;
+      }
+      .artwork-info{
+        display: flex;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        margin-bottom: 3px;
+      }
+
+      .artwork-name {
+        font-family: $bothRegular;
+        font-size: $fontsize-regular;
+        text-align: left;
+        line-height: 19px;
+        color: $text-light;
+      }
+
+      .artist-name {
+        font-family: $bothRegular;
+        font-size: $fontsize-small-regular;
+        text-align: left;
+        line-height: 20px;
+        color: $text-light;
+        opacity: $opacity-level1;
+      }
+    }
+
+    .select-check {
+      display: inline-block;
+      width: 28px;
+      height: 28px;
+      background-size: cover;
+      background-image: url(../../img/icon_check_inactive2.png);
+      border: none;
+      border-radius: 50%;
+    }
+    .select-check.active {
+      background-image: url(../../img/icon_check_active1.png);
+    }
+    .select-input {
+      display: none;
+    }
+    .btn-select {
+      width: 28px;
+      height: 28px;
+      background-color: transparent;
+
+      img {
+        width: 28px;
+        height: 28px;
+      }
+    }
+    .icon-show-option {
+      width: 28px;
+      height: 28px;
+      background: transparent;
+
+      img {
+        width: inherit;
+      }
+
+      span {
+        display: none;
+      }
+    }
+  }
+  .btn-save {
+    position: fixed;
+    bottom: 40px;
+    width: inherit;
+    font-size: 16px;
+    font-weight: normal;
+    background-color: #EBEBEB;
+    color: white;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    line-height: 46px;
+    border-radius: 12px;
+    @media screen and (min-width: 481px){
+      width: 768rem;
+    }
+  }
+  .btn-save.blue {
+    background-color: $primary-color;
+  }
+}
+
+
+//carousel web css
+@media screen and (min-width: 481px) {
+  header {
+    width: 768rem;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .collection-edit-section, .collection-add-section {
+    width: 768rem;
+  }
+  .collection-edit-section{
+    .collection-input{
+      width: 768rem;
+    }
+  }
+}
+
+.collection-edit-section{
+  padding-bottom: 124px;
+  .collection-input{
+    width: inherit;
+    input{
+      width: inherit;
+      height: auto;
+      box-sizing: border-box;
+    }
+  }
+}
+
+//.weglot-container{
+//  opacity: 1;
+//}
+//.weglot-container.wg-default{
+//  display: block;
+//}
+//.wg-default, .wg-default .country-selector{
+//  bottom: 20px !important;
+//}

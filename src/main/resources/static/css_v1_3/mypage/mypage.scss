@@ -1,0 +1,1384 @@
+@import '../common/library';
+
+body {
+  position: relative;
+}
+
+.wrap {
+  padding-bottom: 36px;
+}
+// mypage-header-wrap
+.mypage-header-wrap {
+  position: relative;
+  height: 126px;
+}
+.mypage-name {
+  font-family: $notoSansBold;
+  font-style: normal;
+  font-weight: 700;
+  font-size: $fontsize-big-big;
+  line-height: 43px;
+  color: $text-lightest;
+  position: absolute;
+  bottom: 0;
+  span {
+    display: inline-block;
+    max-width: 234px;
+    white-space: nowrap;
+    width: auto;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    transform: translateY(4px);
+  }
+}
+.mypage-name-sub {
+  font-family: $notoSansBold;
+  font-style: normal;
+  font-weight: 700;
+  font-size: $fontsize-big-big;
+  line-height: 38px;
+  color: $text-lightest;
+  position: absolute;
+  bottom: 0;
+  left: 262px;
+}
+.mypage-setting-anchor{
+  width: 28px;
+  height: 43px;
+  position: absolute;
+  right: 0px;
+  bottom: 0;
+  .mypage-setting-icon {
+    width: 28px;
+    height: 28px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
+
+.section-wrap {
+  position: relative;
+  margin-bottom: 40px;
+  &:nth-of-type(1){
+    margin-top: 24px;
+  }
+}
+.section-wrap:last-child {
+  margin-bottom: 0;
+}
+.more-contents-anchor {
+  line-height: 20px;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  //margin-top: 32px;
+  @extend %fourth-text-button-style;
+  display: flex;
+  flex-direction: row;
+  width: inherit;
+  height: 48px;
+  background-color: #1f1f1f;
+  border-radius: 8px;
+  justify-content: center;
+  align-items: center;
+  color: #f5f5f5;
+  text-decoration: none;
+}
+
+.artist-contents-section .carousel-img-wrap {
+  //transform: translate(40%,7%);
+  -webkit-filter: grayscale(100%);
+}
+
+.mypage-collection-section .owl-carousel .owl-stage-outer,
+.art-stream-contents-section .owl-carousel .owl-stage-outer{
+  overflow: inherit;
+}
+.carousel-anchor{
+  display: block;
+  height: inherit;
+}
+// section 2
+.mypage-collection-section {
+  background: $background-dark;
+  position: relative;
+}
+h2.mypage-collection-section-title {
+  font-family: $bothBold;
+  font-style: normal;
+  font-weight: 700;
+  font-size: $fontsize-regular-big;
+  color: $text-lightest;
+  margin-bottom: 8px;
+  height: 26px;
+  line-height: 26px;
+}
+a.mypage-collection-section-all {
+  position: absolute;
+  top: 0px;
+  right: 0;
+  height: 26px;
+  line-height: 26px;
+  @extend %fourth-text-button-style
+}
+//all sections except section5(artist section)
+//.art-stream-contents-section {
+//  background: $grayscale8;
+//  .narrow {
+//    width: 200px;
+//    height: 248px;
+//    overflow: inherit;
+//  }
+//  .carousel-item-wrap {
+//    width: 328px;
+//  }
+//  .carousel-item-narrow-wrap{
+//    width: 200px !important;
+//  }
+//}
+.art-stream-section-title {
+  font-family: $bothBold;
+  font-style: normal;
+  font-size: $fontsize-regular-big;
+  line-height: 26.06px;
+  color: $text-lightest;
+  margin-bottom: 8px;
+}
+.coming-soon-day-count {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background-color: rgba(10, 10, 10, 0.5);
+  padding: 4px 8px;
+  border-radius: 12px;
+  color: #f5f5f5;
+  font-size: 12px;
+  font-family: $bothBold;
+}
+.collection-icon {
+  width: 28px!important;
+  height: 28px!important;
+  position: absolute;
+  top: 12px;
+  right: 12px;
+}
+.art-stream-contents-section {
+  .carousel-artwork-artist{
+    margin-bottom: 0;
+  }
+  .collection-confirm-anchor {
+    line-height: 20px;
+    @extend %fourth-text-button-style;
+    .coming-soon-confirm-icon {
+      width: 16px!important;
+      height: 16px!important;
+      display: inline!important;
+      margin-right: 5px;
+      transform: translateY(2px);
+    }
+  }
+}
+//section carousel
+.art-stream-contents-section{
+  position: relative;
+  .carousel-item{
+    //height: 233.5px;
+    //overflow: inherit;
+    //.carousel-img-wrap{
+    //  height: 184.5px;
+    //  border-radius: $border-radius-default;
+    //  overflow: hidden;
+    //}
+    .carousel-artwork-title{
+      margin-top: 4px;
+    }
+    .carousel-artwork-artist{
+      color: #adadad;
+    }
+    .carousel-text-wrap{
+      left: 0;
+      padding: 0;
+    }
+    .carousel-text-footer-wrap1{
+      width: auto;
+      height: 18px;
+      font-family: Noto Sans KR;
+      font-size: 12px;
+      line-height: 17px;
+      letter-spacing: 0em;
+      text-align: left;
+      color: rgba(245, 245, 245, 0.65);
+      &.no-collection-wrap{
+        bottom: 16px;
+      }
+      .no-collection-guide{
+        width: max-content;
+        font-family: $bothMedium;
+        font-size: 14px;
+        line-height: 20px;
+        color: rgba(245, 245, 245, 0.65);
+        .collection-edit-anchor{
+          @extend %second-text-button-style
+        }
+      }
+    }
+    .carousel-text-footer-wrap2 {
+      position: absolute;
+      @extend %second-text-button-style;
+    }
+  }
+}
+//section 5
+.artist-contents-section{
+  position: relative;
+  //padding: 0 0 40px 0;
+  background: $background-dark;
+  .carousel-item-wrap-160 {
+    width: 160px;
+  }
+  .artist-section-title {
+    font-family: $bothBold;
+    font-style: normal;
+    font-size: $fontsize-regular-big;
+    line-height: 26.06px;
+    color: $text-lightest;
+    margin-bottom: 8px;
+  }
+  a.artist-section-all {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 26px;
+    line-height: 26px;
+    @extend %fourth-text-button-style
+  }
+  .carousel-item{
+    width: 160px;
+    //height: 229px;
+    box-sizing: border-box;
+    border-radius: 0;
+    .carousel-img-wrap{
+      position: relative;
+      width: 160px;
+      height: 184.5px;
+      border-radius: $border-radius-default;
+      overflow: hidden;
+      img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+    .carousel-artist-name{
+      height: 24px;
+      font-size: $fontsize-regular;
+      color: $text-light;
+    }
+    .carousel-content-wrap{
+      position: relative;
+      padding: 4.5px 0 0 0;
+    }
+    .like-count{
+      height: 14px;
+      font-family: $bothMedium;
+      font-size: $fontsize-small;
+      line-height: 14px;
+      color: $opacity-level1-light;
+      img{
+        float: left;
+        width: 16px;
+      }
+    }
+  }
+}
+
+////section 6
+//.watched-artworks-section {
+//  position: relative;
+//  padding-bottom: 80px;
+//}
+//.watched-artworks-section {
+//  .watched-artworks-title {
+//    font-family: $bothBold;
+//    font-style: normal;
+//    font-size: $fontsize-regular-big;
+//    line-height: 26.06px;
+//    color: #ffffff;
+//    margin-bottom: 8px;
+//  }
+//
+//  a.watched-artworks-all {
+//    font-family: $notoSansRegular;
+//    font-style: normal;
+//    font-weight: 500;
+//    font-size: $fontsize-small-regular;
+//    color: $opacity-level1-light;
+//    position: absolute;
+//    top: 0;
+//    right: 0;
+//    height: 26px;
+//    line-height: 26px;
+//    text-decoration: underline;
+//  }
+//
+//  .watched-artwork-img-wrap img {
+//    width: 80px;
+//    height: auto;
+//  }
+//
+//  .watched-artworks {
+//    display: flex;
+//    flex-direction: row;
+//    width: 300px;
+//    height: 45px;
+//    background: transparent;
+//    @media screen and (min-width: 481px){
+//      width: 92%;
+//    }
+//  }
+//
+//  .watched-artworks-img-wrap {
+//    width: 80px;
+//    height: 45px;
+//    border-radius: 4px;
+//    overflow: hidden;
+//    img {
+//      object-fit: cover;
+//      width: inherit;
+//      height: inherit;
+//    }
+//  }
+//
+//  .watched-artworks-list {
+//    @media screen and (min-width: 481px){
+//      display: flex;
+//      flex-direction: row;
+//      flex-wrap: wrap;
+//    }
+//    > li {
+//      display: flex;
+//      justify-content: space-between;
+//      margin-bottom: 12px;
+//      width: 100%;
+//      @media screen and (min-width: 481px){
+//        //margin-right: 40px;
+//      }
+//    }
+//
+//    .artwork-txt-info {
+//      width: 200px;
+//      margin-left: 12px;
+//
+//      li {
+//        white-space: nowrap;
+//        text-overflow: ellipsis;
+//        overflow: hidden;
+//        //display: flex;
+//        margin-bottom: 3px;
+//      }
+//
+//      li:nth-of-type(1) {
+//        font-family: $bothRegular;
+//        font-size: $fontsize-regular;
+//        text-align: left;
+//        line-height: 19px;
+//        color: $text-light;
+//      }
+//
+//      li:nth-of-type(2) {
+//        font-family: $bothRegular;
+//        font-size: $fontsize-small-regular;
+//        text-align: left;
+//        line-height: 20px;
+//        color: $text-light;
+//        opacity: $opacity-level1;
+//      }
+//    }
+//
+//    .icon-show-option {
+//      width: 28px;
+//      height: 28px;
+//      background: transparent;
+//
+//      img {
+//        width: inherit;
+//      }
+//
+//      span {
+//        display: none;
+//      }
+//    }
+//  }
+//}
+//artwork options style
+
+.artwork-option-box{
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1009;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(180deg, rgba(10, 10, 10, 0.9) 0%, #0A0A0A 100%);
+  .artwork-options{
+    position: absolute;
+    //top: 294px;
+    bottom: 176px;
+    left: 50%;
+    transform: translateX(-50%);
+    .artwork-wrap{
+      .artwork-id{
+        display: none;
+      }
+      a, button{
+        display: flex;
+        margin-bottom: 28px;
+      }
+      img{
+        width: 96px;
+        height: 54px;
+        margin-right: 12px;
+        border-radius: 4px;
+        transform: translatey(0);
+      }
+      .artwork-txt-info{
+        width: 200px;
+        padding-top: 5px;
+        margin-left: 12px;
+        li{
+          white-space: nowrap;
+          width: auto;
+          text-overflow: ellipsis;
+          overflow: hidden;
+        }
+        li:nth-of-type(1){
+          height: 24px;
+          font-family: $bothMedium;
+          font-size: $fontsize-regular;
+          line-height: 24px;
+          color: $text-light;
+        }
+        li:nth-of-type(2){
+          height: 21px;
+          font-family: $bothRegular;
+          font-size: $fontsize-small-regular;
+          line-height: 21px;
+          color: $text-light;
+          opacity: $opacity-level1;
+        }
+      }
+    }
+    button,
+    .artist-information{
+      display: block;
+      background: transparent;
+      width: 100%;
+      height: 52px;
+      line-height: 52px;
+      text-align: left;
+      img{
+        width: 28px;
+        height: 28px;
+        transform: translatey(8px);
+      }
+      span{
+        margin-left: 8px;
+        font-family: $bothRegular;
+        font-size: $fontsize-regular;
+        line-height: 23px;
+        color: $text-light;
+      }
+    }
+  }
+  .btn-artwork-options-close{
+    width: 56px;
+    height: 56px;
+    position: absolute;
+    //top: 686px;
+    bottom: 120px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: transparent;
+    img{
+      width: inherit;
+    }
+  }
+}
+//아트스트림 모두 보기 모달
+.art-stream-all-wrap{
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 100;
+  box-sizing: border-box;
+  overflow: scroll;
+  background:  $grayscale8;
+  .art-stream-list-section{
+    position: fixed;
+    top: 111px;
+    left: 50%;
+    height: calc(100vh - 80px);
+    padding-bottom: 80px;
+    box-sizing: border-box;
+    transform: translatex(-50%);
+    overflow-y: scroll;
+    overflow-x: hidden;
+    .art-stream-count{
+      height: 21px;
+      margin-bottom: 12px;
+      font-family: $bothRegular;
+      font-size: $fontsize-small-regular;
+      line-height: 16px;
+      color: $opacity-level1-light;
+    }
+    .exh-item{
+      position: relative;
+      width: 328px;
+      height: 252px;
+      overflow: inherit;
+      margin-bottom: 24px;
+      box-sizing: border-box;
+      border-radius: $border-radius-default;
+      .item-img-wrap{
+        height: 184.5px;
+        border-radius: $border-radius-default;
+        overflow: hidden;
+        img{
+          width: auto;
+          height: inherit;
+        }
+      }
+      .item-gradation{
+        position: absolute;
+        width: inherit;
+        height: 184.5px;
+        background: $dafault-gradient;
+      }
+      .carousel-artwork-title{
+        font-family: $bothRegular;
+        font-size: $fontsize-regular;
+        line-height: 19px;
+      }
+      .carousel-artwork-artist{
+        color: rgba(255, 255, 255, 0.65);
+      }
+      .item-text-wrap{
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: inherit;
+        box-sizing: border-box;
+      }
+    }
+    .exh-info-wrap{
+      display: block;
+      width: auto;
+      height: 18px;
+      margin-bottom: 8px;
+      line-height: 18px;
+      color: $opacity-level1-light;
+      font-size: $fontsize-small;
+      font-family: $bothRegular;
+    }
+    .carousel-artist-type{
+      height: 18px;
+    }
+    .item-exh-title{
+      @extend %contents-artworkName-font-style;
+      width: auto;
+      height: 24px;
+      font-family: $bothRegular;
+      font-size: $fontsize-regular;
+      line-height: 24px;
+      color: $text-light;
+      margin-top: 4.5px;
+    }
+    .item-exh-artist{
+      @extend %contents-artistName-font-style;
+    }
+  }
+}
+.collection-confirm-anchor {
+  line-height: 20px;
+  @extend %fourth-text-button-style;
+  .coming-soon-confirm-icon {
+    width: 16px!important;
+    height: 16px!important;
+    display: inline!important;
+    margin-right: 5px;
+    transform: translateY(2px);
+  }
+}
+//작가 모두 보기 모달
+.artist-all-wrap{
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 100;
+  box-sizing: border-box;
+  overflow: scroll;
+  background:  $grayscale8;
+  .artist-list-section{
+    position: fixed;
+    top: 111px;
+    left: 50%;
+    height: calc(100vh - 80px);
+    padding-bottom: 80px;
+    transform: translatex(-50%);
+    border-bottom: none;
+    overflow: scroll;
+    box-sizing: border-box;
+    .artist-head-count{
+      height: 21px;
+      margin-bottom: 12px;
+      font-family: $bothRegular;
+      font-size: $fontsize-small-regular;
+      line-height: 16px;
+      color: $opacity-level1-light;
+    }
+    .artist-list{
+      >li{
+        margin-bottom: 20px;
+        &:last-of-type{
+          margin-bottom: 0;
+        }
+      }
+      .artists-description{
+        display: flex;
+        flex-wrap: wrap;
+        .artist-profile-img{
+          position: relative;
+          width: 28px;
+          height: 28px;
+          border-radius: 28px;
+          overflow: hidden;
+          img{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            width: inherit;
+            -webkit-filter: grayscale(100%);
+          }
+        }
+        .artist-profile-txt{
+          width: 288px;
+          margin-left: 12px;
+          .artist-name{
+            height: 24px;
+            font-family: $bothRegular;
+            font-size: $fontsize-regular;
+            line-height: 23px;
+            color: $text-light;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+          }
+        }
+      }
+    }
+  }
+}
+//작품 모두 보기 모달
+.title-container{
+  position: fixed;
+  top: 72px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: $grayscale8;
+  z-index: 100;
+  h1{
+    height: 27px;
+    margin-bottom: 12px;
+    font-family: $bothBold;
+    font-size: $fontsize-regular-big;
+    line-height: 26px;
+    color: $text-lightest;
+  }
+}
+//Responsive Css
+@media screen and (max-width: 570px) {
+  .title-container {
+    h1{
+      //width:328px;
+      margin: auto;
+    }
+  }
+}
+@media screen and (min-width: 571px) and (max-width: 1440px){
+  .title-container {
+    h1{
+      width:88vw;
+      margin: auto;
+    }
+  }
+}
+@media screen and (min-width: 1441px) and (max-width: 1921px) {
+  .title-container {
+    h1{
+      width:50vw;
+      margin: auto;
+    }
+  }
+}
+.artwork-all-wrap{
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 100;
+  box-sizing: border-box;
+  overflow: scroll;
+  background:  $grayscale8;
+  .artwork-list-section{
+    position: fixed;
+    top: 111px;
+    left: 50%;
+    height: calc(100vh - 80px);
+    padding-bottom: 80px;
+    transform: translatex(-50%);
+    border-bottom: none;
+    overflow: scroll;
+    box-sizing: border-box;
+    .artwork-count{
+      height: 21px;
+      margin-bottom: 12px;
+      font-family: $bothRegular;
+      font-size: $fontsize-small-regular;
+      line-height: 16px;
+      color: $opacity-level1-light;
+    }
+    .exh-artworks-list{
+      display: flex;
+      flex-direction: column;
+      > li{
+        display: flex;
+        margin-bottom: 12px;
+        a{
+          display: flex;
+          width: 100%;
+        }
+      }
+      > li:last-of-type{
+        margin-bottom: 0px;
+      }
+      .exh-artwork{
+        display: flex;
+        flex-direction: row;
+        width: 300px;
+        height: 45px;
+        background: transparent;
+        .exh-artwork-img-wrap{
+          width: 80px;
+          height: 45px;
+          border-radius: 4px;
+          overflow: hidden;
+          img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+        }
+      }
+      .artwork-txt-info{
+        width: 200px;
+        margin-left: 12px;
+        li{
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          overflow: hidden;
+        }
+        li:nth-of-type(1){
+          height: 24px;
+          font-family: $bothRegular;
+          font-size: $fontsize-regular;
+          text-align: left;
+          line-height: 24px;
+          color: $text-light;
+        }
+        li:nth-of-type(2){
+          height: 21px;
+          font-family: $bothRegular;
+          font-size: $fontsize-small-regular;
+          text-align: left;
+          line-height: 21px;
+          color: $text-light;
+          opacity: $opacity-level1;
+        }
+      }
+      .icon-show-option{
+        width: 28px;
+        height: 28px;
+        background: transparent;
+        img{
+          width: inherit;
+        }
+        span{
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+
+
+//내 컬렉션 모두 보기 모달
+.all-info-wrap{
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 999;
+  box-sizing: border-box;
+  overflow: scroll;
+  background:  $grayscale8;
+  .search-all-title {
+    @media screen and (min-width: 481px){
+      width: 768rem;
+    }
+  }
+  .art-stream-list-section{
+    position: fixed;
+    top: 111px;
+    left: 50%;
+    height: calc(100vh - 80px);
+    padding-bottom: 100px;
+    box-sizing: border-box;
+    transform: translatex(-50%);
+    overflow: scroll;
+    .item-list {
+      @media screen and (min-width: 481px){
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+      }
+    }
+    .art-stream-count{
+      height: 21px;
+      margin-bottom: 12px;
+      font-family: $bothRegular;
+      font-size: $fontsize-small-regular;
+      line-height: 16px;
+      color: $opacity-level1-light;
+    }
+    .exh-item{
+      position: relative;
+      width: 324rem;
+      height: 252rem;
+      overflow: inherit;
+      margin-bottom: 24rem;
+      box-sizing: border-box;
+      border-radius: $border-radius-default;
+      .item-img-wrap{
+        height: 184.5rem;
+        border-radius: $border-radius-default;
+        overflow: hidden;
+        position: relative;
+        img{
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+      .item-img-wrap.null{
+        position: relative;
+        background-color: #1d1d1d;
+        img{
+          &.item-img{
+            margin-left: 0;
+            position: absolute;
+            top: 50%;
+            box-sizing: border-box;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            width: 34px;
+            height: auto;
+          }
+        }
+      }
+      .item-gradation{
+        position: absolute;
+        //width: 338px;
+        width: inherit;
+        height: 184.5rem;
+        background: $dafault-gradient;
+        z-index: 1;
+      }
+      .carousel-artwork-title{
+        font-family: $bothRegular;
+        font-size: $fontsize-regular;
+        line-height: 19rem;
+      }
+      .carousel-artwork-artist{
+        color: rgba(255, 255, 255, 0.65);
+      }
+      .item-text-wrap{
+        position: absolute;
+        left: 0;
+        //bottom: 0;
+        width: inherit;
+        box-sizing: border-box;
+      }
+    }
+    .exh-info-wrap{
+      display: block;
+      width: auto;
+      height: 18rem;
+      line-height: 18rem;
+      font-size: $fontsize-small;
+      font-family: $bothRegular;
+      color: $opacity-level1-light;
+
+      a {
+        color: $opacity-level1-light;
+        text-decoration: underline;
+      }
+    }
+    .carousel-artist-type{
+      height: 18rem;
+    }
+    .item-exh-title{
+      @extend %contents-artworkName-font-style;
+      width: auto;
+      height: 24rem;
+      font-size: $fontsize-regular;
+      line-height: 24rem;
+      color: $text-light;
+      margin-top: 5px;
+    }
+    .item-exh-more{
+      @extend %contents-artistName-font-style;
+      text-decoration: underline;
+    }
+    .item-exh-artist{
+      @extend %contents-artistName-font-style;
+    }
+  }
+}
+//작가 모두 보기 모달
+.all-info-wrap{
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1001;
+  box-sizing: border-box;
+  overflow: scroll;
+  background:  $grayscale8;
+  .artist-list-section{
+    position: fixed;
+    top: 111px;
+    left: 50%;
+    height: calc(100vh - 80px);
+    padding-bottom: 80px;
+    transform: translatex(-50%);
+    border-bottom: none;
+    overflow: scroll;
+    box-sizing: border-box;
+    .artist-head-count{
+      height: 21px;
+      margin-bottom: 12px;
+      font-family: $bothRegular;
+      font-size: $fontsize-small-regular;
+      line-height: 16px;
+      color: $opacity-level1-light;
+    }
+    .item-list{
+      >li{
+        margin-bottom: 20px;
+        &:last-of-type{
+          margin-bottom: 0;
+        }
+      }
+      .artists-description{
+        display: flex;
+        flex-wrap: wrap;
+        .artist-profile-img{
+          position: relative;
+          width: 28px;
+          height: 28px;
+          border-radius: 28px;
+          overflow: hidden;
+          img{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            width: inherit;
+            -webkit-filter: grayscale(100%);
+          }
+        }
+        .artist-profile-txt{
+          width: 288rem;
+          margin-left: 12px;
+          .artist-name{
+            height: 24px;
+            font-family: $bothMedium;
+            font-size: $fontsize-regular;
+            line-height: 23px;
+            color: $text-light;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+          }
+        }
+      }
+    }
+  }
+}
+//작품 모두 보기 모달
+.all-info-wrap{
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 999;
+  box-sizing: border-box;
+  overflow: scroll;
+  background:  $grayscale8;
+  .artwork-list-section{
+    position: fixed;
+    top: 111px;
+    left: 50%;
+    height: calc(100vh - 80px);
+    padding-bottom: 160px;
+    transform: translatex(-50%);
+    border-bottom: none;
+    overflow: scroll;
+    box-sizing: border-box;
+    .artwork-count{
+      height: 21px;
+      margin-bottom: 12px;
+      font-family: $bothRegular;
+      font-size: $fontsize-small-regular;
+      line-height: 16px;
+      color: $opacity-level1-light;
+    }
+    .item-list{
+      display: flex;
+      flex-direction: column;
+      > li{
+        display: flex;
+        margin-bottom: 12px;
+        @media screen and (min-width: 481px){
+          display: flex;
+          margin-bottom: 12px;
+          justify-content: space-between;
+        }
+        a{
+          display: flex;
+          width: 100%;
+        }
+      }
+      > li:last-of-type{
+        margin-bottom: 0px;
+      }
+      .exh-artwork{
+        display: flex;
+        flex-direction: row;
+        width: 300rem;
+        height: 45rem;
+        background: transparent;
+        .exh-artwork-img-wrap{
+          width: 45rem;
+          height: 45rem;
+          border-radius: 4px;
+          overflow: hidden;
+          img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+        }
+      }
+      .artwork-txt-info{
+        width: 200rem;
+        margin-left: 12px;
+        li{
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          overflow: hidden;
+        }
+        li:nth-of-type(1){
+          height: 24rem;
+          font-family: $bothMedium;
+          font-size: $fontsize-regular;
+          text-align: left;
+          line-height: 24rem;
+          color: $text-light;
+        }
+        li:nth-of-type(2){
+          height: 21rem;
+          font-family: $bothRegular;
+          font-size: $fontsize-small-regular;
+          text-align: left;
+          line-height: 21rem;
+          color: #adadad;
+        }
+      }
+      .icon-show-option{
+        width: 28px;
+        height: 28px;
+        background: transparent;
+        img{
+          width: inherit;
+        }
+        span{
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+.more-info-section {
+  .info-box {
+    @media screen and (min-width: 481px){
+      width: 768rem;
+    }
+  }
+}
+
+//carousel web css
+@media screen and (min-width: 481px) {
+  .mypage-header-section, .mypage-collection-section, .saved-exhibition-section, .art-stream-contents-section, .artist-contents-section, .watched-artworks-section,
+  .art-stream-list-section, .search-all-title, .artwork-list-section, .artist-list-section, .more-info-section, .collection-add-section, .mypage-coming-soon-collection-section,
+  .art-stream-waiting-exh-section{
+    width: 768rem;
+  }
+  .carousel-wrap {
+    width: 768rem;
+    overflow: hidden;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+
+.collection-addition-modal{
+  z-index: 1009;
+}
+
+.icon-more {
+  width: 16px;
+  height: 16px;
+  background: transparent;
+  display: inline-block;
+  transform: translateY(2px);
+  img{
+    width: inherit;
+  }
+}
+
+.mypage-collection-icon {
+  width: 28px !important;
+  height: 28px !important;
+  position: absolute;
+  top: 12px;
+  right: 12px;
+}
+
+.exh-item {
+  a {
+    width: inherit;
+  }
+}
+.icon-exhibition{
+  width: 28px;
+  height: 28px;
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 1;
+  opacity: 0.8;
+}
+@media screen and (max-width: 481px){
+  .item-list,
+  .contents-wrap,
+  .contents-wrap>div,
+  .all-info-wrap .art-stream-list-section .exh-item,
+  .item-img-wrap{
+    width: inherit;
+  }
+  .all-info-wrap .art-stream-list-section .exh-item .item-img-wrap img.item-img{
+    width: inherit;
+    height: auto;
+  }
+}
+
+.carousel-artwork-title{
+  max-width: 328px;
+  display: block;
+}
+
+.no-collection-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  .collection-edit-anchor{
+    display: flex;
+    white-space: nowrap;
+    font-size: 14px;
+    color: #2841fa;
+    text-decoration: underline;
+    font-family: $bothMedium;
+  }
+}
+.owl-carousel .owl-item .no-collection-img{
+  width: 34px !important;
+  height: 28px !important;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+}
+
+.owl-carousel .owl-item .no-collection-square-img{
+  width: 34px !important;
+  height: 28px !important;
+  position: absolute;
+  left: 50%;
+  top: 40%;
+  transform: translate(-50%,-50%);
+}
+.no-data-text{
+  white-space: nowrap;
+  font-family: notoSansRegular;
+  font-style: normal;
+  font-size: 12px;
+  line-height: 20px;
+  color: #ADADAD;
+
+}
+.item-img-wrap.no-collection{
+  background-color: #141414;
+}
+.carousel-img-wrap.no-collection{
+  background-color: #141414;
+}
+
+.my-collections-list .curation-item{
+  height: auto;
+}
+.art-stream-waiting-exh-section{
+  position: relative;
+}
+//모두 보기
+.all-info-wrap{
+  .art-stream-list-section{
+    .item-list{
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      width: inherit;
+      gap: 12px;
+      justify-content: space-between;
+      .contents-wrap{
+        margin-bottom: 24px;
+        //width: 320px;
+        flex-basis: 320px;
+        flex-grow: 1;
+        .exh-item{
+          width: 100%;
+          height: 233px;
+          margin-bottom: 0;
+          display: flex;
+          flex-direction: column;
+        }
+        a.anchor-curation{
+          display: flex;
+          flex-direction: column;
+          width: inherit;
+          height: 180px;
+          border-radius: 8px;
+          overflow: hidden;
+          }
+        .item-img-wrap{
+          height: inherit;
+          display: flex;
+          border-radius: unset;
+          .item-img{
+            height: inherit;
+          }
+          .item-img-wrap.null{
+            .item-img{
+              height: auto;
+            }
+          }
+        }
+        .item-exh-title{
+          height: 24px;
+          line-height: 24px;
+          width: inherit;
+          display: block;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+        }
+        .item-text-wrap{
+          position: static;
+          display: flex;
+          justify-content: space-between;
+          .exh-info-wrap{
+            display: flex;
+            align-self: center;
+            line-height: unset;
+            height: auto;
+          }
+          a.item-exh-more, a.collection-confirm-anchor{
+            width: auto;
+            flex-direction: row;
+            padding: 6px 12px;
+            color: #f5f5f5;
+            background-color: #2841fa;
+            border-radius: 8px;
+            text-decoration: none;
+            height: 32px;
+            box-sizing: border-box;
+            align-self: flex-end;
+            &.saved{
+              background-color: #1f1f1f;
+            }
+          }
+          .item-exh-artist{
+            width: 56%;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            align-self: flex-end;
+          }
+        }
+      }
+    }
+  }
+}
+.last-section{
+  margin-bottom: 80px !important;
+}
+
+//모두보기
+.curation-artist{
+  color: #adadad;
+  font-size: 14px;
+}
+.curation-info{
+  color: #707070;
+  font-size: 12px;
+}

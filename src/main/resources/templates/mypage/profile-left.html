@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta name="robots" content="noindex,nofollow">
+  <div th:remove="tag" th:replace="common/common-meta.html :: headMeta"></div>
+  <div th:remove="tag" th:replace="common/common-link.html :: headLink"></div>
+  <div th:remove="tag" th:replace="common/common-head-script.html :: headScript"></div>
+  <title id="html_title">PATRON | Membership Withdrawal</title>
+  <link rel="stylesheet" th:href="@{/css_v1_3/mypage/setting.css}">
+</head>
+<body>
+
+<header>
+  <div id="nav_menu" class="nav_menu">
+    <a th:href="'/' + ${language} + '/mypage/profile'" class="btn-cancel" th:text="#{cancel}">취소</a>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <!-- 프로필 편집 - 탈퇴하기 -->
+    <div class="wrap light edit-left">
+      <div class="hidden-area">
+        <section class="edit-detail-section">
+          <div>
+            <h2 class="edit-detail-title" th:text="#{profileLeft.accountDeleteReason}">탈퇴사유를 알려주세요</h2>
+            <p class="edit-detail-guide" th:text="#{profileLeft.accountDeleteReasonDescription}">
+              더 나은 파트론이 될 수 있도록 노력하겠습니다.<br>
+              지금 탈퇴하시면 소유한 작품을 포함한 그동안 활동한 기록이 모두 삭제됩니다.
+            </p>
+            <div class="edit-detail-select-area">
+              <p class="edit-detail-select-title" th:text="#{profile.deleteAccount}">탈퇴사유</p>
+              <div id="edit_left" class="edit-detail-select" onclick="slideModalOpen('select-option-box')">
+                <span id="selected_value" th:text="#{pressAndChoose}">여기를 눌러 선택하세요</span>
+                <i></i>
+              </div>
+              <div id="left_textarea">
+              </div>
+              <button id="btn_save" class="btn-left" disabled onclick="deleteAccount();" th:text="#{profileLeft.deleteAccount}">탈퇴하기</button>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <!-- 프로필 편집 - 탈퇴사유 선택 -->
+    <div class="modal-content select-option-box" style="display: none">
+      <ul class="select-options left">
+        <li class="select-option-title" th:text="#{profileLeft.chooseReason}">탈퇴사유 선택</li>
+        <li><button type="button" th:onclick="'selectValue(\''+ #{profileLeft.reason1}+ '\',\'left\')'" th:text="#{profileLeft.reason1}">개인정보 노출이 걱정됩니다</button></li>
+        <li><button type="button" th:onclick="'selectValue(\''+ #{profileLeft.reason2}+ '\',\'left\')'" th:text="#{profileLeft.reason2}">서비스 이용 빈도가 낮습니다</button></li>
+        <li><button type="button" th:onclick="'selectValue(\''+ #{profileLeft.reason3}+ '\',\'left\')'" th:text="#{profileLeft.reason3}">원하는 콘텐츠가 없습니다</button></li>
+        <li><button type="button" th:onclick="'selectValue(\''+ #{profileLeft.reason4}+ '\',\'left\')'" th:text="#{profileLeft.reason4}">고객만족 응대가 만족스럽지 않습니다</button></li>
+        <li><button type="button" th:onclick="'selectValue(\''+ #{profileLeft.reason5}+ '\',\'other\')'" th:text="#{profileLeft.reason5}">그 외(직접입력)</button></li>
+      </ul>
+      <button type="button" class="btn-modal-close" onclick="slideModalClose()">
+        <img th:src="@{/img/icon_close_popup.png}" alt="icon_close_popup">
+      </button>
+    </div>
+  </div>
+</main>
+
+
+<!-- script 위치 시작 -->
+<script th:inline="javascript">
+  var reasonToWithdrawl = [[#{setting.reasonToWithdrawl}]];
+  var saved = [[#{saved}]];
+  var accountDeleted = [[#{accountDeleted}]];
+</script>
+<script th:src="@{/js_v1_3/common/jquery.min.js}"></script>
+<script th:src="@{/js_v1_3/common/jsCookie.js}"></script>
+<!--<script th:src="@{/js/common/sockjs.min.js}"></script>-->
+<!--<script th:src="@{/js/common/stomp.min.js}"></script>-->
+<script th:src="@{/js_v1_3/common/header.js}"></script>
+<script th:src="@{/js_v1_3/common/common.js}"></script>
+<script th:src="@{/js_v1_3/mypage/setting.js}"></script>
+<!-- script 위치 종료 -->
+</body>
+</html>

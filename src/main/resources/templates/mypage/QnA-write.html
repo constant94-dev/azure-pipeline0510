@@ -1,0 +1,77 @@
+<!--설정 헤더-->
+<header>
+  <div id="nav_menu" class="nav_menu">
+    <a class="btn-cancel" onclick="closeModalInquiry()" th:text="#{cancel}">취소</a>
+  </div>
+</header>
+
+<main style="width: 100vw; padding-bottom: 90px;">
+  <div class="QnA-wrap">
+    <h1 class="QnA-title" th:text="#{qna.createQnAQuestion}">문의 작성하기</h1>
+    <!--write-content-->
+    <label for="QnA_type" th:text="#{qna.type}">문의 유형</label>
+    <div class="Qna-input-box" onclick="showModal('#sorting_inquiry_option_box');">
+      <img th:alt="more_black" th:src="@{/img/icon_more_black.png}" alt="icon_more">
+      <input class="QnA-input type" id="QnA_type" type="text" readonly placeholder="선택하세요">
+    </div>
+    <label for="QnA_content" th:text="#{qna.content}">문의 내용</label>
+    <textarea class="QnA-input content" id="QnA_content" th:placeholder="#{qna.writeContent}" onkeyup="checkTextarea(this);" spellcheck="false" maxlength="500"></textarea>
+    <div class="content-count" id="content_count"><span id="content_count_value">0</span>/500</div>
+  </div>
+  <button type="button" id="btn_save" class="QnA-button" disabled onclick="writeInquiry()" th:text="#{qna.submit}">문의하기</button>
+</main>
+
+<!--문의 유형 선택 모달-->
+<div id="sorting_inquiry_option_box" class="sorting-option-box modal-container">
+  <div class="modal-gradation-box" onclick="closeModal('#sorting_inquiry_option_box')"></div>
+  <ul id="sorting_options" class="sorting-options">
+    <li class="sorting-option-title" th:text="#{qna.typeChoose}">
+      문의 유형 선택
+    </li>
+    <li>
+      <button type="button" class="btn-sort-latest" onclick="changeInquiryText('#QnA_type',this); closeModal('#sorting_inquiry_option_box')">
+        <div class="sort-standard-box">
+          <span th:text="#{help.userOfService}">서비스 이용</span>
+        </div>
+      </button>
+    </li>
+    <li>
+      <button type="button" class="btn-sort-popularity" onclick="changeInquiryText('#QnA_type',this); closeModal('#sorting_inquiry_option_box')">
+        <div class="sort-standard-box">
+          <span th:text="#{help.manageUserInfo}">회원정보 관련</span>
+        </div>
+      </button>
+    </li>
+    <li>
+      <button type="button" class="btn-sort-alphabetical" onclick="changeInquiryText('#QnA_type',this); closeModal('#sorting_inquiry_option_box')">
+        <div class="sort-standard-box">
+          <span th:text="#{help.copyright}">저작권 및 사용</span>
+        </div>
+      </button>
+    </li>
+    <li>
+      <button type="button" class="btn-sort-share" onclick="changeInquiryText('#QnA_type',this); closeModal('#sorting_inquiry_option_box')">
+        <div class="sort-standard-box">
+          <span th:text="#{help.registerExhibitionOrArtist}">작가 및 전시 등록</span>
+        </div>
+      </button>
+    </li>
+<!--    <li>-->
+<!--      <button type="button" class="btn-sort-share" onclick="changeInquiryText('#QnA_type',this); closeModal('#sorting_inquiry_option_box')">-->
+<!--        <div class="sort-standard-box">-->
+<!--          <span>NFT 작품거래</span>-->
+<!--        </div>-->
+<!--      </button>-->
+<!--    </li>-->
+    <li>
+      <button type="button" class="btn-sort-share" onclick="changeInquiryText('#QnA_type',this); closeModal('#sorting_inquiry_option_box')">
+        <div class="sort-standard-box">
+          <span th:text="#{help.other}">그 외</span>
+        </div>
+      </button>
+    </li>
+  </ul>
+  <button type="button" id="btn_sort_close" class="btn-sort-close" onclick="closeModal('#sorting_inquiry_option_box')">
+    <img th:src="@{/img/icon_close_popup.png}" alt="icon_close_popup">
+  </button>
+</div>

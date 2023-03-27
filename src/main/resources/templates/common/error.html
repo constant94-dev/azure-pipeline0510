@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <div th:remove="tag" th:replace="common/common-meta.html :: headMeta"></div>
+  <div th:remove="tag" th:replace="common/common-link.html :: headLink"></div>
+  <div th:remove="tag" th:replace="common/common-head-script.html :: headScript"></div>
+  <title id="html_title">PATRON | Error</title>
+  <meta name="Description" CONTENT="Oops! We can’t find that page.">
+  <link rel="stylesheet" th:href="@{/css_v1_3/search/search.css}">
+  <link rel="stylesheet" th:href="@{/css_v1_3/common/error.css}">
+</head>
+
+<body>
+
+<div th:replace="common/header-depth-goback.html"></div>
+
+<main>
+  <div class="wrap search-main-wrap">
+    <!--section 1-->
+    <section class="search-main-section">
+      <div class="search-main-section-title">
+        <pre th:text="#{errorMessage}">죄송합니다. 해당 페이지를 찾을 수 없습니다.</pre>
+      </div>
+      <p class="search-category-title" th:text="#{errorRecommend}">추천</p>
+      <ul class="search-categories">
+        <li th:if="${fixedTags != null}" th:each="fixedTag : ${fixedTags}">
+          <a th:href="'/'+${language}+'/search-result?keyword='+${fixedTag.getArtworkTag().getTagName()}" th:text="${fixedTag.getArtworkTag().getTagName()}">하늘</a>
+        </li>
+        <li th:if="${randomizeTags != null}" th:each="ranodmizeTag : ${randomizeTags}">
+          <a th:href="'/'+${language}+'/search-result?keyword='+${ranodmizeTag.getArtworkTag().getTagName()}" th:text="${ranodmizeTag.getArtworkTag().getTagName()}">하늘</a>
+        </li>
+      </ul>
+    </section>
+  </div>
+</main>
+
+<!-- script 위치 시작 -->
+<script th:inline="javascript">
+  const language = [[${language}]];
+  var needToLogin = [[#{needToLogin}]];
+  var signup = [[#{signup}]];
+  var joinPatron = [[#{joinPatron}]];
+  var login = [[#{login}]];
+  var cancel = [[#{cancel}]];
+  var inputSearchKeyword = [[#{search.inputSearchKeyword}]];
+  var symbolCantBeSearched = [[#{search.symbolCantBeSearched}]];
+</script>
+<script th:src="@{/js_v1_3/common/jquery.min.js}"></script>
+<script th:src="@{/js_v1_3/common/jsCookie.js}"></script>
+<script th:src="@{/js_v1_3/common/header.js}"></script>
+<script th:src="@{/js_v1_3/common/common.js}"></script>
+<script>
+  $('#nav_button_box').css('display','none');
+</script>
+
+<script>
+  $(window).on('scroll',function (e){
+    if(e.target.tagName !== 'INPUT'){
+      document.querySelectorAll('input').forEach(x=>x.blur());
+    }
+  });
+</script>
+<!-- script 위치 종료 -->
+</body>
+
+</html>

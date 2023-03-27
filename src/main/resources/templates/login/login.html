@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" style="position: fixed">
+<head>
+    <meta name="robots" content="noindex,nofollow">
+    <div th:remove="tag" th:replace="common/common-meta.html :: headMeta"></div>
+    <div th:remove="tag" th:replace="common/common-link.html :: headLink"></div>
+    <div th:remove="tag" th:replace="common/common-head-script.html :: headScript"></div>
+    <title id="html_title">PATRON | Login</title>
+    <link rel="stylesheet" th:href="@{/css_v1_3/login/login.css}">
+    <!-- cookie -->
+    <script th:src="@{/js_v1_3/common/jsCookie.js}"></script>
+</head>
+<body onclick="navChecker()">
+
+<header xmlns:th="http://www.thymeleaf.org">
+    <div id="nav_menu">
+        <input type="hidden" class="nav-checkbox" id="nav_checkbox" value="off">
+        <button type="button" id="btn_goback" class="btn-goback" onclick="checkGAEvent('login_cancel');history.go(-1)" th:tabindex="0">
+            <img th:src="@{/img/icon_go_back.png}" alt="icon_go_back">
+        </button>
+        <button id="btn_cancel" class="btn-cancel" onclick="processRegress()" style="display: none" th:text="#{cancel}">
+            취소
+        </button>
+        <button class="btn-language-choice" type="button" onclick="toggleLanguageModal(); setLanguageModalStyle()">
+            <img src="/img/icon_language.png" alt="icon_language">
+        </button>
+        <div class="language-choice-modal" style="display: none;">
+            <button class="btn-kor" onclick="chooseLanguage('ko')">
+                <img class="icon-confirm" th:src="@{/img/icon_confirm_black.png}" alt="icon_confirm_black">
+                <span data-wg-notranslate="manual">한국어</span>
+            </button>
+            <button class="btn-eng" onclick="chooseLanguage('en')">
+                <img class="icon-confirm" th:src="@{/img/icon_confirm_black.png}" alt="icon_confirm_black">
+                <span data-wg-notranslate="manual">English</span>
+            </button>
+            <button class="btn-jap" onclick="chooseLanguage('ja')">
+                <img class="icon-confirm" th:src="@{/img/icon_confirm_black.png}" alt="icon_confirm_black">
+                <span data-wg-notranslate="manual">日本語</span>
+            </button>
+        </div>
+    </div>
+</header>
+
+<main>
+    <!-- 로그인 -->
+    <div class="wrap light" style="height: calc(100% + 1px);">
+        <div class="hidden-area">
+            <form class="login_box">
+                <section id="carousel" class="login-section">
+                    <div id="step_1" class="carousel-item login-step1">
+                        <h2 class="login-section-title" th:text="#{login.getStarted}">로그인</h2>
+<!--                        <p class="login-guide-text" th:text="#{login.emailInput}">가입된 계정인지 확인합니다.</p>-->
+                        <div class="login-input-area">
+                            <p class="login-input-title" th:text="#{login.email}">이메일주소</p>
+                            <label class="label-hidden" for="email_id" th:text="#{login.email}">이메일주소</label>
+                            <input type="email" name="email" id="email_id" class="login-input email-id" tabindex="0" spellcheck="false">
+                            <div class="text-eraser email" onclick="eraseTxt('#email_id'); goFocus('#email_id');">
+                                <img th:src="@{/img/icon_erase.png}" alt="icon_erase">
+                            </div>
+                            <div class="email error-guide-box">
+                                <p class="error-guide" id="error_no_email" th:text="#{login.noEmailError}">이메일 주소를 입력하세요.</p>
+                                <p class="error-guide" id="error_no_account" th:text="#{login.noAccountError}">가입된 계정이 없습니다.</p>
+                            </div>
+                            <p class="login-input-title" th:text="#{login.password}">비밀번호</p>
+                            <label class="label-hidden" for="login_pw" th:text="#{login.password}">비밀번호</label>
+                            <input type="password" name="password" maxlength='16' id="login_pw" class="login-input email-id" tabindex="0">
+                            <div class="text-eraser pw" onclick="eraseTxt('#login_pw'); goFocus('#login_pw');">
+                                <img th:src="@{/img/icon_erase.png}" alt="icon_erase">
+                            </div>
+                            <div class="pw-show-box ">
+                                <img id="btn_pw_show" class="btn-pw-show" onclick="pwShowToggle('login_pw');" th:src="@{/img/icon_blind.png}" alt="비밀번호 보기">
+                            </div>
+                            <div class="pw error-guide-box">
+                                <p class="error-guide" id="error_no_password" th:text="#{login.noPasswordError}">비밀번호를 입력하세요.</p>
+                                <p class="error-guide" id="error_incorrect_password" th:text="#{login.incorrectPasswordError}">비밀번호가 일치하지 않습니다.</p>
+                            </div>
+<!--                            <a id="btn_social_login" class="btn-text btn-login-more" onclick="showModal('.modal-social-login'); createIconRecently();" th:text="#{login.simpleLogin}">간편 로그인</a>-->
+                            <div id="btn_step1" class="carousel-control-next btn-login-next login-button extra-button blue" th:text="#{login.next}">계속</div><!--thisPage="login"-->
+                            <a class="anchor-go-passwordFind" th:href="'/' + ${language} + '/password-find'" th:tabindex="0" th:text="#{login.findPassword}">비밀번호 찾기</a>
+                        </div>
+                        <div class="devided-line-box">
+                            <span class="devided-line"></span>
+                            <span class="or-text" th:text="#{login.Or}">또는</span>
+                        </div>
+                        <div class="social-login">
+                            <button type="button" id="btn_google_login" class="btn-google-login" onclick="checkGAEvent('login_google');socialHref('google');">
+                                <i></i><span th:text="#{login.continueWithGoogle}">구글 계정으로 계속하기</span>
+                            </button>
+<!--                            <button type="button" id="btn_facebook_login" class="btn-facebook-login" onclick="socialHref('facebook')">-->
+<!--                                <i></i><span th:text="#{login.continueWithFacebook}">페이스북 계정으로 계속하기</span>-->
+<!--                            </button>-->
+                            <button type="button" id="btn_kakao_login" class="btn-kakao-login" onclick="checkGAEvent('login_kakao');socialHref('kakao')">
+                                <i></i><span th:text="#{login.continueWithKakao}">카카오 계정으로 계속하기</span>
+                            </button>
+                        </div>
+                        <div class="guide-text-box">
+                            <span class="guide-text" th:text="#{login.new}">신규 사용자이신가요?</span>
+                            <a class="anchor-go-signup" href="javascript:void(0)" onclick="goToSignUpPage()" th:tabindex="0" th:text="#{login.signup}">회원가입</a>
+                        </div>
+                    </div>
+<!--                    <div id="step_2" class="carousel-item w-box login-step2">-->
+<!--                        <h2 class="login-section-title" th:text="#{passwordInput}">비밀번호를 입력하세요</h2>-->
+<!--                        <div class="login-input-area" style="display: none">-->
+<!--                            <p class="login-input-title" th:text="#{login.password}">비밀번호</p>-->
+<!--                            <label class="label-hidden" for="login_pw" th:text="#{login.password}">비밀번호</label>-->
+<!--                            <input type="password" name="password" maxlength='16' id="login_pw" class="login-input email-id" onkeyup="colorToBlue(this.value.length > 1,'btn_step2')" tabindex="-1">-->
+<!--                            <div class="pw-show-box ">-->
+<!--                                <img id="btn_pw_show" class="btn-pw-show" onclick="pwShowToggle('login_pw');" th:src="@{/img/icon_blind.png}" alt="비밀번호 보기">-->
+<!--                            </div>-->
+<!--                            <a th:href="'/' + ${language} + '/password-find'" id="btn_pw_inquiry" class="btn-text btn-login-more" th:text="#{login.findPassword}">비밀번호 찾기</a>-->
+<!--                            <button type="button" id="btn_step2" class="btn-login-next carousel-control-next" th:text="#{login.login}">로그인</button>-->
+<!--                        </div>-->
+<!--                    </div>-->
+                </section>
+                <label class="label-hidden" for="rememberMe" th:text="#{login.autoLogin}">자동로그인 기억하기</label>
+                <input type="checkbox" id="rememberMe" name="remember-me" checked>
+            </form>
+        </div>
+    </div>
+    <div id="signProvider" th:text="${provider}" style="display: none"></div>
+
+
+    <!-- 로그인 - 회원가입 안내 모달 -->
+    <div class="modal-content modal-signup" style="display: none">
+        <div class="modal-area">
+<!--            <p class="modal-title" th:text="#{login.singupAlert}">-->
+<!--                가입된 계정이 없습니다. <br>-->
+<!--                입력한 메일로 가입하시겠습니까?-->
+<!--            </p>-->
+<!--            <button type="button" id="btn_login_signup" class="btn btn-login-signup" onclick="linkHrefSignup()" th:text="#{login.signup}">가입하기</button>-->
+<!--            <button type="button" class="btn-cancel" onclick="modalClose()" th:text="#{cancel}">취소</button>-->
+        </div>
+    </div>
+
+    <!-- 로그인 - 소셜미디어로 계속하기 모달 -->
+<!--    <div class="modal-content modal-social-login" onclick="closeModal('.modal-social-login')" style="display: none">-->
+<!--        <div class="modal-area">-->
+<!--            <p class="modal-title" th:text="#{login.simpleLogin}">간편 로그인</p>-->
+<!--            <button type="button" id="btn_google_login" class="btn-google-login" onclick="socialHref('google')">-->
+<!--                <i></i><span th:text="#{login.googleLogin}">구글 계정으로 계속하기</span>-->
+<!--            </button>-->
+<!--            <button type="button" id="btn_facebook_login" class="btn-facebook-login" onclick="socialHref('facebook')">-->
+<!--                <i></i><span th:text="#{login.facebookLogin}">페이스북 계정으로 계속하기</span>-->
+<!--            </button>-->
+<!--            <button type="button" id="btn_kakao_login" class="btn-kakao-login" onclick="socialHref('kakao')">-->
+<!--                <i></i><span th:text="#{login.kakaoLogin}">카카오 계정으로 계속하기</span>-->
+<!--            </button>-->
+<!--            <button type="button" class="btn-modal-close" onclick="closeModal('.modal-social-login')"><i></i></button>-->
+<!--        </div>-->
+<!--    </div>-->
+
+    <!-- 로그인 - 회원가입 안내 모달 -->
+    <div class="modal-content modal-social-guide" style="display: none"></div>
+
+    <div class="label-hidden">
+        <label class="label-hidden" for="deviceId" th:text="#{login.deviceInfo}">기기정보</label>
+        <input type="text" id="deviceId" th:value="${deviceId}">
+    </div>
+</main>
+
+<!-- script 위치 시작 -->
+<script th:inline="javascript">
+    var confirm = [[#{confirm}]];
+    var next = [[#{next}]];
+    var authenticationCodeInvalid = [[#{authenticationCodeInvalid}]];
+    var kakaoAccountHasNoEmailRegistered = [[#{login.kakaoAccountHasNoEmailRegistered}]];
+    var accountHasNoEmailRegistered = [[#{login.accountHasNoEmailRegistered}]];
+    var kakao = [[#{login.kakao}]];
+    var general = [[#{login.general}]];
+    var facebook = [[#{login.facebook}]];
+    var google = [[#{login.google}]];
+    var thisIsLeftMember = [[#{login.thisIsLeftMember}]];
+    var authenticationPeriodPassed = [[#{login.authenticationPeriodPassed}]];
+    var recent = [[#{recent}]];
+    var alreadySnsAccount = [[#{login.alreadySnsAccount}]];
+    var alreadySnsAccountEnglish = [[#{login.alreadySnsAccountEnglish}]];
+    var errorLeftAccount = [[#{login.errorLeftAccount}]];
+    var simpleLogin = [[#{login.simpleLogin}]];
+    var passwordInvalid = [[#{passwordInvalid}]];
+    var cancel = [[#{cancel}]];
+    var authenticationCodeResent = [[#{authenticationCodeResent}]];
+
+</script>
+<script th:src="@{/js_v1_3/common/jquery.min.js}"></script>
+<script th:src="@{/js_v1_3/common/jsCookie.js}"></script>
+<script th:src="@{/js_v1_3/common/owl.carousel.js}"></script>
+<!--<script th:src="@{/js/common/sockjs.min.js}"></script>-->
+<!--<script th:src="@{/js/common/stomp.min.js}"></script>-->
+<script th:src="@{/js_v1_3/common/header.js}"></script>
+<script th:src="@{/js_v1_3/common/common.js}"></script>
+<script th:src="@{/js_v1_3/login/login.js}"></script>
+<!-- script 위치 종료 -->
+</body>
+
+</html>
+

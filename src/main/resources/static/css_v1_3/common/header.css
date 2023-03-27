@@ -1,0 +1,333 @@
+header {
+  height: 48px;
+  width: 100%;
+  background-color: #0A0A0A;
+  margin-bottom: -1px;
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+}
+
+#nav_menu,
+#tv_nav_menu {
+  display: flex;
+  justify-content: space-between;
+  z-index: 100;
+  position: relative;
+  background-color: #0A0A0A;
+}
+
+.header-logo {
+  position: relative;
+  width: 34px;
+  height: 28px;
+  margin: 10px 0 0 20px;
+}
+
+#goToLogin {
+  cursor: pointer;
+}
+
+#nav_button_box,
+#tv_nav_button_box {
+  display: flex;
+}
+
+.nav-checkbox {
+  display: none;
+}
+
+.nav-checkbox-label {
+  position: relative;
+  width: 28px;
+  height: 28px;
+  margin: 10px 20px;
+  color: transparent;
+}
+@media screen and (min-width: 481px) {
+  .nav-checkbox-label {
+    margin: 10px 0 10px 20px;
+  }
+}
+
+.nav-checkbox-label img {
+  width: inherit;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.btn-app-download {
+  font-family: "notoSansMedium", serif;
+  font-size: 10px;
+  border-radius: 100px;
+  padding: 5px 8px;
+  text-align: center;
+  min-width: 65px;
+  width: auto;
+  height: 26px;
+  margin: 11px 20px 0 0;
+  line-height: 14px;
+}
+
+#nav_dropdown_box,
+#tv_nav_dropdown_box {
+  overflow: hidden;
+}
+
+#nav_dropdown,
+#tv_nav_dropdown {
+  font-family: "notoSansMedium", serif;
+  box-sizing: content-box;
+  color: #fff;
+  height: 100vh;
+  background: linear-gradient(0deg, rgba(10, 10, 10, 0.3) 0%, #0A0A0A 35.21%);
+  transform: translateY(-110%);
+  transition: 0.3s;
+  width: 100%;
+  top: 48px;
+  position: fixed;
+}
+@media screen and (min-width: 481px) {
+  #nav_dropdown,
+  #tv_nav_dropdown {
+    width: 768rem;
+    padding-left: 600rem;
+    padding-right: 600rem;
+    margin-left: 50%;
+    transform: translate(-50%, -110%);
+  }
+}
+
+#nav_dropdown.active,
+#tv_nav_dropdown.active {
+  transform: translateY(0%);
+}
+@media screen and (min-width: 481px) {
+  #nav_dropdown.active,
+  #tv_nav_dropdown.active {
+    transform: translate(-50%, 0%);
+  }
+}
+
+@media screen and (max-width: 480px) {
+  #nav_dropdown .nav-username-search-box, #nav_dropdown .nav-sub-menu {
+    width: calc(100% - 40px);
+    left: 50%;
+    position: relative;
+    transform: translateX(-50%);
+  }
+}
+
+.nav-username-search-box {
+  -webkit-box-sizing: content-box;
+  display: flex;
+  justify-content: space-between;
+  height: 28px;
+  margin-top: 53px;
+  border-bottom: 1px solid #424242;
+  padding-bottom: 32px;
+}
+.nav-username-search-box .icons {
+  width: 104px;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+.nav-username-search-box .icons button {
+  background: transparent;
+}
+.nav-username-search-box .icons a, .nav-username-search-box .icons button {
+  display: flex;
+  width: 28px;
+  height: 28px;
+}
+.nav-username-search-box .icons a img, .nav-username-search-box .icons button img {
+  width: inherit;
+}
+
+.nav-username {
+  display: flex;
+  font-size: 18px !important;
+  justify-content: space-between;
+  width: 100%;
+}
+.nav-username span {
+  color: white;
+  font-family: RobotoBold, notoSansBold, serif;
+  font-size: 18px;
+  line-height: 20px;
+}
+.nav-username .user-name {
+  max-width: 134px;
+  white-space: nowrap;
+  width: auto;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: block;
+  float: left;
+}
+.nav-username .user-name button {
+  background-color: transparent;
+}
+
+#nav_anchor,
+#tv_nav_anchor {
+  font-size: 26px;
+  color: #F5F5F5;
+  margin-top: 32px;
+  text-decoration-line: none;
+}
+
+#nav_anchor li,
+#tv_nav_anchor li {
+  margin-bottom: 28px;
+}
+
+.icon-store {
+  width: 28px;
+  height: 28px;
+  vertical-align: middle;
+}
+
+.nav-icon-more {
+  width: 16px;
+  height: 16px;
+}
+
+.weglot-container {
+  opacity: 0;
+}
+
+@media screen and (min-width: 481px) {
+  #nav_menu, #tv_nav_menu {
+    width: 768rem;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  #header_logo, .nav-checkbox-label.header-icon {
+    margin: 10px 0 0 0;
+  }
+}
+.nav-inner-box {
+  position: relative;
+}
+
+.language-choice-modal {
+  display: none;
+  flex-direction: column;
+  width: 120px;
+  height: 120px;
+  z-index: 999;
+  right: 16px;
+  top: 15%;
+  background: #FFFFFF;
+  border-radius: 12px;
+}
+@media screen and (min-width: 480px) {
+  .language-choice-modal {
+    right: 0;
+  }
+}
+.language-choice-modal button {
+  display: flex;
+  justify-content: center;
+  width: inherit;
+  height: 40px;
+  background-color: transparent;
+}
+.language-choice-modal button.btn-kor {
+  border-bottom: 1px solid #BDBDBD;
+}
+.language-choice-modal button.btn-eng {
+  border-bottom: 1px solid #BDBDBD;
+}
+.language-choice-modal button img {
+  position: relative;
+  top: 50%;
+  transform: translatey(-50%);
+  width: 16px;
+  height: 16px;
+  margin-right: 6px;
+}
+.language-choice-modal button img.icon-confirm {
+  display: none;
+}
+.language-choice-modal button span {
+  line-height: 40px;
+  height: 24px;
+  font-family: RobotoMedium, notoSansMedium, serif;
+  font-size: 16px;
+  text-align: center;
+  color: #0A0A0A;
+}
+
+.anchor-search {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-self: center;
+}
+
+.header-register-button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 24px;
+  gap: 10px;
+  width: 112px;
+  height: 48px;
+  left: 20px;
+  top: 88px;
+  background: #2841FA;
+  border-radius: 8px;
+}
+
+.header-login-button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 24px;
+  gap: 10px;
+  width: 96px;
+  height: 48px;
+  left: 147px;
+  top: 88px;
+  background: #1F1F1F;
+  border-radius: 8px;
+  font-family: notoSansRegular, serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 23px;
+  text-align: center;
+  color: #F5F5F5;
+  margin: 0 0 0 20px;
+}
+
+.header-buttons {
+  display: flex;
+}
+
+.icons {
+  width: 104px;
+  display: flex;
+  gap: 16px;
+  margin-bottom: 5px !important;
+}
+.icons button {
+  background: transparent;
+}
+.icons a, .icons button {
+  display: flex;
+  width: 28px;
+  height: 28px;
+}
+.icons a img, .icons button img {
+  width: inherit;
+}
+
+/*# sourceMappingURL=header.css.map */

@@ -1,0 +1,63 @@
+ <!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="robots" content="noindex,nofollow">
+    <div th:remove="tag" th:replace="common/common-meta.html :: headMeta"></div>
+    <div th:remove="tag" th:replace="common/common-link.html :: headLink"></div>
+    <div th:remove="tag" th:replace="common/common-head-script.html :: headScript"></div>
+    <title id="html_title" th:text="'PATRON | ' + ${keyword}"></title>
+    <meta name="Description" CONTENT="Visual Arts Streaming Service is ready for you">
+    <link rel="stylesheet" th:href="@{/css_v1_3/search/search-result.css}">
+    <link rel="stylesheet" th:href="@{/css_v1_3/search/search-noresult.css}">
+</head>
+
+<body>
+<main>
+    <div class="keyword-info">
+        <span th:text="${keyword}" id="searched_keyword"></span>
+    </div>
+    <div class="wrap search-wrap">
+        <!--section 2-->
+        <section class="search-section">
+            <div class="search-box-container">
+                <div class="search-box">
+                    <div class="search-area">
+                        <input type="text" class="input-search" id="input_search" th:placeholder="#{search.whatAreYouLookingFor}" onkeyup="toggleModal(this)" spellcheck="false">
+                        <label for="input_search" class="search-label" th:text="#{search.whatAreYouLookingFor}">어떤 예술을 찾으시나요</label>
+                        <button class="text-eraser" id="text_eraser" onclick="eraseTxt('#input_search'); goFocus('#input_search');">
+                            <img th:src="@{/img/icon_erase.png}" alt="icon_erase">
+                        </button>
+                        <a class="btn-cancel" id="btn_cancel" th:href="'/'+${language}+'/search'" th:text="#{cancel}">취소</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div class="wrap result-wrap">
+        <section>
+            <h1 th:text="#{searchNoResult}">검색 결과가 없습니다.</h1>
+        </section>
+    </div>
+</main>
+
+<!-- script 위치 시작 -->
+<script th:inline="javascript">
+    const language = [[${language}]];
+    var inputSearchKeyword = [[#{search.inputSearchKeyword}]];
+    var symbolCantBeSearched = [[#{search.symbolCantBeSearched}]];
+    var needToLogin = [[#{needToLogin}]];
+    var signup = [[#{signup}]];
+    var joinPatron = [[#{joinPatron}]];
+</script>
+<script th:src="@{/js_v1_3/common/jquery.min.js}"></script>
+<script th:src="@{/js_v1_3/common/jsCookie.js}"></script>
+<script th:src="@{/js_v1_3/common/owl.carousel.js}"></script>
+<!--<script th:src="@{/js/common/sockjs.min.js}"></script>-->
+<!--<script th:src="@{/js/common/stomp.min.js}"></script>-->
+<script th:src="@{/js_v1_3/common/header.js}"></script>
+<script th:src="@{/js_v1_3/common/common.js}"></script>
+<script th:src="@{/js_v1_3/search/search-noresult.js}"></script>
+<!-- script 위치 종료 -->
+</body>
+
+</html>

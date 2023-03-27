@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta property='og:title', th:attr="content= ${test 제목}"/>
+    <meta property='og:description', th:attr="content= ${test 내용}"/>
+    <meta property='og:type', th:content= 'website'/> <meta property='og:url', content= '/home'/>
+    <meta property='og:image', content= 'https://nodamen.akamaized.net/Park_GilJoo/Between_Grass/Thumb.jpg'/>
+
+    <meta name='twitter:title', content= 'test 제목'/>
+    <meta name='twitter:description', content= 'test 내용'/>
+    <meta name='twitter:card', content= 'summary 혹은 photo 혹은 player'/>
+    <meta name='twitter:url', content= '/home'/>
+    <meta name='twitter:image', content= 'https://nodamen.akamaized.net/Park_GilJoo/Between_Grass/Thumb.jpg'/>
+    <style>
+        .link-icon { position: relative; display: inline-block; width: auto;    font-size: 14px; font-weight: 500; color: #333; margin-right: 10px; padding-top: 50px; }
+        .link-icon.twitter {background : lightskyblue;}
+        .link-icon.facebook { background : #2841fa}
+        /*.link-icon.kakao { background : yellow}*/
+    </style>
+</head>
+<body>
+
+<a id="btnTwitter" class="link-icon twitter" href="javascript:shareTwitter();">트위터</a>
+<a id="btnFacebook" class="link-icon facebook" href="javascript:shareFacebook();">페이스북</a>
+<!--<a id="btnKakao" class="link-icon kakao" href="javascript:shareKakao();">카카오톡</a>-->
+<script>
+
+    function shareTwitter() {
+        var sendText = "테스트용입니다."; // 전달할 텍스트
+        var sendUrl = "/home"; // 전달할 URL
+        window.open("https://twitter.com/intent/tweet?text=" + sendText + "&url=" + sendUrl);
+    }
+
+    function shareFacebook() {
+        var sendUrl = "/home" // 전달할 URL
+        window.open("http://www.facebook.com/sharer/sharer.php?u=" + sendUrl);
+    }
+
+</script>
+</body>
+</html>

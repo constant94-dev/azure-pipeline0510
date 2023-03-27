@@ -1,0 +1,43 @@
+<head th:fragment="headScript">
+<!--   TODO 배포시 체크-->
+    <!-- Google tag (gtag.js) 개발 버전-->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FEF7FLN7YJ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-FEF7FLN7YJ');
+    </script>
+
+    <!-- Google tag (gtag.js) 상용 버전-->
+<!--    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QFNFPBHG3D"></script>-->
+<!--    <script>-->
+<!--        window.dataLayer = window.dataLayer || [];-->
+<!--        function gtag(){dataLayer.push(arguments);}-->
+<!--        gtag('js', new Date());-->
+<!--        gtag('config', 'G-QFNFPBHG3D');-->
+<!--    </script>-->
+<!--    <script th:src="@{'https://cdn.weglot.com/weglot.min.js'}"></script>-->
+<!--    <script>-->
+<!--        Weglot.initialize({-->
+<!--            api_key: 'wg_872d61fc8a3c83b38d7567ea69e8f9940'-->
+<!--        });-->
+<!--    </script>-->
+
+
+    <script th:inline="javascript">
+        var joinPatron = [[#{joinPatron}]];
+        var needToLogin = [[#{needToLogin}]];
+        var signup = [[#{signup}]];
+        var login = [[#{login}]];
+        var cancel = [[#{cancel}]];
+    </script>
+    <!-- Google Tag Manager -->
+<!--    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':-->
+<!--            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],-->
+<!--        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=-->
+<!--        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);-->
+<!--    })(window,document,'script','dataLayer','GTM-PBG693X');</script>-->
+    <!-- End Google Tag Manager -->
+</head>

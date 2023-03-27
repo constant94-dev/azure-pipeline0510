@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" style="position: fixed">
+<head>
+    <meta name="robots" content="noindex,nofollow">
+    <div th:remove="tag" th:replace="common/common-meta.html :: headMeta"></div>
+    <div th:remove="tag" th:replace="common/common-link.html :: headLink"></div>
+    <div th:remove="tag" th:replace="common/common-head-script.html :: headScript"></div>
+    <title id="html_title">PATRON | Welcome</title>
+    <link rel="stylesheet" th:href="@{/css_v1_3/login/login-success.css}">
+</head>
+<body>
+<main>
+    <div class="wrap">
+        <div class="hidden-area">
+            <section class="login-success-section">
+                <div class="info-box">
+                    <h2 class="main-title">
+                        <span th:text="#{loginSuccess.mainTitle}"></span>
+                        <span th:text="${language.equals('en') ? '' : artworkCount} + #{loginSuccess.subTitle} + ${language.equals('en') ? artworkCount + ' artworks.' : ''}"></span>
+                    </h2>
+<!--                    <h2 class="sub-title" th:text="#{loginSuccess.noRules}">No Rules Rules!</h2>-->
+<!--                    <p th:text="#{loginSuccess.subTitle}">규칙은 없습니다. 느끼는 그대로 경험해보세요:)</p>-->
+                    <button class="btn-recommended-exh" th:data-url="'/'+${language}+'/player?exh_id='+ ${mainExhibition.getId()}" onclick="checkGAEvent('signup_success_curation');location.href=this.dataset.url"
+                            th:text="#{loginSuccess.watchRecommendedExhibitions}">
+                            추천 전시 감상하기
+                    </button>
+                    <div id="goBack" class="btn-text" th:text="#{loginSuccess.exploreMore}">계속 둘러보기</div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <div id="mainExhibition_first_image" class="image-container">
+        <img th:src="${mainExhibition.getArtworkExhibitions()[0].getArtwork().getContents_4k().getDefaultImg()}" class="first" alt="mainExhibition_first_image">
+        <img th:src="${mainExhibition.getArtworkExhibitions()[1].getArtwork().getContents_4k().getDefaultImg()}" class="second" alt="mainExhibition_second_image">
+        <img th:src="${mainExhibition.getArtworkExhibitions()[2].getArtwork().getContents_4k().getDefaultImg()}" class="third" alt="mainExhibition_third_image">
+    </div>
+</main>
+
+
+
+<!-- script 위치 시작 -->
+<script th:src="@{/js_v1_3/common/jquery.min.js}"></script>
+<script th:src="@{/js_v1_3/common/jsCookie.js}"></script>
+<!--<script th:src="@{/js/common/sockjs.min.js}"></script>-->
+<!--<script th:src="@{/js/common/stomp.min.js}"></script>-->
+<script th:src="@{/js_v1_3/common/header.js}"></script>
+<script th:src="@{/js_v1_3/common/common.js}"></script>
+<script th:src="@{/js_v1_3/login/login.js}"></script>
+<script th:src="@{/js_v1_3/login/login-success.js}"></script>
+<!-- script 위치 종료 -->
+</body>
+
+</html>

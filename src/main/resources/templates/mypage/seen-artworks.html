@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta name="robots" content="noindex,nofollow">
+  <div th:remove="tag" th:replace="common/common-meta.html :: headMeta"></div>
+  <div th:remove="tag" th:replace="common/common-link.html :: headLink"></div>
+  <div th:remove="tag" th:replace="common/common-head-script.html :: headScript"></div>
+  <title id="html_title">PATRON | Watch History</title>
+  <link rel="stylesheet" th:href="@{/css_v1_3/mypage/watched-history.css}">
+</head>
+<body style="background: #0a0a0a;">
+
+<!--설정 헤더-->
+<div th:replace="common/header-depth-goback.html" class="header-depth"></div>
+
+<div class="wrap">
+  <section class="appreciate-history-section">
+    <div class="appreciate-history-contents">
+      <div>
+        <h2 th:text="#{seenArtworks.watchedHistory}">감상 기록</h2>
+        <span class="btn-remove-all" onclick="removeAllHistory('seen-artworks')" th:text="#{seenArtworks.clear}">지우기</span>
+      </div>
+      <p class="appreciate-history-guide" th:text="#{seenArtworks.description}">회원님이 감상한 작품을 확인하고 관리할 수 있습니다.</p>
+      <div class="watched-artworks-list-box">
+        <ul class="watched-artworks-list">
+          <li th:if="${artworkList}" th:each="artwork: ${artworkList}" th:data-id="${artwork.getId()}">
+            <a class="watched-artworks" th:href="'/' + ${language} + '/player?art_id='+${artwork.getId()}">
+              <div class="watched-artworks-img-wrap">
+                <img th:src="${artwork.getContentsThumbnail().getDefaultImg()}" th:each="detail : ${artwork.getArtworkDetails()}" th:if="${detail.getLanguage().equals(language)}" th:alt="${detail.getArtworkName()}">
+              </div>
+              <ul class="artwork-txt-info">
+                <li class="artwork-name" th:each="detail : ${artwork.getArtworkDetails()}" th:if="${detail.getLanguage().equals(language)}" th:text="${detail.getArtworkName()}">What's for BrEakfAsT</li>
+                <li>
+                  <span class="artist-name" th:each="detail : ${artwork.getArtist().getArtistDetails()}" th:if="${detail.getLanguage().equals(language)}" th:text="${detail.getArtistName()}">작가명</span>
+                </li>
+              </ul>
+            </a>
+            <button type="button" class="btn-remove" onclick="deleteArtworkHistory(this);">
+              <img th:src="@{/img/icon_delete.png}" alt="icon_show_option">
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- script 위치 시작 -->
+<script th:src="@{/js_v1_3/common/jquery.min.js}"></script>
+<script th:src="@{/js_v1_3/common/jsCookie.js}"></script>
+<!--<script th:src="@{/js/common/sockjs.min.js}"></script>-->
+<!--<script th:src="@{/js/common/stomp.min.js}"></script>-->
+<script th:src="@{/js_v1_3/common/header.js}"></script>
+<script th:src="@{/js_v1_3/common/common.js}"></script>
+<script th:src="@{/js_v1_3/mypage/setting.js}"></script>
+<!-- script 위치 종료 -->
+</body>
+</html>

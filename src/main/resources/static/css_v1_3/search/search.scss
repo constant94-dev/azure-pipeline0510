@@ -1,0 +1,257 @@
+@import '../common/library';
+//section 1
+.search-main-wrap{
+  height: 100vh;
+  .search-main-section {
+    padding-top: 88px;
+    transform: translateY(1px);
+    .search-main-section-title{
+      margin-bottom: 24px;
+      h1{
+        height: 38px;
+        font-family: $bothBold;
+        font-size: 32px;
+        line-height: 38px;
+        color: #FFFFFF;
+      }
+    }
+    .btn-open-search{
+      position: relative;
+      //width: 328px;
+      width: 100%;
+      height: 44px;
+      margin-bottom: 24px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      font-family: $bothRegular;
+      font-size: 16px;
+      line-height: 44px;
+      color: $text-lightest;
+      opacity: $opacity-level1;
+      .icon-search{
+        position: absolute;
+        top: 8px;
+        left: 8px;
+        width: 28px;
+        height: 28px;
+      }
+      span{
+        position: absolute;
+        top: 0;
+        left: 36px;
+        opacity: 0.65;
+      }
+    }
+    .search-category-title{
+      height: 21px;
+      margin-bottom: 12px;
+      font-family: $bothMedium;
+      font-size: 16px;
+      line-height: 20px;
+      color: $text-light;
+    }
+    .search-categories{
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      flex-direction: row;
+      gap: 12px;
+      li{
+        display: flex;
+        flex-basis: 158px;
+        flex-grow: 1;
+        a{
+          display: block;
+          @media screen and (min-width: 481px) {
+            //width: 160px;
+          }
+          width: 100%;
+          height: 52px;
+          background: rgba(255, 255, 255, 0.08);
+          border-radius: 12px;
+          line-height: 52px;
+          font-family: $bothRegular;
+          font-size: 16px;
+          color: $text-light;
+          text-align: center;
+        }
+      }
+    }
+  }
+}
+//section 2
+.search-wrap{
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  z-index: 1001;
+  box-sizing: border-box;
+  overflow: scroll;
+  .search-box-container{
+    position: fixed;
+    top: 0;
+    width: inherit;
+    padding-bottom: 12px;
+    background: $grayscale8;
+    z-index: 1;
+    .search-box{
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      width: inherit;
+      .search-area {
+        margin-top: 24px;
+        width: inherit;
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+      }
+      .search-label{
+        display: none;
+      }
+      .input-search{
+        width: 100%;
+        height: 44px;
+        padding-left: 8px;
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: 12px;
+        border: none;
+        box-sizing: border-box;
+        font-family: $bothRegular;
+        font-size: $fontsize-regular;
+        color: $text-lightest;
+        caret-color: $primary-color;
+        &::placeholder{
+          height: 24px;
+          font-family: $bothRegular;
+          font-size: $fontsize-regular;
+          line-height: 23px;
+          color: $text-lightest;
+          opacity: 0.65;
+        }
+      }
+      .text-eraser{
+        display: none;
+        width: 28px;
+        height: 28px;
+        position: absolute;
+        top: 8px;
+        right: 55px;
+        background: transparent;
+        img{
+          width: inherit;
+        }
+      }
+      .btn-cancel{
+        position: relative;
+        margin: 0;
+        line-height: 44px;
+        min-width: 48px;
+        text-align: right;
+        @extend %first-text-button-style;
+      }
+    }
+  }
+  .recent-search-list-container{
+    padding-bottom: 40px;
+    display: none;
+    position: relative;
+    top: 80px;
+    .recent-search-list-top{
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      margin: 0;
+      padding: 12px 0 14px 0;
+      .recent-search-list-title{
+        height: 21px;
+        font-family: $bothMedium;
+        font-size: $fontsize-small-regular;
+        line-height: 20px;
+        color: $text-light;
+      }
+      .btn-delete-all{
+        height: 21px;
+        line-height: 20px;
+        background : transparent;
+        @extend %second-text-button-style;
+      }
+    }
+    .recent-search-list{
+      li{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+        height: 28px;
+        margin-bottom: 24px;
+        &:last-of-type{
+          margin-bottom: 80px;
+        }
+        .recent-search{
+          cursor: pointer;
+          all: unset; /*기본 button style 초기화*/
+          display: flex;
+          position: absolute;
+          width: inherit;
+          height: 28px;
+          z-index: 1;
+        }
+        .icon-search{
+          width: 28px;
+          height: 28px;
+        }
+        .searched-keyword-box{
+          position: relative;
+          width: 80%;
+        }
+        .searched-keyword{
+          height: 28px;
+          margin-left: 4px;
+          font-family: $bothRegular;
+          font-size: $fontsize-regular;
+          line-height: 28px;
+          color: $text-light;
+        }
+        .btn-delete{
+          width: 28px;
+          height: 28px;
+          background: transparent;
+          img{
+            width: inherit;
+          }
+        }
+      }
+    }
+  }
+}
+
+//검색 유효성 검사 모달
+.modal-background {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1001;
+  background: $background-dark;
+}
+.modal-background .modal-box {
+  display: block;
+  font-family: $bothMedium;
+  font-size: $fontsize-small-regular;
+  color: $error-color;
+  padding: 0 16px 0 12px;
+}
+
+
+//carousel web css
+@media screen and (min-width: 481px) {
+  .search-main-section, .search-section {
+    width: 768rem;
+  }
+}
+

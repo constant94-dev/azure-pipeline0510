@@ -1,0 +1,186 @@
+main {
+  padding-top: 48px;
+}
+
+* {
+  color: #0A0A0A;
+}
+
+.blue {
+  background-color: #2841fa !important;
+}
+
+.QnA-wrap {
+  position: relative;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  width: 328px;
+}
+@media screen and (min-width: 481px) {
+  .QnA-wrap {
+    width: 76.8rem;
+  }
+}
+.QnA-wrap label {
+  font-family: notoSansMedium, serif;
+  font-size: 12px;
+  color: #2841fa !important;
+}
+.QnA-wrap .Qna-input-box {
+  width: inherit;
+}
+.QnA-wrap #QnA_type {
+  background: #ffffff;
+  border-radius: 8px;
+  border: 1px solid #E0E0E0;
+  font-family: notoSansRegular, serif;
+  font-size: 16px;
+  color: #999999;
+  cursor: pointer;
+}
+@media screen and (min-width: 481px) {
+  .QnA-wrap #QnA_type {
+    width: inherit;
+  }
+}
+.QnA-wrap img {
+  position: absolute;
+  right: 14px;
+  top: 131px;
+  width: 16px;
+  height: 16px;
+}
+.QnA-wrap .content-count {
+  font-family: RobotoRegular, serif;
+  font-size: 10px;
+  line-height: 12px;
+  color: #999999 !important;
+  position: absolute;
+  top: 393px;
+  right: 12px;
+}
+.QnA-wrap .content-count #content_count_value {
+  color: #999999 !important;
+}
+.QnA-title {
+  font-family: notoSansBold, serif;
+  font-size: 24px;
+  line-height: 35px;
+  margin-top: 24px;
+  position: relative;
+}
+.QnA-input {
+  border: 1px solid #E0E0E0;
+  background: #ffffff;
+  border-radius: 8px;
+  font-family: notoSansRegular, serif;
+  font-size: 16px;
+}
+.QnA-input.type {
+  width: 328px;
+  height: 48px;
+  margin-top: 8px;
+  text-indent: 12px;
+}
+.QnA-input.content {
+  cursor: pointer;
+  resize: none;
+  width: 328px;
+  height: 204px;
+  margin-top: 8px;
+  padding: 12px;
+  word-wrap: break-word;
+  word-break: break-word;
+}
+@media screen and (min-width: 481px) {
+  .QnA-input.content {
+    width: inherit;
+  }
+}
+.QnA-input.type::placeholder, .QnA-input.content::placeholder {
+  font-family: notoSansRegular, serif;
+  font-size: 16px;
+  color: #999999;
+  -webkit-appearance: none;
+  line-height: normal !important;
+}
+.QnA-button {
+  position: fixed;
+  width: 328px;
+  height: 48px;
+  bottom: 40px;
+  background: #EBEBEB;
+  border-radius: 12px;
+  color: #ffffff !important;
+  margin-left: 50%;
+  transform: translateX(-50%);
+}
+.QnA-button.active {
+  background: #2841fa;
+}
+
+[for=QnA_type], [for=QnA_content] {
+  display: block;
+  margin-top: 16px;
+}
+
+.sorting-option-box {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1001;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(180deg, rgba(10, 10, 10, 0.5) 0%, #0A0A0A 30.21%);
+}
+.sorting-option-box .sorting-options {
+  position: absolute;
+  left: 50%;
+  top: unset !important;
+  bottom: 172px;
+  transform: translateX(-50%);
+  text-align: center;
+}
+.sorting-option-box .sorting-options .sorting-option-title {
+  height: 48px;
+  font-family: RobotoBold, notoSansBold, serif;
+  font-size: 19px;
+  line-height: 48px;
+  color: #ffffff;
+}
+.sorting-option-box .sorting-options button {
+  background: transparent;
+  height: 48px;
+  text-align: center;
+}
+.sorting-option-box .sorting-options button .sort-standard-box span {
+  font-family: RobotoRegular, notoSansRegular, serif;
+  font-size: 16px;
+  line-height: 23px;
+  color: #f5f5f5;
+}
+.sorting-option-box .btn-sort-close {
+  width: 56px;
+  height: 56px;
+  position: absolute;
+  left: 50%;
+  bottom: 62px;
+  transform: translateX(-50%);
+  background: transparent;
+}
+.sorting-option-box .btn-sort-close img {
+  width: inherit;
+}
+
+.panel-default {
+  border-radius: 0 !important;
+}
+
+textarea::placeholder,
+textarea::-webkit-input-placeholder,
+textarea::-moz-placeholder {
+  line-height: normal !important;
+}
+
+/*# sourceMappingURL=QnA-write.css.map */

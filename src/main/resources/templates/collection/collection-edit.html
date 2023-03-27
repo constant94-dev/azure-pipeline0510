@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="robots" content="noindex,nofollow">
+    <div th:remove="tag" th:replace="common/common-meta.html :: headMeta"></div>
+    <div th:remove="tag" th:replace="common/common-link.html :: headLink"></div>
+    <div th:remove="tag" th:replace="common/common-head-script.html :: headScript"></div>
+    <title id="html_title" th:text="'PATRON | ' + ${collection.getCollectionName()}"></title>
+    <link rel="stylesheet" th:href="@{/css_v1_3/collection/collection-new.css}">
+</head>
+<body>
+
+<header>
+    <div id="nav_menu" class="nav_menu">
+        <button type="button" id="btn_goback" class="btn-goback" style="opacity: 0" onclick="otherArtworksToggle('취소')">
+            <img th:src="@{/img/icon_go_back.png}" alt="icon_go_back">
+        </button>
+        <button type="button" id="btn_cancel" class="btn-cancel" onclick="history.back()" th:text="#{cancel}">취소</button>
+    </div>
+</header>
+
+<main>
+    <div class="wrap">
+        <div class="hidden-area">
+            <!-- 내 컬렉션 편집 -->
+            <section class="collection-edit-section">
+                <h2 class="collection-title" th:text="#{collectionEdit.editCollection}">내 컬렉션 편집</h2>
+                <div class="collection-input">
+                    <input type="text" spellcheck="false" th:value="${collection.getCollectionName()}" id="collection_new_title" maxlength="16" onkeyup="btnActivation(this,'btn_save'); toggleEraseBtn(this)" th:placeholder="#{collectionEdit.collectionName}">
+                    <label class="label-hidden" for="collection_new_title" th:text="#{collectionEdit.collectionName}">컬렉션 이름</label>
+                    <button type="button" id="btn_erase" class="btn-erase" onclick="eraseTxt('#collection_new_title')">
+                        <img th:src="@{/img/icon_erase.png}" alt="icon_erase">
+                    </button>
+                </div>
+                <!-- 담겨있는 작품이 있을 경우 보여짐 -->
+                <div class="selected-artworks-info">
+                    <span th:text="#{artworkInCollection}">담겨있는 작품</span>
+                    <span id="delete_mode" class="delete-mode" onclick="deleteToggle()" th:text="#{deleteMode}">삭제모드</span>
+                </div>
+                <div class="select-artworks">
+                    <ul id="sortable" class="selected-artworks-list">
+                        <li th:attr="data-id=${artwork.getArtwork().getId()}" class="selected-artwork" th:each="artwork : ${sortedArtworkCollection}">
+                            <a class="ui-state-default selected-artworks" onclick="">
+                                <div class="selected-artworks-img-wrap">
+                                    <img th:src="${artwork.getArtwork().getContentsThumbnail().getDefaultImg()}" th:each="detail : ${artwork.getArtwork().getArtworkDetails()}" th:if="${detail.getLanguage().equals(language)}" th:alt="${detail.getArtworkName()}">
+                                </div>
+                                <ul class="artwork-txt-info">
+                                    <li class="artwork-name" th:each="detail : ${artwork.getArtwork().getArtworkDetails()}" th:if="${detail.getLanguage().equals(language)}" th:text="${detail.getArtworkName()}">What's for BrEakfAsT</li>
+                                    <li>
+                                        <span class="korean-name" th:each="detail : ${artwork.getArtwork().getArtist().getArtistDetails()}" th:if="${detail.getLanguage().equals(language)}" th:text="${detail.getArtistName()}"></span>
+                                        <input type="hidden" class="artist-nationality" name="artist-nationality" th:each="detail : ${artwork.getArtwork().getArtist().getArtistDetails()}" th:if="${detail.getLanguage().equals(language)}" th:value="${detail.getNationality()}">
+                                    </li>
+                                </ul>
+                            </a>
+                            <a class="btn-move" onclick="deleteArtwork(this)">
+                                <img th:src="@{/img/icon_change_sequence.png}" alt="icon_change_sequence">
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="add-collection-box">
+                    <p class="add-collection" onclick="otherArtworksToggle('추가');" th:text="'+ ' + #{addArtworks}">+ 작품 추가하기</p>
+                </div>
+                <p class="remove-collection" onclick="deleteCollection()" style="display: none" th:text="#{collectionEdit.deleteCollection}">컬렉션 삭제하기</p>
+                <button id="btn_save" class="btn-save" disabled onclick="btnEventClassification(this);editCollection();" th:text="#{collectionEdit.saveChanges}">변경사항 저장</button>
+            </section>
+
+            <!-- 다른 작품 더 추가하기 -->
+            <section class="collection-add-section" style="display: none">
+                <h2 class="collection-add-title" th:text="#{addArtworks}">작품 추가하기</h2>
+                <div class="artwork-nav">
+                    <ul>
+                        <li class="blue"><button type="button" onclick="otherArtworksSort(this)" th:text="#{lastSeenArtworks}">최근 감상한 작품</button></li>
+                        <li><button type="button" onclick="otherArtworksSort(this)" th:text="#{likedArtworks}">좋아한 작품</button></li>
+                    </ul>
+                </div>
+
+                <div class="select-artworks">
+                    <ul class="recent-artworks-list"></ul>
+                    <ul class="recent-artworks-list"></ul>
+                </div>
+                <button id="btn_select" class="btn-save" disabled onclick="otherArtworksToggle('취소');addToNewCollectionList();" th:text="#{confirmSelection}">선택완료</button>
+            </section>
+
+        </div>
+    </div>
+</main>
+<!--문구수정-->
+<div class="modal-box modal-error" th:text="#{collectionEdit.saveError}">
+    저장에 실패했습니다.
+</div>
+<div class="modal-box green modal-success" th:text="#{saved}">
+    저장되었습니다.
+</div>
+<!-- script 위치 시작 -->
+<script th:inline="javascript">
+    var noSeenArtworks = [[#{collectionNew.noSeenArtworks}]];
+    var noLikedArtworks = [[#{collectionNew.noLikedArtworks}]];
+    var lastSeenArtworks = [[#{lastSeenArtworks}]];
+    var likedArtworks = [[#{likedArtworks}]];
+    var saveChanges = [[#{collectionEdit.saveChanges}]];
+    var save = [[#{save}]];
+    var complete = [[#{complete}]];
+    var deleteMode = [[#{deleteMode}]];
+    var deleteModeOff = [[#{deleteModeOff}]];
+    var saveChanges = [[#{collectionEdit.saveChanges}]];
+    var noTitle = [[#{noTitle}]];
+    var cantDeleteCollection = [[#{collectionEdit.cantDeleteCollection}]];
+</script>
+<script th:src="@{/js_v1_3/common/jquery.min.js}"></script>
+<script th:src="@{/js_v1_3/common/jsCookie.js}"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+<!--<script th:src="@{/js/common/sockjs.min.js}"></script>-->
+<!--<script th:src="@{/js/common/stomp.min.js}"></script>-->
+<script th:src="@{/js_v1_3/common/header.js}"></script>
+<script th:src="@{/js_v1_3/common/common.js}"></script>
+<script th:src="@{/js_v1_3/collection/collection-common.js}"></script>
+<script th:src="@{/js_v1_3/collection/collection-edit.js}"></script>
+<!-- script 위치 종료 -->
+</body>
+</html>

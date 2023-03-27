@@ -1,0 +1,223 @@
+@import '../common/library';
+//common
+%subtitle-style{
+  height: 27px;
+  margin-bottom: 8px;
+  font-family: $bothBold;
+  font-size: $fontsize-regular-big;
+  line-height: 26px;
+}
+//section 1
+.magazine-info-container{
+  position: relative;
+  padding:48px 0 12px 0;
+
+  .player-wrap {
+    width: 100vw;
+    position: relative;
+    left: 0;
+    z-index: 2;
+    -webkit-filter: grayscale(100%);
+    @media screen and (min-width: 481px){
+      position: relative;
+      width: 768rem;
+      height: 432rem;
+      margin-left: 50%;
+      transform: translateX(-50%);
+    }
+    .player-box {
+      overflow: hidden;
+      //height: 252px;
+      width: 100vw;
+      @media screen and (min-width: 481px){
+        width: inherit;
+        height: inherit;
+      }
+      img {
+        width: inherit;
+        //width: auto;
+        //height: inherit;
+      }
+    }
+  }
+
+  .article-gradation{
+    position: absolute;
+    //top: 48px;
+    left: 0;
+    width: inherit;
+    //height: 204px;
+    height: 100%;
+    background: linear-gradient(180deg, rgba(10, 10, 10, 0) 47.92%, #0A0A0A 100%);
+    @media screen and (min-width: 481px){
+      width: inherit;
+      height: inherit;
+      top: 0;
+    }
+  }
+  img{
+    width: 100vw;
+  }
+  .exh-info-section{
+    display: block;
+    margin-top: 10px;
+    .breadcrumb{
+      display: flex;
+      width: auto;
+      height: 24px;
+      border-radius: $border-radius-breadcrumbs;
+      color: $text-lightest;
+      font-family: $bothMedium;
+      font-size: $fontsize-small;
+      line-height: 24px;
+      opacity: 0.65;
+    }
+    .exh-title{
+      margin: 8px 0 12px 0;
+      font-family: $bothBold;
+      font-size: $fontsize-big;
+      line-height: 28px;
+      color: $text-light;
+    }
+    .exh-createTime {
+      height: 18px;
+      font-family: $bothRegular;
+      font-size: $fontsize-small;
+      line-height: 17px;
+      color: $opacity-level1-light;
+    }
+    .exh-info-wrap{
+      display: block;
+      width: auto;
+      height: 18px;
+      margin-bottom: 8px;
+      line-height: 18px;
+      color: $opacity-level1-light;
+      font-size: $fontsize-small;
+      font-family: $bothRegular;
+    }
+  }
+}
+//section 2
+.exh-article-title{
+  width: 328px;
+  padding-top: 24px;
+  font-family: $bothBold;
+  font-size: $fontsize-big;
+  line-height: 35px;
+  color: #000000;
+}
+.exh-article-contents{
+  width: 100%;
+  padding: 0;
+  font-family: $bothRegular;
+  font-size: $fontsize-regular;
+  line-height: 30px;
+  color: $text-dark;
+  img{
+    width: inherit;
+    margin-top: 24px;
+  }
+  span{
+    display: block;
+    margin-bottom: 24px;
+    font-family: $bothRegular;
+    font-size: $fontsize-small;
+    line-height: 17px;
+    color: $grayscale6;
+  }
+}
+.btn-share-exh{
+  width: auto;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  //width: 92px;
+  height: 76px;
+  margin: 0 0 60px 0;
+  background: transparent;
+  img{
+    width: 52px;
+  }
+  span{
+    display: block;
+    height: 18px;
+    margin-top: 6px;
+    font-family: $bothMedium;
+    font-size: $fontsize-small;
+    line-height: 17px;
+    text-decoration-line: underline;
+    color: $text-dark;
+  }
+}
+//section 3, 4
+.art-magazine-exh-section{
+  padding: 40px 0;
+  .art-magazine-section-title{
+    @extend %subtitle-style;
+    color: $text-light;
+  }
+  .owl-carousel{
+    .owl-stage-outer{
+      overflow: inherit;
+    }
+  }
+  .carousel-exh-title{
+    width: auto;
+    height: 27px;
+    font-family: $bothRegular;
+    font-size: $fontsize-regular-big;
+    line-height: 21px;
+  }
+  .carousel-exh-artist{
+    color: $text-lightest;
+    opacity: $opacity-level1;
+  }
+  .art-magazine-carousel{
+    .carousel-item{
+      height: 410px;
+      background: rgba(255, 255, 255, 0.08);
+      .carousel-img-wrap{
+        height: 246px;
+      }
+      .icon-exhibition{
+        width: 28px;
+        height: 28px;
+        position: absolute;
+        top: 17px;
+        right: 12px;
+      }
+      .carousel-text-wrap{
+        top: 246px;
+      }
+      .carousel-artist-content{
+        margin-top: 24px;
+      }
+    }
+  }
+}
+//section 4
+.art-magazine-relative-artist{
+  .art-magazine-exh-section{
+    padding: 40px 0 80px 0;
+  }
+  img{
+    -webkit-filter: grayscale(100%);
+  }
+}
+
+
+//carousel web css
+@media screen and (min-width: 481px) {
+  .exh-info-section, .art-magazine-exh-section {
+    width: 768rem;
+  }
+  .carousel-wrap {
+    width: 768rem;
+    overflow: hidden;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+

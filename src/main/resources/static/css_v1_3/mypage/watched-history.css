@@ -1,0 +1,131 @@
+.appreciate-history-contents div .btn-remove-all {
+  font-family: RobotoMedium, notoSansMedium, serif;
+  color: #ffffff;
+  font-size: 14px;
+  text-decoration: underline;
+}
+
+.wrap {
+  font-family: notoSansRegular, serif;
+  color: rgba(245, 245, 245, 0.65);
+}
+
+.appreciate-history-contents {
+  width: inherit;
+  padding-top: 72px;
+}
+.appreciate-history-contents div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+.appreciate-history-contents div h2 {
+  font-size: 24px;
+  color: #f5f5f5;
+}
+.appreciate-history-contents div .btn-remove-all {
+  cursor: pointer;
+}
+.appreciate-history-contents .appreciate-history-guide {
+  font-size: 14px;
+  margin-bottom: 24px;
+}
+
+.watched-artwork-img-wrap img {
+  width: 80px;
+  height: auto;
+}
+
+.watched-artworks {
+  display: flex;
+  flex-direction: row;
+  width: 300px;
+  height: 45px;
+  background: transparent;
+}
+
+.watched-artworks-img-wrap {
+  width: 80px;
+  height: 45px;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.watched-artworks-img-wrap img {
+  width: inherit;
+}
+
+.watched-artworks-list-box {
+  width: inherit;
+}
+
+.watched-artworks-list {
+  margin-bottom: 85px;
+  width: inherit;
+  display: flex;
+  flex-direction: column;
+}
+@media screen and (min-width: 481px) {
+  .watched-artworks-list {
+    width: 768rem;
+  }
+}
+.watched-artworks-list > li {
+  display: flex;
+  margin-bottom: 12px;
+  width: inherit;
+  justify-content: space-between;
+}
+.watched-artworks-list .artwork-txt-info {
+  width: 200px;
+  margin-left: 12px;
+}
+.watched-artworks-list .artwork-txt-info li {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  margin-bottom: 3px;
+}
+.watched-artworks-list .artwork-txt-info li:nth-of-type(1) {
+  font-family: RobotoRegular, notoSansRegular, serif;
+  font-size: 16px;
+  text-align: left;
+  line-height: 19px;
+  color: #f5f5f5;
+}
+.watched-artworks-list .artwork-txt-info li:nth-of-type(2) {
+  font-family: RobotoRegular, notoSansRegular, serif;
+  font-size: 14px;
+  text-align: left;
+  line-height: 20px;
+  color: #f5f5f5;
+  opacity: 0.65;
+}
+.watched-artworks-list .btn-remove {
+  width: 28px;
+  height: 28px;
+  background-color: transparent;
+}
+.watched-artworks-list .btn-remove img {
+  width: 28px;
+  height: 28px;
+}
+.watched-artworks-list .icon-show-option {
+  width: 28px;
+  height: 28px;
+  background: transparent;
+}
+.watched-artworks-list .icon-show-option img {
+  width: inherit;
+}
+.watched-artworks-list .icon-show-option span {
+  display: none;
+}
+
+@media screen and (min-width: 481px) {
+  .appreciate-history-section {
+    width: 768rem;
+  }
+}
+
+/*# sourceMappingURL=watched-history.css.map */

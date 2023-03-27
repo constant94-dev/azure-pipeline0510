@@ -1,0 +1,93 @@
+plugins {
+    id 'org.springframework.boot' version '2.5.1'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
+    //querydsl 추가
+    id "com.ewerk.gradle.plugins.querydsl" version "1.0.10"
+}
+
+group = 'digital.patron'
+version = '1.2.4-SNAPSHOT'
+sourceCompatibility = '11'
+
+repositories {
+    mavenCentral()
+    maven { url 'https://jitpack.io' }
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    //querydsl 추가
+    implementation 'com.querydsl:querydsl-jpa'
+    compileOnly 'org.projectlombok:lombok'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    // https://mvnrepository.com/artifact/com.auth0/java-jwt
+    implementation group: 'com.auth0', name: 'java-jwt', version: '3.18.1'
+    // https://mvnrepository.com/artifact/org.json/json
+    implementation group: 'org.json', name: 'json', version: '20210307'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    testImplementation 'org.springframework.security:spring-security-test'
+    implementation 'org.springframework.session:spring-session-core:2.6.0'
+    implementation 'io.jsonwebtoken:jjwt-api:0.11.2'
+    runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.2',
+            // Uncomment the next line if you want to use RSASSA-PSS (PS256, PS384, PS512) algorithms:
+//                'org.bouncycastle:bcprov-jdk15on:1.60',
+            'io.jsonwebtoken:jjwt-jackson:0.11.2' // or 'io.jsonwebtoken:jjwt-gson:0.11.2' for gson
+    implementation 'org.springframework.session:spring-session-jdbc:2.6.0'
+    // klip drops
+    implementation group: 'com.klaytn.caver', name: 'core', version: '1.6.3'
+    implementation group: 'xyz.groundx.caver', name: 'caver-java-ext-kas', version: '1.4.0'
+    implementation group: 'com.github.ipfs', name: 'java-ipfs-api', version: '1.3.3'
+    implementation group: 'com.squareup.okhttp3', name: 'okhttp', version: '4.9.0'
+    implementation group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.13'
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-mail', version: '2.0.1.RELEASE'
+    implementation group: 'org.modelmapper', name: 'modelmapper', version: '2.3.6'
+    implementation group: 'org.thymeleaf.extras', name: 'thymeleaf-extras-springsecurity5', version: '3.0.4.RELEASE'
+    // https://mvnrepository.com/artifact/org.springframework.security/spring-security-oauth2-client
+    implementation group: 'org.springframework.security', name: 'spring-security-oauth2-client', version: '5.6.2'
+    implementation group: 'org.passay', name: 'passay', version: '1.0'
+    implementation group: 'com.giffing.bucket4j.spring.boot.starter', name: 'bucket4j-spring-boot-starter', version: '0.4.0'
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-cache'
+    implementation 'org.springframework.boot:spring-boot-starter-oauth2-client:2.6.4'
+    implementation group: 'org.ehcache', name: 'ehcache'
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-websocket', version: '2.6.6'
+    implementation group: 'org.webjars', name: 'stomp-websocket', version: '2.3.4'
+
+}
+
+test {
+    useJUnitPlatform()
+}
+
+//querydsl 추가 시작
+def querydslDir = "$buildDir/generated/querydsl"
+querydsl {
+    jpa = true
+    querydslSourcesDir = querydslDir
+}
+sourceSets {
+    main.java.srcDir querydslDir
+}
+configurations {
+    querydsl.extendsFrom compileClasspath
+}
+compileQuerydsl {
+    if(file(querydslDir).exists())
+        delete(file(querydslDir))
+    options.annotationProcessorPath = configurations.querydsl
+}
+
+//querydsl 추가 끝

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <div th:remove="tag" th:replace="common/common-meta.html :: headMeta"></div>
+  <div th:remove="tag" th:replace="common/common-link.html :: headLink"></div>
+  <div th:remove="tag" th:replace="common/common-head-script.html :: headScript"></div>
+  <title id="html_title">PATRON | Help</title>
+  <meta name="Description" CONTENT="Beyond Customer Satisfaction">
+  <link rel="stylesheet" th:href="@{https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css}">
+  <link rel="stylesheet" th:href="@{/css_v1_3/mypage/help.css}">
+  <link rel="stylesheet" th:href="@{/css_v1_3/mypage/help_adver.css}">
+  <link rel="stylesheet" th:href="@{/css_v1_3/mypage/QnA-write.css}">
+  <link rel="stylesheet" th:href="@{/css_v1_3/mypage/accordion.css}">
+</head>
+<body>
+
+<!--설정 헤더-->
+<div th:replace="common/header-depth-goback.html" class="header-depth"></div>
+
+<main>
+  <div class="help-wrap">
+    <div class="hidden-area">
+      <h1 class="help-title" th:text="#{customerSatisfaction}">고객만족</h1>
+      <!--tab-->
+      <div class="help-tab">
+        <span id="help_notice" class="help-tab-title" th:text="#{notice}">공지사항</span>
+        <div class="help-tab-notice-bar help-tab-bar"></div>
+        <span id="help_FAQ" class="help-tab-title" onclick="oftenQuestionList('서비스 이용');" th:text="#{faq}">자주하는질문</span>
+        <div class="help-tab-FAQ-bar help-tab-bar"></div>
+        <span id="help_QnA" class="help-tab-title"  sec:authorize="isAuthenticated()" th:text="#{inquiry}">1:1문의</span>
+        <div class="help-tab-QnA-bar help-tab-bar"  sec:authorize="isAuthenticated()"></div>
+      </div>
+      <div class="carousel-wrap">
+        <div class="owl-carousel">
+
+          <!--content notice-->
+          <div class="container-fluid help-accordion-container carousel-item">
+            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+              <div class="panel panel-default" th:each="notice: ${notices}" >
+                <div class="panel-heading" tabindex="-1" role="button" data-toggle="collapse" data-parent="#accordion" th:href="'#collapseNotice'+${noticeStat.index}" aria-expanded="false" >
+                  <div class="help-content-header">
+                    <div class="help-notice-writer" th:text="#{help.manager}">관리자</div>
+                    <div class="help-notice-date" th:text="${#temporals.format(notice.getCreateTime(), 'yyyy.MM.dd')}">2022-03-22</div>
+                  </div>
+                  <a class="help-notice-title" th:text="${notice.getTitle()}"></a>
+                </div>
+                <div th:id="'collapseNotice'+${noticeStat.index}" class="panel-collapse collapse" role="tabpanel">
+                  <div class="panel-body" th:utext="${notice.getContent()}">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!--content FAQ-->
+          <div class="container-fluid help-accordion-container carousel-item FAQ">
+            <div class="cs-modal-FAQ" id="cs_modal_FAQ" onclick="showModal('#sorting_option_box'); checkNowSortingStandard(this)">
+              <span th:text="#{help.userOfService}">질문 유형 선택</span>
+              <img th:alt="more_black" th:src="@{/img/icon_more_black.png}" alt="icon_see_more">
+            </div>
+
+            <div class="panel-group FAQ-list" id="accordion2" role="tablist" aria-multiselectable="true">
+            </div>
+          </div>
+
+          <!--content Q&A-->
+          <div class="container-fluid help-accordion-container carousel-item QnA" sec:authorize="isAuthenticated()">
+            <div class="QnA-info">
+              <div class="QnA-info-title"><h5 th:text="#{help.consultationTime}">상담시간</h5><span onclick="modalInquiryWrite()" th:text="#{help.create}">작성하기</span></div>
+              <!--            <div class="QnA-info-title">상담시간<span onclick="location.href = '/mypage/QnA-write'">작성하기</span></div>-->
+              <div class="QnA-info-time" th:text="#{help.workingTime}">
+                평일(월-금) 10:00 - 17:00<br>
+                (Off-time 12:00 - 14:00, 토/일/공휴일 휴무)
+              </div>
+              <div class="QnA-info-warn"><span>•</span><span th:text="#{help.qnaWarning}">등록한 상담내용은 수정이 불가합니다.</span></div>
+            </div>
+
+            <div class="panel-group QnA-list" id="accordion3" role="tablist" aria-multiselectable="true">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+<div id="sorting_option_box" class="sorting-option-box modal-container">
+  <div class="modal-gradation-box" onclick="closeModal('#sorting_option_box')"></div>
+  <ul id="sorting_options" class="sorting-options">
+    <li class="sorting-option-title" th:text="#{help.questionType}">
+      질문 유형 선택
+    </li>
+    <li class="sorting-option">
+      <button type="button" class="btn-sort-latest" onclick="changeText('#cs_modal_FAQ span',this); closeModal('#sorting_option_box'); oftenQuestionList('서비스 이용');">
+        <span class="sort-standard-box">
+          <img class="icon-confirm" th:src="@{/img/icon_confirm_white.png}" th:alt="icon_confirm_white">
+          <span class="sort-standard-text" th:text="#{help.userOfService}">서비스 이용</span>
+        </span>
+      </button>
+    </li>
+    <li class="sorting-option">
+      <button type="button" class="btn-sort-popularity" onclick="changeText('#cs_modal_FAQ span',this); closeModal('#sorting_option_box'); oftenQuestionList('회원정보 관련');">
+        <span class="sort-standard-box">
+          <img class="icon-confirm" th:src="@{/img/icon_confirm_white.png}" th:alt="icon_confirm_white">
+          <span class="sort-standard-text" th:text="#{help.manageUserInfo}">회원정보 관련</span>
+        </span>
+      </button>
+    </li>
+    <li class="sorting-option">
+      <button type="button" class="btn-sort-alphabetical" onclick="changeText('#cs_modal_FAQ span',this); closeModal('#sorting_option_box'); oftenQuestionList('저작권 및 사용');">
+        <span class="sort-standard-box">
+          <img class="icon-confirm" th:src="@{/img/icon_confirm_white.png}" th:alt="icon_confirm_white">
+          <span class="sort-standard-text" th:text="#{help.copyright}">저작권 및 사용</span>
+        </span>
+      </button>
+    </li>
+    <li class="sorting-option">
+      <button type="button" class="btn-sort-share" onclick="changeText('#cs_modal_FAQ span',this); closeModal('#sorting_option_box'); oftenQuestionList('작가 및 전시 등록');">
+        <span class="sort-standard-box">
+          <img class="icon-confirm" th:src="@{/img/icon_confirm_white.png}" th:alt="icon_confirm_white">
+          <span class="sort-standard-text" th:text="#{help.registerExhibitionOrArtist}">작가 및 전시 등록</span>
+        </span>
+      </button>
+    </li>
+    <!--    <li class="sorting-option">-->
+    <!--      <button type="button" class="btn-sort-share" onclick="changeText('#cs_modal_FAQ span',this); closeModal('#sorting_option_box'); oftenQuestionList('NFT 작품거래');">-->
+    <!--        <span class="sort-standard-box">-->
+    <!--          <img class="icon-confirm" th:src="@{/img/icon_confirm_white.png}" th:alt="icon_confirm_white">-->
+    <!--          <span>NFT 작품거래</span>-->
+    <!--        </span>-->
+    <!--      </button>-->
+    <!--    </li>-->
+    <li class="sorting-option">
+      <button type="button" class="btn-sort-share" onclick="changeText('#cs_modal_FAQ span',this); closeModal('#sorting_option_box'); oftenQuestionList('그 외');">
+        <span class="sort-standard-box">
+          <img class="icon-confirm" th:src="@{/img/icon_confirm_white.png}" th:alt="icon_confirm_white">
+          <span class="sort-standard-text" th:text="#{help.other}">그 외</span>
+        </span>
+      </button>
+    </li>
+  </ul>
+  <button type="button" id="btn_sort_close" class="btn-sort-close" onclick="closeModal('#sorting_option_box')">
+    <img th:src="@{/img/icon_close_popup.png}" alt="icon_close_popup">
+  </button>
+</div>
+<div id="modal_wrote_inquiry"></div>
+
+
+<!-- script 위치 시작 -->
+<script th:inline="javascript">
+  var deleted = [[#{help.deleted}]];
+  var inquirySubmited = [[#{help.inquirySubmitted}]];
+  var deleteJs = [[#{help.delete}]];
+  var answerComplete = [[#{help.answerComplete}]];
+  var waitingForAnswer = [[#{help.waitingForAnswer}]];
+  var question = [[#{help.question}]];
+  var answer = [[#{help.answer}]];
+</script>
+<script th:src="@{/js_v1_3/common/jquery.min.js}"></script>
+<script th:src="@{/js_v1_3/common/jsCookie.js}"></script>
+<script th:src="@{/js_v1_3/common/owl.carousel.js}"></script>
+<!--<script th:src="@{/js/common/sockjs.min.js}"></script>-->
+<!--<script th:src="@{/js/common/stomp.min.js}"></script>-->
+<script th:src="@{/js_v1_3/common/header.js}"></script>
+<script th:src="@{/js_v1_3/common/common.js}"></script>
+<script th:src="@{https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js}"></script>
+<script th:src="@{/js_v1_3/mypage/help.js}"></script>
+<!-- script 위치 종료 -->
+
+</body>
+</html>

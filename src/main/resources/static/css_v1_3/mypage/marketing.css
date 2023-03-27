@@ -1,0 +1,77 @@
+.marketing-section li .marketing-text {
+  font-family: RobotoMedium, notoSansMedium, serif;
+  color: #ffffff;
+  font-size: 16px;
+  text-decoration: underline;
+}
+
+.blue {
+  color: #4c60fa !important;
+}
+
+.marketing-section {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  color: #f5f5f5;
+  background-color: #0A0A0A;
+  font-family: notoSansRegular, serif;
+  font-size: 14px;
+}
+.marketing-section div {
+  margin-top: 72px;
+  padding: 0 16px;
+}
+.marketing-section .marketing-title {
+  font-family: notoSansBold, serif;
+  font-size: 24px;
+  color: #f5f5f5;
+  line-height: 35px;
+}
+.marketing-section .marketing-guide {
+  color: rgba(245, 245, 245, 0.65);
+  line-height: 20px;
+}
+.marketing-section .marketing-select {
+  display: flex;
+  margin-top: 0;
+  padding: 0;
+  background: transparent;
+  font-size: 14px;
+}
+.marketing-section ul {
+  margin-top: 24px;
+}
+.marketing-section li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+.marketing-section li p {
+  line-height: 20px;
+  color: #f5f5f5;
+  font-size: 16px;
+}
+.marketing-section li i {
+  display: inline-block;
+  background-size: contain;
+  width: 16px;
+  height: 16px;
+}
+
+.icon_confirm {
+  background-image: url("./../../img/icon_confirm.png");
+  transform: translate(4px, 3px);
+}
+
+@media screen and (min-width: 481px) {
+  .marketing-section {
+    width: 768rem;
+    margin-left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+/*# sourceMappingURL=marketing.css.map */

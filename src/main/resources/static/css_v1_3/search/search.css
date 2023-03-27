@@ -1,0 +1,260 @@
+@charset "UTF-8";
+.search-wrap .search-box-container .search-box .btn-cancel {
+  font-family: RobotoMedium, notoSansMedium, serif;
+  color: #ffffff;
+  font-size: 16px;
+  text-decoration: underline;
+}
+
+.search-wrap .recent-search-list-container .recent-search-list-top .btn-delete-all {
+  font-family: RobotoMedium, notoSansMedium, serif;
+  color: #ffffff;
+  font-size: 14px;
+  text-decoration: underline;
+}
+
+.search-main-wrap {
+  height: 100vh;
+}
+.search-main-wrap .search-main-section {
+  padding-top: 88px;
+  transform: translateY(1px);
+}
+.search-main-wrap .search-main-section .search-main-section-title {
+  margin-bottom: 24px;
+}
+.search-main-wrap .search-main-section .search-main-section-title h1 {
+  height: 38px;
+  font-family: RobotoBold, notoSansBold, serif;
+  font-size: 32px;
+  line-height: 38px;
+  color: #FFFFFF;
+}
+.search-main-wrap .search-main-section .btn-open-search {
+  position: relative;
+  width: 100%;
+  height: 44px;
+  margin-bottom: 24px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  font-family: RobotoRegular, notoSansRegular, serif;
+  font-size: 16px;
+  line-height: 44px;
+  color: #ffffff;
+  opacity: 0.65;
+}
+.search-main-wrap .search-main-section .btn-open-search .icon-search {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  width: 28px;
+  height: 28px;
+}
+.search-main-wrap .search-main-section .btn-open-search span {
+  position: absolute;
+  top: 0;
+  left: 36px;
+  opacity: 0.65;
+}
+.search-main-wrap .search-main-section .search-category-title {
+  height: 21px;
+  margin-bottom: 12px;
+  font-family: RobotoMedium, notoSansMedium, serif;
+  font-size: 16px;
+  line-height: 20px;
+  color: #f5f5f5;
+}
+.search-main-wrap .search-main-section .search-categories {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  flex-direction: row;
+  gap: 12px;
+}
+.search-main-wrap .search-main-section .search-categories li {
+  display: flex;
+  flex-basis: 158px;
+  flex-grow: 1;
+}
+.search-main-wrap .search-main-section .search-categories li a {
+  display: block;
+  width: 100%;
+  height: 52px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  line-height: 52px;
+  font-family: RobotoRegular, notoSansRegular, serif;
+  font-size: 16px;
+  color: #f5f5f5;
+  text-align: center;
+}
+.search-wrap {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  z-index: 1001;
+  box-sizing: border-box;
+  overflow: scroll;
+}
+.search-wrap .search-box-container {
+  position: fixed;
+  top: 0;
+  width: inherit;
+  padding-bottom: 12px;
+  background: #0A0A0A;
+  z-index: 1;
+}
+.search-wrap .search-box-container .search-box {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: inherit;
+}
+.search-wrap .search-box-container .search-box .search-area {
+  margin-top: 24px;
+  width: inherit;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+}
+.search-wrap .search-box-container .search-box .search-label {
+  display: none;
+}
+.search-wrap .search-box-container .search-box .input-search {
+  width: 100%;
+  height: 44px;
+  padding-left: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  border: none;
+  box-sizing: border-box;
+  font-family: RobotoRegular, notoSansRegular, serif;
+  font-size: 16px;
+  color: #ffffff;
+  caret-color: #2841fa;
+}
+.search-wrap .search-box-container .search-box .input-search::placeholder {
+  height: 24px;
+  font-family: RobotoRegular, notoSansRegular, serif;
+  font-size: 16px;
+  line-height: 23px;
+  color: #ffffff;
+  opacity: 0.65;
+}
+.search-wrap .search-box-container .search-box .text-eraser {
+  display: none;
+  width: 28px;
+  height: 28px;
+  position: absolute;
+  top: 8px;
+  right: 55px;
+  background: transparent;
+}
+.search-wrap .search-box-container .search-box .text-eraser img {
+  width: inherit;
+}
+.search-wrap .search-box-container .search-box .btn-cancel {
+  position: relative;
+  margin: 0;
+  line-height: 44px;
+  min-width: 48px;
+  text-align: right;
+}
+.search-wrap .recent-search-list-container {
+  padding-bottom: 40px;
+  display: none;
+  position: relative;
+  top: 80px;
+}
+.search-wrap .recent-search-list-container .recent-search-list-top {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 0;
+  padding: 12px 0 14px 0;
+}
+.search-wrap .recent-search-list-container .recent-search-list-top .recent-search-list-title {
+  height: 21px;
+  font-family: RobotoMedium, notoSansMedium, serif;
+  font-size: 14px;
+  line-height: 20px;
+  color: #f5f5f5;
+}
+.search-wrap .recent-search-list-container .recent-search-list-top .btn-delete-all {
+  height: 21px;
+  line-height: 20px;
+  background: transparent;
+}
+.search-wrap .recent-search-list-container .recent-search-list li {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  height: 28px;
+  margin-bottom: 24px;
+}
+.search-wrap .recent-search-list-container .recent-search-list li:last-of-type {
+  margin-bottom: 80px;
+}
+.search-wrap .recent-search-list-container .recent-search-list li .recent-search {
+  cursor: pointer;
+  all: unset; /*기본 button style 초기화*/
+  display: flex;
+  position: absolute;
+  width: inherit;
+  height: 28px;
+  z-index: 1;
+}
+.search-wrap .recent-search-list-container .recent-search-list li .icon-search {
+  width: 28px;
+  height: 28px;
+}
+.search-wrap .recent-search-list-container .recent-search-list li .searched-keyword-box {
+  position: relative;
+  width: 80%;
+}
+.search-wrap .recent-search-list-container .recent-search-list li .searched-keyword {
+  height: 28px;
+  margin-left: 4px;
+  font-family: RobotoRegular, notoSansRegular, serif;
+  font-size: 16px;
+  line-height: 28px;
+  color: #f5f5f5;
+}
+.search-wrap .recent-search-list-container .recent-search-list li .btn-delete {
+  width: 28px;
+  height: 28px;
+  background: transparent;
+}
+.search-wrap .recent-search-list-container .recent-search-list li .btn-delete img {
+  width: inherit;
+}
+
+.modal-background {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1001;
+  background: #0A0A0A;
+}
+
+.modal-background .modal-box {
+  display: block;
+  font-family: RobotoMedium, notoSansMedium, serif;
+  font-size: 14px;
+  color: #EA6600;
+  padding: 0 16px 0 12px;
+}
+
+@media screen and (min-width: 481px) {
+  .search-main-section, .search-section {
+    width: 768rem;
+  }
+}
+
+/*# sourceMappingURL=search.css.map */
