@@ -6,7 +6,7 @@ COPY gradle ./gradle
 COPY build.gradle .
 COPY settings.gradle .
 COPY src ./src
-RUN chmod+x ./gradlew
+RUN chmod +x ./gradlew
 RUN ./gradlew bootJar
 
 FROM nginx:1.23-alpine-slim
