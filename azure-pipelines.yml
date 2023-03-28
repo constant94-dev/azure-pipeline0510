@@ -46,7 +46,7 @@ stages:
   jobs:
   - deployment: VMDeploy
     pool:
-      vmImage: 'Ubuntu-latest'
+      vmImage: $(vmImageName)
     environment:
       name: docker-java-image-test
       resourceType: VirtualMachine
