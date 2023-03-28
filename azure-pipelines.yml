@@ -39,21 +39,3 @@ stages: # 작업 단계 의미 Build 혹은 Deploy 로 나누어진다.
         containerRegistry: $(dockerRegistryServiceConnection)
         tags: |
           $(tag)
-
-# CD Stage
-- stage: Deploy
-  displayName: Deploy stage
-  dependsOn: Build
-
-  jobs:
-  - deployment: VMDeploy
-    pool:
-      vmImage: 'Ubuntu-latest'
-    environment:
-      name: docker-java-image-test
-      resourceType: VirtualMachine
-    strategy:
-      runOnce:
-        deploy:
-          steps:
-            - script: echo my first deployment 
