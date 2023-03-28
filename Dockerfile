@@ -10,5 +10,6 @@ RUN chmod +x ./gradlew
 RUN ./gradlew clean build
 
 FROM nginx:1.23-alpine-slim
-COPY --from=builder build/libs/*.jar /usr/share/nginx/html/app.jar
+COPY --from=builder build/libs/*.jar /usr/share/nginx/html/
+ADD /usr/share/nginx/html/*.jar /usr/share/nginx/html/app.jar
 ENTRYPOINT ["java","-jar","/usr/share/nginx/html/app.jar"]
