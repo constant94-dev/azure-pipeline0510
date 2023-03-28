@@ -10,6 +10,6 @@ RUN chmod +x ./gradlew
 RUN ./gradlew clean build
 
 FROM nginx:1.23-alpine-slim
-COPY --from=builder ./build/libs/patron-webMobile-1.2.4-SNAPSHOT.jar /usr/share/nginx/html/
-ADD /usr/share/nginx/html/patron-webMobile-1.2.4-SNAPSHOT.jar /usr/share/nginx/html/app.jar
+COPY --from=builder build/libs/patron-webMobile-1.2.4-SNAPSHOT.jar /usr/share/nginx/html/app.jar
+# COPY usr/share/nginx/html/patron-webMobile-1.2.4-SNAPSHOT.jar /usr/share/nginx/html/app.jar
 ENTRYPOINT ["java","-jar","/usr/share/nginx/html/app.jar"]
