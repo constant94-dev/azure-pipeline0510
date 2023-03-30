@@ -1,0 +1,19 @@
+apiVersion : v1
+kind: Deployment
+metadata:
+  name: deploy
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: web
+  template:
+    metadata:
+      labels:
+        app: web 
+    spec:
+      containers:
+        - name: acrprod0327
+          image: acrprod0327.azurecr.io/production
+          ports:
+          - containerPort: 80
