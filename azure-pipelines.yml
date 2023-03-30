@@ -67,6 +67,7 @@ stages:
           - task: KubernetesManifest@0
             displayName: Deploy to Kubernetes cluster
             inputs:
+              kubernetesServiceConnection: '2ed17e07-b084-4011-b03b-b1c325a69516'
               action: deploy
               manifests: |
                 $(Pipeline.Workspace)/manifests/deployment.yml
