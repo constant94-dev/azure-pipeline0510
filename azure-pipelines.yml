@@ -47,7 +47,7 @@ stages:
     displayName: Deploy
     pool:
       vmImage: $(vmImageName)
-    environment: 'aks-env.default'
+    environment: 'scn-aks-nodamenk8s'
     strategy:
       runOnce:
         deploy:
