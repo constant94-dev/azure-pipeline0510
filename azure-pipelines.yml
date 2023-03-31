@@ -16,7 +16,7 @@ variables:
   containerRegistry: 'acrprod0327.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
   tag: '$(Build.BuildId)'
-  imagePullSecret: 'devops-kubernetes-svc-secret'
+  imagePullSecret: 'devops-kubernetes-svc-secret2'
 
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
