@@ -63,10 +63,14 @@ stages:
               action: createSecret
               secretName: $(imagePullSecret)
               dockerRegistryEndpoint: $(dockerRegistryServiceConnection)
+              kubernetesServiceConnection: $(kubernetesServiceConnection)
+              namespace: default
 
           - task: KubernetesManifest@0
             displayName: Deploy to Kubernetes cluster
             inputs:
+              kubernetesServiceConnection: $(kubernetesServiceConnection)
+              namespace: default
               action: deploy              
               manifests: |
                 $(Pipeline.Workspace)/manifests/deployment.yml
