@@ -16,7 +16,7 @@ variables:
   containerRegistry: 'acrprod0327.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
   tag: '$(Build.BuildId)'
-  imagePullSecret: 'devops-kubernetes-svc-secret2'
+  imagePullSecret: 'devops-kubernetes-svc-secret3'
 
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
@@ -74,7 +74,6 @@ stages:
               action: deploy              
               manifests: |
                 $(Pipeline.Workspace)/manifests/deployment.yml
-                $(Pipeline.Workspace)/manifests/ingress.yml
                 $(Pipeline.Workspace)/manifests/service.yml
               imagePullSecrets: |
                 $(imagePullSecret)
