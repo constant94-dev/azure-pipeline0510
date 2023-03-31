@@ -52,7 +52,7 @@ stages:
     displayName: Deploy
     pool:
       vmImage: $(vmImageName)
-    environment: 'aks-env.default'
+    environment: 'env-aks-nodamenk8s-test'
     strategy:
       runOnce:
         deploy:
