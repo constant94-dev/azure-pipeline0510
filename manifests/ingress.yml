@@ -4,10 +4,10 @@ metadata:
   name: java-app-ingress
   annotations:
     kubernetes.io/ingress.class: azure/application-gateway
-    appgw.ingress.kubernetes.io/backend-hostname: backend.20.200.218.144
+    appgw.ingress.kubernetes.io/backend-hostname: backend.dev0403.patron.digital
 spec:
   rules:
-  - host: 20.200.218.144
+  - host: dev0403.patron.digital
     http:
       paths:
       - path: /
