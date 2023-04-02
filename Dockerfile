@@ -22,6 +22,7 @@ COPY --from=build /home/source/java-app/build/libs/patron-webMobile-1.2.4-SNAPSH
 
 FROM openjdk:11-jre-slim
 WORKDIR /usr/share/nginx/html
+RUN chmod 777 /usr/share/nginx/html
 RUN chmod +x ./1.2.4_app.jar
 EXPOSE 8080
 CMD ["java", "-jar", "1.2.4_app.jar"]
