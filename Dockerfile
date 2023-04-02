@@ -11,14 +11,12 @@
 
 FROM gradle:7.5-jdk11-alpine AS build
 USER root
-RUN adduser nodamen
-RUN usermod -aG sudo nodamen
-USER nodamen
 RUN mkdir -p /home/source/java-app
 COPY build.gradle /home/source/java-app
 COPY settings.gradle /home/source/java-app
 COPY src /home/source/java-app/
 WORKDIR /home/source/java-app
+USER root
 RUN gradle build --no-daemon
 
 FROM nginx:1.23-alpine-slim
