@@ -10,7 +10,7 @@
 # RUN ./gradlew clean build
 
 FROM gradle:7.5-jdk11-alpine AS build
-# COPY . /home/source/java-app
+RUN mkdir /home/source/java-app
 COPY build.gradle /home/source/java-app
 COPY settings.gradle /home/source/java-app
 COPY src /home/source/java-app/
