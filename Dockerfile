@@ -10,7 +10,7 @@
 # RUN ./gradlew clean build
 
 FROM gradle:7.5-jdk11-alpine AS build
-# USER root
+USER root
 RUN groupadd -g 999 appuser
 RUN useradd -r -u 999 -g appuser nodamen
 USER nodamen
