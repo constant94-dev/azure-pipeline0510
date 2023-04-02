@@ -18,14 +18,17 @@ RUN chmod +x ./gradlew
 RUN ./gradlew build
 
 FROM nginx:1.23-alpine-slim
-COPY --from=build /home/source/java-app/build/libs/patron-webMobile-1.2.4-SNAPSHOT.jar /usr/share/nginx/html/1.2.4_app.jar
+EXPOSE 80
+EXPOSE 443
+CMD nginx -g 'daemon off;'
 
 FROM openjdk:11-jre-slim
-WORKDIR /usr/share/nginx/html
-RUN chmod 777 /usr/share/nginx/html
-RUN chmod +x ./1.2.4_app.jar
+COPY --from=build /home/source/java-app/build/libs/patron-webMobile-1.2.4-SNAPSHOT.jar /usr/share/nginx/html/app.jar
+# WORKDIR /usr/share/nginx/html
+# RUN chmod 777 /usr/share/nginx/html
+# RUN chmod +x ./1.2.4_app.jar
 EXPOSE 8080
-CMD ["java", "-jar", "1.2.4_app.jar"]
+CMD ["java", "-jar", "/usr/share/nginx/html/app.jar"]
 
 
 # FROM nginx:1.23-alpine-slim
