@@ -10,6 +10,9 @@
 # RUN ./gradlew clean build
 
 FROM nginx:1.23-alpine-slim
+
+COPY nginx.conf /etc/nginx/nginx.conf
+
 EXPOSE 80
 EXPOSE 443
 
