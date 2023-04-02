@@ -10,8 +10,9 @@
 # RUN ./gradlew clean build
 
 FROM gradle:7.5-jdk11-alpine AS build
-RUN sudo adduser nodamen
-RUN sudo usermod -aG sudo nodamen
+USER root
+RUN adduser nodamen
+RUN usermod -aG sudo nodamen
 USER nodamen
 RUN mkdir -p /home/source/java-app
 COPY build.gradle /home/source/java-app
