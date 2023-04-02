@@ -2,18 +2,15 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: java-app-ingress
-#   annotations:
-#     kubernetes.io/ingress.class: azure/application-gateway
 spec:
   rules:
-  - http: 4.230.24.250
+  - host: 20.200.218.144
+    http:
       paths:
       - path: /
         pathType: Prefix
         backend:
           service:
-            name: java-app-svc
+            name: java-app-service
             port:
               name: http
-#               number: 80
-#         pathType: Prefix
