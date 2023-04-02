@@ -1,16 +1,16 @@
 apiVersion : apps/v1
 kind: Deployment
 metadata:
-  name: deploy
+  name: deploy-java-app
 spec:
-  replicas: 2
+  replicas: 3
   selector:
     matchLabels:
-      app: web
+      app: deploy-java-app
   template:
     metadata:
       labels:
-        app: web 
+        app: deploy-java-app 
     spec:
       containers:
         - name: acrprod0327
