@@ -9,11 +9,12 @@
 # RUN chmod +x ./gradlew
 # RUN ./gradlew clean build
 
-FROM gradle:7.5-jdk11-alpine AS build
+FROM openjdk:11-jdk-slim AS build
 WORKDIR /home/source/java-app
 COPY build.gradle .
 COPY settings.gradle .
 COPY . .
+RUN chmod +x ./gradlew
 RUN ./gradlew build
 
 FROM nginx:1.23-alpine-slim
