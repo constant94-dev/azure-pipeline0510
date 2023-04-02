@@ -13,7 +13,7 @@ FROM gradle:7.5-jdk11-alpine AS build
 # COPY . /home/source/java-app
 COPY build.gradle /home/source/java-app
 COPY settings.gradle /home/source/java-app
-COPY src /home/source/java-app/src
+COPY src /home/source/java-app/src/
 WORKDIR /home/source/java-app
 RUN gradle build --no-daemon
 
