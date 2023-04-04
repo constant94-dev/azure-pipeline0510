@@ -5,8 +5,8 @@ FROM openjdk:11-jdk-slim AS builder
 WORKDIR /app
 
 # Copy Gradle wrapper files
-COPY gradlew .
-COPY gradle /gradle
+COPY gradle /app/gradle
+COPY gradlew /app
 
 # Copy project files
 COPY build.gradle /app
