@@ -23,7 +23,7 @@ FROM openjdk:11-jre-slim
 WORKDIR /app
 COPY --from=builder /app/build/libs/patron-webMobile-1.2.4-SNAPSHOT.jar app.jar
 EXPOSE 8080
-CMD nohub java -jar app.jar $
+CMD nohub java -jar app.jar &
 
 FROM nginx:1.23-alpine
 COPY default.conf /etc/nginx/conf.d/default.conf
