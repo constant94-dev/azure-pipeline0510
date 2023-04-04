@@ -26,7 +26,8 @@ EXPOSE 8080
 CMD ["java", "-jar", "app.jar"]
 
 FROM nginx:1.23-alpine
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY default.conf /etc/nginx/conf.d/default.conf
+COPY nginx.conf /etc/nginx/nginx.conf
 COPY index.html /usr/share/nginx/html
 EXPOSE 80
 
