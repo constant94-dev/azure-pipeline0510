@@ -8,8 +8,8 @@ COPY settings.gradle .
 COPY gradlew .
 COPY gradle /gradle
 COPY src /src
-RUN chmod +x ./app/gradlew
-RUN ./app/gradlew clean build
+RUN chmod +x gradlew
+RUN gradlew clean build
 
 FROM openjdk:11-jre-slim
 WORKDIR /app
