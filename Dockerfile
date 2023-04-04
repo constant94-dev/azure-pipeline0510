@@ -1,15 +1,23 @@
 # syntax=docker/dockerfile:1
 
+# Build stage
 FROM openjdk:11-jdk-slim AS builder
 WORKDIR /app
 
-COPY build.gradle .
-COPY settings.gradle .
+# Copy Gradle wrapper files
 COPY gradlew .
 COPY gradle /gradle
-COPY src /src
+
+# Copy project files
+COPY build.gradle /app
+COPY settings.gradle /app
+COPY src /app/src
+
+# Change permissions on Gradle wrapper
 RUN chmod +x gradlew
-RUN gradlew clean build
+
+# Build application
+RUN ./gradlew clean build
 
 FROM openjdk:11-jre-slim
 WORKDIR /app
