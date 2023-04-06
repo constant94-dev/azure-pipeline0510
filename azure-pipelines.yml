@@ -62,6 +62,7 @@ stages:
         projectName: $(imageRepositoryProd)
         dockerComposeFile: '$(Build.SourcesDirectory)/docker-compose.yml'
         qualifyImageNames: true
+        additionalImageTags: $(tag)
     
     # ACR 이미지 푸시하기
     - task: Docker@2
