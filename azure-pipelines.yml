@@ -61,7 +61,7 @@ stages:
         azureContainerRegistry: $(containerRegistry)
         dockerComposeFile: '$(Build.SourcesDirectory)/docker-compose.yml'
         qualifyImageNames: true
-        additionalImageTags: $(tag)
+        dockerComposeCommand: rm
     
     - task: DockerCompose@0
       displayName: Push ACR Image
