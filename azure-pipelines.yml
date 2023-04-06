@@ -15,7 +15,7 @@ variables:
   imageRepositoryNginx: 'nginx'
   imageRepositorySpringapp: 'spring-app'
   containerRegistry: 'acrprod0327.azurecr.io'
-  azureSubscriptionEndpoint: 'scn-acrprod0331'
+  azureSubscriptionEndpoint: '3904bf9a-205e-4989-bb21-931d261d2c3a'
   dockerfilePathNginx: '$(Build.SourcesDirectory)/Dockerfile-nginx'
   dockerfilePathApp: '$(Build.SourcesDirectory)/Dockerfile-app'
   tag: '$(Build.BuildId)'
