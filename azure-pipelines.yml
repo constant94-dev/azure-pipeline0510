@@ -63,14 +63,11 @@ stages:
         qualifyImageNames: true
         dockerComposeCommand: rm
     
-    - task: DockerCompose@0
-      displayName: Push ACR Image
+    - task: Docker@2
+      displayName: Push image to ACR
       inputs:
-        action: Push services
-        azureSubscriptionEndpoint: $(azureSubscriptionEndpoint)
-        azureContainerRegistry: $(containerRegistry)
-        dockerComposeFile: '$(Build.SourcesDirectory)/docker-compose.yml'
-        projectName: $(imageRepositoryProd)
-        qualifyImageNames: true
-        additionalImageTags: $(tag)
+        command: push
+        containerRegistry: $(dockerRegistryServiceConnection)
+        repository: $(imageRepositoryProd)
+        tags: $(tag)
 
