@@ -1,0 +1,14 @@
+# docker-compose.yml
+
+version: "3"
+
+services:
+  spring-app:
+    image: spring-app
+  nginx:
+    image: nginx
+    ports:
+      - "80:80"
+    volumes:
+      - nginx.conf:/etc/nginx/nginx.conf
+      - log:/var/log/nginx
