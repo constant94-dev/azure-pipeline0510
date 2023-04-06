@@ -49,7 +49,7 @@ stages:
         repository: $(imageRepositoryNginx)
         Dockerfile: $(dockerfilePathNginx)
         containerRegistry: $(dockerRegistryServiceConnection)
-        tags: $(tags)
+        tags: $(tag)
 
     # Docker Compose 파일 명령으로 Nginx 이미지 가져와서 Spring App 이미지와 함께 ACR 이미지 푸시하기
     - task: DockerCompose@0
