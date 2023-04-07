@@ -14,7 +14,7 @@ variables:
   imageRepositoryProd: 'production'
   imageRepositoryNginx: 'nginx'
   imageRepositorySpringapp: 'spring-app'
-  containerRegistry: 'scn-acrprod0331'
+  azureContainerRegistry: 'scn-acrprod0331'
   azureSubscriptionEndpoint: 'scn-arm0407'
   dockerfilePathNginx: '$(Build.SourcesDirectory)/Dockerfile-nginx'
   dockerfilePathApp: '$(Build.SourcesDirectory)/Dockerfile-app'
@@ -53,16 +53,11 @@ stages:
 
     # Docker Compose 파일 명령으로 Nginx 이미지 가져와서 Spring App 이미지와 함께 실행하기
     - task: DockerCompose@0
-      displayName: Build services
+      displayName: Container registry login
       inputs:
-        action: 'Build services'
         containerregistrytype: Azure Container Registry
         azureSubscriptionEndpoint: $(azureSubscriptionEndpoint)
-        azureContainerRegistry:  $(containerRegistry)
-        dockerComposeFile: '$(Build.SourcesDirectory)/docker-compose.yml'
-        projectName: $(imageRepositoryProd)
-        qualifyImageNames: true
-        additionalImageTags: $(tag)
+        azureContainerRegistry: $(azureContainerRegistry)
     
     # ACR 이미지 푸시하기
     - task: DockerCompose@0
@@ -71,7 +66,7 @@ stages:
         action: 'Push services'
         containerregistrytype: Azure Container Registry
         azureSubscriptionEndpoint: $(azureSubscriptionEndpoint)
-        azureContainerRegistry: $(containerRegistry)
+        azureContainerRegistry: $(azureContainerRegistry)
         dockerComposeFile: '$(Build.SourcesDirectory)/docker-compose.yml'
         projectName: $(imageRepositoryProd)
 
