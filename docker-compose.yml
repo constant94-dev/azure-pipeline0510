@@ -1,7 +1,6 @@
 # docker-compose.yml
 
 version: "3.9"
-image:
 services:
   spring-app:
     image: spring-app
