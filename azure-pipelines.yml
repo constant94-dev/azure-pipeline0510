@@ -14,7 +14,7 @@ variables:
   imageRepositoryProd: 'production'
   imageRepositoryNginx: 'nginx'
   imageRepositorySpringapp: 'spring-app'
-  containerRegistry: 'acrprod0327.azurecr.io'
+  containerRegistry: 'scn-acrprod0331'
   azureSubscriptionEndpoint: 'scn-arm0407'
   dockerfilePathNginx: '$(Build.SourcesDirectory)/Dockerfile-nginx'
   dockerfilePathApp: '$(Build.SourcesDirectory)/Dockerfile-app'
@@ -55,7 +55,7 @@ stages:
     - task: DockerCompose@0
       displayName: Build services
       inputs:
-        action: Build services
+        action: 'Build services'
         containerregistrytype: Azure Container Registry
         azureSubscriptionEndpoint: $(azureSubscriptionEndpoint)
         azureContainerRegistry:  $(containerRegistry)
@@ -68,7 +68,7 @@ stages:
     - task: DockerCompose@0
       displayName: Push services
       inputs:
-        action: Push services
+        action: 'Push services'
         containerregistrytype: Azure Container Registry
         azureSubscriptionEndpoint: $(azureSubscriptionEndpoint)
         azureContainerRegistry: $(containerRegistry)
