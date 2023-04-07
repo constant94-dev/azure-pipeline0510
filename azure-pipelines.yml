@@ -15,7 +15,7 @@ variables:
   imageRepositoryNginx: 'nginx'
   imageRepositorySpringapp: 'spring-app'
   containerRegistry: 'acrprod0327.azurecr.io'
-  azureSubscriptionEndpoint: 'https://management.azure.com/tenants/cd9145b0-9d0a-4509-bde4-a4c62c116034/?api-version=2019-11-01'
+  azureSubscriptionEndpoint: 'https://management.azure.com/a1b87488-716d-4838-8dd7-49dc224cb84d/?api-version=2019-11-01'
   dockerfilePathNginx: '$(Build.SourcesDirectory)/Dockerfile-nginx'
   dockerfilePathApp: '$(Build.SourcesDirectory)/Dockerfile-app'
   tag: '$(Build.BuildId)'
@@ -57,8 +57,7 @@ stages:
       inputs:
         action: Build services
         containerregistrytype: 'Azure Container Registry'
-        azureSubscriptionEndpoint: $(azureSubscriptionEndpoint)
-        azureContainerRegistry: $(dockerRegistryServiceConnection)
+        azureContainerRegistry:  $(dockerRegistryServiceConnection)
         projectName: $(imageRepositoryProd)
         dockerComposeFile: '$(Build.SourcesDirectory)/docker-compose.yml'
         qualifyImageNames: true
@@ -70,14 +69,5 @@ stages:
       inputs:
         action: Push services
         containerregistrytype: 'Azure Container Registry'
-        azureSubscriptionEndpoint: $(azureSubscriptionEndpoint)
         azureContainerRegistry: $(dockerRegistryServiceConnection)
         dockerComposeFile: '$(Build.SourcesDirectory)/docker-compose.yml'
-    # - task: Docker@2
-    #   displayName: Push image to ACR
-    #   inputs:
-    #     command: push
-    #     containerRegistry: $(dockerRegistryServiceConnection)
-    #     repository: $(imageRepositoryProd)
-    #     tags: $(tag)
-
