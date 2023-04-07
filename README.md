@@ -1,6 +1,6 @@
 [![Build Status](https://dev.azure.com/nodamen-dev/GitHub-Pipelines-Java-Docker/_apis/build/status/nodamen2017.pipelines-java-docker%20(2)?branchName=main)](https://dev.azure.com/nodamen-dev/GitHub-Pipelines-Java-Docker/_build/latest?definitionId=6&branchName=main)
 
-### 0327 Sample code를 사용해 Nginx + Jar 컨테이너를 병합해 도커 이미지를 만들고 Azure Container Registry로 푸시를 목표로한다
+### 0327 Sample code를 사용해 Nginx + Jar 컨테이너를 병합해 도커 이미지를 만들고 Azure Container Registry로 Push를 목표로한다
 
 <p>
     <h4>Azure Pipelines를 사용하여 앱을 배포하는 컨테이너 이미지 빌드<br>
