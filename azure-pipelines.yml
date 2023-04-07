@@ -15,7 +15,7 @@ variables:
   imageRepositoryNginx: 'nginx'
   imageRepositorySpringapp: 'spring-app'
   azureContainerRegistry: 'scn-acrprod0331'
-  azureSubscriptionEndpoint: 'scn-arm0407'
+  azureSubscriptionEndpoint: 'production' # scn-arm0407
   dockerfilePathNginx: '$(Build.SourcesDirectory)/Dockerfile-nginx'
   dockerfilePathApp: '$(Build.SourcesDirectory)/Dockerfile-app'
   tag: '$(Build.BuildId)'
@@ -65,21 +65,12 @@ stages:
         additionalImageTags: $(tag)
     
     # ACR 이미지 푸시하기
-    # - task: DockerCompose@0
-    #   displayName: Push services
-    #   inputs:
-    #     action: 'Push services'
-    #     containerregistrytype: Azure Container Registry
-    #     azureSubscriptionEndpoint: $(azureSubscriptionEndpoint)
-    #     azureContainerRegistry: $(azureContainerRegistry)
-    #     dockerComposeFile: '$(Build.SourcesDirectory)/docker-compose.yml'
-    #     projectName: $(imageRepositoryProd)
-    - task: Docker@2
-      displayName: Build and Push
+    - task: DockerCompose@0
+      displayName: Push services
       inputs:
-        command: buildAndPush
-        containerRegistry: $(dockerRegistryServiceConnection)
-        repository: $(imageRepositoryProd)
-        tags: $(tag)
-
-    
+        action: 'Push services'
+        containerregistrytype: Azure Container Registry
+        azureSubscriptionEndpoint: $(azureSubscriptionEndpoint)
+        azureContainerRegistry: $(azureContainerRegistry)
+        dockerComposeFile: '$(Build.SourcesDirectory)/docker-compose.yml'
+        projectName: $(imageRepositoryProd)
