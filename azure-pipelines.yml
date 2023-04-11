@@ -57,7 +57,7 @@ stages:
       inputs:
         action: Build services
         containerregistrytype: Azure Container Registry
-        azureSubscriptionEndpoint: $(azureSubscriptionEndpoint)
+        # azureSubscriptionEndpoint: $(azureSubscriptionEndpoint)
         azureContainerRegistry: $(azureContainerRegistry)
         dockerComposeFile: docker-compose.yml
     
@@ -67,7 +67,7 @@ stages:
       inputs:
         action: Push services
         containerregistrytype: Azure Container Registry
-        azureSubscriptionEndpoint: $(azureSubscriptionEndpoint)
+        # azureSubscriptionEndpoint: $(azureSubscriptionEndpoint)
         azureContainerRegistry: $(azureContainerRegistry)
         dockerComposeFile: docker-compose.yml
         includeSourceTags: true
