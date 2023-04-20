@@ -71,7 +71,7 @@ stages:
       inputs:
         action: Push services
         # azureSubscriptionEndpoint: $(azureSubscriptionEndpoint)
-        azureContainerRegistry: acrprod0327.azurecr.io
+        azureContainerRegistry: acrprod0327.azurecr.io/spring-app:$(Build.BuildId)
         dockerComposeFile: docker-compose.yml
         projectName: $(Build.Repository.Name)
         qualifyImageNames: true
