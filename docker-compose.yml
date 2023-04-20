@@ -7,12 +7,15 @@ services:
       context: .
       dockerfile: Dockerfile-app
     image: spring-app
-    container_name: acrprod0327
+    container_name: springApp
     ports:
       - "80:8080"
   nginx:
+    build:
+      context: .
+      dockerfile: Dockerfile-nginx
     image: nginx
-    container_name: nginx
+    container_name: nginxAlpine
     ports: # 호스트의 포트 80에서 컨테이너의 포트 80을 노출한다
       - "80:80"
     volumes:

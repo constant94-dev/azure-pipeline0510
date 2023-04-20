@@ -57,22 +57,22 @@ stages:
       inputs:
         action: Build services
         # azureSubscriptionEndpoint: $(azureSubscriptionEndpoint)
+        containerregistrytype: 'Azure Container Registry'
         azureContainerRegistry: $(dockerRegistryServiceConnection)
         dockerComposeFile: docker-compose.yml
         projectName: $(Build.Repository.Name)
         qualifyImageNames: true
         additionalImageTags: $(Build.BuildId)
         includeLatestTag: true
-
     
     # ACR로 이미지 푸시하기
-    # - task: DockerCompose@0
-    #   displayName: Docker Compose Push services
-    #   inputs:
-    #     action: Push services
-    #     azureSubscriptionEndpoint: $(azureSubscriptionEndpoint)
-    #     azureContainerRegistry: $(dockerRegistryServiceConnection)
-    #     dockerComposeFile: docker-compose.yml
-    #     projectName: $(Build.Repository.Name)
-    #     qualifyImageNames: true
-    #     additionalImageTags: $(Build.BuildId)
+    - task: DockerCompose@0
+      displayName: Docker Compose Push services
+      inputs:
+        action: Push services
+        # azureSubscriptionEndpoint: $(azureSubscriptionEndpoint)
+        azureContainerRegistry: $(dockerRegistryServiceConnection)
+        dockerComposeFile: docker-compose.yml
+        projectName: $(Build.Repository.Name)
+        qualifyImageNames: true
+        additionalImageTags: $(Build.BuildId)
