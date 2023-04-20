@@ -58,7 +58,7 @@ stages:
         action: Build services
         # azureSubscriptionEndpoint: $(azureSubscriptionEndpoint)
         containerregistrytype: 'Azure Container Registry'
-        azureContainerRegistry: $(dockerRegistryServiceConnection)
+        azureContainerRegistry: acrprod0327.azurecr.io
         dockerComposeFile: docker-compose.yml
         projectName: $(Build.Repository.Name)
         qualifyImageNames: true
@@ -71,7 +71,7 @@ stages:
       inputs:
         action: Push services
         # azureSubscriptionEndpoint: $(azureSubscriptionEndpoint)
-        azureContainerRegistry: $(dockerRegistryServiceConnection)
+        azureContainerRegistry: acrprod0327.azurecr.io
         dockerComposeFile: docker-compose.yml
         projectName: $(Build.Repository.Name)
         qualifyImageNames: true
