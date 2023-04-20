@@ -15,7 +15,7 @@ variables:
   imageRepositoryNginx: 'nginx'
   imageRepositorySpringapp: 'spring-app'
   azureContainerRegistry: 'scn-acrprod0331'
-  azureSubscriptionEndpoint: 'scn-arm0407'
+  azureSubscriptionEndpoint: 'a1b87488-716d-4838-8dd7-49dc224cb84d'
   dockerfilePathNginx: '$(Build.SourcesDirectory)/Dockerfile-nginx'
   dockerfilePathApp: '$(Build.SourcesDirectory)/Dockerfile-app'
   tag: '$(Build.BuildId)'
@@ -32,24 +32,24 @@ stages:
     pool:
       vmImage: $(vmImageName)
     steps:
-    # Dockerfile 명령으로 Jar 이미지 빌드
-    - task: Docker@2
-      displayName: Build Jar image
-      inputs:
-        command: build
-        repository: $(imageRepositorySpringapp)
-        Dockerfile: $(dockerfilePathApp)
-        containerRegistry: $(dockerRegistryServiceConnection)
-        tags: $(tag)
-    # Dockerfile 명령으로 Nginx 이미지 빌드
-    - task: Docker@2
-      displayName: Build Nginx image
-      inputs:
-        command: build
-        repository: $(imageRepositoryNginx)
-        Dockerfile: $(dockerfilePathNginx)
-        containerRegistry: $(dockerRegistryServiceConnection)
-        tags: $(tag)
+    # # Dockerfile 명령으로 Jar 이미지 빌드
+    # - task: Docker@2
+    #   displayName: Build Jar image
+    #   inputs:
+    #     command: build
+    #     repository: $(imageRepositorySpringapp)
+    #     Dockerfile: $(dockerfilePathApp)
+    #     containerRegistry: $(dockerRegistryServiceConnection)
+    #     tags: $(tag)
+    # # Dockerfile 명령으로 Nginx 이미지 빌드
+    # - task: Docker@2
+    #   displayName: Build Nginx image
+    #   inputs:
+    #     command: build
+    #     repository: $(imageRepositoryNginx)
+    #     Dockerfile: $(dockerfilePathNginx)
+    #     containerRegistry: $(dockerRegistryServiceConnection)
+    #     tags: $(tag)
 
     # Docker Compose 파일 명령으로 Nginx 이미지 가져와서 Spring App 이미지와 함께 실행하기
     - task: DockerCompose@0
@@ -62,18 +62,17 @@ stages:
         projectName: $(Build.Repository.Name)
         qualifyImageNames: true
         additionalImageTags: $(Build.BuildId)
-        dockerComposeFileArgs: |
-          firstArg=$(firstArg)
-          secondArg=$(secondArg)   
+        includeLatestTag: true
+
     
     # ACR로 이미지 푸시하기
-    - task: DockerCompose@0
-      displayName: Docker Compose Push services
-      inputs:
-        action: Push services
-        azureSubscriptionEndpoint: $(azureSubscriptionEndpoint)
-        azureContainerRegistry: $(dockerRegistryServiceConnection)
-        dockerComposeFile: docker-compose.yml
-        projectName: $(Build.Repository.Name)
-        qualifyImageNames: true
-        additionalImageTags: $(Build.BuildId)
+    # - task: DockerCompose@0
+    #   displayName: Docker Compose Push services
+    #   inputs:
+    #     action: Push services
+    #     azureSubscriptionEndpoint: $(azureSubscriptionEndpoint)
+    #     azureContainerRegistry: $(dockerRegistryServiceConnection)
+    #     dockerComposeFile: docker-compose.yml
+    #     projectName: $(Build.Repository.Name)
+    #     qualifyImageNames: true
+    #     additionalImageTags: $(Build.BuildId)

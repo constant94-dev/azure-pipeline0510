@@ -3,9 +3,16 @@
 version: "3.9"
 services:
   spring-app:
+    build:
+      context: .
+      dockerfile: Dockerfile-app
     image: spring-app
+    container_name: acrprod0327
+    ports:
+      - "80:8080"
   nginx:
     image: nginx
+    container_name: nginx
     ports: # 호스트의 포트 80에서 컨테이너의 포트 80을 노출한다
       - "80:80"
     volumes:
