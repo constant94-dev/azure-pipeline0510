@@ -1,9 +1,15 @@
+buildscript {
+   ext {
+      queryDslVersion = "5.0.0"
+   }
+}
+
 plugins {
-    id 'org.springframework.boot' version '2.5.1'
+    id 'org.springframework.boot' version '2.6.0'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
-    id 'java'
     //querydsl 추가
     id "com.ewerk.gradle.plugins.querydsl" version "1.0.10"
+    id 'java'
 }
 
 group = 'digital.patron'
@@ -73,21 +79,39 @@ test {
 }
 
 //querydsl 추가 시작
+// def querydslDir = "$buildDir/generated/querydsl"
+// querydsl {
+//     jpa = true
+//     querydslSourcesDir = querydslDir
+// }
+// sourceSets {
+//     main.java.srcDir querydslDir
+// }
+// configurations {
+//     querydsl.extendsFrom compileClasspath
+// }
+// compileQuerydsl {
+//     if(file(querydslDir).exists())
+//         delete(file(querydslDir))
+//     options.annotationProcessorPath = configurations.querydsl
+// }
 def querydslDir = "$buildDir/generated/querydsl"
+
 querydsl {
-    jpa = true
-    querydslSourcesDir = querydslDir
+   jpa = true
+   querydslSourcesDir = querydslDir
 }
 sourceSets {
-    main.java.srcDir querydslDir
+   main.java.srcDir querydslDir
+}
+compileQuerydsl{
+   options.annotationProcessorPath = configurations.querydsl
 }
 configurations {
-    querydsl.extendsFrom compileClasspath
-}
-compileQuerydsl {
-    if(file(querydslDir).exists())
-        delete(file(querydslDir))
-    options.annotationProcessorPath = configurations.querydsl
+   compileOnly {
+      extendsFrom annotationProcessor
+   }
+   querydsl.extendsFrom compileClasspath
 }
 
 //querydsl 추가 끝
