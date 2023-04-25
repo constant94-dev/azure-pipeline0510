@@ -36,14 +36,14 @@ stages:
         displayName: Container Registry login
         inputs:
           containerregistrytype: Azure Container Registry
-          azureSubscriptionEndpoint: $(azureSubscriptionEndpoint)
+          # azureSubscriptionEndpoint: $(azureSubscriptionEndpoint)
           azureContainerRegistry: $(azureContainerRegistry)
     # Docker Compose 파일 명령으로 Nginx 이미지 가져와서 Spring App 이미지와 함께 실행하기
       - task: DockerCompose@0
         displayName: Docker Compose Build services
         inputs:
           action: Build services
-          azureSubscriptionEndpoint: $(azureSubscriptionEndpoint)
+          # azureSubscriptionEndpoint: $(azureSubscriptionEndpoint)
           azureContainerRegistry: '{"loginServer":"acrprod0327.azurecr.io", "id" : "/subscriptions/a1b87488-716d-4838-8dd7-49dc224cb84d/resourceGroups/rg-nodamen-prod
           /providers/Microsoft.ContainerRegistry/registries/acrprod0327"}'
           dockerComposeFile: docker-compose.yml
@@ -57,7 +57,7 @@ stages:
         displayName: Docker Compose Push services
         inputs:
           action: Push services
-          azureSubscriptionEndpoint: $(azureSubscriptionEndpoint)
+          # azureSubscriptionEndpoint: $(azureSubscriptionEndpoint)
           azureContainerRegistry: '{"loginServer":"acrprod0327.azurecr.io", "id" : "/subscriptions/a1b87488-716d-4838-8dd7-49dc224cb84d/resourceGroups/rg-nodamen-prod
           /providers/Microsoft.ContainerRegistry/registries/acrprod0327"}'
           dockerComposeFile: docker-compose.yml
