@@ -14,7 +14,7 @@ variables:
   imageRepositoryProd: 'production'
   imageRepositoryNginx: 'nginx'
   imageRepositorySpringapp: 'spring-app'
-  azureContainerRegistry: 'scn-acrprod0331'
+  azureContainerRegistry: 'acrprod0327.azurecr.io'
   azureSubscriptionEndpoint: 'a1b87488-716d-4838-8dd7-49dc224cb84d'
   dockerfilePathNginx: '$(Build.SourcesDirectory)/Dockerfile-nginx'
   dockerfilePathApp: '$(Build.SourcesDirectory)/Dockerfile-app'
@@ -51,14 +51,20 @@ stages:
     #     containerRegistry: $(dockerRegistryServiceConnection)
     #     tags: $(tag)
 
+      - task: DockerCompose@0
+        displayName: Container Registry login
+        inputs:
+          containerregistrytype: Azure Container Registry
+          azureSubscriptionEndpoint: $(azureSubscriptionEndpoint)
+          azureContainerRegistry: $(azureContainerRegistry)
     # Docker Compose 파일 명령으로 Nginx 이미지 가져와서 Spring App 이미지와 함께 실행하기
       - task: DockerCompose@0
         displayName: Docker Compose Build services
         inputs:
           action: Build services
-          # azureSubscriptionEndpoint: $(azureSubscriptionEndpoint)
-          containerregistrytype: 'Azure Container Registry'
-          azureContainerRegistry: $(dockerRegistryServiceConnection)
+          azureSubscriptionEndpoint: $(azureSubscriptionEndpoint)
+          azureContainerRegistry: '{"loginServer":"acrprod0327.azurecr.io", "id" : "/subscriptions/a1b87488-716d-4838-8dd7-49dc224cb84d/resourceGroups/rg-nodamen-prod
+          /providers/Microsoft.ContainerRegistry/registries/acrprod0327"}'
           dockerComposeFile: docker-compose.yml
           projectName: $(Build.Repository.Name)
           qualifyImageNames: true
@@ -70,8 +76,9 @@ stages:
         displayName: Docker Compose Push services
         inputs:
           action: Push services
-          # azureSubscriptionEndpoint: $(azureSubscriptionEndpoint)
-          azureContainerRegistry: $(dockerRegistryServiceConnection)
+          azureSubscriptionEndpoint: $(azureSubscriptionEndpoint)
+          azureContainerRegistry: '{"loginServer":"acrprod0327.azurecr.io", "id" : "/subscriptions/a1b87488-716d-4838-8dd7-49dc224cb84d/resourceGroups/rg-nodamen-prod
+          /providers/Microsoft.ContainerRegistry/registries/acrprod0327"}'
           dockerComposeFile: docker-compose.yml
           projectName: $(Build.Repository.Name)
           qualifyImageNames: true
