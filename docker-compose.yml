@@ -9,18 +9,14 @@ services:
     image: acrprod0327.azurecr.io/production/spring-app
     container_name: springApp
     ports:
-      - "80:8080"
+      - "8080:8080"
   web:
     build:
       context: .
       dockerfile: Dockerfile-nginx
     image: acrprod0327.azurecr.io/production/nginx-alpine
     container_name: nginxAlpine
-    # ports:
-    #   - "80:80"
+    ports:
+      - "80:80"
     depends_on:
       - spring-app
-
-    # volumes:
-    #   - /etc/nginx/nginx.conf:/etc/nginx/nginx.conf
-    #   - /var/log/nginx:/var/log/nginx

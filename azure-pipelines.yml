@@ -10,14 +10,10 @@ resources:
 
 variables:
   # Container registry service connection established during pipeline creation
-  dockerRegistryServiceConnection: '8d0eba92-408e-4dcb-9540-400b1c904c11'
-  imageRepositoryProd: 'production'
-  imageRepositoryNginx: 'nginx'
-  imageRepositorySpringapp: 'spring-app'
+  dockerRegistryServiceConnection: 8d0eba92-408e-4dcb-9540-400b1c904c11
+  imageRepositorySpringapp: spring-app
   azureContainerRegistry: acrprod0327.azurecr.io
   azureSubscriptionEndpoint: scn-arm0509
-  dockerfilePathNginx: '$(Build.SourcesDirectory)/Dockerfile-nginx'
-  dockerfilePathApp: '$(Build.SourcesDirectory)/Dockerfile-app'
   tag: '$(Build.BuildId)'
 
   # Agent VM image name
@@ -34,8 +30,7 @@ stages:
     steps:
       - task: DockerCompose@0
         displayName: Run a Docker Compose command
-        inputs:
-          containerregistrytype: Azure Container Registry
+        inputs:          
           action: Run a Docker Compose command
           azureSubscriptionEndpoint: $(azureSubscriptionEndpoint)
           azureContainerRegistry: $(azureContainerRegistry)
@@ -49,6 +44,7 @@ stages:
         displayName: Docker Compose Build services
         inputs:
           action: Build services
+          containerregistrytype: Azure Container Registry
           azureSubscriptionEndpoint: $(azureSubscriptionEndpoint)
           azureContainerRegistry: $(azureContainerRegistry)
           dockerComposeFile: docker-compose.yml
