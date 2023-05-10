@@ -2,7 +2,7 @@
 
 # Build stage
 FROM openjdk:11-jdk-slim AS builder
-# WORKDIR /app
+WORKDIR /app
 
 # Copy Gradle wrapper files
 COPY gradle /app/gradle
@@ -19,10 +19,8 @@ RUN chmod +x gradlew
 # Build application
 RUN ./gradlew clean build
 
-WORKDIR /app
-
 # JAR 파일을 'app' 디렉토리로 복사한다.
-COPY /app/build/libs/patron-webMobile-1.2.4-SNAPSHOT.jar app.jar
+COPY /build/libs/patron-webMobile-1.2.4-SNAPSHOT.jar app.jar
 
 # Docker 컨테이너가 런타임 시 8080 포트에서 수신 대기할 것임을 알리는 명령
 EXPOSE 8080
