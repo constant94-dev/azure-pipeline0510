@@ -35,28 +35,31 @@ stages:
           azureSubscriptionEndpoint: $(azureSubscriptionEndpoint)
           azureContainerRegistry: $(azureContainerRegistry)
           dockerComposeCommand: rm --all
-      # - task: DockerCompose@0
-      #   displayName: Run a Docker Compose command
-      #   inputs:          
-      #     action: Run a Docker Compose command
-      #     azureSubscriptionEndpoint: $(azureSubscriptionEndpoint)
-      #     azureContainerRegistry: $(azureContainerRegistry)
-      #     dockerComposeFile: docker-compose.yml 
-      #     projectName: $(Build.Repository.Name)
-      #     qualifyImageNames: true
-      #     dockerComposeCommand: up
 
-    # Docker Compose 파일 명령으로 Nginx 이미지 가져와서 Spring App 이미지와 함께 실행하기
       - task: DockerCompose@0
-        displayName: Docker Compose Build services
-        inputs:
-          action: Build services
+        displayName: Run services
+        inputs:          
+          action: Run services
           azureSubscriptionEndpoint: $(azureSubscriptionEndpoint)
           azureContainerRegistry: $(azureContainerRegistry)
           dockerComposeFile: docker-compose.yml
           projectName: $(Build.Repository.Name)
           qualifyImageNames: true
-          additionalImageTags: $(Build.BuildId)
+          buildImages: true
+          abortOnContainerExit: true
+          detached: false
+
+    # Docker Compose 파일 명령으로 Nginx 이미지 가져와서 Spring App 이미지와 함께 실행하기
+      # - task: DockerCompose@0
+      #   displayName: Docker Compose Build services
+      #   inputs:
+      #     action: Build services
+      #     azureSubscriptionEndpoint: $(azureSubscriptionEndpoint)
+      #     azureContainerRegistry: $(azureContainerRegistry)
+      #     dockerComposeFile: docker-compose.yml
+      #     projectName: $(Build.Repository.Name)
+      #     qualifyImageNames: true
+      #     additionalImageTags: $(Build.BuildId)
   
     # ACR로 이미지 푸시하기
       - task: DockerCompose@0
