@@ -14,7 +14,7 @@ variables:
   imageRepositorySpringapp: spring-app
   azureContainerRegistry: acrprod0327.azurecr.io
   azureSubscriptionEndpoint: scn-arm0509
-  tag: '$(Build.BuildId)'
+  tag: $(Build.BuildId)
 
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
