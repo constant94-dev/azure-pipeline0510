@@ -7,7 +7,7 @@ services:
       context: .
       dockerfile: Dockerfile-app
     image: acrprod0327.azurecr.io/production/spring-app
-    container_name: springApp
+    container_name: spring-app
     ports:
       - "8080:8080"
   web:
@@ -15,7 +15,7 @@ services:
       context: .
       dockerfile: Dockerfile-nginx
     image: acrprod0327.azurecr.io/production/nginx-alpine
-    container_name: nginxAlpine
+    container_name: nginx-alpine
     ports:
       - "80:80"
     depends_on:
