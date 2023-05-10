@@ -5,22 +5,22 @@ FROM openjdk:11-jdk-slim AS builder
 WORKDIR /app
 
 # Copy Gradle wrapper files
-COPY gradle /app/gradle
-COPY gradlew /app
+COPY app/gradle /gradle
+COPY app/gradlew .
 
 # Copy project files
-COPY build.gradle /app
-COPY settings.gradle /app
-COPY src /app/src
+COPY app/build.gradle .
+COPY app/settings.gradle .
+COPY app/src /src
+
+# 애플리케이션 파일 복사
+COPY /build/libs/patron-webMobile-1.2.4-SNAPSHOT.jar app.jar
 
 # Change permissions on Gradle wrapper
 RUN chmod +x gradlew
 
 # Build application
 RUN ./gradlew clean build
-
-# JAR 파일을 'app' 디렉토리로 복사한다.
-COPY patron-webMobile-1.2.4-SNAPSHOT.jar app.jar
 
 # Docker 컨테이너가 런타임 시 8080 포트에서 수신 대기할 것임을 알리는 명령
 EXPOSE 8080
