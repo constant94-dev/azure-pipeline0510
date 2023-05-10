@@ -37,17 +37,16 @@ stages:
           dockerComposeCommand: rm --all
 
       - task: DockerCompose@0
-        displayName: Run services
+        displayName: Run a Docker Compose command
         inputs:          
-          action: Run services
+          action: Run a Docker Compose command
           azureSubscriptionEndpoint: $(azureSubscriptionEndpoint)
           azureContainerRegistry: $(azureContainerRegistry)
           dockerComposeFile: docker-compose.yml
-          projectName: $(Build.Repository.Name)
+          projectName: production
           qualifyImageNames: true
-          buildImages: true
-          abortOnContainerExit: true
-          detached: false
+          additionalImageTags: $(Build.BuildId)
+          dockerComposeCommand: up -d
 
     # Docker Compose 파일 명령으로 Nginx 이미지 가져와서 Spring App 이미지와 함께 실행하기
       # - task: DockerCompose@0
@@ -71,4 +70,5 @@ stages:
           dockerComposeFile: docker-compose.yml
           projectName: production
           qualifyImageNames: true
-          additionalImageTags: $(Build.BuildId)
+          additionalImageTags: |
+            $(Build.BuildId)
