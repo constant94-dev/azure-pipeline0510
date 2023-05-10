@@ -64,3 +64,4 @@ stages:
           projectName: $(Build.Repository.Name)
           qualifyImageNames: true
           additionalImageTags: $(Build.BuildId)
+          includeLatestTag: true
