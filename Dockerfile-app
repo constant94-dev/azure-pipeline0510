@@ -20,7 +20,7 @@ RUN chmod +x gradlew
 RUN ./gradlew clean build
 
 # 애플리케이션 파일 복사
-COPY build/libs/patron-webMobile-1.2.4-SNAPSHOT.jar /app/app.jar
+COPY /app/build/libs/patron-webMobile-1.2.4-SNAPSHOT.jar /app/app.jar
 
 # Docker 컨테이너가 런타임 시 8080 포트에서 수신 대기할 것임을 알리는 명령
 EXPOSE 8080
