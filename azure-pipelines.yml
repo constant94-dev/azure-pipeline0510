@@ -67,6 +67,6 @@ stages:
           azureSubscriptionEndpoint: $(azureSubscriptionEndpoint)
           azureContainerRegistry: $(azureContainerRegistry)
           dockerComposeFile: docker-compose.yml
-          projectName: production
+          projectName: 'production'
           qualifyImageNames: true
           includeLatestTag: true
