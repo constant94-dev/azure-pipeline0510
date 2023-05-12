@@ -42,9 +42,9 @@ stages:
           azureSubscriptionEndpoint: $(azureSubscriptionEndpoint)
           azureContainerRegistry: $(azureContainerRegistry)
           dockerComposeFile: docker-compose.yml
-          projectName: production
+          projectName: $(Build.Repository.Name)
           qualifyImageNames: true
-          dockerComposeCommand: up --build
+          dockerComposeCommand: build
 
     # Docker Compose 파일 명령으로 Nginx 이미지 가져와서 Spring App 이미지와 함께 실행하기
       # - task: DockerCompose@0
@@ -66,6 +66,6 @@ stages:
           azureSubscriptionEndpoint: $(azureSubscriptionEndpoint)
           azureContainerRegistry: $(azureContainerRegistry)
           dockerComposeFile: docker-compose.yml
-          projectName: production
+          projectName: $(Build.Repository.Name)
           qualifyImageNames: true
           includeLatestTag: true

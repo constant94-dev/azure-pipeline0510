@@ -14,7 +14,7 @@ COPY settings.gradle /app/settings.gradle
 COPY src /app/src
 
 # Change permissions on Gradle wrapper
-RUN chmod +x gradlew
+RUN chmod +x ./gradlew
 
 # Build application
 RUN ./gradlew clean build
