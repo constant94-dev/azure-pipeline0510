@@ -19,6 +19,9 @@ WORKDIR /app
 # Copy Gradle wrapper files
 # COPY gradle/wrapper /app/gradle/wrapper
 
+# Change permissions on Gradle wrapper
+RUN chmod +x ./gradlew
+
 # Build application
 RUN ./gradlew clean build
 # Rename JAR file
