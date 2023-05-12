@@ -9,6 +9,9 @@ WORKDIR /app
 # 필요한 파일들을 복사
 COPY . /app
 
+# Change permissions on Gradle Wrapper
+RUN chmod +x ./gradlew
+
 # Build application
 RUN ./gradlew clean build
 # Rename JAR file
