@@ -20,10 +20,10 @@ WORKDIR /app
 # COPY gradle/wrapper /app/gradle/wrapper
 
 # Change permissions on Gradle wrapper
-RUN chmod +x ./gradlew
+RUN chmod +x ./gradle
 
 # Build application
-RUN ./gradlew clean build
+RUN ./gradle clean build
 # Rename JAR file
 # RUN mv /app/build/libs/patron-webMobile-1.2.4-SNAPSHOT.jar /app/app.jar
 
