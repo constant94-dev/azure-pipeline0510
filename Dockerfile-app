@@ -16,7 +16,7 @@ COPY src /app/src
 WORKDIR /app
 
 # Install Gradle
-RUN apt-get update && apt-get install -y curl && \
+RUN apt-get update && apt-get install -y curl unzip && \
     curl -s "https://get.sdkman.io" | bash && \
     bash -c "source /root/.sdkman/bin/sdkman-init.sh && sdk install gradle"
 
