@@ -15,8 +15,11 @@ COPY src /app/src
 # Change working directory to /app
 WORKDIR /app
 
+# Install unzip
+RUN apt-get update && apt-get install -y unzip
+
 # Install Gradle
-RUN apt-get update && apt-get install -y curl unzip && \
+RUN apt-get install -y curl && \
     curl -s "https://get.sdkman.io" | bash && \
     bash -c "source /root/.sdkman/bin/sdkman-init.sh && sdk install gradle"
 
