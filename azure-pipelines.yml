@@ -11,7 +11,6 @@ resources:
 variables:
   # Container registry service connection established during pipeline creation
   dockerRegistryServiceConnection: 8d0eba92-408e-4dcb-9540-400b1c904c11
-  imageRepositorySpringapp: spring-app
   azureContainerRegistry: acrprod0327.azurecr.io
   azureSubscriptionEndpoint: scn-arm0509
   tag: $(Build.BuildId)
