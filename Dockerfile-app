@@ -7,16 +7,10 @@ FROM openjdk:11-jdk-slim AS builder
 WORKDIR /app
 
 # 필요한 파일들을 복사
-# copy & build
-COPY . .
+COPY . /app
 
-# Install recode
-RUN apt-get install -y recode
-# Convert Gradle wrapper script to UNIX format
-RUN recode ibmpc..latin1 ./gradlew
-RUN chmod +x ./gradlew
-RUN ./gradlew clean booJar
-
+# Build application
+RUN ./gradlew clean build
 # Rename JAR file
 # RUN mv /app/build/libs/patron-webMobile-1.2.4-SNAPSHOT.jar /app/app.jar
 
