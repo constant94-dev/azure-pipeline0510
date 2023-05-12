@@ -2,28 +2,21 @@
 
 # 베이스 이미지 선택
 FROM openjdk:11-jdk-slim AS builder
-COPY . /app
 
 # 작업 디렉토리 설정
 WORKDIR /app
 
 # 필요한 파일들을 복사
-# COPY gradle /app/gradle
-# COPY build.gradle /app/build.gradle
-# COPY settings.gradle /app/settings.gradle
-# COPY src /app/src
-
-# Copy Gradle wrapper
-# COPY gradlew /app/
-
-# Copy Gradle wrapper files
-# COPY gradle/wrapper /app/gradle/wrapper
-
+COPY gradlew .
+COPY gradle gradle
+COPY build.gradle .
+COPY settings.gradle .
+COPY src src
 # Change permissions on Gradle wrapper
-RUN chmod +x ./gradle
-
+RUN chmod +X ./gradlew
 # Build application
-RUN ./gradle clean build
+RUN ./gradlew build
+
 # Rename JAR file
 # RUN mv /app/build/libs/patron-webMobile-1.2.4-SNAPSHOT.jar /app/app.jar
 
