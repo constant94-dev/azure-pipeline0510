@@ -6,7 +6,7 @@ WORKDIR /app
 
 # Copy Gradle wrapper files
 COPY gradle /app/gradle
-COPY gradlew /app
+COPY gradlew /app/gradlew
 
 # Copy project files
 COPY build.gradle .
@@ -14,10 +14,10 @@ COPY settings.gradle .
 COPY src /app/src
 
 # Change permissions on Gradle wrapper
-RUN chmod +x gradlew
+RUN chmod +x gradlew && ./gradlew clean build
 
 # Build application
-RUN ./gradlew clean build
+# RUN ./gradlew clean build
 # Rename JAR file
 # RUN mv /app/build/libs/patron-webMobile-1.2.4-SNAPSHOT.jar /app/app.jar
 
