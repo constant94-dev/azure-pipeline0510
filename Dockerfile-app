@@ -2,6 +2,8 @@
 
 # Build stage
 FROM openjdk:11-jdk-slim AS builder
+RUN mkdir -p app
+
 WORKDIR /app
 
 # Copy Gradle wrapper files
