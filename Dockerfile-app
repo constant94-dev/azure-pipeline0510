@@ -7,15 +7,17 @@ FROM openjdk:11-jdk-slim AS builder
 WORKDIR /app
 
 # 필요한 파일들을 복사
+COPY gradle /app/gradle
+COPY gradlew /app/gradlew
 COPY build.gradle /app/build.gradle
 COPY settings.gradle /app/settings.gradle
 COPY src /app/src
 
 # Change permissions on Gradle wrapper
-RUN chmod +x ./gradlew
+RUN chmod +x /app/gradlew
 
 # Build application
-RUN ./gradlew clean build
+RUN /app/gradlew clean build
 # Rename JAR file
 # RUN mv /app/build/libs/patron-webMobile-1.2.4-SNAPSHOT.jar /app/app.jar
 
