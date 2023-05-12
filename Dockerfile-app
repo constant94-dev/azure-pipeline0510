@@ -2,32 +2,22 @@
 
 # 베이스 이미지 선택
 FROM openjdk:11-jdk-slim AS builder
+COPY . /app
 
 # 작업 디렉토리 설정
 WORKDIR /app
 
 # 필요한 파일들을 복사
-COPY gradle /app/gradle
-COPY build.gradle /app/build.gradle
-COPY settings.gradle /app/settings.gradle
-COPY src /app/src
-
-# Change working directory to /app
-WORKDIR /app
-
-# Install unzip
-RUN apt-get update && apt-get install -y unzip
-
-# Install Gradle
-RUN apt-get install -y curl && \
-    curl -s "https://get.sdkman.io" | bash && \
-    bash -c "source /root/.sdkman/bin/sdkman-init.sh && sdk install gradle"
+# COPY gradle /app/gradle
+# COPY build.gradle /app/build.gradle
+# COPY settings.gradle /app/settings.gradle
+# COPY src /app/src
 
 # Copy Gradle wrapper
-COPY gradlew /app/
+# COPY gradlew /app/
 
 # Copy Gradle wrapper files
-COPY gradle/wrapper /app/gradle/wrapper
+# COPY gradle/wrapper /app/gradle/wrapper
 
 # Build application
 RUN ./gradlew clean build
