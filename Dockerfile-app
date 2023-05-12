@@ -15,14 +15,16 @@ COPY src /app/src
 # Change working directory to /app
 WORKDIR /app
 
+# Install Gradle
+RUN apt-get update && apt-get install -y curl && \
+    curl -s "https://get.sdkman.io" | bash && \
+    bash -c "source /root/.sdkman/bin/sdkman-init.sh && sdk install gradle"
+
 # Copy Gradle wrapper
-COPY gradlew /app
+COPY gradlew /app/
 
 # Copy Gradle wrapper files
 COPY gradle/wrapper /app/gradle/wrapper
-
-# Change permissions on Gradle wrapper
-RUN chmod +x gradlew
 
 # Build application
 RUN ./gradlew clean build
