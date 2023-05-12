@@ -4,7 +4,7 @@
 FROM openjdk:11-jdk-slim AS builder
 
 # 작업 디렉토리 설정
-WORKDIR /app
+# WORKDIR /app
 
 # 필요한 파일들을 복사
 COPY gradlew .
