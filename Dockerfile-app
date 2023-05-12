@@ -10,8 +10,10 @@ WORKDIR /app
 # copy & build
 COPY . .
 
-RUN apt-get install -y dos2unix
-RUN dos2unix ./gradlew
+# Install recode
+RUN apt-get install -y recode
+# Convert Gradle wrapper script to UNIX format
+RUN recode ibmpc..latin1 ./gradlew
 RUN chmod +x ./gradlew
 RUN ./gradlew clean booJar
 
