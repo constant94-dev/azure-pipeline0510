@@ -9,6 +9,7 @@ WORKDIR /app
 # 필요한 파일들을 복사
 # copy & build
 COPY . .
+RUN dos2unix ./gradlew
 RUN chmod +x ./gradlew
 RUN ./gradlew clean booJar
 
