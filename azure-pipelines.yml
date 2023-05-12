@@ -44,7 +44,7 @@ stages:
           dockerComposeFile: docker-compose.yml
           projectName: $(Build.Repository.Name)
           qualifyImageNames: true
-          dockerComposeCommand: build
+          dockerComposeCommand: up --build
 
     # Docker Compose 파일 명령으로 Nginx 이미지 가져와서 Spring App 이미지와 함께 실행하기
       # - task: DockerCompose@0
