@@ -10,14 +10,14 @@ FROM openjdk:11-jdk-slim AS builder
 COPY gradlew .
 COPY gradle gradle
 COPY build.gradle .
-COPY settings.gradle . 
+COPY settings.gradle .
 COPY src src
 
 # Change permissions on Gradle Wrapper
 RUN chmod +x ./gradlew
 
 # Build application
-RUN ./gradlew clean build
+RUN ./gradlew build
 # Rename JAR file
 # RUN mv /app/build/libs/patron-webMobile-1.2.4-SNAPSHOT.jar /app/app.jar
 
