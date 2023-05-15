@@ -7,10 +7,14 @@ FROM openjdk:11-jdk-slim AS builder
 # WORKDIR /app
 
 # 필요한 파일들을 복사
-# COPY . /app
+COPY gradlew .
+COPY gradle gradle
+COPY build.gradle .
+COPY settings.gradle . 
+COPY src src
 
 # Change permissions on Gradle Wrapper
-RUN sudo chmod +x gradlew
+RUN chmod +x ./gradlew
 
 # Build application
 RUN ./gradlew clean build
