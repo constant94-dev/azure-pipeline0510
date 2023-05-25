@@ -16,6 +16,7 @@ variables:
   azureContainerRegistry: acrprod0327.azurecr.io
   azureSubscriptionEndpoint: scn-arm0509
   tag: $(Build.BuildId)
+  imagePullSecret: patron-auth
 
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
