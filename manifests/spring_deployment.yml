@@ -1,0 +1,22 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: spring-deploy
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: spring-app
+  template:
+    metadata:
+      labels:
+        app: spring-app
+    spec:
+      containers:
+        - name: springApp
+          image: acrprod0327.azurecr.io/production/spring-app
+          ports:
+          - containerPort: 80
+          env:
+          - name: SPRING_PROFILES_ACTIVE
+            value: dev
