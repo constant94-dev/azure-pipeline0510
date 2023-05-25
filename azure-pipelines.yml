@@ -11,6 +11,7 @@ resources:
 variables:
   # Container registry service connection established during pipeline creation
   dockerRegistryServiceConnection: 8d0eba92-408e-4dcb-9540-400b1c904c11
+  k8sNamespace: default
   azureContainerRegistry: acrprod0327.azurecr.io
   azureSubscriptionEndpoint: scn-arm0509
   tag: $(Build.BuildId)
@@ -37,7 +38,7 @@ stages:
 
       - task: DockerCompose@0
         displayName: Run a Docker Compose command
-        inputs:          
+        inputs:
           action: Run a Docker Compose command
           azureSubscriptionEndpoint: $(azureSubscriptionEndpoint)
           azureContainerRegistry: $(azureContainerRegistry)
@@ -45,27 +46,57 @@ stages:
           projectName: $(Build.Repository.Name)
           qualifyImageNames: true
           dockerComposeCommand: build
-
-    # Docker Compose 파일 명령으로 Nginx 이미지 가져와서 Spring App 이미지와 함께 실행하기
-      # - task: DockerCompose@0
-      #   displayName: Docker Compose Build services
-      #   inputs:
-      #     action: Build services
-      #     azureSubscriptionEndpoint: $(azureSubscriptionEndpoint)
-      #     azureContainerRegistry: $(azureContainerRegistry)
-      #     dockerComposeFile: docker-compose.yml
-      #     projectName: $(Build.Repository.Name)
-      #     qualifyImageNames: true
-      #     additionalImageTags: $(Build.BuildId)
   
     # ACR로 이미지 푸시하기
       - task: DockerCompose@0
         displayName: Docker Compose Push services
         inputs:
-          action: Push services          
+          action: Push services
           azureSubscriptionEndpoint: $(azureSubscriptionEndpoint)
           azureContainerRegistry: $(azureContainerRegistry)
           dockerComposeFile: docker-compose.yml
           projectName: $(Build.Repository.Name)
           qualifyImageNames: true
           includeLatestTag: true
+      
+- stage: Deploy
+  displayName: Deploy stage
+  dependsOn: Build
+  jobs:
+  - deployment: Deploy
+    displayName: Deploy job
+    pool:
+      vmImage: $(vmImageName)
+    environment: 'env-aks0404' #customize with your environment
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - task: DownloadPipelineArtifact@2
+            inputs:
+              artifactName: 'manifests'
+              downloadPath: '$(System.ArtifactsDirectory)/manifests'
+
+          - task: KubernetesManifest@0
+            displayName: Create imagePullSecret
+            inputs:
+              action: createSecret
+              secretName: $(imagePullSecret)
+              namespace: $(k8sNamespace)
+              dockerRegistryEndpoint: $(dockerRegistryServiceConnection)
+
+          - task: KubernetesManifest@0
+            displayName: Deploy to Kubernetes cluster
+            inputs:
+              action: deploy
+              namespace: $(k8sNamespace)
+              manifests: |
+                $(System.ArtifactsDirectory)/manifests/nginx_deployment.yml
+                $(System.ArtifactsDirectory)/manifests/nginx_service.yml
+                $(System.ArtifactsDirectory)/manifests/spring_deployment.yml
+                $(System.ArtifactsDirectory)/manifests/spring_service.yml
+                $(System.ArtifactsDirectory)/manifests/ingress.yml
+              imagePullSecrets: |
+                $(imagePullSecret)
+              containers: |
+                $(containerRegistry)/$(imageRepository):$(tag)
