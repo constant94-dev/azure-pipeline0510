@@ -13,6 +13,7 @@ variables:
   dockerRegistryServiceConnection: 8d0eba92-408e-4dcb-9540-400b1c904c11
   kubernetesServiceConnection: b32d7590-0a26-41d0-befb-dc448e93fb1b
   k8sNamespace: default
+  hosted: ms-hosted
   azureContainerRegistry: acrprod0327.azurecr.io
   azureSubscriptionEndpoint: scn-arm0509
   tag: $(Build.BuildId)
