@@ -60,6 +60,7 @@ stages:
           includeLatestTag: true
 
       - task: PublishPipelineArtifact@1
+        displayName: manifests definition
         inputs:
           artifactName: 'manifests'
           path: 'manifests'
