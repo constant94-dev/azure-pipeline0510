@@ -99,6 +99,7 @@ stages:
             inputs:
               action: deploy
               namespace: $(k8sNamespace)
+              kubernetesServiceConnection: $(kubernetesServiceConnection)
               manifests: |
                 $(System.ArtifactsDirectory)/manifests/nginx_deployment.yml
                 $(System.ArtifactsDirectory)/manifests/nginx_service.yml
