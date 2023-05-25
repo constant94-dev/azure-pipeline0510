@@ -13,7 +13,7 @@ spec:
         app: nginx-app
     spec:
       containers:
-        - name: nginxAlpine
+        - name: nginx-alpine
           image: acrprod0327.azurecr.io/production/nginx-alpine
           ports:
           - containerPort: 80

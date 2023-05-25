@@ -13,7 +13,7 @@ spec:
         app: spring-app
     spec:
       containers:
-        - name: springApp
+        - name: spring-app
           image: acrprod0327.azurecr.io/production/spring-app
           ports:
           - containerPort: 80
