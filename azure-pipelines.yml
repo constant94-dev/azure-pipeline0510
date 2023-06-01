@@ -101,6 +101,7 @@ stages:
               action: deploy
               namespace: $(k8sNamespace)
               kubernetesServiceConnection: $(kubernetesServiceConnection)
+              rolloutStatusTimeout: 
               manifests: |
                 $(System.ArtifactsDirectory)/manifests/nginx_deployment.yml
                 $(System.ArtifactsDirectory)/manifests/nginx_service.yml
