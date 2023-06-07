@@ -10,8 +10,6 @@ services:
     container_name: spring-app
     ports:
       - "8080:8080"
-    tty: true
-    stdin_open: true
   web:
     build:
       context: .
