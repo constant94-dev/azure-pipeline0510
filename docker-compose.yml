@@ -10,8 +10,8 @@ services:
     container_name: spring-app
     ports:
       - "8080:8080"
-    networks:
-      - patron
+    tty: true
+    stdin_open: true
   web:
     build:
       context: .
@@ -20,11 +20,5 @@ services:
     container_name: nginx-alpine
     ports:
       - "80:80"
-    networks:
-      - patron
-    links:
-      - spring-app
     depends_on:
       - spring-app
-networks:
-  patron:
