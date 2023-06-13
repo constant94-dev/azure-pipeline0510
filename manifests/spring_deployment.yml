@@ -1,4 +1,4 @@
-apiVersion : apps/v1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: spring-deploy
@@ -16,7 +16,7 @@ spec:
         - name: spring-app
           image: acrprod0327.azurecr.io/production/spring-app
           ports:
-          - containerPort: 80
+          - containerPort: 8080
           env:
-          - name: SPRING_PROFILES_ACTIVE
-            value: dev
+            - name: SPRING_PROFILES_ACTIVE
+              value: dev

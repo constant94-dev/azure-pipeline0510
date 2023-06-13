@@ -111,4 +111,5 @@ stages:
               imagePullSecrets: |
                 $(imagePullSecret)
               containers: |
-                $(containerRegistry)/$(imageRepository):$(tag)
+                $(azureContainerRegistry)/production/spring-app:$(tag)
+                $(azureContainerRegistry)/production/nginx-alpine:$(tag)
