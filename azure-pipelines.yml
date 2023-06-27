@@ -47,7 +47,6 @@ stages:
           azureContainerRegistry: $(azureContainerRegistry)
           dockerComposeFile: docker-compose.yml
           projectName: $(Build.Repository.Name)
-          qualifyImageNames: true
           dockerComposeCommand: build
   
     # ACR로 이미지 푸시하기
@@ -59,7 +58,7 @@ stages:
           azureContainerRegistry: $(azureContainerRegistry)
           dockerComposeFile: docker-compose.yml
           projectName: $(Build.Repository.Name)
-          qualifyImageNames: true
+          includeSourceTags: true
           includeLatestTag: true
 
       - task: PublishPipelineArtifact@1
