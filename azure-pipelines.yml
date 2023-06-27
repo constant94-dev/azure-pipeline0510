@@ -42,12 +42,11 @@ stages:
       - task: DockerCompose@0
         displayName: Run a Docker Compose command
         inputs:
-          action: Run a Docker Compose command
+          action: Build services
           azureSubscriptionEndpoint: $(azureSubscriptionEndpoint)
           azureContainerRegistry: $(azureContainerRegistry)
           dockerComposeFile: docker-compose.yml
           projectName: $(Build.Repository.Name)
-          dockerComposeCommand: build
           additionalImageTags: |
             $(tag)
   
