@@ -48,6 +48,8 @@ stages:
           dockerComposeFile: docker-compose.yml
           projectName: $(Build.Repository.Name)
           dockerComposeCommand: build
+          additionalImageTags: |
+            $(tag)
   
     # ACR로 이미지 푸시하기
       - task: DockerCompose@0
@@ -58,8 +60,8 @@ stages:
           azureContainerRegistry: $(azureContainerRegistry)
           dockerComposeFile: docker-compose.yml
           projectName: $(Build.Repository.Name)
-          includeSourceTags: true
-          includeLatestTag: true
+          additionalImageTags: |
+            $(tag)
 
       - task: PublishPipelineArtifact@1
         displayName: manifests definition
