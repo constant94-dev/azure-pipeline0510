@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <div th:remove="tag" th:replace="common/common-head-script.html :: headScript"></div>
+    <title th:if="${keyword != null}" th:text="'PATRON | ' + ${keyword}"></title>
+    <link rel="stylesheet" th:href="@{/css_v1_3_39/search/search.css}">
+</head>
+
+<body>
+<input th:type="hidden" th:value="${loginStatus}" id="login_status">
+<div th:replace="common/login-modal.html"></div>
+<!--로딩 스패너-->
+<div class="loading-spinner"></div>
+<header class="header">
+    <a th:href="'/'+${language}+'/search'" class="btn-go-back">
+        <i class="icon-go-back"></i>
+        <span class="go-back-guide" th:text="#{common.back}">이전</span>
+    </a>
+</header>
+
+<article>
+    <div class="contents">
+        <div class="search-area no-result">
+            <a class="search-guide" tabindex="1" th:if="${keyword != null}">
+                <em th:if="${language} == 'en'" th:text="#{search.noSearchResultFor}">에 대한 검색결과가 없습니다</em>'<em
+                    class="search-keyword" th:text="${keyword}"></em>'<em th:unless="${language} == 'en'"
+                                                                          th:text="#{search.noSearchResultFor}">에 대한
+                검색결과가 없습니다</em>
+            </a>
+            <input type="text" class="search-box" name="search-box" th:title="#{search.lookingFor}"
+                   th:placeholder="#{search.lookingFor}" value="" maxlength="14">
+        </div>
+        <div id="cate_guide" class="cate-guide">
+            <span th:text="#{search.howAbout}">이런 검색어는 어떠세요?</span>
+        </div>
+        <div class="item-container search-tag-container">
+            <ul class="item-box">
+                <li th:if="${fixedTags != null}" class="item hoverTrue" th:each="fixedTag,index : ${fixedTags}">
+                    <span class="item-border"></span>
+                    <a th:href="'/'+${language}+'/search-result?keyword='+${fixedTag.getArtworkTag().getTagName()}"
+                       th:style="'background-image: url(\'' + ${fixedTag.getThumbnail()} + '\')'"></a>
+                    <span class="tag-name" th:text="${fixedTag.getArtworkTag().getTagName()}">서양화</span>
+                    <span class="artwork-tag-count" th:text="${fixedTagsArtworkCount[index.index]}">서양화</span>
+                </li>
+                <li th:if="${randomizeTags != null}" class="item hoverTrue"
+                    th:each="randomizeTag,index : ${randomizeTags}">
+                    <span class="item-border"></span>
+                    <a th:href="'/'+${language}+'/search-result?keyword='+${randomizeTag.getArtworkTag().getTagName()}"
+                       th:style="'background-image: url(\'' + ${randomizeTag.getThumbnail()} + '\')'"></a>
+                    <span class="tag-name" th:text="${randomizeTag.getArtworkTag().getTagName()}">서양화</span>
+                    <span class="artwork-tag-count" th:text="${randomizeTagsArtworkCount[index.index]}">서양화</span>
+                </li>
+            </ul>
+        </div>
+        <div class="search-key">
+            <p th:text="#{search.recentSearch}">최근 검색어</p>
+            <ul class="search-recent" th:with="maxKeywords = 5">
+                <li th:each="keyword, index : ${keywords}" th:if="${index.index < maxKeywords}">
+                    <a class="searched-div" th:href="'/'+${language}+'/search-result?keyword='+${keyword}">
+                        <span class="searched-keyword" th:text="${keyword}"></span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    </div>
+</article>
+
+<script>
+    document.querySelector('.btn-go-back').focus()
+</script>
+<script th:inline="javascript">
+    var messageSearch = {};
+    messageSearch.enterSearch = [[#{search.enterSearch}]];
+    messageSearch.doNotEnterSpecialCharter = [[#{search.doNotEnterSpecialCharter}]];
+</script>
+
+<script th:src="@{/js_v1_3_39/common/common.js}" th:type="'text/javascript'"></script>
+<script th:src="@{/js_v1_3_39/search/search.js}"></script>
+<script th:src="@{/js_v1_3_39/search/search-noresult.js}"></script>
+</body>
+
+</html>

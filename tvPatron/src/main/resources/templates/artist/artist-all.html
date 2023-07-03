@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <div th:remove="tag" th:replace="common/common-head-script.html :: headScript"></div>
+    <title>PATRON | All Artists</title>
+    <link rel="stylesheet" th:href="@{/css_v1_3_39/artist/artist-all.css}">
+</head>
+
+<body>
+<input th:type="hidden" th:value="${loginStatus}" id="login_status">
+<div th:replace="common/login-modal.html"></div>
+<!--로딩 스패너-->
+<div class="loading-spinner"></div>
+<main>
+    <div class="all-artists-container" id="all_artists_container" style="display: block!important;">
+        <button type="button" class="btn-artists-close" id="btn_artists_close">
+            <i class="icon-go-back"></i>
+            <span class="go-back-guide" th:text="#{common.back}">이전</span>
+        </button>
+        <!--작가 검색 결과-->
+        <div class="all-artists-list category">
+            <p class="title4" th:text="#{artist.allArtist}">모든 작가</p>
+            <div class="item-container">
+                <ul class="item-box artist">
+                    <!--Ajax-->
+                </ul>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script th:src="@{/js_v1_3_39/common/common.js}" th:type="'text/javascript'"></script>
+<script th:src="@{/js_v1_3_39/artist/artists-all.js}"></script>
+
+</body>
+</html>

@@ -1,0 +1,100 @@
+.timer-circle {
+    margin-right: 60px;
+    border-radius: 127px;
+    width: 200px;
+    height: 200px;
+    border: 16px solid #c4c4c4;
+    zoom: 0.15;
+    align-self: center;
+}
+
+.circle_progress {
+    position: relative;
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    padding: 8px;
+    transform: translate(25px, 23px);
+}
+
+.circle_progress .left {
+    position: absolute;
+    top: 0;
+    left: -6px;
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    clip: rect(0, 80px, 160px, 0);
+    z-index: 10;
+}
+
+.circle_progress .left .bars {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    clip: rect(0, 160px, 160px, 80px);
+    background-color: #c4c4c4;
+    opacity: 1;
+}
+
+.circle_progress .right {
+    position: absolute;
+    top: 0;
+    left: -11px;
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    clip: rect(0, 160px, 160px, 80px);
+}
+
+.circle_progress .right .bars {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    clip: rect(0, 80px, 160px, 0);
+    background-color: #c4c4c4;
+    opacity: 1;
+}
+
+#animationDiv1 {
+    animation-duration: 180s;
+    animation-name: left;
+    animation-iteration-count: infinite;
+}
+
+#animationDiv2 {
+    animation-duration: 180s;
+    animation-name: right;
+    animation-iteration-count: infinite;
+}
+
+@keyframes left {
+    0% {
+        transform: rotate(0);
+    }
+    50% {
+        transform: rotate(0);
+    }
+    100% {
+        transform: rotate(180deg);
+    }
+}
+
+@keyframes right {
+    0% {
+        transform: rotate(0);
+    }
+    50% {
+        transform: rotate(180deg);
+    }
+    100% {
+        transform: rotate(180deg);
+    }
+}
+

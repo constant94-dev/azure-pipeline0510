@@ -1,0 +1,647 @@
+/*===========thumbnail===========*/
+.regi-art .art-title {
+    bottom: 20px;
+}
+
+/*===========thumbnail===========*/
+/****서치 뒤로가기 헤더****/
+.header {
+    width: 100%;
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 1000;
+}
+
+*:focus {
+    outline: none;
+}
+
+.btn-go-back {
+    position: absolute;
+    width: 130px;
+    height: 940px;
+    top: 90px;
+    left: 26px;
+    border: none;
+    background-color: transparent;
+    outline: transparent !important;
+}
+
+.icon-go-back {
+    background-image: url("../../img_v1_3_39/icon_goback_inactive_left.png");
+    width: 76px;
+    height: 76px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 76px;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.icon-go-back.active {
+    background-image: url("../../img_v1_3_39/icon_goback_active.png")
+}
+
+.go-back-guide {
+    color: #fff;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-103%) translateY(-835px);
+    bottom: -8px;
+    font-family: 'Roboto Light', 'Noto Sans japanese Light', 'Noto Sans KR Light', serif;
+    font-size: 22px;
+    width: 45px;
+    height: 34px;
+    line-height: 34px;
+    display: none;
+}
+
+.disnone {
+    display: none;
+}
+
+.contents {
+    height: 612px;
+    width: 100%;
+}
+
+
+.explanation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position-x: center;
+}
+
+.artist-explanation {
+    position: absolute;
+    left: 160px;
+    top: 64px;
+    z-index: 1;
+    color: white;
+}
+
+.title1 {
+    font-size: 28px;
+    font-weight: 700;
+    opacity: 0.4;
+    margin-bottom: 8px;
+    letter-spacing: 0;
+}
+
+.title2 {
+    display: flex;
+    flex-direction: row;
+    color: #fff;
+    margin-bottom: 0;
+    font-size: 68px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    white-space: nowrap;
+    width: 1200px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.title2 .img-box {
+    position: relative;
+    width: 65px;
+    height: 65px;
+    display: block;
+    border-radius: 65px;
+    overflow: hidden;
+    justify-content: center;
+    align-self: center;
+    margin-right: 14px;
+}
+
+.title2 .img-box img {
+    display: block;
+    width: inherit;
+    height: auto;
+    -webkit-filter: grayscale(100%);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.title3 {
+    font-size: 52px;
+    font-family: 'Roboto Bold', 'Noto Sans japanese', 'Noto Sans KR Bold', serif;;
+    color: #fff;
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+    white-space: nowrap;
+    width: 1200px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.tags {
+    width: auto;
+    height: 30px;
+    float: left;
+    margin-bottom: 20px;
+    position: relative;
+    opacity: 1;
+}
+
+.tags li {
+    float: left;
+    color: white;
+    font-size: 20px;
+    letter-spacing: 0;
+    opacity: 0.6;
+}
+
+.bar {
+    display: inline-block;
+    width: 1px;
+    height: 16px;
+    background-color: #fff;
+    opacity: 0.4;
+    margin: 0 7px;
+}
+
+.tags li:last-of-type .bar {
+    display: none;
+}
+
+.art-tags .artwork-count {
+    display: inline-block;
+    opacity: 1;
+    background: rgba(255, 255, 255, 0.2);
+    width: auto;
+    padding: 3px 12px;
+    border-radius: 100px;
+    font-size: 18px;
+    font-family: 'Roboto Regular', 'Noto Sans KR Regular', 'sans-serif';
+    margin-left: 16px;
+}
+
+.artist-detail {
+    clear: both;
+    margin-top: 24px;
+    margin-bottom: 40px;
+    max-height: 520px;
+    font-size: 24px;
+    font-family: 'Roboto Light', 'Noto Sans japanese Light', 'Noto Sans KR Light', serif;
+    opacity: 0.6;
+    width: 840px;
+    overflow: hidden;
+    display: -ms-flexbox;
+    vertical-align: top;
+    text-overflow: ellipsis;
+    word-break: break-all;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 8;
+    line-height: 34px;
+}
+
+.icon-info {
+    background-image: url("../../img_v1_3_39/home/icon_info_inactive.png");
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.buttons li {
+    float: left;
+    box-sizing: border-box;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+}
+
+.buttons a,
+.buttons button {
+    display: inline-block;
+    min-width: 232px;
+    padding: 0 16px 0 16px;
+    height: 66px;
+    box-sizing: border-box;
+    border-radius: 16px;
+    margin-right: 20px;
+    font-size: 24px;
+    color: rgba(255, 255, 255, 0.6);
+    line-height: 64px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.3);
+    font-family: 'Roboto Bold', 'Noto Sans japanese', 'Noto Sans KR Bold', serif;;
+}
+
+
+.btn-play a.active,
+.btn-info a.active,
+.btn-like button.active {
+    background-color: #2841fa;
+    border: none;
+    color: #fff;
+}
+
+#btn_like:focus {
+    font-family: 'Roboto Bold', 'Noto Sans japanese', 'Noto Sans KR Bold', serif;;
+}
+
+.carousel {
+    position: fixed;
+    left: 160px;
+    top: 882px;
+    height: 184px;
+    width: 1920px;
+}
+
+.pro-area {
+    position: relative;
+    left: 160px;
+    top: 100px;
+    flex-direction: column;
+}
+
+.pro-title {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: 0px;
+    color: white;
+    opacity: 40%;
+    margin-bottom: 12px;
+    position: fixed;
+    top: 64px;
+    left: 160px;
+}
+
+.pro-area h1 {
+    display: flex;
+    font-size: 68px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: white;
+    position: relative;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    max-width: 1600px;
+    top: 8px;
+}
+
+.pro-area h2 {
+    display: flex;
+    margin-right: 10px;
+    flex-direction: row;
+    font-size: 52px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: white;
+    margin-bottom: 0;
+    position: relative;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    max-width: 1600px;
+    top: 8px;
+}
+
+.pro-info {
+    width: 840px;
+    height: 136px;
+    position: absolute;
+    top: 172px;
+    padding-top: 24px;
+}
+
+.pro-info p {
+    font-size: 24px;
+    font-family: 'Roboto Light', 'Noto Sans japanese Light', 'Noto Sans KR Light', serif;
+    letter-spacing: 0px;
+    color: white;
+    opacity: 0.6;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    line-height: 34px;
+    padding-top: 0;
+}
+
+/*.title-area {*/
+/*    opacity: 0;*/
+/*}*/
+
+.carousel.active {
+    left: 416px;
+}
+
+.carousel-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.title4 {
+    font-size: 30px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 20px;
+    position: relative;
+    display: block;
+}
+
+.carousel p {
+    height: 45px;
+}
+
+.item-container {
+    position: relative;
+    left: 0;
+    margin-top: 20px;
+}
+
+.item-box {
+    /*width: auto;*/
+    /*height: auto;*/
+    /*display: flex;*/
+    /*flex-wrap: nowrap;*/
+}
+
+.item a {
+    display: inline-block;
+    width: 400px;
+    height: 225px;
+    border-radius: 16px;
+}
+
+.item a.active {
+    border: 8px solid #fff;
+    box-sizing: border-box;
+}
+
+.artist-list .item a.active {
+    width: 216px;
+    height: 300px;
+    box-sizing: border-box;
+}
+
+.artist-list a {
+    width: 216px;
+    height: 300px;
+}
+
+.item {
+    float: left;
+    margin-right: 20px;
+    background-size: cover;
+    width: 400px;
+    height: 225px;
+    display: block;
+    border-radius: 16px;
+    background-position-x: center;
+}
+
+.icon-collection {
+    background-image: url("../../img_v1_3_39/icon_collection.png");
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    background-size: cover;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    opacity: 0.8;
+}
+
+.item-box span {
+    /*letter-spacing: 0;*/
+    /*color: white;*/
+}
+
+.item-container .item {
+    position: relative;
+}
+
+.item-title {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 4px;
+    position: absolute;
+    bottom: 20px;
+    left: 24px;
+    height: 34px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.art-artist {
+    font-size: 24px;
+    font-family: 'Roboto Light', 'Noto Sans japanese Light', 'Noto Sans KR Light', serif;
+    height: 34px;
+    position: absolute;
+    top: 171px;
+    left: 20px;
+    max-width: 352px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.item-title.title-no-tags.active {
+    bottom: 4px;
+}
+
+.item-title.active {
+    height: 78px;
+    width: 1200px;
+    font-weight: 700;
+    font-size: 56px;
+    letter-spacing: 1px;
+    position: absolute;
+    bottom: 56px;
+    left: 20px;
+    transition: all 0.5s 0.5s ease-in-out;
+}
+
+.art-tags {
+    position: absolute;
+    left: 20px;
+    bottom: 20px;
+    opacity: 0;
+}
+
+.art-tags li {
+    float: left;
+    color: white;
+    font-size: 20px;
+    letter-spacing: 0px;
+}
+
+.art-tags.fade {
+    opacity: 1;
+    transition: all 0.5s 0.5s ease-in-out;
+}
+
+body {
+    background-color: #0a0a0a !important;
+}
+
+.fake-artist-bottom {
+    wwidth: 1664px;
+    height: 1px;
+    background-color: aqua;
+    margin-top: 18px;
+    opacity: 0; /*fake test*/
+}
+
+.fake-artist-bottom:focus {
+    width: 1664px;
+    height: 1px;
+    background-color: red;
+    margin-top: 18px;
+    opacity: 0; /*fake test*/
+}
+
+.fake-artist-top {
+    position: fixed;
+    top: 198px;
+    left: 158px;
+    width: 242px;
+    height: 1px;
+    background-color: aqua;
+    opacity: 0; /*fake test*/
+}
+
+.fake-artist-top:focus {
+    position: fixed;
+    top: 198px;
+    left: 158px;
+    width: 242px;
+    height: 1px;
+    background-color: red;
+    opacity: 0; /*fake test*/
+}
+
+.fake-div {
+    position: fixed;
+    top: 127px;
+    left: 158px;
+    width: 241px;
+    height: 1px;
+    background-color: aqua;
+    opacity: 0; /*fake test*/
+}
+
+.fake-div:focus {
+    position: fixed;
+    top: 127px;
+    left: 158px;
+    width: 241px;
+    height: 1px;
+    background-color: red;
+    opacity: 0; /*fake test*/
+}
+
+.btn-inactive-box {
+    width: 232px;
+    height: 66px;
+    box-sizing: border-box;
+    opacity: 0.1;
+    border-radius: 16px;
+    background-color: #fff;
+    transform: translateY(-66px);
+}
+
+article {
+    z-index: 1;
+}
+
+.artist-explanation .title1, .title-area .pro-title {
+    font-size: 18px;
+    color: #fff;
+    font-family: 'Roboto Regular', 'Noto Sans KR Bold', 'sans-serif';
+    opacity: 1;
+    padding: 6px 12px;
+    border-radius: 100px;
+    background: rgba(10, 10, 10, 0.5);
+    display: inline-flex;
+}
+
+.buttons a.btn-play {
+    min-width: auto;
+    padding: 16px 32px;
+    box-sizing: border-box;
+    height: 68px;
+    line-height: initial;
+}
+
+.buttons .btn-like button {
+    min-width: auto;
+    padding: 16px 32px;
+    line-height: initial;
+    border-width: 0;
+    display: inline-block;
+    text-align: center;
+}
+
+.icon-like {
+    background-image: url('../../img_v1_3_39/icon_like_state.png');
+    width: 36px;
+    height: 36px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    float: left;
+}
+
+.recommended-curation {
+    margin-top: 40px;
+}
+
+.title-area .pro-title.active {
+    background: rgba(10, 10, 10, 0.5);
+}
+
+#info_label.active {
+    background: #2841fa;
+}
+
+#recommended_curation_guide {
+    display: none;
+}
+
+.label-container {
+    position: fixed;
+    top: 64px;
+    left: 160px;
+    display: flex;
+    width: auto;
+    flex-direction: row;
+}
+
+#info_label.pro-title {
+    position: relative;
+    top: 0;
+    left: 0;
+    margin-bottom: 0;
+    color: #fff;
+}
+
+.middle-dot {
+    width: 4px;
+    height: 4px;
+    background: #fff;
+    opacity: 0.8;
+    border-radius: 4px;
+    display: flex;
+    align-self: center;
+}

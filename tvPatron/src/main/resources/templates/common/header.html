@@ -1,0 +1,90 @@
+<header class="header">
+    <div class="menu">
+        <h1 class="">
+            <i class="icon-logo"></i>
+        </h1>
+        <div class="menu-focus-box menu-focus-box-home"></div>
+        <div class="menu-focus-box menu-focus-box-storage"></div>
+        <div class="menu-focus-box menu-focus-box-search"></div>
+        <div class="menu-focus-box menu-focus-box-setting"></div>
+        <div class="menu-focus-box menu-focus-box-exit"></div>
+        <div class="background-color"></div>
+        <ul class="lnb">
+            <li class="">
+                <a href="javascript:void(0)" id="header_home" class="header-menu" onclick="goHome()">
+                    <i class="icon-home"></i>
+                    <th:block th:switch="${language}">
+                        <span th:case="ko" class="menu-guide">홈</span>
+                        <span th:case="en" class="menu-guide">Home</span>
+                        <span th:case="ja" class="menu-guide">ホーム</span>
+                    </th:block>
+                </a>
+            </li>
+            <li>
+                <a th:if="${loginStatus == true}" href="javascript:void(0)" id="header_storage"
+                   class="header-menu storage" onclick="goLibrary()">
+                    <i class="icon-storage"></i>
+                    <th:block th:switch="${language}">
+                        <span th:case="ko" class="menu-guide">라이브러리</span>
+                        <span th:case="en" class="menu-guide">Library</span>
+                        <span th:case="ja" class="menu-guide">ライブラリー</span>
+                    </th:block>
+                </a>
+                <a th:unless="${loginStatus == true}" th:href="'javascript:void(0)'" id="header_storage"
+                   class="header-menu storage" onclick="toastLogin();">
+                    <i class="icon-storage"></i>
+                    <th:block th:switch="${language}">
+                        <span th:case="ko" class="menu-guide">라이브러리</span>
+                        <span th:case="en" class="menu-guide">Library</span>
+                        <span th:case="ja" class="menu-guide">ライブラリー</span>
+                    </th:block>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:void(0)" id="header_search" class="header-menu search" onclick="goSearch()">
+                    <i class="icon-search"></i>
+                    <span th:text="#{player.explore}" class="menu-guide">검색</span>
+                </a>
+            </li>
+        </ul>
+        <ul class="gnb">
+            <li>
+                <a th:if="${loginStatus == true}" href="javascript:void(0)" id="header_setting"
+                   class="header-menu setting" onclick="goSetting()">
+                    <div class="gnb-setting">
+                        <i class="icon-setting"></i>
+                        <th:block th:switch="${language}">
+                            <span th:case="ko" class="menu-guide">설정</span>
+                            <span th:case="en" class="menu-guide">Settings</span>
+                            <span th:case="ja" class="menu-guide">設定</span>
+                        </th:block>
+
+                    </div>
+                </a>
+                <a th:unless="${loginStatus == true}" href="javascript:void(0)" id="header_setting"
+                   class="header-menu setting" onclick="toastLogin()">
+                    <div class="gnb-setting">
+                        <i class="icon-setting"></i>
+                        <th:block th:switch="${language}">
+                            <span th:case="ko" class="menu-guide">설정</span>
+                            <span th:case="en" class="menu-guide">Settings</span>
+                            <span th:case="ja" class="menu-guide">設定</span>
+                        </th:block>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:void(0)" id="header_exit" class="header-menu exit">
+                    <div class="gnb-exit">
+                        <i class="icon-exit"></i>
+                        <th:block th:switch="${language}">
+                            <span th:case="ko" class="menu-guide">나가기</span>
+                            <span th:case="en" class="menu-guide">Exit</span>
+                            <span th:case="ja" class="menu-guide">出る</span>
+                        </th:block>
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </div>
+</header>

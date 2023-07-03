@@ -1,0 +1,160 @@
+/*리모컨 발화 모달 스타일*/
+#confirm_modal {
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 99;
+}
+
+.black-box {
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: black;
+    opacity: 0.75;
+}
+
+.modal-box {
+    width: 1218px;
+    height: 778px;
+    background-color: #eeeef5;
+    border-radius: 12px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.term-guide {
+    font-size: 34px;
+    font-weight: 700;
+    color: #1d1d1d;
+    position: absolute;
+    top: 36px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 630px;
+    text-align: center;
+}
+
+
+/*확인버튼 디자인*/
+.buttons {
+    width: 1218px;
+    height: 80px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    line-height: 80px;
+    text-align: center;
+    z-index: 999;
+}
+
+.btn-guide-no, .btn-guide-okay {
+    width: 50%;
+    height: 80px;
+    background-color: #fff;
+    color: #616161;
+    float: left;
+    font-size: 24px;
+    font-family: 'Roboto Light', 'Noto Sans japanese Light', 'Noto Sans KR Light', serif;
+    border: none;
+}
+
+.btn-guide-no:focus, .btn-guide-okay:focus {
+    background-color: #2841fa;
+    font-weight: 700;
+    color: #fff;
+    outline: none
+}
+
+.op50 {
+    opacity: 0.5;
+}
+
+/*내용물 디자인*/
+.contents {
+    position: absolute;
+    top: 130px;
+    left: 54px;
+    box-sizing: border-box;
+}
+
+.contents-box {
+    float: left;
+    width: 548px;
+    height: 249px;
+    margin-right: 12px;
+    border-radius: 8px;
+    background-color: #fff;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.contents-box:last-of-type {
+    width: 1108px;
+    height: 167px;
+    margin-top: 12px;
+    margin-bottom: 24px;
+}
+
+.post-script {
+    clear: both;
+    font-size: 20px;
+    font-family: 'Roboto Light', 'Noto Sans japanese Light', 'Noto Sans KR Light', serif;
+    color: #757575;
+    margin-bottom: 8px;
+}
+
+.title {
+    width: 100%;
+    height: 65px;
+    background-color: #757575;
+    color: #fff;
+    font-size: 22px;
+    font-weight: 700;
+    padding: 16px 24px;
+    box-sizing: border-box;
+}
+
+.contents-text {
+    padding: 16px 24px;
+}
+
+.contents-text li {
+    width: 100%;
+    height: 29px;
+    line-height: 29px;
+    box-sizing: border-box;
+}
+
+.contents-text li + li {
+    margin-top: 12px
+}
+
+.contents-text span {
+    display: block;
+    float: left;
+    font-size: 20px;
+    font-family: 'Roboto Light', 'Noto Sans japanese Light', 'Noto Sans KR Light', serif;
+    color: #1d1d1d;
+}
+
+.contents-text span:nth-of-type(1) {
+    margin-right: 12px;
+    width: 110px;
+    height: 29px;
+    font-weight: 700;
+}
+
+
+/* display */
+.disnone {
+    display: none;
+}

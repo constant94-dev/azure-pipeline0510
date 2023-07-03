@@ -1,0 +1,36 @@
+# syntax=docker/dockerfile:1
+
+# 베이스 이미지 선택
+FROM openjdk:11-jdk-slim AS builder
+
+# 작업 디렉토리 설정
+WORKDIR /tvapp
+
+# 필요한 파일들을 복사
+COPY tvPatron/gradlew /tvapp
+COPY tvPatron/gradle /tvapp/gradle
+COPY tvPatron/build.gradle /tvapp
+COPY tvPatron/settings.gradle /tvapp
+COPY tvPatron/src /tvapp/src
+
+# Change permissions on Gradle Wrapper
+RUN chmod +x tvPatron/gradlew
+
+# Build application
+RUN tvPatron/gradlew clean build
+# Rename JAR file
+# RUN mv /app/build/libs/patron-webMobile-1.2.4-SNAPSHOT.jar /app/app.jar
+
+# Run JAR Stage
+FROM openjdk:11-jre-slim
+# 작업 디렉토리를 '/app'로 설정
+WORKDIR /app
+
+# # 이전 단계에서 'builder' 라는 이름의 스테이지에서 JAR 파일을 'app' 디렉토리로 복사한다.
+COPY --from=builder /tvapp/build/libs/patron-webMobile-1.2.4-SNAPSHOT.jar /tvapp/app.jar
+
+# Docker 컨테이너가 런타임 시 8080 포트에서 수신 대기할 것임을 알리는 명령
+EXPOSE 8080
+# JAR 파일을 실행하고 'nohub'을 사용하여 프로세스를 백그라운드로 보내 컨테이너가 중지되거나 재시작되더라도 프로세스가 계속 실행되도록 하는 명령
+# CMD nohup java -jar app.jar &
+CMD java -jar /tvapp/app.jar

@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <div th:remove="tag" th:replace="common/common-head-script.html :: headScript"></div>
+    <title>PATRON | Settings</title>
+    <link rel="stylesheet" th:href="@{/css_v1_3_39/smartTvLogin/login.css}">
+    <link rel="stylesheet" th:href="@{/css_v1_3_39/smartTvLogin/progress.css}">
+    <link rel="stylesheet" th:href="@{/css_v1_3_39/setting/setting.css}">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+</head>
+
+<body>
+<input th:type="hidden" th:value="${loginStatus}" id="login_status">
+<div th:replace="common/login-modal.html"></div>
+<!--로딩 스패너-->
+<div id="main_loading_background" style="display: block;"></div>
+<div class="spinner" style="display: block;">
+    <div class="loading_spinner" style="display: block;"></div>
+</div>
+<div th:replace="common/header.html"></div>
+<article>
+    <div class="setting-menu-box">
+        <h2 class="big-title page-title" th:text="#{setting.title}"></h2>
+        <div class="setting-menu">
+            <div class="menu-container">
+                <div class="member-info-login category">
+                    <p class="mini-title" th:text="#{setting.account}">계정</p>
+                    <div th:if="${loginStatus == true}" class="btn btn-member-info on menu-btn" tabindex="1">
+                        <span th:text="#{setting.accountInformation}">계정정보</span>
+                        <span class="icon-more"></span>
+                        <svg class="icon-more-inactive disnone" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path opacity="0.4" d="M8 4L16 12.0005L8 20" stroke="white" stroke-width="3"
+                                  stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <div th:if="${loginStatus == true}" class="btn btn-logout on menu-btn" tabindex="1">
+                        <span th:text="#{setting.logOut}">로그아웃</span>
+                        <span class="icon-more"></span>
+                        <svg class="icon-more-inactive disnone" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path opacity="0.4" d="M8 4L16 12.0005L8 20" stroke="white" stroke-width="3"
+                                  stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="default-setting category">
+                    <p class="mini-title" th:text="#{setting.appSettings}">앱 설정</p>
+                    <div class="btn btn-pre-sound on menu-btn" tabindex="1">
+                        <span th:text="#{setting.BGMautoplay}">사운드 미리듣기</span>
+                        <span class="icon-more"></span>
+                        <svg class="icon-more-inactive disnone" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path opacity="0.4" d="M8 4L16 12.0005L8 20" stroke="white" stroke-width="3"
+                                  stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <div class="btn btn-language on menu-btn" tabindex="1">
+                        <span th:text="#{setting.languageSelect}">언어선택</span>
+                        <span class="icon-more"></span>
+                        <svg class="icon-more-inactive disnone" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path opacity="0.4" d="M8 4L16 12.0005L8 20" stroke="white" stroke-width="3"
+                                  stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <div class="btn btn-device-info menu-btn" tabindex="1">
+                        <span th:text="#{setting.appVersion}">앱 정보</span>
+                        <span class="icon-more"></span>
+                        <svg class="icon-more-inactive disnone" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path opacity="0.4" d="M8 4L16 12.0005L8 20" stroke="white" stroke-width="3"
+                                  stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                </div>
+                <div th:if="${loginStatus == true}" class="data-info category">
+                    <p class="mini-title" th:text="#{setting.historyAndData}">기록 및 데이터</p>
+                    <div class="btn btn-delete-played on menu-btn" tabindex="1">
+                        <span th:text="#{setting.clearWatchHistoryTitle}">감상 기록 지우기</span>
+                        <span class="icon-more"></span>
+                        <svg class="icon-more-inactive disnone" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path opacity="0.4" d="M8 4L16 12.0005L8 20" stroke="white" stroke-width="3"
+                                  stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <div class="btn btn-delete-searched on menu-btn" tabindex="1">
+                        <span th:text="#{setting.clearSearchHistoryTitle}">검색 기록 지우기</span>
+                        <span class="icon-more"></span>
+                        <svg class="icon-more-inactive disnone" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path opacity="0.4" d="M8 4L16 12.0005L8 20" stroke="white" stroke-width="3"
+                                  stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="service-term category">
+                    <p class="mini-title" th:text="#{setting.termsPolicies}">이용약관 및 개인정보</p>
+                    <div class="btn btn-service-term on menu-btn" tabindex="1">
+                        <span th:text="#{setting.termsService}">서비스 이용약관</span>
+                        <span class="icon-more"></span>
+                        <svg class="icon-more-inactive disnone" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path opacity="0.4" d="M8 4L16 12.0005L8 20" stroke="white" stroke-width="3"
+                                  stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <div class="btn btn-privacy-term on menu-btn" tabindex="1">
+                        <span th:text="#{setting.privacyPolicy}">개인정보 취급 방침</span>
+                        <span class="icon-more"></span>
+                        <svg class="icon-more-inactive disnone" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path opacity="0.4" d="M8 4L16 12.0005L8 20" stroke="white" stroke-width="3"
+                                  stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <div class="btn btn-account-policy on menu-btn" tabindex="1">
+                        <span th:text="#{setting.accountOperationsPolicy}">계정 운영정책</span>
+                        <span class="icon-more"></span>
+                        <svg class="icon-more-inactive disnone" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path opacity="0.4" d="M8 4L16 12.0005L8 20" stroke="white" stroke-width="3"
+                                  stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="customer-service category">
+                    <p class="mini-title" th:text="#{setting.CS}">고객만족</p>
+                    <div class="btn btn-customer-service on menu-btn" tabindex="1">
+                        <span th:text="#{setting.help}">문의하기</span>
+                        <span class="icon-more"></span>
+                        <svg class="icon-more-inactive disnone" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path opacity="0.4" d="M8 4L16 12.0005L8 20" stroke="white" stroke-width="3"
+                                  stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="setting-contents" id="setting_contents">
+        <!--사운드 미리듣기-->
+        <div class="setting-contents-with-image setting-contents-box disnone" id="setting_sound">
+            <div class="setting-title">
+                <div class="icon-presound"></div>
+                <p class="big-title big-title-text" th:text="#{setting.BGMautoplay}">사운드 미리듣기</p>
+                <p class="small-title-text" th:text="#{setting.BGMautoplayContent}">전시를 선택하지 않아도 사운드와 함께 미리보기됩니다.</p>
+            </div>
+            <div class="setting-detail">
+                <div class="button-box">
+                    <div class="btn btn-contents btn-use focus-target" id="sound_use" tabindex="1">
+                        <span class="contents-text" th:text="#{common.on}">사용</span>
+                        <span class="icon-check"></span>
+                    </div>
+                    <div class="btn-inactive-box"></div>
+                    <div class="btn btn-contents btn-no-use" id="sound_no_use" tabindex="1">
+                        <span class="contents-text" th:text="#{common.off}">사용 안함</span>
+                        <span class="icon-check"></span>
+                    </div>
+                    <div class="btn-inactive-box"></div>
+                </div>
+            </div>
+        </div>
+        <!--언어선택-->
+        <div class="setting-contents-with-image setting-contents-box disnone" id="setting_language">
+            <div class="setting-title">
+                <div class="icon-language"></div>
+                <p class="big-title big-title-text" th:text="#{setting.language}">언어</p>
+                <pre class="small-title-text" th:text="#{setting.languageSelectContent}">앱 언어가 변경됩니다.<br>작가가 번역을 제공하지 않으면 작품은 원본 언어를 유지합니다.</pre>
+            </div>
+            <div class="setting-detail">
+                <div class="button-box">
+                    <div class="btn btn-contents btn-korean focus-target" id="contents_korean" tabindex="1">
+                        <span class="contents-text">한국어</span>
+                        <span class="icon-check show"></span>
+                    </div>
+                    <div class="btn-inactive-box"></div>
+                    <div class="btn btn-contents btn-english" id="contents_english" tabindex="1">
+                        <span class="contents-text">English</span>
+                        <span class="icon-check"></span>
+                    </div>
+                    <div class="btn-inactive-box"></div>
+                    <div class="btn btn-contents btn-japanese" id="contents_japanese" tabindex="1">
+                        <span class="contents-text">日本語</span>
+                        <span class="icon-check"></span>
+                    </div>
+                    <div class="btn-inactive-box"></div>
+                </div>
+            </div>
+        </div>
+        <!--앱 정보-->
+        <div class="setting-contents-simple-layout disnone" id="setting_appInfo">
+            <p class="big-title" th:text="#{setting.appVersion}">앱 정보</p>
+            <ul id="device_info">
+                <li>
+                    <span class="mid-title1" th:text="#{setting.devices}">기기</span>
+                    <span id="device_type">deviceType</span>
+                </li>
+                <li>
+                    <span class="mid-title1" th:text="#{setting.version}">버전</span>
+                    <span id="device_version">deviceVersion</span>
+                </li>
+                <li>
+                    <span class="mid-title1" th:text="#{setting.area}">지역</span>
+                    <span id="device_nation">deviceNation</span>
+                </li>
+            </ul>
+        </div>
+        <!--감상 기록 지우기-->
+        <div th:if="${loginStatus == true}" class="setting-contents-with-image setting-contents-box disnone"
+             id="setting_play_delete">
+            <div class="setting-title">
+                <div class="icon-play-delete"></div>
+                <p class="big-title big-title-text" th:text="#{setting.clearWatchHistoryTitle}">감상 기록 지우기</p>
+                <p class="small-title-text" th:text="#{setting.clearWatchHistoryContent}">이 기기에서 로그인한 상태로 감상한 기록을
+                    삭제합니다.</p>
+            </div>
+            <div class="setting-detail">
+                <div class="button-box">
+                    <div class="btn btn-contents focus-target" id="play_history_delete" tabindex="1">
+                        <span class="contents-text" th:text="#{setting.clearWatchHistory}">감상 기록 지우기</span>
+                    </div>
+                    <div class="btn-inactive-box"></div>
+                </div>
+            </div>
+        </div>
+        <!--검색 기록 지우기-->
+        <div class="setting-contents-with-image setting-contents-box disnone" id="setting_search_delete">
+            <div class="setting-title">
+                <div class="icon-search-delete"></div>
+                <p class="big-title big-title-text" tabindex="1" th:text="#{setting.clearSearchHistoryTitle}">검색 기록
+                    지우기</p>
+                <p class="small-title-text" th:text="#{setting.clearSearchHistoryContent}">이 기기에서 로그인한 상태로 검색한 기록을
+                    삭제합니다.</p>
+            </div>
+            <div class="setting-detail">
+                <div class="button-box">
+                    <div class="btn btn-contents focus-target" id="search_history_delete" tabindex="1">
+                        <span class="contents-text" th:text="#{setting.clearSearchHistory}">검색 기록 지우기</span>
+                    </div>
+                    <div class="btn-inactive-box"></div>
+                </div>
+            </div>
+        </div>
+        <!--서비스 이용약관-->
+        <div class="setting-contents-with-long-text setting-contents-box disnone" id="setting_service_term">
+            <div class="setting-title">
+                <p class="big-title big-title-text" th:text="#{setting.termsService}">서비스 이용약관</p>
+            </div>
+            <div class="setting-detail">
+                <div id="terms_of_service" class="contents-text terms-of-service focus-target" tabindex="0">
+                    <div id="terms_of_service_wrap">
+                    </div>
+                </div>
+            </div>
+            <div class="info-modal-scroll-bar">
+                <div class="info-modal-scroll info-modal-scroll-service" tabIndex="1"></div>
+            </div>
+        </div>
+        <!--개인정보 취급 방침-->
+        <div class="setting-contents-with-long-text setting-contents-box disnone" id="setting_privacy_policy">
+            <div class="setting-title">
+                <p class="big-title big-title-text" th:text="#{setting.privacyPolicy}">개인정보 취급 방침</p>
+            </div>
+            <div class="setting-detail">
+                <div id="privacy_policy" class="contents-text terms-of-service focus-target" tabindex="0">
+                    <div id="privacy_policy_wrap">
+                    </div>
+                </div>
+            </div>
+            <div class="info-modal-scroll-bar">
+                <div class="info-modal-scroll info-modal-scroll-privacy" tabIndex="1"></div>
+            </div>
+        </div>
+        <!--계정 운영정책-->
+        <div class="setting-contents-with-long-text setting-contents-box disnone" id="setting_account_policy">
+            <div class="setting-title">
+                <p class="big-title big-title-text" th:text="#{setting.accountOperationsPolicy}">계정 운영정책</p>
+            </div>
+            <div class="setting-detail">
+                <div id="account_policy" class="contents-text terms-of-service focus-target" tabindex="0">
+                    <div id="account_policy_wrap">
+                    </div>
+                </div>
+            </div>
+            <div class="info-modal-scroll-bar">
+                <div class="info-modal-scroll info-modal-scroll-account" tabIndex="1"></div>
+            </div>
+        </div>
+        <!--문의하기-->
+        <div class="setting-contents-with-image setting-contents-box disnone" id="setting_customer_service">
+            <div class="setting-title">
+                <div class="icon-customer-service"></div>
+                <p class="big-title big-title-text" th:text="#{setting.help}">문의하기</p>
+                <p class="small-title-text customer-service-text" th:text="#{setting.helpContent}">문의사항이 있으면 아래 URL 또는
+                    이메일로 문의글을 남겨주세요.</p>
+                <div class="small-title-text customer-service-content-text">
+                    <em class="excluded-blocks">URL : https://patron.digital</em><br>
+                    <p th:text="#{setting.customerOnly}" style="display: inline;">고객전용</p>: <em class="excluded-blocks">help@patron.digital</em><br>
+                    <p th:text="#{setting.artistOnly}" style="display: inline;">작가전용</p>: <em class="excluded-blocks">artist@patron.digital</em><br>
+                </div>
+            </div>
+        </div>
+        <!--계정정보-->
+        <div th:if="${loginStatus == true}" class="setting-contents-simple-layout" id="setting_app_device_info">
+            <p class="big-title" th:text="#{setting.accountInformation}">계정 정보</p>
+            <ul id="app_device_info">
+                <li>
+                    <span class="mid-title1">ID</span>
+                    <span id="setting_email">userEmail</span>
+                </li>
+                <li>
+                    <span class="mid-title1" th:text="#{setting.name}">이름</span>
+                    <span id="setting_username">username</span>
+                </li>
+                <li>
+                    <span class="mid-title1" th:text="#{setting.modifyProfile}">프로필<br>수정</span>
+                    <span id="app_device_nation" th:text="#{setting.modifyProfileContent}">patron.digital 사이트의 '설정'에서 수정가능합니다.</span>
+                </li>
+            </ul>
+        </div>
+        <!--로그아웃-->
+        <div th:if="${loginStatus == true}" class="setting-contents-with-image setting-contents-box disnone"
+             id="setting_logout">
+            <div class="setting-title">
+                <div class="icon-logout"></div>
+                <p class="big-title big-title-text" th:text="#{setting.logOut}">로그아웃</p>
+                <p class="small-title-text" th:text="#{setting.logOutContent}">이 기기에 로그인된 계정과 연결된 사용자를 모두 해제합니다.</p>
+            </div>
+            <div class="setting-detail">
+                <div class="button-box">
+                    <div class="btn btn-contents focus-target logoutButton" id="location" tabindex="1"
+                         onclick="logOut()">
+                        <span class="contents-text" th:text="#{setting.logOut}">로그아웃</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</article>
+
+<!--기기 정보 없을때 js움직임도 없음 (모달추가하거나 안내사항 필요)-->
+<div th:style="'display: none'" th:if="${modelType != null && deviceId != null}">
+    <input th:type="hidden" id="modelType" th:value="${modelType}">
+    <input th:type="hidden" id="deviceId" th:value="${deviceId}">
+    <input th:type="hidden" id="account_name" th:value="${name}">
+    <input th:type="hidden" id="account_email" th:value="${email}">
+</div>
+
+<script th:inline="javascript">
+    var messageSetting = {};
+    messageSetting.clearWatchHistoryMessage = [[#{setting.clearWatchHistoryMessage}]]
+    messageSetting.clearSearchHistoryMessage = [[#{setting.clearSearchHistoryMessage}]]
+    messageSetting.logOutMessage = [[#{setting.logOutMessage}]]
+</script>
+<script th:src="@{/js_v1_3_39/common/common.js}" th:type="'text/javascript'"></script>
+<script th:src="@{/js_v1_3_39/common/header.js}" th:type="'text/javascript'"></script>
+<script th:src="@{/js_v1_3_39/setting/setting.js}" th:type="'text/javascript'"></script>
+</body>
+</html>

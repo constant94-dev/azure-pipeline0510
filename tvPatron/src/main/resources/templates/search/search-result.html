@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <div th:remove="tag" th:replace="common/common-head-script.html :: headScript"></div>
+    <title>PATRON | Result</title>
+    <link rel="stylesheet" th:href="@{/css_v1_3_39/search/search.css}">
+</head>
+
+<body>
+<input th:type="hidden" th:value="${loginStatus}" id="login_status">
+<div th:replace="common/login-modal.html"></div>
+<header class="header">
+    <a href="javascript:void(0)" onclick="history.back(-1)" class="btn-go-back">
+        <i class="icon-go-back"></i>
+        <span class="go-back-guide" th:text="#{common.back}">이전</span>
+    </a>
+</header>
+
+<!--로딩 스패너-->
+<div class="loading-spinner"></div>
+
+<article>
+    <div class="fake-search-left back" tabindex="1"></div>
+    <div class="contents">
+
+        <div class="search-area">
+            <a href="javascript:void(1)" class="search-guide contents-focus search-keyword" th:text="${keyword}"
+               th:value="${keyword}"></a>
+            <input type="text" class="search-box disnone" name="search-box" th:title="#{search.lookingFor}"
+                   th:placeholder="#{search.lookingFor}" value="" maxlength="14">
+        </div>
+        <div class="search-key disnone">
+            <p th:text="#{search.recentSearch}">최근 검색어</p>
+            <ul class="search-recent" th:with="maxKeywords = 5">
+                <li th:each="keyword, index : ${keywords}" th:if="${index.index < maxKeywords}">
+                    <a class="searched-div" th:href="'/'+${language}+'/search-result?keyword='+${keyword}">
+                        <span class="searched-keyword" th:text="${keyword}"></span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!--작가 검색 결과-->
+        <input type="hidden" id="artist_result" th:value="${artists.size()}">
+        <div id="artist_list" class="artist-list category first-shown-result" th:if="${artists.size() != 0}">
+            <p class="title4" th:text="#{search.searchResultArtist}">작가 검색결과</p>
+            <div class="item-container">
+                <ul class="item-box artist">
+                    <!--6명까지만 출력되고 그 이상은 더보기 버튼으로 페이지 이동-->
+                    <li class="items visible-item hoverTrue" th:each="artist: ${artists}"
+                        th:if="${artistStat.index < 5}">
+                        <!--작가 프로필 이미지 있으면 보여줌, 없으면 디폴트이미지 넣어줌(절대경로 추가예정/현재임시url)-->
+                        <a th:href="'/'+${language}+'/artist?artist_id='+${artist.getId()}" class="item-a">
+                            <div class="item-border"></div>
+                            <img th:if="${artistStat.index != null}" class="artist-img"
+                                 th:src="@{${artist.getProfileImg()}}">
+                            <img th:if="${artistStat.index == null}" class="artist-img"
+                                 th:src="'https://stpatron001.blob.core.windows.net/container-patron-renewal/no_img_artist.png'">
+                        </a>
+                        <span class="artist-name" th:each="detail : ${artist.getArtistDetails()}"
+                              th:if="${detail.getLanguage().equals(language)}" th:value="${detail.getArtistName()}"
+                              th:text="${detail.getArtistName()}"></span>
+                    </li>
+
+                    <!--더보기(작가6명 이상일 경우)-->
+                    <li th:if="${artists.size() > 5}" class="items visible-item more-artist hoverTrue">
+                        <a class="btn-more-artist" id="btn_more_artist" href="javascript:void(0)">
+                            <div class="item-border"></div>
+                            <i class="icon-go-back-inactive"></i>
+                            <span th:text="#{search.moreArtists}">더보기</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="opacity-box1"></div>
+        <div class="opacity-box2"></div>
+        <!--작품 검색 결과-->
+        <section class="carousel" id="carousel">
+            <div class="carousel-container" id="carousel_container" th:if="${artworks.size()}">
+                <div class="art-slides category">
+                    <p class="title4" th:text="#{search.searchResultArtworks}">작품 검색결과</p>
+                    <ul class="slide" th:if="${artworks != null}">
+                        <li class="art-item hoverTrue" th:each="artwork, index : ${artworks}"
+                            th:if="${index.index} < 16">
+                            <div class="art-gradbox">
+                                <a th:href="'/'+${language}+'/player?art_id='+${artwork.getId()}"
+                                   th:style="'background-image: url(\'' + ${artwork.getContentsThumbnail().getDefaultImg()} +'\')'"></a>
+                                <div class="art-grad"></div>
+                                <div class="art-border"></div>
+                            </div>
+                            <span class="art-title" th:each="detail : ${artwork.getArtworkDetails()}"
+                                  th:if="${detail.getLanguage().equals(language)}" th:value="${detail.getArtworkName()}"
+                                  th:text="${detail.getArtworkName()}"></span>
+                            <span class="art-artist">
+                                <span class="artist-name" th:each="detail : ${artwork.getArtist().getArtistDetails()}"
+                                      th:if="${detail.getLanguage().equals(language)}"
+                                      th:value="${detail.getArtistName()}" th:text="${detail.getArtistName()}"></span>
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+                <a class="fake-search-bottom" href="javascript:void(0)"></a>
+            </div>
+        </section>
+    </div>
+</article>
+<div class="all-artists-container" id="all_artists_container">
+    <button type="button" class="btn-artists-close" id="btn_artists_close">
+        <i class="icon-go-back"></i>
+        <span class="go-back-guide" th:text="#{common.back}">이전</span>
+    </button>
+    <!--작가 검색 결과-->
+    <div class="all-artists-list category" th:if="${artists.size() != 0}">
+        <p class="title4" th:text="#{search.searchResultArtist}">작가 검색결과</p>
+        <div class="item-container">
+            <ul class="item-box artist">
+                <li class="items visible-item hoverTrue" th:each="artist: ${artists}">
+                    <a th:href="'/'+${language}+'/artist?artist_id='+${artist.getId()}" class="item-a">
+                        <div class="item-border"></div>
+                        <img th:if="${artistStat.index != null}" class="artist-img"
+                             th:src="@{${artist.getProfileImg()}}">
+                        <img th:if="${artistStat.index == null}" class="artist-img"
+                             th:src="'https://stpatron001.blob.core.windows.net/container-patron-renewal/no_img_artist.png'">
+                    </a>
+                    <span class="artist-name" th:each="detail : ${artist.getArtistDetails()}"
+                          th:if="${detail.getLanguage().equals(language)}" th:value="${detail.getArtistName()}"
+                          th:text="${detail.getArtistName()}"></span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script th:inline="javascript">
+    var messageSearch = {};
+    messageSearch.enterSearch = [[#{search.enterSearch}]];
+    messageSearch.doNotEnterSpecialCharter = [[#{search.doNotEnterSpecialCharter}]];
+</script>
+
+<script th:src="@{/js_v1_3_39/common/common.js}" th:type="'text/javascript'"></script>
+<script th:src="@{/js_v1_3_39/search/search-result.js}"></script>
+<script th:src="@{/js_v1_3_39/search/search-all-artists.js}"></script>
+</body>

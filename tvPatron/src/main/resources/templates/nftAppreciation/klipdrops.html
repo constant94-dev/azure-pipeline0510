@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <div th:remove="tag" th:replace="common/common-head-script.html :: headScript"></div>
+    <title>PATRON | Klip Drops</title>
+    <link rel="stylesheet" th:href="@{/css_v1_3_39/search/search.css}">
+    <link rel="stylesheet" th:href="@{/css_v1_3_39/nftAppreciation/klipdrops.css}">
+    <script>
+        var isGenie;
+
+        function exitLG() {
+            webOS.platformBack();
+            window.close();
+        }
+
+        setTimeout(function () {
+            document.getElementById('header_exit').onclick = function () {
+                exitLG();
+            }
+        }, 2000)
+    </script>
+</head>
+
+<body>
+<input th:type="hidden" th:value="${loginStatus}" id="login_status">
+<div th:replace="common/login-modal.html"></div>
+<div th:replace="common/header.html"></div>
+<main id="wrap">
+    <div class="result">
+        <div id="text"></div>
+        <progress id="nftProgress" value="" max=""></progress>
+        <span class="loading-slogan progress-slogan">Klip Drops 인증에 성공하였습니다</span>
+        <div id="nftList" style="opacity: 0"></div>
+    </div>
+    <div class="gradient-box"></div>
+    <div class="article1 targetArticle1" id="article1">
+        <p class="title2">이제, 파트론에서 Klip Drops 작품을 더 크게 감상해 보세요</p>
+        <p class="title3">앱을 종료하면 자동으로 연결이 해제됩니다.</p>
+        <div class="frame-img">
+            <div class="qr-box">
+                <div id="qrCode" class="newQrcode" tabindex="1">
+                    <div class="breadcrumb"></div>
+                    <div id="qrCodeDivWrap"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="article2" id="article2">
+        <p class="title2">바로 감상할 수 있는 Klip Drops 작품들</p>
+        <i class="icon-klip"></i>
+        <p class="title5">보유한 작품 중 해상도 기준에 충족한 작품만 제공되며, 실제 보유 작품 수와 차이가 있을 수 있습니다.</p>
+        <section class="carousel" id="carousel">
+            <div class="carousel-container" id="carousel_container">
+                <div class="art-slides category">
+                    <ul class="slide" id="slide"></ul>
+                </div>
+                <a class="fake-search-bottom" href="javascript:void(9)" style="border: none;"></a>
+            </div>
+        </section>
+    </div>
+    <div class="article3" id="article3" style="display: none;" tabindex="1">
+        <p class="title2" style="left: 0!important;">아직 보유한 작품이 없습니다.</p>
+    </div>
+</main>
+
+
+<script th:src="@{/js_v1_3_39/common/header.js}" th:type="'text/javascript'"></script>
+
+<script th:src="@{'https://cdn.jsdelivr.net/npm/underscore'+'@'+'1.13.1/underscore-umd-min.js'}"></script>
+<script th:src="@{/js_v1_3_39/nftAppreciation/qrcodeJs.js}"></script>
+<script th:src="@{/js_v1_3_39/nftAppreciation/klipdrops.js}"></script>
+
+
+</body>
+
+</html>

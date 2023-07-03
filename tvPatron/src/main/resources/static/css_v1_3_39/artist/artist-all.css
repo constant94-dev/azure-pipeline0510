@@ -1,0 +1,206 @@
+.icon-go-back {
+    background-image: url("../../img_v1_3_39/icon_goback_inactive_left.png");
+    width: 76px;
+    height: 76px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 76px;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.icon-go-back.active {
+    background-image: url("../../img_v1_3_39/icon_goback_active.png")
+}
+
+.go-back-guide {
+    width: auto;
+    white-space: nowrap;
+    color: #fff;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -8px;
+    font-family: 'Roboto Light', 'Noto Sans japanese Light', 'Noto Sans KR Light', serif;
+    font-size: 22px;
+    height: 34px;
+    line-height: 34px;
+    display: none;
+}
+
+.all-artists-container {
+    display: none;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    padding: 0;
+    margin: 0;
+    background-color: #0A0A0A;
+}
+
+.btn-artists-close {
+    cursor: pointer;
+    outline: none;
+}
+
+.btn-go-back, .btn-artists-close {
+    position: absolute;
+    width: 76px;
+    height: 118px;
+    top: 88px;
+    left: 26px;
+    border: none;
+    background-color: transparent;
+    z-index: 999;
+}
+
+
+.all-artists-list {
+    position: relative;
+    top: 0;
+    width: 100vw;
+    height: 490px;
+}
+
+.all-artists-container .all-artists-list {
+    width: 100vw;
+    top: 0;
+    left: 150px;
+}
+
+.title4 {
+    font-size: 30px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 20px;
+    position: relative;
+    display: block;
+    opacity: 1;
+    width: 100%;
+    height: 45px;
+    transform: translateY(-1px);
+}
+
+.all-artists-list .title4 {
+    transform: translatey(-7px);
+}
+
+.all-artists-container .title4 {
+    position: relative;
+    z-index: 1010;
+    padding: 64px 0 20px 0;
+    background: #0a0a0a;
+    margin: 0;
+}
+
+.item-container {
+    display: flex;
+    position: relative;
+    left: 0;
+    margin-top: 20px;
+}
+
+.all-artists-list .item-container {
+    width: 100vw;
+    height: 365px;
+}
+
+.all-artists-container .item-container {
+    margin-top: 0;
+}
+
+.item-box {
+    width: 1660px;
+    flex-wrap: wrap;
+}
+
+.items {
+    position: relative;
+}
+
+.item-box li {
+    width: 400px;
+    height: 225px;
+    border-radius: 16px;
+    margin-bottom: 40px;
+}
+
+.all-artists-list .items {
+    width: 216px;
+    border-radius: 216px;
+    margin-right: 20px;
+    position: relative;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    height: 271px;
+}
+
+.item-box li:not(:last-child) {
+    margin-right: 20px;
+}
+
+.all-artists-container .item-box li:not(:last-child) {
+    margin-right: 40px;
+}
+
+.items a {
+    width: 100%;
+    height: 100%;
+    display: block;
+    opacity: 1;
+    background-size: cover;
+    border-radius: 12px;
+}
+
+.all-artists-list .items a {
+    width: 216px;
+    height: 216px;
+    border-radius: 216px;
+    overflow: hidden;
+    position: relative;
+    display: block;
+    margin-bottom: 20px;
+}
+
+.all-artists-list a {
+    width: 216px;
+    height: 216px;
+    display: block;
+    border-radius: 216px;
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.item-border {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 216px;
+    height: 216px;
+    border-radius: 216px;
+}
+
+.item-box span {
+    color: white;
+    text-align: center;
+    font-size: 24px;
+    width: inherit;
+}
+
+.item-container .items.hoverTrue:hover .item-border {
+    width: 216px;
+    height: 216px;
+    border-radius: 216px;
+}
+
+
+
+

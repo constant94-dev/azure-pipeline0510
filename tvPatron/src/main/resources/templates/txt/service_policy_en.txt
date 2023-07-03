@@ -1,0 +1,136 @@
+This translation is for informational purposes only. If there is a difference between the Korean version and this translation, the Korean version will take precedence.
+
+Last Revision Date: January 31, 2023.
+
+Important Notice: This Service Terms and Conditions includes binding arbitration provisions and waiver of class action. This will affect your legal rights as described in the Dispute Resolution and Class Action Waiver section below. Please read it carefully.
+
+Introduction and acceptance of these Terms and Conditions
+Welcome to Patron. These Terms and Conditions of Service (hereinafter referred to as "Terms and Conditions") include the following as a user for smooth activities in https://patron.digital, and these Terms and Conditions are related to you who use the service with Nodamen Co., Ltd. Using or accessing the Patron service (hereinafter referred to as the "Service") application (hereinafter referred to as the "App") or the website (hereinafter referred to as the "Site") located at https://patron.digital is all "Services" and has read and understood the terms and conditions of the "Services" or terms and conditions.
+
+We have the right to change these Terms and Conditions, and the reasons for such changes include changes in legal provisions or improvements in the function of the service. If a change affects your service usage or legal rights, you will be notified within 7 days before the change takes effect. Unless otherwise stated, you are considered to agree to the changes if you continue to use the service after the changes have been made. If you don't agree with the changes, you should stop using the service.
+
+the right to use the service
+You can use the service to access specific software or other content available after purchase from us. To the best of our compliance with these Terms and Conditions, we grant you a limited, irrevocable, non-exclusive, non-transferable, non-reusable license to use and access these Services. You do not use the Service for any purpose other than (a) the terms and conditions directly and permitted; (b) you do not use it in any way or in any way, in any way, to exploit or extract data, such as reproduction, modification, derivative creation, distribution, licensing, distribution, transfer, public demonstration, streaming, broadcast, source code discovery, etc. Except for the rights and rights expressly granted in these Terms and Conditions, you are not licensed or entitled to any intellectual property that is implied or owned or controlled by us or the Licensor.
+
+We have the right to temporarily or permanently modify or discontinue any or all of the Services without notice. We have the right to refuse all users' access to this Service without prior notice for any reason, including, but not limited to, any breach of this Agreement. In the event of a breach of these Terms and Conditions, we have the right to warn you of the breach or to immediately terminate or suspend any accounts created during the use of this Service. You agree that we are not obligated to notify you before terminating or suspending your account, but may notify you.
+
+Your Account
+You are responsible for your login credentials and for any activities arising from the use of your login credentials or any other activities in this Service Account (hereinafter referred to as the "Account"). If you want to access or use an app or feature without logging in while using an app or service, you may be prompted to log in or create an account by entering a valid ID (email address) and password. You declare and guarantee that the information you provide us is always true, accurate, up-to-date, and complete, as well as when you sign up. We have the right at our discretion to reject, block, or prohibit the use of any user name, and we are not liable for any legal action against you. You understand and agree that other users of the Service may have the same user name as you, but are separated by identification numbers that may or may not be visible to you or other users. If you allow the app to be used without creating an account (for example, if you have enabled the single-session feature), all user names you select for using the app will be available to others after your session ends. You are responsible for maintaining the confidentiality of your login credentials and are fully responsible for any activities that occur in your account or use your credentials. You agree to contact us immediately (help@patron.digital) if your login credentials are compromised or if you suspect unauthorized use of your account. You agree that we or the Services are not liable for any loss or damage caused by unauthorized use of your credentials.
+
+Communication
+You will receive electronic messages from us or the service, such as email, text or mobile push notifications, or service-related announcements and messages. For all direct marketing messages, we or the service must obtain your consent first and make it easy for you to refuse to receive them at any time so that we or the service do not send messages you do not want.
+
+By using or providing information to us, we agree that we can contact you electronically about security, privacy and management issues related to your use of the service, and that all contracts, notices, disclosures, and other communications provided electronically by the service are in writing to meet all legal requirements.
+
+intellectual property rights
+All rights, ownership, and interests (including, but not limited to, design, text, graphics, photos, videos, information, applications, software, music, sound and other files, selection and arrangement thereof) and collectively "Service Materials" are owned by you, us or a third-party licensor. You acknowledge and agree that you may not take any ownership of the Service Materials (such as streaming images, videos, music, sounds, or reading material in text format). You agree not to modify, reproduce, distribute, produce, reproduce, republish, download, scrap, display, publish, send, or sell by any means, in whole or in any way, or by any means, without prior written permission from us. You acknowledge that you do not acquire any ownership by using the Services or by accessing any Service Materials or secondary works that we have published on the Services. All rights not set forth in these Terms and Conditions are owned by us and the Licensor and are not licensed under Prohibition, Implication or any other means.
+
+Behavior and usage rules
+We are committed to ensuring that you can use the service freely and conveniently. However, we need your help and cooperation to use the service more safely and to ensure that you and others' rights are respected and protected by each other people. For your safe use of the service and protection of rights, we may restrict your use of the service in the following cases, so please check and comply with this.
+
+·When registering as a member, information on common items such as name and email address should not be falsely written. Please manage the information registered in the membership account so that accurate and up-to-date information is maintained at all times. Do not sell, transfer, lend, or offer as collateral to others or allow others to use it. Also, do not use other people's accounts without permission. For more information, see Account Operation Policy.
+
+·Use automated means (e.g., macro programs, robots, spiders, scrappers, etc.) to attempt or sign up, log in, request content registration, collect ID, content, select specific content (so-called 'click') from search services, search results, or abuse the "exploitation" service. Do not attempt to constantly change IP, bypass or disable Captcha through external solutions, etc.)
+
+·Any content itself or file consisting of pictures, photos, videos, signs, letters, voice, sound, links, etc. shall not be inserted into areas or other areas where advertisements are placed on the Patron service by automated means without our consent. In addition, you may not copy or modify the Services or any software and any content provided by the Services, and may not sell, transfer, lend, or provide it as collateral or allow others to use it. Reverse design, attempt to extract source code, duplicate, decompose, imitate, or otherwise modify the software contained in the service (if applicable to open source, subject to its own terms). In addition, abnormal use of service functions for the purpose of uploading viruses or other malicious code or interfering with the smooth operation of the service is also prohibited.
+
+These rules of use do not imply completeness, and we have the right to decide on any breach of terms and conditions, instructions and any actions deemed inappropriate use of the Services, including cancellation of your account and any further participation in the Services.
+
+Content management
+Our service is operated for the national or socio-cultural purpose of 'art' so that it can be used by all ages, individuals or families. Therefore, we frequently check the contents provided by the service and select them according to strict standards.
+
+·Do not post content that is offensive to others. Anxiety here refers to negative emotions arising from any act that is against the law that has not been socially agreed upon. Specifically, if it includes provoking or glorifying decadent acts such as sexual violence, drug use, violence, theft, etc., or if it includes insulting or disgusting other people's personality through vulgar expressions such as abusive language or verbal violence, it excludes disclosing private personal information such as others' personal information or private life.
+
+·Do not publish content with cruel or gore elements. In fact, if the internal organs are seen directly, part of the body is separated directly, and if the murder is done directly, content containing the body is excluded.
+
+·Do not post content that may have an unhealthy impact on teenagers/minors. In the case of encouraging or mediating unhealthy relationships among minors, including anti-social content such as recommending, beautifying, or mediating juvenile delinquency such as runaway, violent circle, suicide, etc., the effectiveness and manufacturing method of harmful drugs for adolescents shall be excluded.
+
+·Do not post content that may cause sexual shame or distorted sexual consciousness in others, such as describing provocative and blatant sexual behavior. The female body does not expose the nipples and the nipples, and the male body does not expose the male body. However, this is not the case for personified characters.
+
+We select content according to the criteria specified above and provide it as a content that can create a positive impression on users, and we will do our best to take action afterwards for content that is already registered that is a problem. However, despite our efforts, we are not obligated to compensate physically and mentally for any inconvenience or discomfort caused by individual differences.
+
+feedback
+We appreciate your feedback and welcome your feedback on this service. If you provide feedback on improvements to your service by 1:1 inquiry or email (help@patron.digital), you are authorized to disclose feedback, (B) does not infringe on the rights of other users or organizations, and (C) does not contain confidential or proprietary information from any third party.
+
+By giving us feedback, you also agree that (i) we have no obligation to maintain, express or imply the feedback, (ii) recognize that items similar to the feedback are already in our consideration or under development, (iii) provide us with an immutable, non-exclusive, royalty-free, dependent, dependent, and moral license to use the feedback, modify, derive, and distribute to any moral service. This feedback segment is not affected by the destruction of your account or service.
+
+All rights in this sector are provided to you without any additional compensation of any kind.
+
+third-party services
+We use third-party services to help deliver the services, but these uses do not warrant third-party services or indicate responsibility or obligation for their actions. In addition, this service may be linked to a third-party website to facilitate the delivery of the service to you. If you use this link, this service will be terminated. The use of such third-party services is governed by terms of use and privacy policies applicable to such third parties. Some third-party websites may use our licensed service materials. Whether or not it is affiliated with our third-party websites, we are not responsible for or warranted by such third-party websites or third-party websites or the agencies that sponsor their products and services. You agree that we are not liable and legally liable for any loss or damage of any kind as a result of any transaction you have made on the third party website or any third party advertising existing in this Service.
+
+User disputes
+You are solely responsible for communicating with other users of this Service and any other party contacting you through this Service. Accordingly, we are not liable to you or any third party in connection with your use of the Services. We have the right to manage disputes between you and other users of this Service, but we have no obligation.
+
+copyright
+a violation of copyright. We respect the intellectual property rights of others, and we ask our users to respect them. If you believe that your work (either an individual author or two or more creators or galleries) has been copyrighted and reproduced, or that your intellectual property rights have been violated, you must follow the procedures outlined below to inform us of your damage. We will process and investigate notices of alleged infringement, and to report claims of infringement, please email us at help@patron.digital (Title: Request for confirmation of copyright infringement or Copyright Takedown Request). You can also contact us by mail at: Nodamen Co., Ltd. or 5F 134-1, Yeonhui-ro, Seodaemun-gu, Seoul, Republic of Korea. To send a valid mail, the notification must be in writing and contain the following information:
+
+·Electronic or physical signature of the person representing the copyright or other intellectual property owner.
+
+·A description of the work or other intellectual property rights you claim to have been infringed upon.
+
+·A description of your alleged copyrighted material's location in this Service and details on where we can find it within the Service.
+
+·Your address, phone number and email address.
+
+·Your statement that you are confident that the disputed use has not been approved under copyright or intellectual property owner, its agent or applicable law.
+
+·Your statement that you are punished for perjury, that the above information in your notice is correct, and that you are the owner of such copyright and intellectual property, or that you are an agent of such copyright and intellectual property.
+
+Intentional and substantial submission of false notification that content, information or communication in the service is copyright infringement may result in liability for the damage or the cost of appointing an attorney.
+
+close
+You may terminate your account at any time for any reason on the website or on the user settings page of the mobile application. We may terminate your account and access to this Service for any reason at any time (or any part of the Service at our sole option). We have no obligation to send you prior notice or warning prior to such termination. As a result of the termination, you may lose all relevant information and data, including your account and digital products (if applicable), and we are not obligated to compensate you for such loss. Regarding the dormant account policy, please check the account operation policy for more information on account withdrawal and destruction of information.
+
+Warranty Disclaimer
+Service and service materials are provided, either explicitly or implicitly, "as-is" or "available" without warranties of any kind, including, but not limited to, implied security of merchantability, suitability for a particular purpose, ownership and prevention of infringement. The risk of using the service is entirely up to you. Furthermore, we strive to provide a great user experience, but we do not mean or guarantee that the service will always operate without any delay, interference, or flaws, and cannot do so. The foregoing disclaimer applies to the extent permitted by the relevant legislation.
+
+Limitation of Liability
+You acknowledge that we are not responsible for (but not limited to) your content or any user content containing (but not limited to) any defamatory, offensive or unlawful acts of any third party, and that you are solely responsible for the risks or damages raised.
+
+an indemnity clause
+You agree to indemnify us against any loss, liability, claim, claim, damage and expenses incurred in connection with the following acts, including reasonable attorney fees: (i) use and access to this Service; (iii) use of any copyright, property or privacy rights, or any third party agreement in this section (but not limited to this section);
+
+product description
+We do not charge you for the use of this Service, but you may be charged for certain products and services in the future.
+
+product description. We are committed to making our services robust, accurate and useful to our customers. However, depending on your browser, hardware, software, and other technologies, certain information in the service may appear incorrect, incomplete, inaccurate, or inaccurate. The service has the right to change the description or reference of the product or service, limit the number of products or services in use, refuse to perform or perform coupons, coupon codes, event codes or other similar events, or refuse to provide visitors with the right to use the service with or without prior notice.
+
+settlement of disputes
+We will compensate you for any damages caused by our intention or negligence in using the Services in accordance with the relevant laws and regulations. However, we are not responsible for damages caused by the inability to provide services due to natural disasters or equivalent force majeure, or the inability to use services due to the intention or negligence of the user.
+
+In addition, even if the company bears liability for damages, it will not be liable for special or indirect damages or other punitive damages due to unpredictable or special circumstances unless otherwise specified in the relevant laws and regulations.
+
+On the other hand, we shall not be responsible for any damages arising from exchange of opinions, transactions, etc. between you and other members through the service or for any damages arising from your trust in other people's posts on the service, unless there are special circumstances.
+
+International use and export management
+The software available in connection with the service and its data transmission is subject to Korean export regulations. Service cannot be downloaded, exported, or re-exported in violation of the Korean Export Law. You are solely responsible for downloading or using the Software. Recognizing the global nature of the Internet, you agree that this service values online behavior and acceptable content and therefore must comply with all local rules and laws regarding the use of the service.
+
+General
+a proper law. You agree that any visit or use of this Service shall apply to these Terms and Conditions and all possible disputes between you and us, regardless of the principle of legal conflict and your location.
+
+Claims or disputes relating to or arising as a service between you and us are not subject to arbitration and may only be adjudicated by the competent court located in Seoul, Republic of Korea. You waive and agree to the principle of non-convenience in all jurisdictions and jurisdictions of Seoul, Republic of Korea.
+
+Restriction order relief and other equity remedies. You acknowledge that the rights and obligations conferred on us under these Terms and Conditions are of a unique and irreplaceable nature. And if the legal remedy is inadequate, the resulting loss can cause immediate and serious damage to us. Therefore, we have the right to request a restraining order or other compulsory action in the event of any or all possible violations of you. You ultimately waive any right to demand a restraining order or other compulsory action.
+
+the whole contract. These Terms and Conditions constitute a complete agreement between you and us regarding your use of the Services and any problems arising therefrom and are not subject to change or modification by you unless expressly posted on the Services provided by us. You may also be subject to additional terms and conditions that apply when using Affiliate and Third Party Services, Third Party Content or Third Party Software.
+
+giving up. Failure of the Company to exercise or enforce all rights or provisions of these Terms shall not be deemed a waiver of such rights or provisions, and any waiver of any breach or non-compliance hereunder by either party shall not be deemed a waiver of any previous or subsequent breach or non-compliance.
+
+separability. If a court with legitimate jurisdiction finds any provision of this Agreement invalid, the parties agree that the court shall endeavor to ensure that the purpose of this Agreement is fulfilled, but the other provisions of this Agreement remain in full force.
+
+a course of action/business practice. No modification of these Terms and Conditions shall be made to any act or trade practice between the parties.
+
+a concession. You may not transfer these terms without our prior written consent, but we are free to transfer them. Subject to the stated restrictions, these Terms of Use are binding, immune, and enforceable against the parties and their successors and transfers.
+
+Regulatory compliance records. At our request, you must provide us with the documents, evidence or materials necessary to confirm compliance with these Terms and Conditions.
+
+interpretation. You agree that the terms and conditions are not construed according to us because we have written these terms and conditions.
+
+defense based on the electronic form of these Terms and Conditions. You hereby waive all defenses under these electronic terms and conditions and omit the signature of the parties in order to carry out these terms.
+
+the survival. You agree that the terms and conditions of these Terms and Conditions, which will survive in essence after termination, will survive after termination of these Terms and Conditions.
+
+Inquiry. If you have any questions about these terms and conditions, please contact help@patron.digital.
+
+Some of the services offered by Patron are done through the work of open source software.

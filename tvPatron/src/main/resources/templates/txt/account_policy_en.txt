@@ -1,0 +1,58 @@
+This translation is for informational purposes only. If there is a difference between the Korean version and this translation, the Korean version will take precedence.
+
+Last Modified: 26 May 2022
+
+Patron (the service below) grants an account to members who have completed the membership process. An account is a member identification unit established to manage the history of various services used by members after they log in to the Patron service. When you sign up for the service, you will enter your own unique ID (ID) and password in the email address format approved by the service to complete the login and start using your own service in earnest. Of course, you can use the service without logging in, but services that require identification of a specific user among users or services that need to be provided with past service usage details and history require an account to use the service. Please check how you manage your account in the process of using the service after signing up for membership through this account operation policy.
+
+Please keep your account registration information up to date.
+We are doing our best to provide you with timely and timely guidance on the key points needed to use the service.
+
+Most of the main points are posted and announced on the website and application (application, app) initial screen or announcement of the service domain, including patron.digital, for more than 7 days. It is important to keep this information up-to-date if you want to use the service without any inconvenience, as guidance on what needs to be notified individually, especially the identification and age of the member, is notified through the email address registered on your account.
+
+After logging into the service, you can view and modify the information registered in your account at any time through the 'My Page > Settings' administration screen. However, the ID (ID) required to identify with other users cannot be modified, so please choose carefully when registering as a member. If the information registered in the account is changed, please log in to the service and modify it directly on the "Settings" screen, or contact us by 1:1 inquiry or email (help@patron.digital).
+
+You cannot allow others to use your account.
+An account is a member identification unit established to manage members' service usage history for each member.
+
+If there is a login to the member account, the member is deemed to have logged in unless there are special circumstances, and activities conducted in the login state are also regarded as the member's use of the service unless there are special circumstances.
+
+Because an account is such an identification unit dedicated to a particular member, a member shall not sell, transfer, lend, or provide his account as collateral to another person, nor shall the use of it be reduced to another person.
+
+Having someone use your account online to use the service is like allowing someone offline to present their ID. Please note that using the service as if you are a member even though you are not actually a member causes unexpected damage to other users or us who trust you with normal membership activities, and the harm and side effects will eventually return to the member himself who allowed you to use it.
+
+If you want to log in to your account alone, please manage your password well.
+The password is a password that the member set himself/herself to prevent others from logging into his/her account and we do not know. If you don't remember your password, you can reset your password through a path that authenticates the email address you used to sign up for. If you want to log in to your account alone, in other words, you need to pay attention to password management to prevent others from logging in. Under no circumstances shall you inform us of your password, or anyone else. We recommend that you set the password for your service account as different from the password of other website accounts you have subscribed to.
+
+If you recognize that someone else is using your account, such as your ID being used without permission by someone else, please reset or change your password immediately. You are responsible for any damages caused by your negligence in password management, and we or the Service shall be liable only if the relevant laws and regulations stipulate otherwise or if the Company or Service is intentional or negligent.
+
+If it is determined that it is an abnormal login, you may inevitably take measures to protect your ID.
+We are taking ID protection measures to limit members' logins if they are suspected to have been exposed to the outside world due to abnormal log-in history, such as large amounts of access to your account or frequent alternating domestic and overseas connections.
+
+As a temporary measure to minimize possible damage to members due to account theft, you can remove the login restriction and use the service normally at any time through a prescribed identification process. Please immediately set a new password with a different password from the existing password after disabling ID protection and logging in.
+
+The company separately stores and manages the personal information of members who have not logged in to the service for one year in accordance with the Personal Information Validity System under the Information and Communication Network Utilization Promotion and Information Protection Act. We manage it separately as a 'dormant account', and the procedure is as follows.
+
+·The account of a member who has not logged into the service for one year will be converted to a dormant account.
+
+·30 days before switching to a dormant account, we will send a reminder email to the member's e-mail address of 'Dormant Account Transition scheduled'.
+
+·For dormant accounts, service usage records (My Collection, Saved Exhibitions, Waiting Exhibitions, Favorite Works, Writers with Fans, Appreciation Records, Search Records, etc.) are deleted immediately, and registered personal information (ID, username, encrypted password, date of birth, gender, country) is kept separately.
+
+·Personal information stored separately is used only for reasons prescribed by dormant accounts and other laws.
+
+·If you do not log in to the service for 3 years after the time of separate storage, destroy your personal information and withdraw your account. You can check the details of the destruction of personal information regarding the withdrawal of the account here.
+
+·7 days before the destruction of dormant account information, an email is sent to the member. We are responsible for damages related to personal information management for safe personal information management, such as failure to receive e-mails or personal information deletion notices.
+
+·You can cancel the dormant account only within three years of switching to the dormant account after attempting to log in with the account you signed up for and through the email authentication process.
+
+Use of the service is restricted according to reasonable procedures.
+If you do not comply with the relevant laws, terms of use, and operating policies of this account, we may confirm your actions and, as a result of this confirmation, call attention to the use of the service, or restrict the use of the service partially or wholly, for a certain period of time. On the other hand, if it is no longer possible to expect the full maintenance of the service use contract despite these restrictions, we may inevitably terminate the use contract with you.
+
+If you are forced to restrict the use of your service, we will comply with the above principles of phased service use restrictions, except for cases requiring urgent risk or damage due to obvious violations of laws or rights of others.
+
+·Announcement Date: September 1, 2022
+
+·Enforcement date: September 1, 2022
+
+If you have any questions about the service, please contact the customer center (representative number 02-2274-1703 or help@patron.digital / weekdays 10:00 to 17:00).

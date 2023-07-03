@@ -2,21 +2,39 @@
 
 version: "3.9"
 services:
-  spring-app:
+  spring-web-app:
     build:
       context: .
-      dockerfile: Dockerfile-app
-    image: acrprod0327.azurecr.io/production/spring-app
-    container_name: spring-app
+      dockerfile: Dockerfile-web-app
+    image: acrprod0327.azurecr.io/production/spring-web-app
+    container_name: spring-web-app
     ports:
       - "8080:8080"
-  web:
+  nginx-web-server:
     build:
       context: .
-      dockerfile: Dockerfile-nginx
-    image: acrprod0327.azurecr.io/production/nginx-alpine
-    container_name: nginx-alpine
+      dockerfile: Dockerfile-web-nginx
+    image: acrprod0327.azurecr.io/production/nginx-web-alpine
+    container_name: nginx-web-alpine
     ports:
       - "80:80"
     depends_on:
-      - spring-app
+      - spring-web-app
+  spring-tv-app:
+    build:
+      context: .
+      dockerfile: Dockerfile-tv-app
+    image: acrprod0327.azurecr.io/production/spring-tv-app
+    container_name: spring-tv-app
+    ports:
+      - "8080:8080"
+    nginx-tv-server:
+      build:
+        context: .
+        dockerfile: Dockerfile-tv-nginx
+      image: acrprod0327.azurecr.io/production/nginx-tv-alpine
+      container_name: nginx-tv-alpine
+      ports:
+        - "80:80"
+      depends_on:
+        - spring-tv-app

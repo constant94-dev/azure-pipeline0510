@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <div th:remove="tag" th:replace="common/common-head-script.html :: headScript"></div>
+    <title>PATRON | Storage</title>
+    <link rel="stylesheet" th:href="@{/css_v1_3_39/storage/storage.css}">
+</head>
+
+<body>
+<div class="blurred-background-opacity"></div>
+<div class="blurred-background-image">
+    <img th:if="${artworkCollections != null && artworkCollections.get(0).getCollectionArtworks().size() > 0}"
+         id="back_img" class="back-img"
+         th:src="${lastAddedArtworkInArtworkCollection[0].getArtwork().getContentsHd().getDefaultImg()}">
+    <img th:if="${artworkCollections != null && artworkCollections.get(0).getCollectionArtworks().size() == 0}"
+         id="back_img" class="back-img" src="">
+    <img th:unless="${artworkCollections != null}" id="back_img" class="back-img" src="">
+</div>
+<input th:type="hidden" th:value="${loginStatus}" id="login_status">
+<!--로딩 스패너-->
+<div class="loading-spinner"></div>
+<div th:replace="common/header.html"></div>
+<!--발화 가이드 임시 영역-->
+<div th:if="${provider} == 'Kt'">
+    <div th:replace="common/voice-guide.html"></div>
+</div>
+<!--음악 재생-->
+<audio id="audio">
+    <source src="">
+</audio>
+<article style="position:fixed; top:0; left:0;">
+    <section class="explanation" id="explanation">
+        <div th:replace="storage/storage-explanation.html"></div>
+    </section>
+    <section class="carousel" id="carousel">
+        <div class="carousel-container" id="carousel_container">
+            <div id="my_collection" class="my-collection my-collection2 category">
+                <p class="title4" th:text="#{storage.myCollection}">내 컬렉션</p>
+                <div class="item-container">
+                    <ul class="item-box">
+                        <!--작품 컬렉션-->
+                        <li class="item hoverTrue"
+                            th:if="${artworkCollections != null && artworkCollections.size() > 0}"
+                            th:each="artworkCollection,index : ${artworkCollections}">
+                            <div th:if="${artworkCollection.getCollectionArtworks().size() > 0}">
+                                <img class="item-background-image" th:src="@{${lastAddedArtworkInArtworkCollection[index.index].getArtwork().getContentsHd().getDefaultImg()}}">
+                                <a th:href="'/'+${language}+'/player?art_id='+${lastAddedArtworkInArtworkCollection[index.index].getArtwork().getId()}+'&myCollection='+${artworkCollection.getCollectionName()}"
+                                   class="item-a">
+                                    <div class="item-border"></div>
+                                    <i class="icon-collection"></i>
+                                    <div class="item-title title-no-tags" style="color: white!important;">
+                                        <span class="collection-name" th:text="${artworkCollection.getCollectionName()}"
+                                              style="color: white!important;"></span>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="nothing" th:if="${artworkCollection.getCollectionArtworks().size() == 0}">
+                                <a href="javascript:void(0)" class="nothing-a">
+                                    <i class="icon-collection"></i>
+                                    <div class="item-border storage"></div>
+                                    <div class="item-title title-no-tags" style="color: white!important;">
+                                        <span class="collection-name" th:text="${artworkCollection.getCollectionName()}"
+                                              style="color: white!important;"></span>
+                                    </div>
+                                    <span class="nothing-guide" th:text="#{storage.empty}">컬렉션에 담아놓은 작품이 없습니다.</span>
+                                </a>
+                            </div>
+                        </li>
+                        <li class="item">
+                            <a href="javascript:void(0)" class="fake" th:style="'opacity:0'">
+                                <span>fake</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!--내가 저장한 전시-->
+            <div id="favorite_exhibition" class="favorite-exhibition category">
+                <p class="title4" th:text="#{storage.savedExhibition}">저장한 전시</p>
+                <div class="item-container">
+                    <ul class="item-box curation">
+                        <li class="item visible-item hoverTrue"
+                            th:each="exhibitionsCollection : ${exhibitionsCollections}"
+                            th:if="${exhibitionsCollections != null && exhibitionsCollections.size() > 0}"
+                            th:style="'background-image: url(\'' + ${exhibitionsCollection.getExhibition().getArtworkExhibitions()[0].getArtwork().getContentsThumbnail().getDefaultImg()} + '\')'"
+                            th:value="${exhibitionsCollectionStat.index}">
+                            <a th:href="'/'+${language}+'/player?exh_id='+${exhibitionsCollection.getExhibition().getId()}+'&art_id='+${exhibitionsCollection.getExhibition().getArtworkExhibitions()[0].getArtwork().getId()}"
+                               class="item-a">
+                                <i class="icon-collection"></i>
+                                <div class="item-border"></div>
+                                <span class="art-title"
+                                      th:each="detail : ${exhibitionsCollection.getExhibition().getExhibitionDetails()}"
+                                      th:if="${detail.getLanguage().equals(language)}"
+                                      th:text="${detail.getExhibitionName()}"></span>
+                                <span class="artist-title">
+                                    <span class="artist-name-wrap">
+                                        <span class="artist-name"
+                                              th:each="detail : ${exhibitionsCollection.getExhibition().getArtistExhibitions()[0].getArtist().getArtistDetails()}"
+                                              th:if="${detail.getLanguage().equals(language)}"
+                                              th:text="${detail.getArtistName}"></span>
+                                        <span th:if="${exhibitionsCollection.getExhibition().getArtistExhibitions().size() > 1}">
+                                            <span class="artist-name"
+                                                  th:each="detail : ${exhibitionsCollection.getExhibition().getArtistExhibitions()[1].getArtist().getArtistDetails()}"
+                                                  th:if="${detail.getLanguage().equals(language)}"
+                                                  th:text="${', ' + detail.getArtistName()}"></span>
+                                        </span>
+                                        <span th:if="${exhibitionsCollection.getExhibition().getArtistExhibitions().size() > 2}">
+                                            <span class="artist-name"
+                                                  th:each="detail : ${exhibitionsCollection.getExhibition().getArtistExhibitions()[2].getArtist().getArtistDetails()}"
+                                                  th:if="${detail.getLanguage().equals(language)}"
+                                                  th:text="${', ' + detail.getArtistName()}"></span>
+                                        </span>
+                                    </span>
+                                    <span class="artists-size"
+                                          th:if="${exhibitionsCollection.getExhibition().getArtistExhibitions().size() > 3}"
+                                          th:text="#{common.and} + ' ' + ${exhibitionsCollection.getExhibition().getArtistExhibitions().size()-3} + ' ' + #{common.more}"></span>
+                                </span>
+                            </a>
+                            <audio class="art-sound">
+                                <source src="">
+                            </audio>
+                        </li>
+                        <li class="item visible-item hoverTrue nothing" th:if="${exhibitionsCollections.size() == 0}">
+                            <a href="javascript:void(0)" class="item-a no-content">
+                                <div class="item-border"></div>
+                                <span class="nothing-guide" th:text="#{storage.empty}">저장한 전시가<br>없습니다.</span>
+                            </a>
+                        </li>
+                        <li class="item">
+                            <a href="javascript:void(0)" class="fake" th:style="'opacity:0'">
+                                <span>fake</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="my-coming-soon category" th:if="${waitingExhibitions.size() != 0}">
+                <p class="title4" th:text="#{storage.waitingExhibition}">기다리는 전시</p>
+                <div class="item-container">
+                    <ul class="item-box curation">
+                        <li class="item visible-item hoverTrue" th:each="waitingExhibition : ${waitingExhibitions}"
+                            th:if="${waitingExhibitions != null && waitingExhibitions.size() > 0}"
+                            th:style="'background-image: url(\'' + ${waitingExhibition.getArtworkExhibitions()[0].getArtwork().getContentsThumbnail().getDefaultImg()} + '\')'">
+                            <a href="javascript:void(0)" class="item-a coming-soon-item">
+                                <span class="d-day" th:if="${leftTimeTillExhibition[waitingExhibitionStat.index]!=0}">D-<span
+                                        th:text="${leftTimeTillExhibition[waitingExhibitionStat.index]}">1</span></span>
+                                <span class="d-day d-day-active"
+                                      th:if="${leftTimeTillExhibition[waitingExhibitionStat.index]==0}"><span
+                                        th:text="#{storage.nowPlaying}"></span></span>
+                                <i class="icon-collection"></i>
+                                <input class="coming-curation-id" th:id="${waitingExhibition.getId()}" th:hidden="true"
+                                       th:value="${waitingExhibition.getId()}">
+                                <div class="item-border"></div>
+                                <span class="art-title" th:each="detail : ${waitingExhibition.getExhibitionDetails()}"
+                                      th:if="${detail.getLanguage().equals(language)}"
+                                      th:text="${detail.getExhibitionName()}"></span>
+                                <span class="artist-title">
+                                    <span class="artist-name-wrap">
+                                        <span class="artist-name"
+                                              th:each="detail : ${waitingExhibition.getArtistExhibitions()[0].getArtist().getArtistDetails()}"
+                                              th:if="${detail.getLanguage().equals(language)}"
+                                              th:text="|${detail.getArtistName()}|"></span>
+                                        <span th:if="${waitingExhibition.getArtistExhibitions().size() > 1}">
+                                            <span class="artist-name"
+                                                  th:each="detail : ${waitingExhibition.getArtistExhibitions()[1].getArtist().getArtistDetails()}"
+                                                  th:if="${detail.getLanguage().equals(language)}"
+                                                  th:text="${', ' + detail.getArtistName()}"></span>
+                                        </span>
+                                        <span th:if="${waitingExhibition.getArtistExhibitions().size() > 2}">
+                                            <span class="artist-name"
+                                                  th:each="detail : ${waitingExhibition.getArtistExhibitions()[2].getArtist().getArtistDetails()}"
+                                                  th:if="${detail.getLanguage().equals(language)}"
+                                                  th:text="${', ' + detail.getArtistName()}"></span>
+                                        </span>
+                                    </span>
+                                    <span th:if="${waitingExhibition.getArtistExhibitions().size() > 3}">
+                                        <span class="artists-size"
+                                              th:text="#{common.and} + ' ' + ${waitingExhibition.getArtistExhibitions().size()-1} + ' ' + #{common.more}"></span>
+                                    </span>
+                                </span>
+                                <ul class="bottom-white-guide">
+                                    <li><i class="icon-check-black"></i><span style="color: black"
+                                                                              th:text="#{storage.inMyLibrary}">담겨 있음</span>
+                                    </li>
+                                </ul>
+                            </a>
+                            <audio class="art-sound">
+                                <source src="">
+                            </audio>
+                        </li>
+                        <li class="item">
+                            <a href="javascript:void(0)" class="fake" th:style="'opacity:0'">
+                                <span>fake</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="favorite-artists category">
+                <p class="title4" th:text="#{storage.favoriteArtists}">좋아한 작품</p>
+                <div class="item-container">
+                    <ul class="item-box artist">
+                        <li class="item visible-item hoverTrue" th:each="likedArtist, stat : ${likedArtists}"
+                            th:if="${likedArtists != null && likedArtists.size() > 0}"
+                            th:value="${stat.index}">
+                            <a th:href="'/'+${language}+'/artist?artist_id='+${likedArtist.getId()}" class="item-a">
+                                <div class="item-border"></div>
+                                <img th:src="${likedArtist.getProfileImg()}">
+                            </a>
+<!--                            <span class="artist-title big">-->
+                              <span class="artist-name" th:each="detail : ${likedArtist.getArtistDetails()}"
+                                    th:if="${detail.getLanguage().equals(language)}"
+                                    th:text="${detail.getArtistName()}"></span>
+<!--                                </span>-->
+                            <audio class="art-sound">
+                                <source src="">
+                            </audio>
+                        </li>
+                        <li class="item visible-item hoverTrue nothing" th:if="${likedArtists.size() == 0}">
+                            <a href="javascript:void(0)" class="item-a no-content">
+                                <div class="item-border"></div>
+                                <span class="nothing-guide" th:text="#{storage.empty}">좋아한 작품이<br>없습니다.</span>
+                            </a>
+                        </li>
+                        <li class="item">
+                            <a href="javascript:void(0)" class="fake" th:style="'opacity:0'">
+                                <span>fake</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="favorite-artworks category">
+                <p class="title4" th:text="#{storage.myFavorite}">좋아한 작품</p>
+                <div class="item-container">
+                    <ul class="item-box storage">
+                        <li class="item visible-item hoverTrue" th:each="likedArtwork, stat : ${likedArtworks}"
+                            th:if="${likedArtworks != null && likedArtworks.size() > 0}"
+                            th:style="'background-image: url(\'' + ${likedArtwork.getContentsThumbnail().getDefaultImg()} + '\')'"
+                            th:value="${stat.index}">
+                            <a th:href="'/'+${language}+'/player?art_id='+${likedArtwork.getId()}" class="item-a">
+                                <div class="item-border"></div>
+                                <span class="art-title" th:each="detail : ${likedArtwork.getArtworkDetails()}"
+                                      th:if="${detail.getLanguage().equals(language)}"
+                                      th:text="${detail.getArtworkName()}"></span>
+                                <span class="artist-title">
+                                          <span class="artist-name"
+                                                th:each="detail : ${likedArtwork.getArtist().getArtistDetails()}"
+                                                th:if="${detail.getLanguage().equals(language)}"
+                                                th:text="${detail.getArtistName()}"></span>
+                                </span>
+                            </a>
+                            <audio class="art-sound">
+                                <source src="">
+                            </audio>
+                        </li>
+                        <li class="item visible-item hoverTrue nothing" th:if="${likedArtworks.size() == 0}">
+                            <a href="javascript:void(0)" class="item-a no-content">
+                                <div class="item-border"></div>
+                                <span class="nothing-guide" th:text="#{storage.empty}">좋아한 작품이<br>없습니다.</span>
+                            </a>
+                        </li>
+                        <li class="item">
+                            <a href="javascript:void(0)" class="fake" th:style="'opacity:0'">
+                                <span>fake</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="play-history category">
+                <p class="title4" th:text="#{storage.watchedArtwork}">감상한 작품</p>
+                <div class="item-container">
+                    <ul class="item-box storage">
+                        <li class="item visible-item hoverTrue" th:each="watchedArtwork : ${watchedArtworks}"
+                            th:if="${watchedArtworks != null && watchedArtworks.size() > 0}"
+                            th:style="'background-image: url(\'' + ${watchedArtwork.getContentsThumbnail().getDefaultImg()} + '\')'">
+                            <a th:href="'/'+${language}+'/player?art_id='+${watchedArtwork.getId()}"
+                               class="item-a">
+                                <div class="item-border"></div>
+                                <span class="art-title" th:each="detail : ${watchedArtwork.getArtworkDetails()}"
+                                      th:if="${detail.getLanguage().equals(language)}"
+                                      th:text="${detail.getArtworkName()}"></span>
+                                <span class="artist-title">
+                                          <span class="artist-name"
+                                                th:each="detail : ${watchedArtwork.getArtist().getArtistDetails()}"
+                                                th:if="${detail.getLanguage().equals(language)}"
+                                                th:text="${detail.getArtistName()}"></span>
+                                </span>
+                            </a>
+                            <audio class="art-sound">-->
+                                <source src="">
+                            </audio>
+                        </li>
+                        <li class="item visible-item hoverTrue nothing" th:if="${watchedArtworks.size() == 0}">
+                            <a href="javascript:void(0)" class="item-a no-content">
+                                <div class="item-border"></div>
+                                <span class="nothing-guide" th:text="#{storage.empty}">감상한 작품이<br>없습니다.</span>
+                            </a>
+                        </li>
+                        <li class="item">
+                            <a href="javascript:void(0)" class="fake" th:style="'opacity:0'">
+                                <span>fake</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+</article>
+<div class="no-artwork-modal">
+    <div class="no-artwork-box">
+        <i class="icon-alert"></i>
+        <p class="alert-guide" th:text="#{storage.empty}">컬렉션에 담긴 작품이 없습니다</p>
+    </div>
+    <button type="button" class="btn-okay" th:text="#{common.ok}">확인</button>
+</div>
+<div class="no-artwork-modal-back"></div>
+<div th:style="'display: none'" th:if="${likedArtists != null}" class="pro-area-data">
+    <span th:each="likedArtist : ${likedArtists}" hidden>
+        <input th:id="'likedArtistDefault' + ${likedArtistStat.index}"
+               th:value="${likedArtist.getArtworks().isEmpty ? '' : likedArtist.getArtworks()[0].getContentsThumbnail().getDefaultImg()}">
+        <input th:id="'LikedArtistName' + ${likedArtistStat.index}"
+               th:each="detail : ${likedArtist.getArtistDetails()}" th:if="${detail.getLanguage().equals(language)}"
+               th:value="${detail.getArtistName()}">
+        <input th:id="'LikedArtistIntro' + ${likedArtistStat.index}"
+               th:each="detail : ${likedArtist.getArtistDetails()}" th:if="${detail.getLanguage().equals(language)}"
+               th:value="${detail.getIntro()}">
+    </span>
+</div>
+<div th:style="'display: none'" th:if="${likedArtworks != null}" class="pro-area-data">
+    <span th:each="likedArtwork : ${likedArtworks}" hidden>
+        <input th:id="'likedArtworkDefault' + ${likedArtworkStat.index}"
+               th:value="${likedArtwork.getContentsThumbnail().getDefaultImg()}">
+        <input th:id="'LikedArtworkName' + ${likedArtworkStat.index}"
+               th:each="detail : ${likedArtwork.getArtworkDetails()}" th:if="${detail.getLanguage().equals(language)}"
+               th:value="${detail.getArtworkName()}">
+        <input th:id="'LikedArtworkArtistName' + ${likedArtworkStat.index}"
+               th:each="detail : ${likedArtwork.getArtist().getArtistDetails()}"
+               th:if="${detail.getLanguage().equals(language)}" th:value="${detail.getArtistName()}">
+         <input th:id="'LikedArtworkArtistNationality' + ${likedArtworkStat.index}"
+                th:each="detail : ${likedArtwork.getArtist().getArtistDetails()}"
+                th:if="${detail.getLanguage().equals(language)}" th:value="${detail.getNationality()}">
+        <span th:id="'LikedArtworkTags' + ${likedArtworkStat.index}">
+            <input th:each="tags : ${likedArtwork.getArtworkArtworkTags()}"
+                   th:value="${tags.getArtworkTag().getTagName()}">
+        </span>
+        <input th:id="'LikedArtworkArtistIntro' + ${likedArtworkStat.index}"
+               th:each="detail : ${likedArtwork.getArtist().getArtistDetails()}"
+               th:if="${detail.getLanguage().equals(language)}" th:value="${detail.getIntro()}">
+    </span>
+</div>
+
+<div th:style="'display: none'" th:if="${watchedArtworks != null}" class="pro-area-data">
+    <span th:each="watchedArtwork : ${watchedArtworks}" hidden>
+        <input th:id="'WatchedDefault' + ${watchedArtworkStat.index}"
+               th:value="${watchedArtwork.getContentsThumbnail().getDefaultImg()}">
+        <input th:id="'WatchedArtworkName' + ${watchedArtworkStat.index}"
+               th:each="detail : ${watchedArtwork.getArtworkDetails()}" th:if="${detail.getLanguage().equals(language)}"
+               th:value="${detail.getArtworkName()}">
+        <input th:id="'WatchedArtistName' + ${watchedArtworkStat.index}"
+               th:each="detail : ${watchedArtwork.getArtist().getArtistDetails()}"
+               th:if="${detail.getLanguage().equals(language)}" th:value="${detail.getArtistName()}">
+        <input th:id="'WatchedArtistNationality' + ${watchedArtworkStat.index}"
+               th:each="detail : ${watchedArtwork.getArtist().getArtistDetails()}"
+               th:if="${detail.getLanguage().equals(language)}" th:value="${detail.getNationality()}">
+        <span th:id="'WatchedArtworkTags' + ${watchedArtworkStat.index}">
+            <input th:each="tags : ${watchedArtwork.getArtworkArtworkTags()}"
+                   th:value="${tags.getArtworkTag().getTagName()}">
+        </span>
+        <input th:id="'WatchedArtistIntro' + ${watchedArtworkStat.index}"
+               th:each="detail : ${watchedArtwork.getArtist.getArtistDetails()}"
+               th:if="${detail.getLanguage().equals(language)}" th:value="${detail.getIntro()}">
+    </span>
+</div>
+<div th:style="'display: none'" th:if="${waitingExhibitions != null}" class="pro-area-data">
+    <span th:each="waitingExhibition : ${waitingExhibitions}" hidden>
+        <input th:id="'waitingId' + ${waitingExhibitionStat.index}" th:value="${waitingExhibition.getId()}">
+        <input th:id="'waitingDday' + ${waitingExhibitionStat.index}"
+               th:value="${leftTimeTillExhibition[waitingExhibitionStat.index]}">
+        <input th:id="'waitingDefault' + ${waitingExhibitionStat.index}"
+               th:value="${waitingExhibition.getArtworkExhibitions()[0].getArtwork().getContentsThumbnail().getDefaultImg()}">
+        <input th:id="'waitingExhibitionName' + ${waitingExhibitionStat.index}"
+               th:each="detail : ${waitingExhibition.getExhibitionDetails()}"
+               th:if="${detail.getLanguage().equals(language)}" th:value="${detail.getExhibitionName()}">
+        <input th:id="'waitingArtistNameOne' + ${waitingExhibitionStat.index}"
+               th:each="detail : ${waitingExhibition.getArtistExhibitions()[0].getArtist().getArtistDetails()}"
+               th:if="${detail.getLanguage().equals(language)}" th:value="${detail.getArtistName()}">
+        <span th:if="${waitingExhibition.getArtistExhibitions().size() > 1}">
+            <input th:id="'waitingArtistNameTwo' + ${waitingExhibitionStat.index}"
+                   th:each="detail : ${waitingExhibition.getArtistExhibitions()[1].getArtist().getArtistDetails()}"
+                   th:if="${detail.getLanguage().equals(language)}" th:value="${detail.getArtistName}">
+        </span>
+        <span th:if="${waitingExhibition.getArtistExhibitions().size() > 2}">
+            <input th:id="'waitingArtistNameThree' + ${waitingExhibitionStat.index}"
+                   th:each="detail : ${waitingExhibition.getArtistExhibitions()[2].getArtist().getArtistDetails()}"
+                   th:if="${detail.getLanguage().equals(language)}" th:value="${detail.getArtistName}">
+        </span>
+        <span th:if="${waitingExhibition.getArtistExhibitions().size() > 3}">
+            <input th:id="'waitingArtistNameMore' + ${waitingExhibitionStat.index}"
+                   th:value="${waitingExhibition.getArtistExhibitions().size()-3}">
+        </span>
+        <input th:id="'waitingArtistNationality' + ${waitingExhibitionStat.index}"
+               th:each="detail : ${waitingExhibition.getArtworkExhibitions()[0].getArtwork().getArtist().getArtistDetails()}"
+               th:if="${detail.getLanguage().equals(language)}" th:value="${detail.getNationality()}">
+        <span th:id="'waitingExhibitionTags' + ${waitingExhibitionStat.index}">
+            <input th:each="tags : ${waitingExhibition.getExhibitionExhibitionTags()}"
+                   th:value="${tags.getExhibitionTag().getTagName()}">
+        </span>
+        <input th:id="'waitingExhibitionIntro' + ${waitingExhibitionStat.index}"
+               th:each="detail : ${waitingExhibition.getExhibitionDetails()}"
+               th:if="${detail.getLanguage().equals(language)}" th:value="${detail.getIntro()}">
+        <input th:id="'waitingExhibitionArtworkSize' + ${waitingExhibitionStat.index}"
+               th:value="${waitingExhibition.getArtworkExhibitions().size()}">
+        <input th:id="'waitingExhibitionArtworkId' + ${waitingExhibitionStat.index}"
+               th:value="${waitingExhibition.getArtworkExhibitions()[0].getArtwork().getId()}">
+        <input th:id="'waitingExhibitionDurationTime' + ${waitingExhibitionStat.index}"
+               th:value="${waitingExhibitionsDuration[waitingExhibitionStat.index]}">
+    </span>
+</div>
+<div style="display: none" th:if="${exhibitionsCollections}" class="pro-area-data">
+    <span th:each="exhibitionsCollection : ${exhibitionsCollections}" hidden>
+        <input th:id="'exhibitionsCollectionId' + ${exhibitionsCollectionStat.index}"
+               th:value="${exhibitionsCollection.getExhibition().getId()}">
+        <input th:id="'exhibitionsCollectionDefault'+${exhibitionsCollectionStat.index}"
+               th:value="${exhibitionsCollection.getExhibition().getArtworkExhibitions()[0].getArtwork().getContentsThumbnail().getDefaultImg()}">
+        <input th:id="'exhibitionsCollectionName' + ${exhibitionsCollectionStat.index}"
+               th:each="detail : ${exhibitionsCollection.getExhibition().getExhibitionDetails()}"
+               th:if="${detail.getLanguage().equals(language)}" th:value="${detail.getExhibitionName()}">
+        <input th:id="'exhibitionArtistNameOne' + ${exhibitionsCollectionStat.index}"
+               th:each="detail : ${exhibitionsCollection.getExhibition().getArtistExhibitions()[0].getArtist().getArtistDetails()}"
+               th:if="${detail.getLanguage().equals(language)}" th:value="${detail.getArtistName}">
+        <span th:if="${exhibitionsCollection.getExhibition().getArtistExhibitions().size() > 1}">
+            <input th:id="'exhibitionArtistNameTwo' + ${exhibitionsCollectionStat.index}"
+                   th:each="detail : ${exhibitionsCollection.getExhibition().getArtistExhibitions()[1].getArtist().getArtistDetails()}"
+                   th:if="${detail.getLanguage().equals(language)}" th:value="${detail.getArtistName}">
+        </span>
+        <span th:if="${exhibitionsCollection.getExhibition().getArtistExhibitions().size() > 2}">
+            <input th:id="'exhibitionArtistNameThree' + ${exhibitionsCollectionStat.index}"
+                   th:each="detail : ${exhibitionsCollection.getExhibition().getArtistExhibitions()[2].getArtist().getArtistDetails()}"
+                   th:if="${detail.getLanguage().equals(language)}" th:value="${detail.getArtistName}">
+        </span>
+        <span th:if="${exhibitionsCollection.getExhibition().getArtistExhibitions().size() > 3}">
+            <input th:id="'exhibitionArtistNameMore' + ${exhibitionsCollectionStat.index}"
+                   th:value="${exhibitionsCollection.getExhibition().getArtistExhibitions().size() - 3}">
+        </span>
+        <input th:id="'exhibitionsCollectionNationality' + ${exhibitionsCollectionStat.index}"
+               th:each="detail : ${exhibitionsCollection.getExhibition().getArtworkExhibitions()[0].getArtwork().getArtist().getArtistDetails()}"
+               th:if="${detail.getLanguage().equals(language)}" th:value="${detail.getNationality}">
+        <span th:id="'exhibitionsCollectionTags' + ${exhibitionsCollectionStat.index}">
+            <input th:each="tags : ${exhibitionsCollection.getExhibition().getExhibitionExhibitionTags()}"
+                   th:value="${tags.getExhibitionTag().getTagName()}">
+        </span>
+        <input th:id="'exhibitionsCollectionIntro' + ${exhibitionsCollectionStat.index}"
+               th:each="detail : ${exhibitionsCollection.getExhibition().getExhibitionDetails()}"
+               th:if="${detail.getLanguage().equals(language)}" th:value="${detail.getIntro()}">
+        <input th:id="'exhibitionsCollectionSize' + ${exhibitionsCollectionStat.index}"
+               th:value="${exhibitionsCollection.getExhibition().getArtworkExhibitions().size()}">
+        <input th:id="'exhibitionsCollectionDurationTime' + ${exhibitionsCollectionStat.index}"
+               th:value="${exhibitionsCollectionsDuration[exhibitionsCollectionStat.index]}">
+    </span>
+</div>
+<div class="sizes" style="display: none">
+    <!-- 저장한 전시 -->
+    <input type="hidden" th:id="exhibitionsCollectionsSize" th:value="${exhibitionsCollections.size()}">
+    <!-- 좋아하는 작가-->
+    <input type="hidden" th:id="favoriteArtistsSize" th:value="${likedArtists.size()}">
+    <!-- 기다리는 전시 -->
+    <input type="hidden" th:id="waitingExhibitionsSize" th:value="${waitingExhibitions.size()}">
+    <!-- 좋아한 작품 -->
+    <input type="hidden" th:id="likedArtworksSize" th:value="${likedArtworks.size()}">
+    <!-- 감상한 작품 -->
+    <input type="hidden" th:id="watchedArtworksSize" th:value="${watchedArtworks.size()}">
+</div>
+
+<script th:inline="javascript">
+    var messageCommon = {};
+    messageCommon.artworks = [[#{common.artworks}]]
+    messageCommon.JSwaitingRemove = [[#{common.JSwaitingRemove}]];
+    messageCommon.JSwaitingAdd = [[#{common.JSwaitingAdd}]];
+    messageCommon.wantToSee = [[#{common.wantToSee}]];
+    var messageStorage = {};
+    messageStorage.myCollection = [[#{storage.myCollection}]];
+    messageStorage.savedExhibition = [[#{storage.savedExhibition}]];
+    messageStorage.empty = [[#{storage.empty}]];
+    messageStorage.waitingExhibition = [[#{storage.waitingExhibition}]];
+    messageStorage.inMyLibrary = [[#{storage.inMyLibrary}]];
+    messageStorage.empty = [[#{storage.empty}]];
+    messageStorage.myFavorite = [[#{storage.myFavorite}]];
+    messageStorage.empty = [[#{storage.empty}]];
+    messageStorage.watchedArtwork = [[#{storage.watchedArtwork}]];
+    messageStorage.empty = [[#{storage.empty}]];
+    messageStorage.empty = [[#{storage.empty}]];
+    messageStorage.nowPlaying = [[#{storage.nowPlaying}]]
+    messageStorage.playNow = [[#{storage.playNow}]]
+    var and = [[#{common.and}]]
+    var more = [[#{common.more}]]
+</script>
+
+<script th:src="@{/js_v1_3_39/common/common.js}" th:type="'text/javascript'"></script>
+<script th:src="@{/js_v1_3_39/common/header.js}" th:type="'text/javascript'"></script>
+<script th:src="@{/js_v1_3_39/storage/storage.js}"></script>
+</body>
+</html>

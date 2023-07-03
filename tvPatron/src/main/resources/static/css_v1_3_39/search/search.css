@@ -1,0 +1,805 @@
+a {
+    outline-style: none;
+}
+
+.icon-go-back {
+    background-image: url("../../img_v1_3_39/icon_goback_inactive_left.png");
+    width: 76px;
+    height: 76px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 76px;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.icon-go-back.active {
+    background-image: url("../../img_v1_3_39/icon_goback_active.png")
+}
+
+.go-back-guide {
+    color: #fff;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -8px;
+    font-family: 'Roboto Light', 'Noto Sans japanese Light', 'Noto Sans KR Light', serif;
+    font-size: 22px;
+    height: 34px;
+    line-height: 34px;
+    display: none;
+    width: auto;
+    white-space: nowrap;
+}
+
+body {
+    background-color: #0A0A0A;
+}
+
+.icon-search {
+    background-image: url("../../img_v1_3_39/icon_search_active@2x.png");
+}
+
+article {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: -1;
+    background-color: #0A0A0A;
+}
+
+.contents {
+    width: auto;
+    height: auto;
+    background-color: transparent;
+    position: absolute;
+    left: 104px;
+    padding: 88px 0 0 56px;
+}
+
+.contents.active {
+    width: auto;
+    background-color: #0A0A0A;
+    position: absolute;
+    left: 360px;
+    padding: 88px 0 0 56px;
+}
+
+.fake {
+    width: 1px !important;
+    height: 1px !important;
+    background-color: transparent;
+    opacity: 0%;
+}
+
+.fake.active {
+    border: none;
+}
+
+.search-box {
+    width: 1050px;
+    height: 78px;
+    border: none;
+    background-color: transparent;
+    caret-color: #2841FA;
+}
+
+input.search-box::placeholder {
+    font-size: 68px;
+    font-weight: 700;
+    color: white;
+    letter-spacing: 1px;
+}
+
+.search-area {
+    z-index: 10;
+    width: auto;
+    height: 78px;
+    margin-bottom: 56px;
+}
+
+.search-area.on {
+    width: 1000px;
+    height: 78px;
+    margin-bottom: 40px;
+}
+
+.search-area a, .search-box {
+    font-family: 'Roboto Regular', 'Noto Sans japanese Regular', 'Noto Sans KR Bold', serif;
+    font-size: 68px;
+    font-weight: 700;
+    color: white;
+    letter-spacing: 1px;
+    height: auto;
+}
+
+.search-box::placeholder {
+    font-size: 56px;
+    font-weight: 700;
+    color: white;
+    letter-spacing: 1px;
+}
+
+
+.cate-guide {
+    min-width: 500px;
+    width: auto;
+    height: 34px;
+    font-size: 30px;
+    line-height: 45px;
+    font-family: 'Roboto Light', 'Noto Sans japanese Light', 'Noto Sans KR Light', serif;
+    letter-spacing: 0px;
+    color: white;
+    opacity: 0.45;
+    margin-bottom: 36px;
+}
+
+.cate-guide.focus {
+    opacity: 1;
+    font-weight: 700;
+}
+
+.search-key p {
+    font-size: 30px;
+    line-height: 45px;
+    font-weight: 700;
+    letter-spacing: 0px;
+    color: white;
+    opacity: 1;
+    margin-bottom: 40px;
+}
+
+.search-recent a {
+    font-size: 24px;
+    font-family: 'Roboto Light', 'Noto Sans japanese Light', 'Noto Sans KR Light', serif;
+    letter-spacing: 0px;
+    color: white;
+    cursor: pointer;
+}
+
+.search-recent li:not(:last-child) {
+    margin-bottom: 20px;
+}
+
+.item-container {
+    display: flex;
+    position: relative;
+}
+
+.item-box {
+    width: 1680px;
+    flex-wrap: wrap;
+}
+
+.item {
+    position: relative;
+}
+
+.items {
+    position: relative;
+}
+
+.item-box li {
+    width: 400px;
+    height: 225px;
+    border-radius: 16px;
+    margin-bottom: 40px;
+}
+
+.item-box li:not(:last-child) {
+    margin-right: 20px;
+}
+
+.all-artists-container .item-box li:not(:last-child) {
+    margin-right: 40px;
+}
+
+
+.item a {
+    width: 100%;
+    height: 100%;
+    display: block;
+    opacity: 0.3;
+    background-size: cover;
+    border-radius: 12px;
+}
+
+.search-tag-container .item a {
+    opacity: 0.45;
+}
+
+.items a {
+    width: 100%;
+    height: 100%;
+    display: block;
+    opacity: 0.3;
+    background-size: cover;
+    border-radius: 12px;
+}
+
+.search-tag-container .items a {
+    opacity: 0.45;
+}
+
+.item span {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 30px;
+    font-family: 'Roboto Light', 'Noto Sans japanese Light', 'Noto Sans KR Light', serif;
+    letter-spacing: 0;
+    color: white;
+    opacity: 0.45;
+}
+
+.result-area {
+    width: 1000px;
+    height: 78px;
+    margin-bottom: 68px;
+    position: sticky;
+    top: 88px;
+    line-height: 78px;
+}
+
+.result-area p {
+    font-size: 68px;
+    font-weight: 700;
+    color: white;
+    letter-spacing: 1px;
+}
+
+.art-slides {
+    width: 1680px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    position: sticky;
+    top: 234px;
+    transition-duration: 1s;
+}
+
+.slide {
+    position: relative;
+    overflow: hidden;
+}
+
+.slide .art-item {
+    float: left;
+}
+
+.slide li:not(:last-child) {
+    margin-right: 20px;
+    margin-bottom: 40px;
+}
+
+.art-item {
+    position: relative;
+    width: 400px;
+    height: 225px;
+    display: block;
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.art-item span {
+    letter-spacing: 0px;
+    color: white;
+}
+
+.art-artist {
+    display: inline;
+    margin-bottom: 4px;
+    position: absolute;
+    bottom: 24px;
+    left: 20px;
+    max-width: 352px;
+    height: 34px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 20px;
+    font-family: 'Roboto Regular', 'Noto Sans japanese Regular', 'Noto Sans KR Bold', serif;
+    opacity: 0.6;
+}
+
+.art-gradbox {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 400px;
+    height: 225px;
+    background-image: linear-gradient(to bottom, rgba(10, 10, 10, 0) 50%, #0a0a0a 99.93%);
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.art-item a {
+    position: relative;
+    width: 400px;
+    height: 225px;
+    display: block;
+    background-size: cover;
+}
+
+.art-grad {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 400px;
+    height: 225px;
+    background-image: linear-gradient(to bottom, rgba(10, 10, 10, 0) 50%, #0a0a0a 99.93%);
+    box-sizing: border-box;
+    transform: translateY(8px);
+}
+
+
+.carousel.active {
+    transition: top 0.5s ease-out;
+}
+
+.carousel {
+    z-index: -1;
+    position: fixed;
+    left: 160px;
+    height: 846px;
+    width: 1920px;
+}
+
+.carousel-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.carousel-container {
+    width: auto;
+}
+
+.opacity-box1 {
+    width: 1920px;
+    height: 455px;
+    position: absolute;
+    top: 907px;
+    background-color: #0A0A0A;
+    opacity: 0.4;
+}
+
+.opacity-box2 {
+    width: 1920px;
+    height: 100px;
+    position: fixed;
+    top: 1000px;
+    background: linear-gradient(to top, #0a0a0a, #0a0a0a 10%, transparent);
+    opacity: 0.4;
+    z-index: 1;
+    display: none;
+}
+
+.search-recent a.active {
+    font-weight: 700;
+    width: auto;
+    height: 50px;
+    background-color: #616161;
+    padding: 8px 16px;
+    border-radius: 16px;
+}
+
+.disnone {
+    display: none;
+}
+
+.btn-go-back,
+.btn-artists-close {
+    position: absolute;
+    width: 76px;
+    height: 118px;
+    top: 88px;
+    left: 26px;
+    border: none;
+    background-color: transparent;
+    z-index: 999;
+}
+
+.icon-go-back {
+    background-image: url("../../img_v1_3_39/icon_goback_inactive_left.png");
+    width: 76px;
+    height: 76px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 76px;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.icon-go-back.active {
+    background-image: url("../../img_v1_3_39/icon_goback_active.png")
+}
+
+.go-back-guide {
+    color: #fff;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -8px;
+    font-family: 'Roboto Light', 'Noto Sans japanese Light', 'Noto Sans KR Light', serif;
+    font-size: 22px;
+    height: 34px;
+    line-height: 34px;
+    display: none;
+}
+
+.btn-go-back, .btn-go-back:focus {
+    outline-style: none;
+}
+
+.btn-artists-close {
+    outline: none;
+}
+
+.art-border {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: 8px solid #fff;
+    opacity: 0;
+    width: 400px;
+    height: 225px;
+    box-sizing: border-box;
+    border-radius: 16px;
+}
+
+.header {
+    width: 100%;
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 1;
+}
+
+.search-guide:focus {
+    border-bottom: 8px solid #fff;
+}
+
+.search-go-back {
+    display: none;
+}
+
+.title4 {
+    font-size: 30px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 20px;
+    position: relative;
+    display: block;
+    opacity: 1;
+    width: 100%;
+    height: 45px;
+    transform: translateY(-1px);
+}
+
+.artist-list .title4,
+.all-artists-list .title4 {
+    transform: translatey(-7px);
+
+}
+
+.item-container {
+    position: relative;
+    left: 0;
+    margin-top: 20px;
+}
+
+.artist-list,
+.all-artists-list {
+    position: relative;
+    top: 0;
+    width: 100vw;
+    height: 490px;
+}
+
+.artist-list .item,
+.all-artists-list .item {
+    width: 216px;
+    height: 300px;
+    margin-right: 20px;
+    position: relative;
+    background-size: cover;
+}
+
+.artist-list .items,
+.all-artists-list .items {
+    width: 216px;
+    height: 216px;
+    border-radius: 216px;
+    margin-right: 20px;
+    position: relative;
+    background-size: cover;
+}
+
+.all-artists-list .items {
+    height: 271px;
+    display: flex;
+    flex-direction: column;
+}
+
+.artist-list a,
+.all-artists-list a {
+    width: 216px;
+    height: 216px;
+    display: block;
+    border-radius: 216px;
+    overflow: hidden;
+    position: relative;
+    opacity: 1;
+}
+
+.all-artists-list a {
+    margin-bottom: 20px;
+}
+
+.item-box span {
+    text-align: center;
+    font-size: 24px;
+    width: inherit;
+}
+
+.item-box .artwork-tag-count {
+    top: 70%;
+    font-size: 24px;
+}
+
+.item-box span.item-title {
+    text-align: left;
+}
+
+.item span.item-title {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 4px;
+    position: absolute;
+    bottom: 6px;
+    left: 107px;
+    width: 176px;
+    height: 34px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    opacity: 1;
+    top: auto;
+}
+
+.items span.item-title {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 4px;
+    position: absolute;
+    bottom: 6px;
+    left: 107px;
+    width: 176px;
+    height: 34px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    opacity: 1;
+    top: auto;
+}
+
+.artist-list .item a,
+.all-artists-list .item a {
+    opacity: 1;
+}
+
+.item-border {
+    position: absolute;
+    width: 216px;
+    height: 216px;
+    border-radius: 216px;
+    z-index: 1;
+}
+
+.artist-list .more-artist {
+    width: 224px;
+    height: 300px;
+    margin-right: 20px;
+    position: relative;
+    background-size: cover;
+}
+
+.artist-list a.btn-more-artist {
+    width: 224px;
+    font-size: 24px;
+    font-weight: 700;
+    color: #fff;
+    text-align: center;
+    opacity: 0.45;
+}
+
+.icon-go-back-inactive {
+    background-image: url("../../img_v1_3_39/icon_goback_inactive.png");
+    width: 80px;
+    height: 80px;
+    display: block;
+    background-size: cover;
+    position: absolute;
+    left: 68px;
+    top: 68px;
+}
+
+.btn-more-artist span {
+    width: 100%;
+    color: #fff;
+    font-size: 24px;
+    text-align: center;
+    opacity: 1;
+    position: absolute;
+    top: 150px;
+}
+
+.fake-search-left {
+    width: 2px;
+    height: 851px;
+    background-color: aqua;
+    position: fixed;
+    left: 120px;
+    z-index: 999;
+    top: 228px;
+    opacity: 0; /*fake test*/
+}
+
+.fake-search-left:focus {
+    width: 2px;
+    height: 851px;
+    background-color: red;
+    position: fixed;
+    left: 120px;
+    z-index: 999;
+    top: 228px;
+    opacity: 0; /*fake test*/
+}
+
+.fake-search-bottom {
+    display: block;
+    width: 1657px;
+    height: 5px;
+    background-color: aqua;
+    opacity: 0; /*fake test*/
+}
+
+.fake-search-bottom:focus {
+    display: block;
+    width: 1657px;
+    height: 5px;
+    background-color: red;
+    opacity: 0; /*fake test*/
+}
+
+.item-border {
+    border: 8px solid #fff;
+    width: 100%;
+    height: 100%;
+    /*opacity: 1;*/
+    border-radius: 16px;
+    /*display: none;*/
+    box-sizing: border-box;
+    z-index: 1;
+}
+
+.item.active .item-border {
+    display: block;
+}
+
+.items.active .item-border {
+    display: block;
+}
+
+.cate-guide.active {
+    opacity: 1;
+    font-family: 'Roboto Bold', 'Noto Sans japanese', 'Noto Sans KR Bold', serif;;
+}
+
+.result-area:focus {
+    border: 5px solid red;
+}
+
+.artist-list .item-container,
+.all-artists-list .item-container {
+    width: 100vw;
+    height: 365px;
+}
+
+.all-artists-container {
+    display: none;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    padding: 0;
+    margin: 0;
+    background-color: #0A0A0A;
+}
+
+.all-artists-container .all-artists-list {
+    width: 100vw;
+    top: 0;
+    left: 150px;
+}
+
+.all-artists-container .item-container {
+    margin-top: 0;
+}
+
+.all-artists-container .title4 {
+    position: relative;
+    z-index: 1010;
+    padding: 64px 0 20px 0;
+    background: #0a0a0a;
+    margin: 0;
+}
+
+.all-artists-list .item-box {
+    width: 1660px;
+}
+
+.btn-artists-close {
+    cursor: pointer;
+}
+
+.title2 {
+    position: absolute;
+    height: 45px;
+    left: 160px;
+    top: 64px;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 45px;
+    letter-spacing: 0px;
+    color: #FFFFFF;
+}
+
+.no-result .search-guide {
+    display: inline-flex;
+}
+
+.no-result .search-keyword {
+    display: inline-block;
+    max-width: 900px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.tag-name {
+    max-width: 352px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.artist-list .items {
+    width: 216px;
+    height: 271px;
+    display: flex;
+    flex-direction: column;
+}
+
+.artist-list .items a {
+    width: 216px;
+    height: 216px;
+    display: flex;
+    opacity: 1;
+    border-radius: 216px;
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 11px;
+}

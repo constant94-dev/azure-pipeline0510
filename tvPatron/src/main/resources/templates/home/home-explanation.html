@@ -1,0 +1,72 @@
+<!--최근 본 아트워크-->
+<div class="pro-area home" id="played_artwork">
+    <div class="explanation-label">
+        <img class="icon-play-state" src="/img_v1_3_39/icon_play_state.png" alt="played">
+        <span th:text="#{home.watched}"></span>
+    </div>
+    <h1 id="played_artwork_title" class="intro-artwork-title"></h1>
+    <h2><span class="artist-name"></span></h2>
+    <div class="pro-info">
+        <p></p>
+    </div>
+</div>
+<!--좋아한 작품-->
+<div class="pro-area home" id="favorite_artwork">
+    <div class="explanation-label">
+        <img class="icon-like-state" src="/img_v1_3_39/icon_like_state.png" alt="like">
+        <span th:text="#{common.liked}">좋아함</span>
+    </div>
+    <h1 id="favorite_artwork_title" class="intro-artwork-title"></h1>
+    <h2><span class="artist-name"></span></h2>
+    <div class="pro-info">
+        <p></p>
+    </div>
+</div>
+<!--새로운 작품-->
+<div class="pro-area home" id="new_artwork">
+    <div class="explanation-label">
+        <span th:text="#{home.new}">신규</span>
+    </div>
+    <h1 id="new_artwork_title" class="intro-artwork-title"></h1>
+    <h2><span class="artist-name"></span></h2>
+    <div class="pro-info">
+        <p></p>
+    </div>
+</div>
+<!--테마 큐레이션-->
+<div class="pro-area home" id="theme_curation">
+    <div class="label-container">
+        <div class="explanation-label recommended">
+            <span th:text="#{common.recommended}">추천</span>
+        </div>
+        <div class="explanation-guide">
+            <span class="curation-name"></span><span class="middle-dot"></span>
+            <span class="curation-size"></span><span class="middle-dot"></span>
+            <span class="curation-duration"></span>
+        </div>
+    </div>
+    <h1 id="theme_curation_title" class="intro-artwork-title"></h1>
+    <h2><span class="artist-name"></span></h2>
+    <div class="pro-info">
+        <p></p>
+    </div>
+</div>
+<!--작가 설명-->
+<div class="pro-area home" id="artist">
+    <div class="explanation-label recommended">
+        <span th:text="#{common.recommended}">추천</span>
+    </div>
+    <h1><span class="artist-name"></span></h1>
+    <div class="pro-artist-info">
+        <p class="artist-intro"></p>
+    </div>
+</div>
+<!--모든 작가 보기-->
+<div class="pro-area home" id="all_artist">
+    <h1><span class="artist-name" th:text="#{home.allArtists}">모든 아티스트 보기</span></h1>
+    <div class="pro-artist-info">
+        <p class="artist-intro"></p>
+    </div>
+</div>
+<!--더 많은 아트워크-->
+<div class="pro-area" id="search_more"><h1><span th:text="#{home.searchByKeyword}">검색으로 찾기</span></h1></div>

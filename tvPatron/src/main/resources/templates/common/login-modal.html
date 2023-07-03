@@ -1,0 +1,64 @@
+<div id="qr_login_modal">
+    <div class="login-header">
+        <div class="buttons-container">
+            <button id="btn_login_close" class="btn-go-back" onclick="closeLoginModal()">
+                <img th:src="@{/img_v1_3_39/Icon-before.png}" alt="icon-before">
+            </button>
+            <span class="icon-before-sentence" th:text="#{common.back}">이전</span>
+        </div>
+    </div>
+    <div class="modal-container">
+        <main>
+            <!--qrcode-->
+            <section class="section-qrcode">
+                <div class="qrCode-sentence" th:text="#{smartTvLogin.scanQR}">아래 QR코드를 스캔해서 로그인 해주세요.</div>
+                <div class="qrCode-sub-sentence" th:text="#{smartTvLogin.scanQRSub}">아래 QR코드를 스캔해서 로그인 해주세요.</div>
+                <div class="qrCode-wrap">
+                    <div class="qrCode-border">
+                        <div id="qrCode"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!--code-->
+            <section class="section-code">
+                <div class="code-sentence" th:text="#{smartTvLogin.loginBelowNumberCode}">휴대폰에서 로그인 후 아래의 숫자코드를 입력하세요.
+                </div>
+                <div class="code"></div>
+                <div class="section-wrap">
+                    <div class="login-guide clearfix">
+                        <h4 class="login-guide-title" th:text="#{smartTvLogin.stepTitle}"></h4>
+                        <div class="login-guide-text">
+                            <p th:text="#{smartTvLogin.firstStep}">1. 휴대폰에서 이메일을 입력하고 ‘계속하기’ 버튼을 눌러주세요.</p>
+                            <p th:text="#{smartTvLogin.secondStep}">2. 가입된 계정이 없다면 ‘가입하기’ 버튼을 눌러주세요.</p>
+                            <p th:text="#{smartTvLogin.thirdStep}">3. 가입 후 오른쪽의 숫자 코드 9자리를 입력하세요.</p>
+                            <p th:text="#{smartTvLogin.fourthStep}">4. TV 로그인이 완료됩니다.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="timer">
+                    <div class="timer-circle">
+                        <div class="circle_progress">
+                            <div class="left">
+                                <div id="animationDiv1" class="bars"></div>
+                            </div>
+                            <div class="right">
+                                <div id="animationDiv2" class="bars"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timer-sentence" th:text="#{smartTvLogin.codeChange}">3분 뒤에 숫자코드가 변경됩니다.</div>
+                </div>
+            </section>
+            <div style="display: none">
+                <span id="deviceId" th:text="${deviceId}"></span>
+                <span id="deviceName" th:text="${deviceName}"></span>
+                <span id="provider" th:text="${provider}"></span>
+            </div>
+        </main>
+    </div>
+</div>
+
+<script th:inline="javascript">
+    var smartTvLoginSuccess = [[#{smartTvLogin.success}]];
+</script>

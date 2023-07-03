@@ -1,0 +1,747 @@
+html * {
+    font-family: 'Roboto Regular', 'Noto Sans japanese Regular', 'Noto Sans Regular', serif;
+}
+
+/*====================COMMON THUMBNAIL====================*/
+.item-box span {
+    font-family: 'Roboto Bold', 'Noto Sans japanese', 'Noto Sans KR Bold', serif;
+    letter-spacing: 0;
+    min-width: 0;
+    color: white;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.item-box {
+    width: auto;
+    height: auto;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+}
+
+.item-box .artwork-count span {
+    font-size: 20px;
+    color: rgba(255, 255, 255, 0.6);
+    line-height: unset;
+    letter-spacing: -1.5px;
+}
+
+.item.hoverTrue:hover .item-border {
+    display: block;
+    opacity: 0.7 !important;
+    border: 8px solid #fff;
+    border-radius: 16px;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.item {
+    position: relative;
+    float: left;
+    width: 400px;
+    height: 225px;
+    display: block;
+    border-radius: 16px;
+    background-position-x: center;
+    margin-right: 20px;
+    background-size: cover;
+}
+
+.item-title.active {
+    height: auto;
+    width: 1200px;
+    font-weight: 700;
+    font-size: 68px;
+    letter-spacing: 1px;
+    position: absolute;
+    transition: all 0.5s 0.5s ease-in-out;
+    display: inline-block;
+}
+
+.item-border {
+    width: 400px;
+    height: 225px;
+    border: 8px solid #fff;
+    box-sizing: border-box;
+    border-radius: 16px;
+    opacity: 0;
+}
+
+.item-background-image {
+    position: absolute;
+    width: 1280px;
+    height: inherit;
+    display: block;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 16px;
+}
+
+.item-a.contents-focus {
+    background: linear-gradient(180deg, rgba(10, 10, 10, 6e-05) 50%, rgba(10, 10, 10, 0.6) 99.19%);
+}
+
+.item-container {
+    position: relative;
+    left: 0;
+    margin-top: 20px;
+}
+
+.item a {
+    display: inline-block;
+    width: 400px;
+    height: 225px;
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.item-title {
+    display: flex;
+    font-size: 24px;
+    font-weight: 700;
+    position: absolute;
+    left: 24px;
+    height: 34px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.art-title {
+    font-size: 24px;
+    font-weight: 700;
+    position: absolute;
+    left: 20px;
+    max-width: 352px;
+    height: 34px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: left;
+    white-space: nowrap;
+    bottom: 56px;
+}
+
+.artist-title {
+    position: absolute;
+    display: inline;
+    max-width: 352px;
+    height: 34px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    line-height: 34px;
+    letter-spacing: 0;
+    left: 20px;
+    bottom: 24px;
+    color: #fff;
+    font-size: 20px;
+    font-family: 'Roboto Regular', 'Noto Sans japanese Regular', 'Noto Sans KR Bold', serif;
+    opacity: 0.6;
+}
+
+/*.curation이 붙으면 전시 thumbnail, 없으면 작품 thumbnail*/
+.item-box.curation .artist-title {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow: visible;
+}
+
+.artist-name-wrap,
+.artists-size {
+    display: flex;
+    white-space: nowrap;
+    max-width: 260px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    bottom: 0;
+    position: relative;
+}
+
+.artist-name-wrap span {
+    color: #fff;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.artist-name {
+    color: #fff;
+}
+
+.artists-size {
+    margin-left: 6px;
+    color: #fff;
+    overflow: visible;
+    display: inline-table;
+}
+
+/*.artist 붙으면 작가 thumbnail, 없으면 작품 thumbnail*/
+.item-box.artist .artist-name {
+    position: relative;
+    display: block;
+    font-family: 'Roboto Bold', 'Noto Sans japanese', 'Noto Sans KR Bold', serif;
+    text-align: center;
+    font-size: 24px;
+    color: white;
+}
+
+.item-box.artist .item-border {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 1;
+    width: 216px;
+    height: 216px;
+    border-radius: 216px;
+}
+
+.artist-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    -webkit-filter: grayscale(100%);
+    border-radius: 16px;
+}
+
+/*====================COMMON THUMBNAIL====================*/
+/* 매직리모콘 hover *****************************************************************************************************/
+/*공통 - 이전 버튼*/
+.btn-go-back:hover .icon-go-back,
+.btn-artists-close:hover .icon-go-back {
+    background-image: url("../../img_v1_3_39/icon_goback_active.png");
+    cursor: pointer;
+}
+
+.btn-go-back:hover .go-back-guide,
+.btn-artists-close:hover .go-back-guide {
+    display: block;
+    cursor: pointer;
+}
+
+
+/*홈 - 더 다양한 작품을 버튼*/
+.btn-go-search:hover {
+    background-color: #2841FA;
+    cursor: pointer;
+}
+
+
+/*검색 - 추천키워드*/
+.search-tag-container li.hoverTrue:hover .item-border {
+    opacity: 0.7 !important;
+    border: 8px solid #fff;
+    border-radius: 16px;
+    transition: 0.5s;
+    display: block;
+    cursor: pointer;
+}
+
+/*검색 - 최근검색어*/
+.search-recent li a.hovers {
+    font-weight: 700;
+    width: auto;
+    height: 50px;
+    background-color: #616161;
+    padding: 8px 16px;
+    border-radius: 16px;
+}
+
+/*검색결과 - 작가,작품 리스트*/
+.artist-list .items.hoverTrue:hover .item-border,
+.art-slides .art-item.hoverTrue:hover .art-border {
+    opacity: 0.7 !important;
+    border: 8px solid #fff;
+    border-radius: 16px;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+/*플레이어 - 검색,홈*/
+.buttons a:hover {
+    background: rgba(40, 65, 250, .4);
+    cursor: pointer;
+}
+
+/*세팅 - 메뉴*/
+.setting-menu .btn.hovers {
+    background-color: #2841FA;
+    color: #fff;
+    opacity: 0.4;
+    cursor: pointer;
+}
+
+/*세팅 - 컨텐츠버튼*/
+.setting-detail .btn:hover {
+    background-color: #2841FA !important;
+    opacity: 0.4;
+    cursor: pointer;
+}
+
+.setting-detail .button-box .btn:hover {
+    background-color: #2841FA !important;
+    opacity: 0.4;
+    cursor: pointer;
+}
+
+.setting-contents-box .btn:hover {
+    background-color: #2841FA !important;
+    opacity: 0.4;
+    cursor: pointer;
+}
+
+/*세팅 - 약관 스크롤*/
+.contents-text:hover .info-modal-scroll {
+    background-color: #2841FA;
+    cursor: pointer;
+}
+
+/*nft - 작품 리스트*/
+.art-slides li.hoverTrue:hover .art-border {
+    opacity: 0.7 !important;
+    border: 8px solid #fff;
+    border-radius: 16px;
+    transition: 0.5s;
+    display: block;
+    cursor: pointer;
+}
+
+*:focus-visible {
+    outline: none;
+}
+
+/*기본 레이아웃*/
+body {
+    overflow: hidden;
+}
+
+article {
+    position: absolute;
+    left: 0;
+    top: -64px;
+    width: 100%;
+    height: 100vh;
+    z-index: -1;
+}
+
+.contents {
+    width: auto;
+    height: 100vh;
+    position: absolute;
+    left: 104px;
+    padding: 88px 0 0 56px;
+}
+
+
+div {
+    outline: none;
+}
+
+form {
+    display: inline;
+}
+
+li {
+    box-sizing: border-box;
+}
+
+.art-artist {
+    font-size: 24px;
+    font-family: 'Roboto Light', 'Noto Sans japanese Light', 'Noto Sans KR Light', serif;
+    position: absolute;
+    top: 171px;
+    left: 20px;
+    max-width: 352px;
+    height: 34px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+.category {
+    position: relative;
+}
+
+.category a {
+    background-image: linear-gradient(to bottom, rgba(10, 10, 10, 0) 50%, #0a0a0a 111%);
+    display: block;
+    opacity: 1;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 1px;
+    left: 0;
+}
+
+.back-img {
+    position: fixed;
+    left: 20%;
+    top: -20%;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background-size: cover;
+    background-position-x: center;
+    display: block;
+    opacity: 0;
+}
+
+.art-tags li:last-of-type .bar {
+    display: none;
+}
+
+.loading-spinner {
+    width: 100%;
+    position: fixed;
+    height: 100%;
+    display: block;
+    z-index: 999;
+    background-color: #0A0A0A;
+    transition-duration: 1s;
+}
+
+.spin {
+    -webkit-animation: 1s spin infinite;
+}
+
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+/*icon*/
+.icon-check-black {
+    margin-right: 4px;
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    background-image: url("../../img_v1_3_39/icon_success_white@2x.png");
+    background-size: contain;
+    transform: translateY(2px);
+}
+
+/* @keyframes duration | timing-function | delay |
+iteration-count | direction | fill-mode | play-state | name */
+
+.loading-circle {
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.loading-circle > img {
+    width: 80px;
+    height: 80px;
+}
+
+.loading-logo {
+    position: absolute;
+    top: 49.77%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: block;
+    border-radius: 50%;
+    background-color: #fff;
+    width: 76px;
+    height: 76px;
+}
+
+.loading-logo > img {
+    width: 3.71vh;
+    height: 2.23vh;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 1;
+    visibility: visible;
+    transition: all .3s ease-in-out;
+}
+
+.loading-logo > img.spin {
+    width: 80px;
+    height: 80px;
+    top: 0;
+    left: 0;
+}
+
+.loading-slogan {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    padding-top: 1.85185185vh;
+    width: 50vw;
+    opacity: 1;
+    text-align: center;
+    color: #fff;
+    font-size: 22px;
+}
+
+span.loading-slogan strong {
+    font-family: 'Roboto Bold', 'Noto Sans japanese', 'Noto Sans KR Bold', serif;;
+}
+
+/**** 발화 가이드 영역 ****/
+.genie-voice-guide {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 100px;
+    color: #9b9b9b;
+    font-size: 26px;
+    overflow: hidden;
+    box-sizing: border-box;
+    padding: 16px 96px 42px 108px;
+    background-image: linear-gradient(to bottom, rgba(10, 10, 10, 0), #0a0a0a 44%, #0a0a0a 44%);
+    transition-duration: 2s;
+    z-index: 900;
+}
+
+.g-voice-icon {
+    background-image: url("../../img_v1_3_39/icon_Intent.png");
+    width: 60px;
+    height: 60px;
+    display: inline-block;
+    background-size: cover;
+    z-index: 900;
+}
+
+.voice-exit {
+    display: inline-block;
+    transform: translate(1300px, -14px);
+    z-index: 900;
+}
+
+.lolling-list, .lolling-list-player {
+    position: relative;
+    top: -48px;
+    left: 68px;
+    font-family: 'Roboto Regular', 'Noto Sans japanese Regular', 'Noto Sans KR Bold', serif;
+    color: #fff;
+    opacity: 0.7;
+    transform: translateY(-10px);
+    z-index: 900;
+}
+
+.lolling-list li, .lolling-list-player li {
+    height: 40px;
+    margin-bottom: 50px;
+    z-index: 900;
+}
+
+.showing-first {
+    display: inline-block;
+    font-size: 22px;
+    border: 1px solid #fff;
+    padding: 6px 20px;
+    border-radius: 22px;
+    margin-left: 12px;
+    z-index: 900;
+}
+
+/**홈, 보관함, 검색 발화가이드**/
+ul.lolling-list {
+    -webkit-animation: lolling-list ease-in-out 10s infinite;
+}
+
+@-webkit-keyframes lolling-list {
+    0% {
+        top: -48px;
+    }
+    10% {
+        top: -138px;
+    }
+    50% {
+        top: -138px;
+    }
+    60% {
+        top: -228px;
+    }
+    100% {
+        top: -228px;
+    }
+}
+
+/**플레이어 발화가이드**/
+ul.lolling-list-player {
+    -webkit-animation: lolling-list-player ease-in-out 14s infinite;
+}
+
+@-webkit-keyframes lolling-list-player {
+    0% {
+        top: -48px;
+    }
+    10% {
+        top: -138px;
+    }
+    50% {
+        top: -138px;
+    }
+    60% {
+        top: -228px;
+    }
+    100% {
+        top: -228px;
+    }
+}
+
+/*----------------------*/
+
+/* 본문 regular 적용 */
+.pro-info p {
+    font-family: 'Roboto Regular', 'Noto Sans Regular', serif;
+}
+
+/*모달*/
+.toast-modal {
+    display: block;
+    position: fixed;
+    z-index: 1010;
+    box-sizing: border-box;
+    top: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: auto;
+    padding: 0 44px;
+    height: 94px;
+    background: #f5f5f5;
+    border-radius: 100px;
+}
+
+.toast-modal p {
+    height: 30px;
+    line-height: 94px;
+    mix-blend-mode: normal;
+    text-align: center;
+    color: #0a0a0a;
+    font-size: 28px;
+    font-weight: 600;
+}
+
+.disnone {
+    display: none !important;
+}
+
+.clearfix:after {
+    content: ".";
+    display: block;
+    clear: both;
+    visibility: hidden;
+    line-height: 0;
+    height: 0;
+}
+
+.clearfix {
+    display: inline-block;
+}
+
+html[xmlns] .clearfix {
+    display: block;
+}
+
+* html .clearfix {
+    height: 1%;
+}
+
+/*explanation*/
+.blurred-background-opacity {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #0a0a0a;
+    opacity: 0.5;
+    z-index: 1;
+}
+
+.blurred-background-image {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    width: 130vw;
+    height: 130vh;
+    filter: blur(100px);
+    -webkit-filter: blur(100px);
+    transform: translate3d(-50%, -50%, 0);
+    -ms-transform: translate3d(-50%, -50%, 0);
+    -webkit-transform: translate3d(-50%, -50%, 0);
+
+}
+
+.blurred-background-image img.back-img {
+    all: unset;
+    position: absolute;
+    height: inherit;
+}
+
+.background-color {
+    background: transparent;
+}
+
+.explanation-label {
+    display: inline-flex;
+    padding: 6px 12px;
+    border-radius: 100px;
+    width: auto;
+    height: auto;
+    flex-direction: row;
+    font-family: 'Roboto Regular', 'Noto Sans japanese Regular', 'Noto Sans KR Bold', serif;
+    font-size: 18px;
+    background: rgba(10, 10, 10, 0.5);
+    color: #FFFFFF;
+}
+
+.explanation-label.recommended {
+    background-color: #2841fa;
+}
+
+.icon-play-state, .icon-confirm, .icon-like-state, .icon-state {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-self: center;
+}
+
+.label-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.label-container p {
+    margin-right: 12px;
+}
+
+.label-container .explanation-label {
+    margin-right: 8px;
+}
+
+.label-container .explanation-label span {
+    margin-right: 0;
+}
+
+.label-container span {
+    margin-right: 8px;
+}
+
+.explanation-guide {
+    display: flex;
+    flex-direction: row;
+    font-size: 20px;
+    color: rgba(255, 255, 255, 0.8);
+    align-self: center;
+}
+
+

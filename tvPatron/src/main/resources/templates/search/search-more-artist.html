@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <div th:remove="tag" th:replace="common/common-head-script.html :: headScript"></div>
+    <title>PATRON | Result</title>
+    <link rel="stylesheet" th:href="@{/css_v1_3_39/search/search.css}">
+</head>
+
+<body>
+<input th:type="hidden" th:value="${loginStatus}" id="login_status">
+<div th:replace="common/login-modal.html"></div>
+<header class="header">
+    <a href="/search" class="btn-go-back">
+        <i class="icon-go-back"></i>
+    </a>
+</header>
+
+<article>
+    <div class="contents">
+        <div class="result-area" th:if="${keyword != null}">
+            <p th:text="${keyword}"></p>
+        </div>
+        <!--작가 검색 결과-->
+        <input type="hidden" id="artist_result" th:value="${artists.size()}">
+        <div id="artist_list" class="artist-list category" th:if="${artists.size() != 0}">
+            <p class="title4">취향의 발견, 작가</p>
+            <div class="item-container">
+                <ul class="item-box">
+                    <!--6명까지만 출력되고 그 이상은 더보기 버튼으로 페이지 이동-->
+                    <li class="item visible-item visible-death-item test" th:each="artist: ${artists}"
+                        th:style="'background-image: url(\'' + ${artist.getProfileImg() != null ? artist.getProfileImg() : 'https://stpatron001.blob.core.windows.net/container-patron-renewal/no_img_artist.png'} +'\')'">
+                        <!--작가 프로필 이미지 있으면 보여줌, 없으면 디폴트이미지 넣어줌(절대경로 추가예정/현재임시url)-->
+                        <img th:if="${artistStat.index != null}" class="artist-img"
+                             th:src="@{${artist.getProfileImg()}}">
+                        <img th:if="${artistStat.index == null}" class="artist-img"
+                             th:src="'https://stpatron001.blob.core.windows.net/container-patron-renewal/no_img_artist.png'">
+                        <a th:href="@{'/artist?artist_id='+${artist.getId()}}" class="item-a">
+                            <div class="item-border"></div>
+                            <span class="item-title" th:text="${artist.getKorName()}">모네</span>
+                        </a>
+                    </li>
+                    <li class="item visible-item visible-death-item test" th:each="artist: ${artists}"
+                        th:style="'background-image: url(\'' + ${artist.getProfileImg() != null ? artist.getProfileImg() : 'https://stpatron001.blob.core.windows.net/container-patron-renewal/no_img_artist.png'} +'\')'">
+                        <!--작가 프로필 이미지 있으면 보여줌, 없으면 디폴트이미지 넣어줌(절대경로 추가예정/현재임시url)-->
+                        <img th:if="${artistStat.index != null}" class="artist-img"
+                             th:src="@{${artist.getProfileImg()}}">
+                        <img th:if="${artistStat.index == null}" class="artist-img"
+                             th:src="'https://stpatron001.blob.core.windows.net/container-patron-renewal/no_img_artist.png'">
+                        <a th:href="@{'/artist?artist_id='+${artist.getId()}}" class="item-a">
+                            <div class="item-border"></div>
+                            <span class="item-title" th:text="${artist.getKorName()}">모네</span>
+                        </a>
+                    </li>
+                    <li class="item visible-item visible-death-item test" th:each="artist: ${artists}"
+                        th:style="'background-image: url(\'' + ${artist.getProfileImg() != null ? artist.getProfileImg() : 'https://stpatron001.blob.core.windows.net/container-patron-renewal/no_img_artist.png'} +'\')'">
+                        <!--작가 프로필 이미지 있으면 보여줌, 없으면 디폴트이미지 넣어줌(절대경로 추가예정/현재임시url)-->
+                        <img th:if="${artistStat.index != null}" class="artist-img"
+                             th:src="@{${artist.getProfileImg()}}">
+                        <img th:if="${artistStat.index == null}" class="artist-img"
+                             th:src="'https://stpatron001.blob.core.windows.net/container-patron-renewal/no_img_artist.png'">
+                        <a th:href="@{'/artist?artist_id='+${artist.getId()}}" class="item-a">
+                            <div class="item-border"></div>
+                            <span class="item-title" th:text="${artist.getKorName()}">모네</span>
+                        </a>
+                    </li>
+                    <li class="item visible-item visible-death-item test" th:each="artist: ${artists}"
+                        th:style="'background-image: url(\'' + ${artist.getProfileImg() != null ? artist.getProfileImg() : 'https://stpatron001.blob.core.windows.net/container-patron-renewal/no_img_artist.png'} +'\')'">
+                        <!--작가 프로필 이미지 있으면 보여줌, 없으면 디폴트이미지 넣어줌(절대경로 추가예정/현재임시url)-->
+                        <img th:if="${artistStat.index != null}" class="artist-img"
+                             th:src="@{${artist.getProfileImg()}}">
+                        <img th:if="${artistStat.index == null}" class="artist-img"
+                             th:src="'https://stpatron001.blob.core.windows.net/container-patron-renewal/no_img_artist.png'">
+                        <a th:href="@{'/artist?artist_id='+${artist.getId()}}" class="item-a">
+                            <div class="item-border"></div>
+                            <span class="item-title" th:text="${artist.getKorName()}">모네</span>
+                        </a>
+                    </li>
+                    <li class="item visible-item visible-death-item test" th:each="artist: ${artists}"
+                        th:style="'background-image: url(\'' + ${artist.getProfileImg() != null ? artist.getProfileImg() : 'https://stpatron001.blob.core.windows.net/container-patron-renewal/no_img_artist.png'} +'\')'">
+                        <!--작가 프로필 이미지 있으면 보여줌, 없으면 디폴트이미지 넣어줌(절대경로 추가예정/현재임시url)-->
+                        <img th:if="${artistStat.index != null}" class="artist-img"
+                             th:src="@{${artist.getProfileImg()}}">
+                        <img th:if="${artistStat.index == null}" class="artist-img"
+                             th:src="'https://stpatron001.blob.core.windows.net/container-patron-renewal/no_img_artist.png'">
+                        <a th:href="@{'/artist?artist_id='+${artist.getId()}}" class="item-a">
+                            <div class="item-border"></div>
+                            <span class="item-title" th:text="${artist.getKorName()}">모네</span>
+                        </a>
+                    </li>
+                    <li class="item visible-item visible-death-item test" th:each="artist: ${artists}"
+                        th:style="'background-image: url(\'' + ${artist.getProfileImg() != null ? artist.getProfileImg() : 'https://stpatron001.blob.core.windows.net/container-patron-renewal/no_img_artist.png'} +'\')'">
+                        <!--작가 프로필 이미지 있으면 보여줌, 없으면 디폴트이미지 넣어줌(절대경로 추가예정/현재임시url)-->
+                        <img th:if="${artistStat.index != null}" class="artist-img"
+                             th:src="@{${artist.getProfileImg()}}">
+                        <img th:if="${artistStat.index == null}" class="artist-img"
+                             th:src="'https://stpatron001.blob.core.windows.net/container-patron-renewal/no_img_artist.png'">
+                        <a th:href="@{'/artist?artist_id='+${artist.getId()}}" class="item-a">
+                            <div class="item-border"></div>
+                            <span class="item-title" th:text="${artist.getKorName()}">모네</span>
+                        </a>
+                    </li>
+                    <!--더보기(작가6명 이상일 경우)-->
+                    <li class="item visible-item visible-death-item more-artist">
+                        <a class="btn-more-artist" href="javascript:void(0)">
+                            <i class="icon-go-back-inactive"></i>
+                            <span>더보기</span>
+                        </a>
+                    </li>
+                    <li class="item">
+                        <a href="javascript:void(0)" class="fake" th:style="'opacity:0'">
+                            <span>fake</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="opacity-box1"></div>
+        <div class="opacity-box2"></div>
+        <input type="hidden" id="artworks_array" th:if="${artworks != null}" th:value="${artworks}">
+        <input type="hidden" th:if="${artworks != null}" th:value="${artworks}">
+        <section class="carousel" id="carousel">
+            <div class="carousel-container" id="carousel_container">
+                <div class="art-slides">
+                    <ul class="slide">
+                        <li class="art-item">
+                            <div class="art-gradbox">
+                                <a th:href="@{'/player?art_id=1'}"></a>
+                                <div class="art-grad"></div>
+                                <div class="art-border"></div>
+                            </div>
+                            <span class="art-title" th:text="타이틀"></span>
+                            <span class="art-artist"
+                                  th:text="작가"></span>
+                        </li>
+                        <li class="art-item">
+                            <div class="art-gradbox">
+                                <a th:href="@{'/player?art_id=1'}"></a>
+                                <div class="art-grad"></div>
+                                <div class="art-border"></div>
+                            </div>
+                            <span class="art-title" th:text="타이틀"></span>
+                            <span class="art-artist"
+                                  th:text="작가"></span>
+                        </li>
+                        <li class="art-item">
+                            <div class="art-gradbox">
+                                <a th:href="@{'/player?art_id=1'}"></a>
+                                <div class="art-grad"></div>
+                                <div class="art-border"></div>
+                            </div>
+                            <span class="art-title" th:text="타이틀"></span>
+                            <span class="art-artist"
+                                  th:text="작가"></span>
+                        </li>
+                        <li class="art-item">
+                            <div class="art-gradbox">
+                                <a th:href="@{'/player?art_id=1'}"></a>
+                                <div class="art-grad"></div>
+                                <div class="art-border"></div>
+                            </div>
+                            <span class="art-title" th:text="타이틀"></span>
+                            <span class="art-artist"
+                                  th:text="작가"></span>
+                        </li>
+                        <li class="art-item">
+                            <div class="art-gradbox">
+                                <a th:href="@{'/player?art_id=1'}"></a>
+                                <div class="art-grad"></div>
+                                <div class="art-border"></div>
+                            </div>
+                            <span class="art-title" th:text="타이틀"></span>
+                            <span class="art-artist"
+                                  th:text="작가"></span>
+                        </li>
+                        <li class="art-item">
+                            <div class="art-gradbox">
+                                <a th:href="@{'/player?art_id=1'}"></a>
+                                <div class="art-grad"></div>
+                                <div class="art-border"></div>
+                            </div>
+                            <span class="art-title" th:text="타이틀"></span>
+                            <span class="art-artist"
+                                  th:text="작가"></span>
+                        </li>
+                        <li class="art-item">
+                            <div class="art-gradbox">
+                                <a th:href="@{'/player?art_id=1'}"></a>
+                                <div class="art-grad"></div>
+                                <div class="art-border"></div>
+                            </div>
+                            <span class="art-title" th:text="타이틀"></span>
+                            <span class="art-artist"
+                                  th:text="작가"></span>
+                        </li>
+                        <li class="art-item">
+                            <div class="art-gradbox">
+                                <a th:href="@{'/player?art_id=1'}"></a>
+                                <div class="art-grad"></div>
+                                <div class="art-border"></div>
+                            </div>
+                            <span class="art-title" th:text="타이틀"></span>
+                            <span class="art-artist"
+                                  th:text="작가"></span>
+                        </li>
+                        <li class="art-item">
+                            <div class="art-gradbox">
+                                <a th:href="@{'/player?art_id=1'}"></a>
+                                <div class="art-grad"></div>
+                                <div class="art-border"></div>
+                            </div>
+                            <span class="art-title" th:text="타이틀"></span>
+                            <span class="art-artist"
+                                  th:text="작가"></span>
+                        </li>
+                        <li class="art-item">
+                            <div class="art-gradbox">
+                                <a th:href="@{'/player?art_id=1'}"></a>
+                                <div class="art-grad"></div>
+                                <div class="art-border"></div>
+                            </div>
+                            <span class="art-title" th:text="타이틀"></span>
+                            <span class="art-artist"
+                                  th:text="작가"></span>
+                        </li>
+                        <li class="art-item">
+                            <div class="art-gradbox">
+                                <a th:href="@{'/player?art_id=1'}"></a>
+                                <div class="art-grad"></div>
+                                <div class="art-border"></div>
+                            </div>
+                            <span class="art-title" th:text="타이틀"></span>
+                            <span class="art-artist"
+                                  th:text="작가"></span>
+                        </li>
+                        <li class="art-item">
+                            <div class="art-gradbox">
+                                <a th:href="@{'/player?art_id=1'}"></a>
+                                <div class="art-grad"></div>
+                                <div class="art-border"></div>
+                            </div>
+                            <span class="art-title" th:text="타이틀"></span>
+                            <span class="art-artist"
+                                  th:text="작가"></span>
+                        </li>
+                        <li class="art-item">
+                            <div class="art-gradbox">
+                                <a th:href="@{'/player?art_id=1'}"></a>
+                                <div class="art-grad"></div>
+                                <div class="art-border"></div>
+                            </div>
+                            <span class="art-title" th:text="타이틀"></span>
+                            <span class="art-artist"
+                                  th:text="작가"></span>
+                        </li>
+                        <li class="art-item">
+                            <div class="art-gradbox">
+                                <a th:href="@{'/player?art_id=1'}"></a>
+                                <div class="art-grad"></div>
+                                <div class="art-border"></div>
+                            </div>
+                            <span class="art-title" th:text="타이틀"></span>
+                            <span class="art-artist"
+                                  th:text="작가"></span>
+                        </li>
+                        <li class="art-item">
+                            <div class="art-gradbox">
+                                <a th:href="@{'/player?art_id=1'}"></a>
+                                <div class="art-grad"></div>
+                                <div class="art-border"></div>
+                            </div>
+                            <span class="art-title" th:text="타이틀"></span>
+                            <span class="art-artist"
+                                  th:text="작가"></span>
+                        </li>
+                        <li class="art-item">
+                            <div class="art-gradbox">
+                                <a th:href="@{'/player?art_id=1'}"></a>
+                                <div class="art-grad"></div>
+                                <div class="art-border"></div>
+                            </div>
+                            <span class="art-title" th:text="타이틀"></span>
+                            <span class="art-artist"
+                                  th:text="작가"></span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </div>
+</article>
+
+<script th:src="@{/js_v1_3_39/common/common.js}" th:type="'text/javascript'"></script>
+<script th:src="@{/js_v1_3_39/search/search-result.js}"></script>
+</body>

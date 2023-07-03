@@ -1,0 +1,456 @@
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <div th:remove="tag" th:replace="common/common-head-script.html :: headScript"></div>
+    <title th:text="${title}"></title>
+    <link rel="stylesheet" th:href="@{/css_v1_3_39/player/player.css}">
+</head>
+
+<body>
+<input th:type="hidden" th:value="${loginStatus}" id="login_status">
+<div th:replace="common/login-modal.html"></div>
+<!--로딩 스패너-->
+<div id="main_loading_background" style="display: block;"></div>
+<div class="spinner" style="display: block;">
+    <div class="loading_spinner" style="display: block;"></div>
+</div>
+<!--컬렉션에 담긴 작품이 없습니다 모달-->
+<div class="no-artwork-modal">
+    <div class="no-artwork-box">
+        <i class="icon-alert"></i>
+        <p class="alert-guide" th:text="#{player.onlyOneArtwork}">컬렉션에 담긴 작품이 없습니다</p>
+    </div>
+    <button type="button" class="btn-okay" th:text="#{common.ok}">확인</button>
+</div>
+<div class="no-artwork-modal-back"></div>
+<div class="black-img" tabindex="-1" style="display: none"></div>
+<div class="wrap">
+    <div class="fade-box" style="opacity: 1"></div>
+    <section class="play-back-image" tabindex="-1">
+        <div class="play-image on" tabindex="-1">
+            <img id="img_origin" class="img-origin disnone" src="">
+            <img id="img_cover" class="img-cover" src="">
+        </div>
+    </section>
+
+    <!--발화 가이드 임시 영역-->
+    <div id="voiceGuide">
+        <div th:if="${provider} == 'Kt'">
+            <div th:replace="common/voice-guide.html"></div>
+        </div>
+    </div>
+
+    <div class="wrap-play" tabindex="-1">
+        <section class="play-info-container" th:if="${artwork != null}" tabindex="-1">
+            <div class="play-info" tabindex="-1">
+                <h1 class="play-info-artworkName" id="artwork_name" th:each="detail : ${artwork.getArtworkDetails()}"
+                    th:if="${detail.getLanguage().equals(language)}" th:text="${detail.getArtworkName()}"></h1>
+                <h2 class="play-info-artistName">
+                    <span class="artist-name artist-name-wrap">
+                       <span id="artist_name" class="artist-name"
+                             th:each="detail : ${artwork.getArtist().getArtistDetails()}"
+                             th:if="${detail.getLanguage().equals(language)}"
+                             th:text="${detail.getArtistName()}"></span>
+                    </span>
+                </h2>
+                <input type="hidden" id="artwork_thumbnail"
+                       th:value="${artwork.getContentsThumbnail().getDefaultImg()}">
+                <input type="hidden" id="first_artwork_id" th:value="${artwork.getId()}">
+                <input type="hidden" id="artist_info_id"
+                       th:value="${artwork.getArtist()} ? ${artwork.getArtist().getId()}">
+                <input type="hidden" id="view_last_time" th:value="${lastViewTime}">
+            </div>
+        </section>
+        <section id="play_contents" class="play-contents">
+            <audio id="play_audio" th:if="${artwork != null}">
+                <source src="" autoplay onplay="handleFirstPlay(event)" type="audio/mp3">
+            </audio>
+            <div class="play-bar">
+                <span class="circle"></span>
+                <span class="fixed-bar" tabindex="1"></span>
+                <span class="playing-bar" tabindex="-1"></span>
+                <div class="play-time" tabindex="-1">
+                    <div class="curation-title" th:if="${myCollection !=null}">
+                        <i class="icon-playing">
+                            <img id="icon_playing_img" th:src="@{/img_v1_3_39/icon_playing.gif}" alt="playing icon">
+                        </i>
+                        <span th:text="${myCollection}"></span>
+                    </div>
+                    <div class="curation-title" th:if="${exhibition !=null}">
+                        <i class="icon-playing">
+                            <img id="icon_playing_img" th:src="@{/img_v1_3_39/icon_playing.gif}" alt="playing icon">
+                        </i>
+                        <span th:if="${detail.getLanguage().equals(language)}"
+                              th:each="detail : ${exhibition.getExhibitionDetails()}"
+                              th:text="${detail.getExhibitionName()}"></span>
+                    </div>
+                    <span class="current">00:00</span>
+                    <span class="slash">/</span>
+                    <span class="duration">00:00</span>
+                </div>
+            </div>
+            <div class="play-buttons" tabindex="-1">
+                <div class="button-area1">
+                    <button type="button" class="btn-info">
+                        <i class="icon-info"></i>
+                        <span th:text="#{player.info}" class="btn-text info-text">정보</span>
+                    </button>
+                    <button type="button" class="btn-origin-repeat">
+                        <i class="icon-origin-repeat"></i>
+                        <span th:text="#{player.repeat}" class="btn-text repeat-mode-text">전체반복</span>
+                    </button>
+                    <button type="button" class="btn-origin-artwork">
+                        <i class="icon-origin-artwork deactivate origin"></i>
+                        <span th:text="#{player.basicView}" class="btn-text artwork-origin-text">기본보기</span>
+                    </button>
+                </div>
+                <div class="button-area2">
+                    <button type="button" class="btn-prev"
+                            onclick="changeNextPlayList('prev');gtag('event','player_prev');">
+                        <i class="icon-prev"></i>
+                        <span th:text="#{player.previous}" class="btn-text prev-text">이전작품</span>
+                    </button>
+                    <button type="button" id="btn_pause" class="btn-pause">
+                        <i class="icon-play pause"></i>
+                        <span th:text="#{player.pause}" class="btn-text pause-text">일시정지</span>
+                    </button>
+                    <button type="button" class="btn-next"
+                            onclick="changeNextPlayList('next');gtag('event','player_next');">
+                        <i class="icon-next"></i>
+                        <span th:text="#{player.next}" class="btn-text next-text">다음작품</span>
+                    </button>
+                </div>
+                <div class="button-area3">
+                    <button type="button" class="btn-save-collection" th:if="${exhibition != null}">
+                        <i th:if="${exhibitionInCollection}" class="icon-save-collection deactivate"></i>
+                        <span th:text="#{player.saved}" th:if="${exhibitionInCollection}"
+                              class="btn-text save-collection-text">저장함</span>
+                        <i th:unless="${exhibitionInCollection}" class="icon-save-collection deactivate save"></i>
+                        <span th:text="#{player.saveExhibition}" th:unless="${exhibitionInCollection}"
+                              class="btn-text save-collection-text">전시 저장</span>
+                    </button>
+                    <!--리모컨을 위한 태그 (큐레이션/작품 플레이어 아이콘 위치 동일하도록), flex 속성 이용해서 처리하면 기가지니에서 작동하지 않음-->
+                    <div class="blank-box" th:if="${exhibition == null}">
+                        <i class="icon-blank" style="opacity: 0"></i>
+                    </div>
+                    <button type="button" class="btn-collection">
+                        <i class="icon-add-collection"></i>
+                        <span th:text="#{player.addToCollection}" class="btn-text add-collection-text">컬렉션 담기</span>
+                    </button>
+                    <input name="like" class="like" value="true" type="hidden" tabindex="-1">
+                    <button type="button" class="btn-like" onclick="addLiked()">
+                        <i class="icon-like"></i>
+                        <span th:text="#{common.like}" class="btn-text liked-text">좋아요</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+        <div id="qr_for_gallery" class="qr-for-gallery">
+            <div class="frame-img">
+                <div class="qr-box">
+                    <div id="qrCode" class="newQrcode">
+                        <div id="qrCodeDivWrap"></div>
+                    </div>
+                    <p th:text="#{player.buy}" class="guide-text">구매하기</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--플레이어 추천 목록 캐러셀-->
+    <div th:replace="player/player-category"></div>
+    <div class="gradiant-box" style="opacity: 0"></div>
+    <div class="fade-box2 disnone"></div>
+
+</div>
+<div id="detail_modal" th:style="'display:none'">
+    <div class="gradiant-box"></div>
+    <p th:text="#{player.infoTitle}" class="modal-title active-btn-info disnone">정보</p>
+    <button type="button" class="btn-go-back player active-btn-info disnone">
+        <i class="icon-go-back"></i>
+        <span th:text="#{common.back}" class="go-back-guide">이전</span>
+    </button>
+    <button type="button" class="btn-go-back player active-btn-collection disnone">
+        <i class="icon-go-back"></i>
+        <span th:text="#{common.back}" class="go-back-guide">이전</span>
+    </button>
+    <div th:text="#{player.addedSavedExhibition}" class="added-sentence disnone">전시가 새 컬렉션으로 담겼습니다. 보관함에서 이 전시를 찾아보세요!
+    </div>
+    <div class="add-collection" style="display:none;">
+        <p th:text="#{player.addToCollection}" class="modal-collection-title">컬렉션 담기</p>
+        <div class="collection-container">
+            <div class="lately-collection"
+                 th:if="${recentCollections != null && recentCollections.size() > 0 && allCollections.size() > 1}">
+                <p th:text="#{player.lastestUsed}" class="all-collection-title">최근 사용</p>
+                <ul class="lately-collection-container">
+                    <li class="collection-list" th:each="recentCollection : ${recentCollections}">
+                        <a th:unless="${artworkInRecentCollection[recentCollectionStat.index]}"
+                           class="collection-name add-title add-active-title" tabindex="11"
+                           onclick="addArtworkCollection(this)" th:name="${recentCollection}"
+                           th:text="${recentCollection}"
+                           th:value="${artworkInRecentCollection[recentCollectionStat.index]}">일이삼사의 컬렉션</a>
+                        <a th:if="${artworkInRecentCollection[recentCollectionStat.index]}"
+                           class="collection-name add-title minus-active-title" tabindex="11"
+                           onclick="addArtworkCollection(this)" th:name="${recentCollection}"
+                           th:text="${recentCollection}"
+                           th:value="${artworkInRecentCollection[recentCollectionStat.index]}">일이삼사의 컬렉션</a>
+                        <button type="button" class="collection-buttons">
+                            <div th:unless="${artworkInRecentCollection[recentCollectionStat.index]}"
+                                 class="btn-collection-add" tabindex="-1"><i class="icon-add-artwork"></i>
+                                <span th:text="#{player.add}">담기</span>
+                            </div>
+                            <div th:if="${artworkInRecentCollection[recentCollectionStat.index]}"
+                                 class="btn-collection-minus" tabindex="-1"><i class="icon-minus-artwork"></i>
+                                <span th:text="#{player.remove}">빼기</span>
+                            </div>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+            <div class="not-contain-box all-collection">
+                <p th:text="#{player.all}" class="all-collection-title">모든 컬렉션</p>
+                <ul class="all-collection-container">
+                    <li class="collection-list" th:each="allCollection : ${allCollections}">
+                        <a th:unless="${artworkInCollection[allCollectionStat.index]}"
+                           class="collection-name add-title add-active-title" tabindex="11"
+                           onclick="addArtworkCollection(this)" th:name="${allCollection.getCollectionName()}"
+                           th:text="${allCollection.getCollectionName()}"
+                           th:value="${artworkInCollection[allCollectionStat.index]}">일이삼사의 컬렉션</a>
+                        <a th:if="${artworkInCollection[allCollectionStat.index]}"
+                           class="collection-name add-title minus-active-title" tabindex="11"
+                           onclick="addArtworkCollection(this)" th:name="${allCollection.getCollectionName()}"
+                           th:text="${allCollection.getCollectionName()}"
+                           th:value="${artworkInCollection[allCollectionStat.index]}">일이사삼의 컬렉션</a>
+                        <button type="button" class="collection-buttons">
+                            <div th:unless="${artworkInCollection[allCollectionStat.index]}" class="btn-collection-add"
+                                 tabindex="-1"><i class="icon-add-artwork"></i>
+                                <span th:text="#{player.add}">담기</span>
+                            </div>
+                            <div th:if="${artworkInCollection[allCollectionStat.index]}" class="btn-collection-minus"
+                                 tabindex="-1"><i class="icon-minus-artwork"></i>
+                                <span th:text="#{player.remove}">빼기</span>
+                            </div>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <input type="hidden" id="artwork_liked" th:value="${artworkLiked}">
+        <input type="hidden" id="artwork_in_collection" th:value="${artworkInCollection}">
+        <input type="hidden" id="exhibition_in_collection" th:value="${exhibitionInCollection}">
+        <input type="hidden" id="artwork_id" th:value="${artwork.getId()}">
+        <input type="hidden" id="exhibition_id" th:value="${exhibition != null ? exhibition.getId() : null}">
+        <input type="hidden" id="artist_id" th:value="${artist != null ? artist.getId() : null}">
+    </div>
+    <div id="player_info" class="player-info" th:style="'display:none'" tabindex="1">
+        <div class="player-info-box-wrap">
+            <div class="player-info-box" id="player_info_box">
+                <div class="exhibition-info category" th:if="${exhibition != null}">
+                    <h2 th:text="#{player.aboutExhibition}" class="title category-title">전시 정보</h2>
+                    <ul class="exhibition-info-detail">
+                        <li>
+                            <span th:text="#{player.title}" class="info-detail-menu">전시 제목</span>
+                            <span class="modal-info-text exhibition-info-detail-exhTitle"
+                                  th:each="detail : ${exhibition.getExhibitionDetails()}"
+                                  th:if="${detail.getLanguage().equals(language)}"
+                                  th:text="${detail.getExhibitionName()}">밤의 여왕 아리아</span>
+                        </li>
+                        <li id="curation_artists">
+                            <span th:text="#{player.artists}" class="info-detail-menu">참여 작가</span>
+                            <span>
+                                <span class="artist-name" th:each="detail : ${artwork.getArtist().getArtistDetails()}"
+                                      th:if="${detail.getLanguage().equals(language)}"
+                                      th:text="${detail.getArtistName()}"></span>
+                            </span>
+                            <span class="curation-info-detail-artists modal-info-text"
+                                  th:if="${artistsInExhibition != 0}"
+                                  th:text="#{common.and} + ' ' +${artistsInExhibition} + ' ' + #{common.more}">
+                            </span>
+                        </li>
+                    </ul>
+                    <div class="curation-info-detail-intro">
+                        <div class="full-text" th:each="detail : ${exhibition.getExhibitionDetails()}"
+                             th:if="${detail.getLanguage().equals(language)}" th:text="${detail.getIntro()}">
+                            국립현대미술관과 덕수궁 관리소가 공동 주최하는 덕수궁-서울 야외 프로젝트 : 기억된 미래는 고종황제의 서거와
+                            3.1운동의 100주년을 맞아, 근대의 태동을 알렸던 대한제국 시기 미래 도시를 향한 꿈을 현대 건축가들의 시각으로 재해석한 전시이다.
+                        </div>
+                    </div>
+                </div>
+                <div class="artist-info category">
+                    <h2 th:text="#{player.aboutArtist}" class="title category-title">작가 정보</h2>
+                    <ul>
+                        <li class="artist-info-detail-container">
+                            <div id="artist_img" class="artist-img-player artist-img">
+                                <img th:if="${artwork.getArtist().getProfileImg() != null}"
+                                     th:src="@{${artwork.getArtist().getProfileImg()}}">
+                                <img th:if="${artwork.getArtist().getProfileImg() == null}"
+                                     th:src="'https://stpatron001.blob.core.windows.net/container-patron-renewal/no_img_artist.png'">
+                            </div>
+                            <div class="artist-name-wrap">
+                                <span class="artist-name" th:each="detail : ${artwork.getArtist().getArtistDetails()}"
+                                      th:if="${detail.getLanguage().equals(language)}"
+                                      th:text="${detail.getArtistName()}"></span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="button-box">
+                                <div id="artist_profile" class="btn-more artist-profile showing-profile"
+                                     th:text="#{player.otherArtworks}">프로필
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="artist-info-detail">
+                        <div th:each="detail : ${artwork.getArtist().getArtistDetails()}"
+                             th:if="${detail.getLanguage().equals(language)}" th:text="${detail.getIntro()}">일상과 예술작품
+                            사이의 경계가 없음을 일컫어 '팝(pop)적이라고 부른다면, 김정언의
+                            작품은 그것만으로도 팝적인 요소를 지닌다. 작가는 빛을 하나하나 새기듯이 스팽글을
+                            오브제에 감아 '스팽글 오브제'를 제작하고 그 오브제를 찍음으로 '반짝이는 찰나의 순간' 이미지를 형상화한다.
+                        </div>
+                    </div>
+                </div>
+                <div class="artwork-info category">
+                    <h2 th:text="#{player.aboutArtwork}" class="title category-title">작품 정보</h2>
+                    <ul class="artwork-info-detail">
+                        <li>
+                            <span th:text="#{player.artworkTitle}" class="info-detail-menu">작품명</span>
+                            <span class="modal-info-text artwork-info-detail-artwork-name"
+                                  th:each="detail : ${artwork.getArtworkDetails()}"
+                                  th:if="${detail.getLanguage().equals(language)}" th:text="${detail.getArtworkName()}">A Sunday on La Grande Jatte</span>
+                        </li>
+                        <li>
+                            <span th:text="#{player.artist}" class="info-detail-menu">작가명</span>
+                            <span class="modal-info-text artwork-info-detail-artistName">
+                                 <span class="artist-name" th:each="detail : ${artwork.getArtist().getArtistDetails()}"
+                                       th:if="${detail.getLanguage().equals(language)}"
+                                       th:text="${detail.getArtistName()}"></span>
+                            </span>
+                        </li>
+                        <li>
+                            <span th:text="#{player.artworkSource}" class="info-detail-menu">재료, 기법</span>
+                            <span class="modal-info-text artwork-info-detail-artwork-source">
+                            </span>
+                        </li>
+                        <li>
+                            <span th:text="#{player.artworkDate}" class="info-detail-menu">제작연도</span>
+                            <span class="modal-info-text artwork-info-detail-artwork-date">
+                            </span>
+                        </li>
+                        <li>
+                            <span th:text="#{player.artworkSize}" class="info-detail-menu">사이즈</span>
+                            <span class="modal-info-text artwork-info-detail-artwork-size">
+                            </span>
+                        </li>
+                    </ul>
+                    <div class="artwork-info-detail-intro">
+                    </div>
+                </div>
+                <div class="sound-info category">
+                    <h2 th:text="#{player.sound}" class="title category-title">음악 정보</h2>
+                    <ul class="artwork-info-detail">
+                        <li>
+                            <span th:text="#{player.soundTitle}" class="info-detail-menu"
+                                  th:if="${artwork.getSound().getSoundName() != null && artwork.getSound().getSoundName() != ''}">사운드명</span>
+                            <span class="artwork-info-detail-sound-name"
+                                  th:if="${artwork.getSound().getSoundName() != null}"
+                                  th:text="${artwork.getSound().getSoundName()}">Organ Concerto No. 5 in </span>
+                        </li>
+                        <li>
+                            <span th:text="#{player.musician}" class="info-detail-menu"
+                                  th:if="${artwork.getSound().getSoundCreator() != null && artwork.getSound().getSoundCreator() != ''}">창작자명</span>
+                            <span class="artwork-info-detail-sound-creator"
+                                  th:if="${artwork.getSound().getSoundCreator() != null}"
+                                  th:text="${artwork.getSound().getSoundCreator()}">A Sunday on La Grande Jatte</span>
+                        </li>
+                        <li>
+                            <span th:text="#{player.source}" class="info-detail-menu"
+                                  th:if="${artwork.getSound().getSoundOriginUrl() != null && artwork.getSound().getSoundOriginUrl() != ''}">출처</span>
+                            <span class="artwork-info-detail-original-url"
+                                  th:if="${artwork.getSound().getSoundOriginUrl() != null}"
+                                  th:text="${artwork.getSound().getSoundOriginUrl()}">gongu.co.kr</span></li>
+                        <li>
+                            <span th:text="#{player.copyrightType}" class="info-detail-menu"
+                                  th:if="${artwork.getSound().getSoundLicense() != null && artwork.getSound().getSoundLicense() != ''}">저작권 유형</span>
+                            <span class="artwork-info-detail-sound-license"
+                                  th:if="${artwork.getSound().getSoundLicense() != null}"
+                                  th:text="${artwork.getSound().getSoundLicense()}">CC BY</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="info-modal-scroll-bar">
+            <div class="info-modal-scroll" tabindex="1"></div>
+        </div>
+    </div>
+</div>
+<div class="gradiant-box-modal"></div>
+
+<div th:style="'display: none'" th:if="${artwork != null}">
+    <span th:value="${artwork.getArtist()}">
+        <input th:hidden="hidden" name="current-index-size" th:value="${subsequentWatchingList.size()+1}">
+    </span>
+</div>
+<input type="hidden" id="myCollection" th:value="${myCollection}">
+
+<script th:inline="javascript">
+    var common = {};
+    common.and = [[#{common.and}]];
+    common.more = [[#{common.more}]];
+    var messagePlayer = {};
+    messagePlayer.info = [[#{player.info}]];
+    messagePlayer.repeat = [[#{player.repeat}]];
+    messagePlayer.repeatOne = [[#{player.repeatOne}]];
+    messagePlayer.basicView = [[#{player.basicView}]];
+    messagePlayer.originalView = [[#{player.originalView}]];
+    messagePlayer.previous = [[#{player.previous}]];
+    messagePlayer.pause = [[#{player.pause}]];
+    messagePlayer.play = [[#{player.play}]];
+    messagePlayer.next = [[#{player.next}]];
+    messagePlayer.saved = [[#{player.saved}]];
+    messagePlayer.saveExhibition = [[#{player.saveExhibition}]];
+    messagePlayer.deleteExhibition = [[#{player.deleteExhibition}]];
+    messagePlayer.savedExhibition = [[#{player.savedExhibition}]];
+    messagePlayer.addToCollection = [[#{player.addToCollection}]];
+    messagePlayer.addToCollectionMessage = [[#{player.addToCollectionMessage}]];
+    messagePlayer.removeCollectionMessage = [[#{player.removeCollectionMessage}]];
+    messagePlayer.like = [[#{common.like}]];
+    messagePlayer.liked = [[#{common.liked}]];
+    messagePlayer.likeMessage = [[#{player.likeMessage}]];
+    messagePlayer.likeRemoveMessage = [[#{player.likeRemoveMessage}]];
+    messagePlayer.buy = [[#{player.buy}]]
+    messagePlayer.exhibitionsInclude = [[#{player.exhibitionsInclude}]];
+    messagePlayer.explore = [[#{player.explore}]];
+    messagePlayer.home = [[#{player.home}]];
+    messagePlayer.addedSavedExhibition = [[#{player.addedSavedExhibition}]];
+    messagePlayer.lastestUsed = [[#{player.lastestUsed}]];
+    messagePlayer.add = [[#{player.add}]]
+    messagePlayer.remove = [[#{player.remove}]];
+    messagePlayer.all = [[#{player.all}]]
+    messagePlayer.aboutExhibition = [[#{player.aboutExhibition}]];
+    messagePlayer.Title = [[#{player.Title}]];
+    messagePlayer.artists = [[#{player.artists}]];
+    messagePlayer.aboutArtwork = [[#{player.aboutArtwork}]];
+    messagePlayer.artworkTitle = [[#{player.artworkTitle}]];
+    messagePlayer.artist = [[#{player.artist}]];
+    messagePlayer.sound = [[#{player.sound}]];
+    messagePlayer.soundTitle = [[#{player.soundTitle}]];
+    messagePlayer.musician = [[#{player.musician}]];
+    messagePlayer.source = [[#{player.source}]];
+    messagePlayer.copyrightType = [[#{player.copyrightType}]];
+    messagePlayer.aboutArtist = [[#{player.aboutArtist}]];
+    messagePlayer.otherArtworks = [[#{player.otherArtworks}]];
+    messagePlayer.more = [[#{player.more}]];
+    messagePlayer.noBasicView = [[#{player.noBasicView}]];
+    messagePlayer.and = [[#{common.and}]];
+    messagePlayer.moreArtist = [[#{common.more}]];
+    messagePlayer.firstArtwork = [[#{player.firstArtwork}]];
+</script>
+<script th:src="@{/js_v1_3_39/common/common.js}" th:type="'text/javascript'"></script>
+<script th:src="@{/js_v1_3_39/nftAppreciation/qrcodeJs.js}"></script>
+<script th:src="@{/js_v1_3_39/player/player.js}" th:type="'text/javascript'"></script>
+<script th:src="@{/js_v1_3_39/player/player-progressbar.js}" th:type="'text/javascript'"></script>
+<script th:src="@{/js_v1_3_39/smartTvLogin/qrcode.js}"></script>
+<script th:src="@{/js_v1_3_39/smartTvLogin/jquery.qrcode.js}"></script>
+</body>
+
+</html>

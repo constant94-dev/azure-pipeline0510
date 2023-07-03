@@ -1,0 +1,259 @@
+<section class="carousel" id="carousel">
+    <div class="carousel-container" id="carousel_container">
+        <div class="new-artworks category" th:if="${newlyRegisteredArtworks != null}">
+            <p class="title4" th:text="#{home.newArtwork}">새롭게 선보이는 작품</p>
+            <div class="item-container">
+                <ul class="item-box">
+                    <li class="item visible-item hoverTrue" th:each="newlyRegisteredArtwork : ${newlyRegisteredArtworks}" th:style="'background-image: url(\'' + ${newlyRegisteredArtwork.getContentsThumbnail().getDefaultImg()} + '\')'">
+                        <a th:href="@{'/' + ${language} + '/player?art_id='+${newlyRegisteredArtwork.getId()}}" class="item-a" th:id="${newlyRegisteredArtworkStat.index}">
+                            <div class="item-border"></div>
+                            <span class="art-title" th:each="detail : ${newlyRegisteredArtwork.getArtworkDetails()}" th:if="${detail.getLanguage().equals(language)}" th:text="${detail.getArtworkName()}"></span>
+                            <span class="artist-title">
+                                <span class="artist-name" th:each="detail : ${newlyRegisteredArtwork.getArtist().getArtistDetails()}" th:if="${detail.getLanguage().equals(language)}" th:text="${detail.getArtistName()}"></span>
+                            </span>
+                        </a>
+                        <audio class="art-sound">
+                            <source src="">
+                        </audio>
+                    </li>
+                    <li class="item">
+                        <a href="javascript:void(0)" class="fake" th:style="'opacity:0'">
+                            <span>fake</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div id="theme1" class="theme1 category" th:if="${theme1 != null}">
+            <p class="title4" th:each="detail : ${theme1.getExhibitionDetails()}" th:if="${detail.getLanguage().equals(language)}" th:text="${detail.getExhibitionName()}">여름방학</p>
+            <p class="title5">큐레이션,
+                <span class="number-of-artworks" th:text="${theme1.getArtworkExhibitions().size()}">32</span>작품,
+                <span class="curation-duration" th:text="${theme1DurationTime}">1시간 30분</span></p>
+            <div class="item-container">
+                <ul class="item-box">
+                    <li class="item visible-item hoverTrue" th:each="artwork1 : ${theme1.getArtworkExhibitions()}" th:style="'background-image: url(\'' + ${artwork1.getArtwork().getContentsThumbnail().getDefaultImg()} + '\')'">
+                        <a th:href="@{'/' + ${language} + '/player?art_id='+${artwork1.getArtwork().getId()}+${'&exh_id=' + theme1.getId()}}" class="item-a">
+                            <div class="item-border"></div>
+                            <span class="art-title" th:each="detail : ${artwork1.getArtwork().getArtworkDetails()}" th:if="${detail.getLanguage().equals(language)}" th:text="${detail.getArtworkName()}"></span>
+                            <span class="artist-title">
+                                <span class="artist-name" th:each="detail : ${artwork1.getArtwork().getArtist().getArtistDetails()}" th:if="${detail.getLanguage().equals(language)}" th:text="${detail.getArtistName()}"></span>
+                            </span>
+                        </a>
+                        <audio class="art-sound">
+                            <source src="">
+                        </audio>
+                    </li>
+                    <li class="item">
+                        <a href="javascript:void(0)" class="fake" th:style="'opacity:0'">
+                            <span>fake</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div id="theme2" class="theme2 category" th:if="${theme2 != null}">
+            <p class="title4" th:each="detail : ${theme2.getExhibitionDetails()}" th:if="${detail.getLanguage().equals(language)}" th:text="${detail.getExhibitionName()}">존재감 뿜뿜 공간을 살려주는
+                작품</p>
+            <p class="title5">큐레이션,
+                <span class="number-of-artworks" th:text="${theme2.getArtworkExhibitions().size()}">32</span>작품,
+                <span class="curation-duration" th:text="${theme2DurationTime}">1시간 30분</span></p>
+            <div class="item-container">
+                <ul class="item-box">
+                    <li class="item visible-item hoverTrue" th:each="artwork2 : ${theme2.getArtworkExhibitions()}" th:style="'background-image: url(\'' + ${artwork2.getArtwork().getContentsThumbnail().getDefaultImg()} + '\')'">
+                        <a th:href="@{'/' + ${language} + '/player?art_id='+${artwork2.getArtwork().getId()}+${'&exh_id='+theme2.getId()}}" class="item-a">
+                            <div class="item-border"></div>
+                            <span class="art-title" th:each="detail : ${artwork2.getArtwork().getArtworkDetails()}" th:if="${detail.getLanguage().equals(language)}" th:text="${detail.getArtworkName()}">Nifee rosa</span>
+                            <span class="artist-title">
+                                <span class="artist-name" th:each="detail : ${artwork2.getArtwork().getArtist().getArtistDetails()}" th:if="${detail.getLanguage().equals(language)}" th:text="${detail.getArtistName()}"></span>
+                            </span>
+                        </a>
+                        <audio class="art-sound">
+                            <source src="">
+                        </audio>
+                    </li>
+                    <li class="item">
+                        <a href="javascript:void(0)" class="fake" th:style="'opacity:0'">
+                            <span>fake</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="coming-soon category" th:if="${exhibitions.size() != 0}">
+            <p class="title4" th:text="#{home.waitingExhibition}">곧 찾아뵐게요!</p>
+            <div class="item-container">
+                <ul class="item-box curation">
+                    <li class="item visible-item main-curation hoverTrue" th:each="exhibition : ${exhibitions}" th:if="${leftTimeTillExhibition[exhibitionStat.index]!=0}">
+                        <img class="item-background-image" th:src="${exhibition.getArtworkExhibitions().isEmpty() ? null : exhibition.getArtworkExhibitions()[0].getArtwork().getContentsHd().getDefaultImg()}">
+                        <a href="#" class="item-a coming-soon-item">
+                            <div class="item-border coming"></div>
+                            <input th:id="${exhibition.getId()}" th:hidden="true" th:value="${exhibition.getId()}">
+                            <i class="icon-collection"></i>
+                            <span class="item-title" th:each="detail : ${exhibition.getExhibitionDetails()}" th:if="${detail.getLanguage().equals(language)}" th:text="${detail.getExhibitionName()}">Life and Joy</span>
+                            <div class="artist-title">
+                                <div class="artist-name-wrap">
+                                    <span th:if="${exhibition.getArtistExhibitions().size() > 0}">
+                                        <span class="artist-name" th:each="detail : ${exhibition.getArtistExhibitions()[0].getArtist().getArtistDetails()}" th:if="${detail.getLanguage().equals(language)}" th:text="${detail.getArtistName()}"></span>
+                                    </span>
+                                    <span th:if="${exhibition.getArtistExhibitions().size() > 1}">
+                                        <span class="artist-name" th:each="detail : ${exhibition.getArtistExhibitions()[1].getArtist().getArtistDetails()}" th:if="${detail.getLanguage().equals(language)}" th:text="${', ' + detail.getArtistName()}"></span>
+                                    </span>
+                                    <span th:if="${exhibition.getArtistExhibitions().size() > 2}">
+                                        <span class="artist-name" th:each="detail : ${exhibition.getArtistExhibitions()[2].getArtist().getArtistDetails()}" th:if="${detail.getLanguage().equals(language)}" th:text="${', ' + detail.getArtistName()}"></span>
+                                    </span>
+                                </div>
+                                <span th:if="${exhibition.getArtistExhibitions().size() > 3}">
+                                    <div class="artists-size" th:text="#{common.and} + ${exhibition.getArtistExhibitions().size()-3} + #{common.more}"></div>
+                                </span>
+                            </div>
+                            <div class="curation-info flex-content">
+                                <span class="artwork-count">
+                                    <span><span th:text="${exhibition.getArtworkExhibitions().size()}">19</span><span class="artwork-count-unit" th:text="#{common.artworks}"> 작품</span></span>
+                                </span>
+                                <span class="middle-dot"></span>
+                                <span class="duration-time" th:text="${exhibitionsDuration[exhibitionStat.index]}">1시간 25분</span>
+                            </div>
+                            <div class="bottom-white-guide" th:unless="${alreadyWaiting[exhibitionStat.index]}">
+                                <div class="add-to-collection-button hoverTrue want-to-see" th:text="#{common.wantToSee}">라이브러리에 저장
+                                </div>
+                            </div>
+                            <div class="bottom-white-guide" th:if="${alreadyWaiting[exhibitionStat.index]}">
+                                <div class="add-to-collection-button hoverTrue already-contained" th:text="#{home.inMyLibrary}">라이브러리에 저장함
+                                </div>
+                            </div>
+                        </a>
+                        <span class="d-day" th:if="${leftTimeTillExhibition[exhibitionStat.index]!=0}">D-<span th:text="${leftTimeTillExhibition[exhibitionStat.index]}">1</span></span>
+                    </li>
+                    <li class="item">
+                        <a href="javascript:void(0)" class="fake item-a" th:style="'opacity:0'">
+                            <span>fake</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div id="theme3" class="theme3 category" th:if="${theme3 != null}">
+            <p class="title4" th:each="detail : ${theme3.getExhibitionDetails()}" th:if="${detail.getLanguage().equals(language)}" th:text="${detail.getExhibitionName()}">여름방학</p>
+            <p class="title5">큐레이션,
+                <span class="number-of-artworks" th:text="${theme3.getArtworkExhibitions().size()}">32</span>작품,
+                <span class="curation-duration" th:text="${theme3DurationTime}">1시간 30분</span></p>
+            <div class="item-container">
+                <ul class="item-box">
+                    <li class="item visible-item hoverTrue" th:each="artwork3 : ${theme3.getArtworkExhibitions()}" th:style="'background-image: url(\'' + ${artwork3.getArtwork().getContentsThumbnail().getDefaultImg()} + '\')'">
+                        <a th:href="@{'/' + ${language} + '/player?art_id='+${artwork3.getArtwork().getId()}+${'&exh_id='+theme3.getId()}}" class="item-a">
+                            <div class="item-border"></div>
+                            <span class="art-title" th:each="detail : ${artwork3.getArtwork().getArtworkDetails()}" th:if="${detail.getLanguage().equals(language)}" th:text="${detail.getArtworkName()}"></span>
+                            <span class="artist-title">
+                                <span class="artist-name" th:each="detail : ${artwork3.getArtwork().getArtist().getArtistDetails()}" th:if="${detail.getLanguage().equals(language)}" th:text="${detail.getArtistName()}"></span>
+                            </span>
+                        </a>
+                        <audio class="art-sound">
+                            <source src="">
+                        </audio>
+                    </li>
+                    <li class="item">
+                        <a href="javascript:void(0)" class="fake" th:style="'opacity:0'">
+                            <span>fake</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div id="theme4" class="theme4 category" th:if="${theme4 != null}">
+            <p class="title4" th:each="detail : ${theme4.getExhibitionDetails()}" th:if="${detail.getLanguage().equals(language)}" th:text="${detail.getExhibitionName()}">여름방학</p>
+            <p class="title5">큐레이션,
+                <span class="number-of-artworks" th:text="${theme4.getArtworkExhibitions().size()}">32</span>작품,
+                <span class="curation-duration" th:text="${theme4DurationTime}">1시간 30분</span></p>
+            <div class="item-container">
+                <ul class="item-box">
+                    <li class="item visible-item hoverTrue" th:each="artwork4 : ${theme4.getArtworkExhibitions()}" th:style="'background-image: url(\'' + ${artwork4.getArtwork().getContentsThumbnail().getDefaultImg()} + '\')'">
+                        <a th:href="@{'/' + ${language} + '/player?art_id='+${artwork4.getArtwork().getId()}+${'&exh_id='+theme4.getId()}}" class="item-a">
+                            <div class="item-border"></div>
+                            <span class="art-title" th:each="detail : ${artwork4.getArtwork().getArtworkDetails()}" th:if="${detail.getLanguage().equals(language)}" th:text="${detail.getArtworkName()}"></span>
+                            <span class="artist-title">
+                                <span class="artist-name" th:each="detail : ${artwork4.getArtwork().getArtist().getArtistDetails()}" th:if="${detail.getLanguage().equals(language)}" th:text="${detail.getArtistName()}"></span>
+                            </span>
+                        </a>
+                        <audio class="art-sound">
+                            <source src="">
+                        </audio>
+                    </li>
+                    <li class="item">
+                        <a href="javascript:void(0)" class="fake" th:style="'opacity:0'">
+                            <span>fake</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div id="theme5" class="theme5 category" th:if="${theme5 != null}">
+            <p class="title4" th:each="detail : ${theme5.getExhibitionDetails()}" th:if="${detail.getLanguage().equals(language)}" th:text="${detail.getExhibitionName()}">여름방학</p>
+            <p class="title5">큐레이션,
+                <span class="number-of-artworks" th:text="${theme5.getArtworkExhibitions().size()}">32</span>작품,
+                <span class="curation-duration" th:text="${theme5DurationTime}">1시간 30분</span></p>
+            <div class="item-container">
+                <ul class="item-box">
+                    <li class="item visible-item hoverTrue" th:each="artwork5 : ${theme5.getArtworkExhibitions()}" th:style="'background-image: url(\'' + ${artwork5.getArtwork().getContentsThumbnail().getDefaultImg()} + '\')'">
+                        <a th:href="@{'/' + ${language} + '/player?art_id='+${artwork5.getArtwork().getId()}+${'&exh_id='+theme5.getId()}}" class="item-a">
+                            <div class="item-border"></div>
+                            <span class="art-title" th:each="detail : ${artwork5.getArtwork().getArtworkDetails()}" th:if="${detail.getLanguage().equals(language)}" th:text="${detail.getArtworkName()}"></span>
+                            <span class="artist-title">
+                                <span class="artist-name" th:each="detail : ${artwork5.getArtwork().getArtist().getArtistDetails()}" th:if="${detail.getLanguage().equals(language)}" th:text="${detail.getArtistName()}"></span>
+                            </span>
+                        </a>
+                        <audio class="art-sound">
+                            <source src="">
+                        </audio>
+                    </li>
+                    <li class="item">
+                        <a href="javascript:void(0)" class="fake" th:style="'opacity:0'">
+                            <span>fake</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div id="artist_list" class="artist-list category" th:if="${artists.size() != 0}">
+            <p class="title4" th:text="#{home.recommendedArtist}">취향의 발견, 작가</p>
+            <div class="item-container">
+                <ul class="item-box artist">
+                    <li class="item visible-item visible-death-item test hoverTrue" th:each="artist: ${artists}">
+                        <a th:href="'/'+${language}+'/artist?artist_id='+${artist.getId()}" class="item-a">
+                            <div class="item-border artist"></div>
+                            <img th:if="${artistStat.index != null}" class="artist-img" th:src="@{${artist.getProfileImg()}}">
+                            <img th:if="${artistStat.index == null}" class="artist-img" th:src="'https://stpatron001.blob.core.windows.net/container-patron-renewal/no_img_artist.png'">
+                        </a>
+                            <span class="artist-name" th:each="detail : ${artist.getArtistDetails()}" th:if="${detail.getLanguage().equals(language)}" th:text="${detail.getArtistName()}"></span>
+                        <audio class="art-sound">
+                            <source src="">
+                        </audio>
+                    </li>
+                    <li class="item visible-item visible-death-item test hoverTrue more-artist">
+                        <a th:href="'/'+${language}+'/artists-all'" class="btn-more-artist" id="btn_more_artist">
+                            <div class="item-border artist"></div>
+                            <i class="icon-go-back-inactive"></i>
+                        </a>
+                    </li>
+                    <li class="item">
+                        <a href="javascript:void(0)" class="fake" th:style="'opacity:0'">
+                            <span>fake</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="category">
+            <a th:href="'/'+${language}+'/search'" class="btn-go-search">
+                <div style="display: flex;">
+                    <i class="icon-go-search" style="margin-right: 8px"></i>
+                    <span class="search-guide-text" th:text="#{home.moreArtwork}">더 다양한 작품을 찾아보세요</span></div>
+            </a>
+        </div>
+    </div>
+</section>
+<span th:each="newlyRegisteredArtwork : ${newlyRegisteredArtworks}" hidden>
+    <input th:id="'newly_registered_artwork_default' + ${newlyRegisteredArtworkStat.index}" th:value="${newlyRegisteredArtwork.getContentsThumbnail().getDefaultImg()}">
+    <input th:id="'newly_registered_artwork_name' + ${newlyRegisteredArtworkStat.index}" th:each="detail : ${newlyRegisteredArtwork.getArtworkDetails()}" th:if="${detail.getLanguage().equals(language)}" th:value="${detail.getArtworkName()}">
+    <input th:id="'newly_registered_artist_name' + ${newlyRegisteredArtworkStat.index}" th:each="detail : ${newlyRegisteredArtwork.getArtist().getArtistDetails()}" th:if="${detail.getLanguage().equals(language)}" th:value="${detail.getArtistName()}">
+    <input th:id="'newly_registered_artist_intro' + ${newlyRegisteredArtworkStat.index}" th:each="detail : ${newlyRegisteredArtwork.getArtist().getArtistDetails()}" th:if="${detail.getLanguage().equals(language)}" th:value="${detail.getIntro()}">
+</span>

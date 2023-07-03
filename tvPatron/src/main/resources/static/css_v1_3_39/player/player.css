@@ -1,0 +1,1785 @@
+/*===========thumbnail===========*/
+.art-title {
+    bottom: 58px;
+}
+
+.item-box li {
+    margin-bottom: 40px;
+}
+
+.item-box .art-title {
+    bottom: 55px;
+    left: 18px;
+}
+
+.item-title {
+    width: 176px;
+}
+
+.other-artists .item-box .item {
+    display: flex;
+    flex-direction: column;
+    width: 216px;
+    height: 266px;
+}
+
+.other-artists .item a {
+    display: flex;
+    width: 216px;
+    height: 216px;
+    border-radius: 216px;
+    background-position: center;
+    filter: grayscale(100%);
+    -webkit-filter: grayscale(100%);
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-bottom: 16px;
+}
+
+.other-artists .item-border {
+    width: 216px;
+    height: 216px;
+    border-radius: 216px;
+}
+
+.other-artists .item.hoverTrue:hover .item-border {
+    border-radius: 216px;
+}
+
+.recommended-categories .item-box .item {
+    width: 228px;
+    height: 228px;
+}
+
+.recommended-categories .item a {
+    width: inherit;
+    height: inherit;
+}
+
+.recommended-categories .item-border {
+    width: inherit;
+    height: inherit;
+}
+
+#recommended_categories .item {
+    width: auto;
+    height: auto;
+    padding: 16px 32px;
+    background-color: #fff;
+}
+
+#recommended_categories .item.inactive {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+#recommended_categories .item.inactive .keyword {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+#recommended_categories .item.focused {
+    background-color: #2841fa;
+}
+
+#recommended_categories .item.focused span.keyword {
+    color: #fff;
+}
+
+/*===========thumbnail===========*/
+:focus {
+    border: none;
+    outline: none;
+}
+
+:focus-visible {
+    outline: none;
+}
+
+.disnone {
+    display: none !important;
+}
+
+@keyframes fadein {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@-moz-keyframes fadein { /* Firefox */
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes fadein { /* Safari and Chrome */
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@-o-keyframes fadein { /* Opera */
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeout {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+@-moz-keyframes fadeout { /* Firefox */
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+@-webkit-keyframes fadeout { /* Safari and Chrome */
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+@-o-keyframes fadeout { /* Opera */
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+body {
+    background-color: black;
+}
+
+.active {
+    border: 8px solid #fff;
+    border-radius: 16px;
+    box-sizing: border-box;
+}
+
+.wrap {
+    width: 100%;
+    height: 100%;
+}
+
+
+.wrap-play {
+    position: relative;
+    z-index: 2;
+}
+
+.wrap-carousel {
+    position: relative;
+    z-index: 3;
+}
+
+.play-image {
+    width: 1920px;
+    height: 1080px;
+    background-size: cover;
+    background-color: black;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.play-image.on {
+    width: 100%;
+    height: 100vh;
+    background-size: contain;
+    background-color: black;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-repeat: no-repeat;
+    overflow: hidden;
+}
+
+.img-origin {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translatex(-50%);
+    height: 100%;
+}
+
+.img-cover {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+}
+
+.gradiant-box {
+    position: fixed;
+    top: 0;
+    width: 150%;
+    height: 1080px;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 0.96) 100%);
+    opacity: 0;
+    transition: .5s;
+    transform: translateX(-1px);
+}
+
+.gradiant-box-modal {
+    position: fixed;
+    top: 0px;
+    width: 1920px;
+    height: 1080px;
+    z-index: 1;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 0.96) 100%);
+    opacity: 0;
+    transition: 0.5s;
+    transform: translateX(-1px);
+}
+
+.fade-box {
+    z-index: 910;
+    width: 1920px;
+    height: 1080px;
+    background-color: black;
+    position: fixed;
+    left: 0;
+    top: 0;
+    opacity: 1;
+    transition: 3s;
+}
+
+
+.fade-box2 {
+    width: 1920px;
+    height: 1080px;
+    background-color: black;
+    position: fixed;
+    left: 0;
+    top: 0;
+    opacity: 1;
+    transition-duration: 1.5s;
+}
+
+.fade-box .out {
+    opacity: 0;
+    transition: 1.5s;
+}
+
+.play-info-container {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+}
+
+.play-contents {
+    position: absolute;
+    top: 760px;
+}
+
+.play-info {
+    color: #fff;
+}
+
+.play-info h3 {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: 0px;
+    margin-bottom: 506px;
+}
+
+.play-info h1 {
+    font-size: 52px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.play-info h2 {
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: 0px;
+    margin-bottom: 20px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.play-info h1.play-info-artworkName,
+.play-info h2.play-info-artistName {
+    max-width: 1840px;
+}
+
+.play-info h1.play-info-artworkName {
+    margin-top: 611px;
+    font-size: 32px;
+}
+
+.play-bar {
+    position: relative;
+    width: 1840px;
+}
+
+.fixed-bar {
+    display: block;
+    width: 1840px;
+    height: 2px;
+    background-color: #fff;
+    opacity: 50%;
+    left: 40px;
+    position: fixed;
+}
+
+.playing-bar {
+    display: block;
+    width: 0;
+    height: 2px;
+    background-color: #2841fa;
+    position: absolute;
+    left: 40px;
+}
+
+.circle {
+    position: absolute;
+    left: 0;
+    width: 32px;
+    height: 32px;
+    background-color: #fff;
+    border: 6px solid #fff;
+    border-radius: 50%;
+    transform: translateY(-18px) translateX(37px);
+    z-index: 1;
+    opacity: 0;
+}
+
+
+.play-time {
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    right: -37px;
+    bottom: 24px;
+    font-size: 22px;
+    color: #fff;
+    letter-spacing: 0px;
+}
+
+.current, .slash, .duration {
+    opacity: 0.65;
+}
+
+.curation-title {
+    margin-right: 12px;
+    display: flex;
+    flex-direction: row;
+}
+
+.icon-playing {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+    margin-right: 4px;
+}
+
+.icon-playing img {
+    width: inherit;
+    height: inherit;
+}
+
+.play-buttons {
+    position: relative;
+    top: 26px;
+    height: 80px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 1840px;
+    left: 40px;
+}
+
+
+.play-buttons button {
+    border: 0px;
+    background-color: transparent;
+    width: 107px;
+}
+
+.buttons {
+    display: flex;
+}
+
+.buttons.cate {
+    margin-top: 198px;
+}
+
+.buttons button {
+    border: 0px;
+    background-color: transparent;
+    margin-right: 52px;
+}
+
+.buttons a,
+.buttons button {
+    background-image: none !important;
+    position: static !important;
+    display: -ms-flexbox !important;
+    display: -webkit-box !important;
+    display: flex !important;
+    -ms-flex-pack: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    border: none;
+    line-height: 73px;
+    width: auto !important;
+    height: 77px !important;
+    box-sizing: border-box;
+    color: #fff;
+    border-radius: 16px;
+    font-size: 24px;
+    font-family: 'Roboto Bold', 'Noto Sans japanese', 'Noto Sans KR Bold', serif;;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.3);
+    padding: 16px 32px;
+}
+
+.buttons i {
+    vertical-align: middle;
+    align-self: center;
+    margin-right: 4px;
+}
+
+.buttons span {
+    font-size: 24px;
+    font-family: 'Roboto Bold', 'Noto Sans japanese', 'Noto Sans KR Bold', serif;;
+    letter-spacing: 0;
+    color: #fff;
+    opacity: 0.6;
+    display: flex;
+    align-self: center;
+    font-family: 'Roboto Bold', 'Noto Sans japanese', 'Noto Sans KR Bold', serif;
+}
+
+.buttons a.btn-search.active, .buttons .btn-go-top.active {
+    background-color: #2841fa;
+    border: none;
+    opacity: 1;
+    font-weight: 700;
+}
+
+.buttons a.btn-home {
+    width: auto;
+}
+
+.buttons a.btn-home span {
+    display: inline-block;
+}
+
+.buttons a.btn-home.active {
+    background-color: #2841fa;
+    border: none;
+    opacity: 1;
+    font-weight: 700;
+}
+
+.icon-search.on {
+    background-image: url(../../img_v1_3_39/icon_search_button.png);
+    opacity: 1;
+}
+
+.icon-home.on {
+    background-image: url(../../img_v1_3_39/icon_home_button.png);
+    opacity: 1;
+}
+
+.icon-up {
+    background-image: url(../../img_v1_3_39/icon_gototop_button.png);
+    opacity: 0.65;
+    width: 36px;
+    height: 36px;
+    display: inline-block;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.icon-up.on {
+    opacity: 1;
+}
+
+.btn-fake {
+    width: 1px !important;
+    height: 1px !important;
+    background-color: transparent;
+    opacity: 0;
+}
+
+.button-area1, .button-area2, .button-area3 {
+    display: inline-block;
+}
+
+.button-area1 {
+    flex-basis: 330px;
+}
+
+.icon-info {
+    background-image: url("../../img_v1_3_39/icon_info_active.png");
+    width: 80px;
+    height: 80px;
+    display: inline-block;
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-right: 10px;
+}
+
+.icon-info.inactive {
+    background-image: url("../../img_v1_3_39/icon_info_inactive_on.png");
+    width: 80px;
+    height: 80px;
+    display: inline-block;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.icon-prev {
+    background-image: url("../../img_v1_3_39/icon_previous_play_inactive.png");
+    width: 80px;
+    height: 80px;
+    display: inline-block;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.icon-prev.inactive {
+    background-image: url("../../img_v1_3_39/icon_previous_play_inactive_on.png");
+    width: 80px;
+    height: 80px;
+    display: inline-block;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.icon-play {
+    background-image: url("../../img_v1_3_39/icon_play_inactive.png");
+    width: 80px;
+    height: 80px;
+    display: inline-block;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.icon-play.inactive {
+    background-image: url("../../img_v1_3_39/icon_play_active_on.png");
+    width: 80px;
+    height: 80px;
+    display: inline-block;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.icon-play.pause {
+    background-image: url("../../img_v1_3_39/icon_pause_inactive.png");
+    width: 80px;
+    height: 80px;
+    display: inline-block;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.icon-play.pause.inactive {
+    background-image: url("../../img_v1_3_39/icon_pause_inactive_on.png");
+    width: 80px;
+    height: 80px;
+    display: inline-block;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.icon-next {
+    background-image: url("../../img_v1_3_39/icon_nextplay_inactive.png");
+    width: 80px;
+    height: 80px;
+    display: inline-block;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.icon-next.inactive {
+    background-image: url("../../img_v1_3_39/icon_nextplay_inactive_on.png");
+    width: 80px;
+    height: 80px;
+    display: inline-block;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.icon-add-collection {
+    background-image: url("../../img_v1_3_39/icon_add_collection.png");
+    width: 80px;
+    height: 80px;
+    display: inline-block;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.icon-add-collection.inactive {
+    background-image: url("../../img_v1_3_39/icon_add_collection_active.png");
+    width: 80px;
+    height: 80px;
+    display: inline-block;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.icon-like {
+    background-image: url("../../img_v1_3_39/icon_like.png");
+    width: 80px;
+    height: 80px;
+    display: inline-block;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.icon-like.inactive {
+    background-image: url("../../img_v1_3_39/icon_like_active.png");
+    width: 80px;
+    height: 80px;
+    display: inline-block;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.icon-like.unlike {
+    background-image: url("../../img_v1_3_39/icon_unlike.png");
+    width: 80px;
+    height: 80px;
+    display: inline-block;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.icon-like.unlike.inactive {
+    background-image: url("../../img_v1_3_39/icon_unlike_active.png");
+    width: 80px;
+    height: 80px;
+    display: inline-block;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.icon-origin-artwork.origin {
+    background-image: url("../../img_v1_3_39/icon_basic_inactive@2x.png");
+    width: 80px;
+    height: 80px;
+    display: inline-block;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.icon-origin-artwork {
+    background-image: url("../../img_v1_3_39/icon_artworkmode_inactive.png");
+    width: 80px;
+    height: 80px;
+    display: inline-block;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.icon-origin-artwork.origin.inactive {
+    background-image: url("../../img_v1_3_39/icon_artworkmode_inactive (2).png");
+    width: 80px;
+    height: 80px;
+    display: inline-block;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.icon-origin-artwork.inactive {
+    background-image: url("../../img_v1_3_39/icon_artworkmode_inactive_on.png");
+    width: 80px;
+    height: 80px;
+    display: inline-block;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.icon-save-collection.save {
+    background-image: url("../../img_v1_3_39/icon_save_collection.png");
+    width: 80px;
+    height: 80px;
+    display: inline-block;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.icon-save-collection.save.inactive {
+    background-image: url("../../img_v1_3_39/icon_save_collection_active.png");
+    width: 80px;
+    height: 80px;
+    display: inline-block;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.icon-save-collection {
+    background-image: url("../../img_v1_3_39/icon_saved_collection.png");
+    width: 80px;
+    height: 80px;
+    display: inline-block;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.icon-save-collection.inactive {
+    background-image: url("../../img_v1_3_39/icon_saved_collection_active.png");
+    width: 80px;
+    height: 80px;
+    display: inline-block;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.icon-search {
+    background-image: url("../../img_v1_3_39/icon_search_button.png");
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 0.65;
+}
+
+.icon-home {
+    background-image: url("../../img_v1_3_39/icon_home_button.png");
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 0.65;
+}
+
+.icon-origin-repeat {
+    background-image: url("../../img_v1_3_39/icon_loopExh.png");
+    width: 80px;
+    height: 80px;
+    display: inline-block;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.icon-origin-repeat.only {
+    background-image: url("../../img_v1_3_39/icon_loopArtwork.png");
+    width: 80px;
+    height: 80px;
+    display: inline-block;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.icon-origin-repeat.inactive {
+    background-image: url("../../img_v1_3_39/icon_loopExh_active.png");
+    width: 80px;
+    height: 80px;
+    display: inline-block;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.icon-origin-repeat.only.inactive {
+    background-image: url("../../img_v1_3_39/icon_loopArtwork_active.png");
+    width: 80px;
+    height: 80px;
+    display: inline-block;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.carousel {
+    position: fixed;
+    top: 943px;
+    left: 40px;
+    width: 1920px;
+    height: 469px;
+}
+
+.carousel-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.list-title {
+    display: block;
+    font-size: 30px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 0px;
+    margin-bottom: 20px;
+}
+
+.item-box.artist .artist-name {
+    display: inline;
+    /*position: absolute;*/
+    /*top: 171px;*/
+    /*left: 20px;*/
+    max-width: 352px;
+    height: 34px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    opacity: 1;
+    font-size: 24px;
+    font-family: 'Roboto Bold', 'Noto Sans japanese', 'Noto Sans KR Bold', serif;;
+}
+
+.icon-list-collection {
+    background-image: url("../../img_v1_3_39/icon_collection.png");
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    background-size: cover;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.fake {
+    width: 1px !important;
+    height: 1px !important;
+    background-color: transparent;
+    opacity: 0%;
+}
+
+.fake.active {
+    border: none;
+}
+
+.cate a {
+    background-image: linear-gradient(to bottom, rgba(10, 10, 10, 0) 50%, #0a0a0a 99%);
+    display: block;
+    opacity: 1;
+    position: absolute;
+    top: 1px;
+    left: 0;
+}
+
+.other-artists.cate a {
+    position: static;
+}
+
+.fakeli a {
+    background-image: none;
+    opacity: 0;
+}
+
+button {
+    outline: none;
+}
+
+#detail_modal {
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(to left, rgba(10, 10, 10, 0.0001) 0%, rgba(10, 10, 10, 0.6) 20.86%, #0a0a0a 55.2%);
+    position: fixed;
+    left: 0;
+    top: 0;
+    overflow: hidden;
+    z-index: 900;
+}
+
+.modal-collection-title {
+    font-size: 56px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 42px;
+    margin-bottom: 55px;
+}
+
+.btn-go-back {
+    position: absolute;
+    width: 76px;
+    height: 260px;
+    top: 90px;
+    left: 24px;
+    border: none;
+    background-color: transparent;
+    z-index: 999;
+}
+
+.icon-go-back {
+    background-image: url("../../img_v1_3_39/icon_goback_inactive_left.png");
+    width: 76px;
+    height: 76px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 76px;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.icon-go-back.active {
+    background-image: url("../../img_v1_3_39/icon_goback_active.png");
+    border: none;
+}
+
+.go-back-guide {
+    color: #fff;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -140px);
+    bottom: -8px;
+    font-family: 'Roboto Light', 'Noto Sans japanese Light', 'Noto Sans KR Light', serif;
+    font-size: 22px;
+    width: 45px;
+    height: 34px;
+    /*display:block;*/
+    line-height: 34px;
+    display: none;
+}
+
+.go-back-guide.global {
+    width: 68px;
+}
+
+.add-title {
+    font-size: 30px;
+    font-family: 'Roboto Regular', 'Noto Sans japanese Regular', 'Noto Sans KR Bold', serif;
+    color: #fff;
+}
+
+.added {
+    font-size: 22px;
+    font-family: 'Roboto Regular', 'Noto Sans japanese Regular', 'Noto Sans KR Bold', serif;
+    color: #fff;
+    line-height: 85px;
+}
+
+.btn-collection-add, .btn-collection-minus {
+    display: flex;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: 700;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    width: 148px;
+    height: 66px;
+    box-sizing: border-box;
+    text-align: center;
+    padding: 14px;
+    opacity: 0.4;
+    letter-spacing: 0px;
+}
+
+.btn-collection-add span, .btn-collection-minus span {
+    align-self: center;
+}
+
+.btn-collection-add, .btn-collection-minus {
+    padding: 14px 8px;
+}
+
+.btn-collection-add.active, .btn-collection-minus.active {
+    opacity: 1;
+}
+
+.add-collection {
+    position: absolute;
+    top: 109px;
+    left: 138px;
+    z-index: 1001;
+}
+
+.collection-container {
+    width: 700px;
+    height: 785px;
+    overflow-y: scroll;
+}
+
+.collection-container::-webkit-scrollbar {
+    width: 12px;
+    background: rgba(1, 1, 1, 0);
+    opacity: 0;
+}
+
+.collection-container::-webkit-scrollbar-thumb {
+    width: 12px;
+    height: 300px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+}
+
+.collection-container::-webkit-scrollbar-track {
+    opacity: 0;
+}
+
+.lately-collection-container {
+    margin-bottom: 68px;
+    width: 600px;
+    display: flex;
+    flex-direction: column;
+}
+
+.all-collection-container {
+    width: 600px;
+    display: flex;
+    flex-direction: column;
+}
+
+.all-collection {
+    height: auto;
+}
+
+.collection-list {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 27px;
+}
+
+.collection-list:last-of-type {
+    margin-bottom: 0;
+}
+
+.collection-list a {
+    height: 38px;
+    max-width: 440px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.lately-collection-container td:last-of-type {
+    float: right;
+}
+
+.lately-collection-container td {
+    float: left;
+}
+
+.btn-collection-add.active {
+    background-color: #2841fa;
+    border: none;
+}
+
+.btn-collection-add.hovers {
+    opacity: 0.4;
+    border: none;
+}
+
+.btn-collection-minus.active {
+    background-color: #ff5722;
+    border: none;
+}
+
+.btn-collection-minus.hovers {
+    opacity: 0.4;
+    border: none;
+}
+
+.add-title {
+    line-height: 34px;
+    margin-right: 15px;
+}
+
+.collection-buttons {
+    margin-top: 8px;
+    background: transparent;
+    border: none;
+}
+
+.all-collection-title {
+    font-size: 22px;
+    color: #fff;
+    font-family: 'Roboto Light', 'Noto Sans japanese Light', 'Noto Sans KR Light', serif;
+    line-height: 34px;
+    margin-bottom: 29px;
+}
+
+.icon-add-artwork {
+    background-image: url(../../img_v1_3_39/icon_plus_collection.png);
+    width: 28px;
+    height: 28px;
+    display: inline-block;
+    background-size: cover;
+    transform: translate(-3px, 6px);
+    margin-right: 8px;
+}
+
+.icon-minus-artwork {
+    background-image: url(../../img_v1_3_39/icon_subtract_collection.png);
+    width: 28px;
+    height: 28px;
+    display: inline-block;
+    background-size: cover;
+    transform: translate(-3px, 6px);
+    margin-right: 8px;
+}
+
+.alert-guide {
+    font-size: 34px;
+    font-weight: 700;
+    color: #1d1d1d;
+}
+
+.icon-alert {
+    background-image: url("../../img_v1_3_39/icon_alert.png");
+    width: 50px;
+    height: 50px;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    display: block;
+    position: absolute;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.modal-title {
+    display: inline-block;
+    position: absolute;
+    top: 87px;
+    left: 135px;
+    font-size: 56px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 32px;
+}
+
+.player-info-box {
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.player-info {
+    position: absolute;
+    top: 216px;
+    left: 138px;
+    width: 735px;
+    height: 789px;
+    z-index: 1001;
+    overflow-y: scroll;
+}
+
+.player-info::-webkit-scrollbar {
+    width: 40px;
+    opacity: 0;
+}
+
+.player-info::-webkit-scrollbar-thumb {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    width: 40px;
+}
+
+.player-info::-webkit-scrollbar-track {
+    opacity: 0;
+}
+
+.info-modal-scroll-bar {
+    position: fixed;
+    top: 214px;
+    left: 810px;
+    display: block;
+    width: 12px;
+    height: 776px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px
+}
+
+.info-modal-scroll {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: -14px;
+    width: 40px;
+    background-size: 40px 205px;
+    background-color: #2841fa;
+    border-radius: 25px;
+}
+
+.info-modal-scroll::before {
+    display: block;
+    position: absolute;
+    top: 14px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 20px;
+    content: '';
+    background-image: url("../../img_v1_3_39/icon_arrow_up.png");
+    background-size: cover;
+}
+
+.info-modal-scroll::after {
+    display: block;
+    position: absolute;
+    bottom: 14px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 20px;
+    content: '';
+    background-image: url("../../img_v1_3_39/icon_arrow_down.png");
+    background-size: cover;
+}
+
+.player-info ul {
+    font-family: 'Roboto Light', 'Noto Sans japanese Light', 'Noto Sans KR Light', serif;
+    font-size: 20px;
+    color: #fff;
+    margin-bottom: 32px;
+}
+
+.player-info li {
+    line-height: 30px;
+    letter-spacing: 0px;
+}
+
+.info-detail-menu {
+    display: inline-block;
+    min-width: 100px;
+    height: 30px;
+    margin-right: 24px;
+}
+
+.info-detail-menu.global {
+    min-width: 30%;
+    width: 30%;
+}
+
+.btn-more.active {
+    background-color: #2841fa !important;
+    border: none;
+    opacity: 1 !important;
+    font-weight: 700 !important;
+}
+
+.artist-info, .artwork-info, .sound-info {
+    display: block;
+}
+
+.button-box {
+    width: 600px;
+    box-sizing: border-box;
+    line-height: 85px;
+}
+
+.artwork-info-detail-intro p {
+    width: 600px;
+    overflow: hidden;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    vertical-align: top;
+    text-overflow: ellipsis;
+    word-break: break-all;
+    -webkit-box-orient: vertical;
+    color: #fff;
+    font-family: 'Roboto Light', 'Noto Sans japanese Light', 'Noto Sans KR Light', serif;
+    font-size: 22px;
+    text-align: justify;
+    margin-top: 0;
+    margin-bottom: 32px;
+    line-height: 34px;
+    letter-spacing: 0px;
+    max-height: unset;
+    height: auto;
+    webkit-line-clamp: 15;
+}
+
+.btn-more {
+    width: 600px;
+    height: 95px;
+    border: 2px solid #fff;
+    line-height: 85px;
+    text-align: center;
+    border-radius: 12px;
+    box-sizing: border-box;
+    font-size: 30px;
+    font-weight: 700;
+    color: #fff;
+    opacity: 0.45;
+    display: block;
+}
+
+.artwork-info-detail-intro .artwork-info-detail {
+    display: block;
+}
+
+.artwork-info-detail li {
+    display: flex;
+}
+
+.artist-img-player {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    overflow: hidden;
+    border-radius: 100px;
+    border: 1px solid transparent;
+}
+
+.artist-img-player img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: inherit;
+    -webkit-filter: grayscale(100%);
+}
+
+.curation-info-detail-intro {
+    margin-bottom: 32px;
+}
+
+.artist-info.category .title.category-title,
+.sound-info.category .category-title,
+.artwork-info .category-title {
+    margin-top: 32px;
+}
+
+.category:nth-of-type(1) .title.category-title {
+    margin-top: 0;
+}
+
+.artist-info-detail-container .artist-name {
+    font-size: 28px;
+    font-width: bold;
+    color: #fff;
+    height: 40px;
+    line-height: 40px;
+}
+
+.artist-info-detail div {
+    color: #fff;
+    font-family: 'Roboto Light', 'Noto Sans japanese Light', 'Noto Sans KR Light', serif;
+    font-size: 22px;
+    line-height: 34px;
+    letter-spacing: 0px;
+    margin-bottom: 32px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: box;
+    width: 600px;
+    overflow: hidden;
+    vertical-align: top;
+    text-overflow: ellipsis;
+    word-break: break-all;
+    -webkit-box-orient: vertical;
+}
+
+.curation-info-detail-intro div {
+    color: #fff;
+    font-family: 'Roboto Light', 'Noto Sans japanese Light', 'Noto Sans KR Light', serif;
+    font-size: 22px;
+    line-height: 34px;
+    letter-spacing: 0px;
+    margin-bottom: 32px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: box;
+    width: 600px;
+}
+
+.artist-info-detail div.full-text, .curation-info-detail-intro div.full-text {
+    -webkit-line-clamp: 24;
+    height: auto;
+}
+
+.btn-more {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: none;
+    box-sizing: border-box;
+}
+
+.exhibition-info-detail {
+    flex-wrap: nowrap;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 32px;
+}
+
+.exhibition-info-detail li {
+    display: flex;
+}
+
+.black-box {
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #000;
+    opacity: 0.75;
+}
+
+.modal-box {
+    width: 936px;
+    height: 662px;
+    background-color: #eeeef5;
+    border-radius: 12px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+div {
+    outline: none;
+}
+
+.timer {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 0px;
+    color: #2841fa;
+    margin-right: 9px;
+    border: none;
+    text-align: right;
+    /*width: 47px;*/
+    background-color: transparent;
+}
+
+.on {
+    background-color: #2841fa;
+    color: #fff;
+}
+
+.category .artist-profile {
+    background-image: none;
+    display: block;
+    opacity: 0.45;
+    width: 100%;
+    height: auto;
+    position: static;
+    line-height: 85px;
+    text-align: center;
+    border-radius: 16px;
+    font-size: 24px;
+    font-family: 'Roboto Light', 'Noto Sans japanese Light', 'Noto Sans KR Light', serif;
+    color: #fff;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.a-test {
+    width: 100%;
+    height: 3px;
+    background-color: hotpink;
+    position: relative;
+    top: 927px;
+    display: none;
+    opacity: 0;
+    z-index: 999;
+}
+
+
+.btn-text {
+    color: #fff;
+    font-size: 18px;
+    font-family: 'Roboto Regular', 'Noto Sans japanese Regular', 'Noto Sans KR Bold', serif;
+    display: none;
+    padding-top: 9px;
+}
+
+.info-text.inactive,
+.repeat-mode-text.inactive,
+.prev-text.inactive,
+.pause-text.inactive,
+.next-text.inactive,
+.add-collection-text.inactive,
+.liked-text.inactive,
+.artwork-origin-text.inactive,
+.save-collection-text.inactive {
+    display: block;
+}
+
+.player-info .category {
+    width: 600px;
+}
+
+.btn-inactive-box {
+    background-color: #fff;
+    width: inherit;
+    height: 77px;
+    box-sizing: border-box;
+    color: #fff;
+    opacity: 0.45;
+    border-radius: 16px;
+    font-size: 24px;
+    transform: translateY(-74px);
+}
+
+.modal-info-text {
+    width: auto;
+    display: inline-flex;
+    align-self: center;
+}
+
+.exhibition-info {
+    opacity: 1;
+}
+
+.category-title {
+    height: 42px;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 140%;
+    letter-spacing: 0px;
+    color: #FFFFFF;
+    margin-bottom: 20px;
+}
+
+.curation-info-detail-intro, .artwork-info.category, .artist-info.category {
+    border-bottom: 1px solid #9e9e9e;
+}
+
+.artist-info ul {
+    margin-bottom: 35px;
+    display: flex;
+    flex-direction: row;
+    height: 63px;
+    justify-content: space-between;
+}
+
+.black-img {
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: 0;
+    display: block;
+    position: fixed;
+    z-index: 1000;
+    transition-duration: 1s;
+}
+
+.no-artwork-modal-back {
+    display: none;
+    position: fixed;
+    width: 150%;
+    height: 100%;
+    background-color: black;
+    opacity: 0.4;
+}
+
+.no-artwork-modal {
+    position: fixed;
+    width: 600px;
+    height: 308px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    line-height: 308px;
+    border-radius: 8px;
+    overflow: hidden;
+    border: none;
+    display: none;
+    z-index: 999;
+}
+
+.no-artwork-box {
+    width: 600px;
+    height: 228px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: #eeeef5;
+}
+
+.icon-alert {
+    background-image: url("../../img_v1_3_39/icon_alert.png");
+    width: 50px;
+    height: 50px;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    display: block;
+    position: absolute;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.alert-guide {
+    font-size: 34px;
+    font-weight: 700;
+    color: #1d1d1d;
+}
+
+.btn-okay {
+    width: 600px;
+    height: 80px;
+    background-color: #2841fa;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    color: #fff;
+    line-height: 80px;
+    text-align: center;
+    font-size: 24px;
+    font-weight: 700;
+    border: none;
+}
+
+.toast-modal {
+    top: 100px;
+}
+
+.qr-for-gallery {
+    position: fixed;
+    top: 40px;
+    right: 40px;
+}
+
+.frame-img {
+    width: 152px;
+    height: 198px;
+    box-sizing: border-box;
+}
+
+.qr-box {
+    width: inherit;
+    height: inherit;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 12px;
+    background-color: #fff;
+    border-radius: 16px;
+    box-sizing: border-box;
+}
+
+.newQrcode {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 128px;
+    height: 128px;
+    background-color: #fff;
+    border-radius: 16px;
+    margin-bottom: 12px;
+}
+
+#qrCodeDivWrap {
+    width: 128px;
+    height: 128px;
+    align-self: center;
+    background-color: peachpuff;
+}
+
+.qr-for-gallery .guide-text {
+    font-weight: 700;
+    font-size: 28px;
+    text-align: center;
+    color: #000;
+    height: 34px;
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    line-height: 34px;
+}
+
+.player-info .artist-name span.artist-name {
+    margin-right: 0;
+}
+
+.buttons-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.buttons-container li {
+    margin-right: 20px;
+}
+
+.recommended-categories.cate a {
+    all: unset;
+}
+
+.artist-info .button-box {
+    width: auto;
+    display: flex;
+    line-height: 63px;
+}
+
+.artist-info.category .artist-profile {
+    width: inherit;
+    height: 68px;
+    padding: 16px 32px;
+    box-sizing: border-box;
+    line-height: 68px;
+    display: flex;
+    align-items: center;
+    font-family: 'Roboto Bold', 'Noto Sans japanese', 'Noto Sans KR Bold', serif;;
+}
+
+.artist-info .artist-info-detail-container {
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+}
+
+.artist-info .artist-img {
+    margin-right: 20px;
+}
+
+#recommended_categories .artist-name {
+    opacity: 1;
+}
+
+#recommended_categories span.keyword {
+    position: static;
+    font-size: 24px;
+    font-family: 'Roboto Bold', 'Noto Sans japanese', 'Noto Sans KR Bold', serif;;
+    color: #0a0a0a;
+}
+
+
+.other-item-artist-name {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.player-info-box-wrap .artist-name {
+    margin-right: 4px;
+}
+
+.blank-box {
+    display: inline-block;
+}
+
+.icon-blank {
+    width: 80px;
+    height: 80px;
+    display: inline-block;
+    opacity: 0;
+}

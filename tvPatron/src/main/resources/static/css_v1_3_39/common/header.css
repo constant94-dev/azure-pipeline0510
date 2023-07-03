@@ -1,0 +1,268 @@
+/*헤더 디자인*/
+.header {
+    width: 100%;
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 1000;
+}
+
+.menu {
+    width: 150px;
+    height: 100vh;
+    position: absolute;
+    left: 0;
+    top: 0;
+    padding: 115px 0 0 32px;
+    box-sizing: border-box;
+    z-index: 2;
+    background: linear-gradient(90deg, rgba(10, 10, 10, 0.8) 0%, rgba(10, 10, 10, 0) 100%);
+}
+
+.background-color {
+    width: 104px;
+    height: 1080px;
+    position: absolute;
+    background-color: #0a0a0a;
+    top: 0;
+    left: 0;
+    z-index: -2;
+}
+
+.lnb {
+    margin-bottom: 30px;
+    box-sizing: border-box;
+    height: 255px;
+    position: absolute;
+}
+
+.contents {
+    width: auto;
+    height: 100vh;
+    position: absolute;
+    left: 104px;
+    padding: 88px 0 0 56px;
+}
+
+.lnb li {
+    margin-bottom: 8px;
+}
+
+.gnb {
+    position: absolute;
+    top: 598px;
+}
+
+.gnb a {
+    display: block;
+    width: 60px;
+    height: 60px;
+}
+
+.lnb a {
+    display: block;
+    width: 60px;
+    height: 60px;
+}
+
+.lnb li:last-of-type, .gnb li:last-of-type {
+    margin-bottom: 0;
+}
+
+.icon-logo {
+    position: relative;
+    left: -40px;
+    background-image: url("../../img_v1_3_39/logo_symbol@2x.png");
+    width: 40px;
+    height: 24px;
+    display: inline-block;
+    background-size: cover;
+    margin-bottom: 174px;
+}
+
+.icon-home {
+    background-image: url("../../img_v1_3_39/icon-Home.png");
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    background-size: cover;
+}
+
+.icon-storage {
+    background-image: url("../../img_v1_3_39/icon_storage.png");
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    background-size: cover;
+}
+
+.icon-search {
+    background-image: url("../../img_v1_3_39/icon_search.png");
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    background-size: cover;
+}
+
+.icon-setting {
+    background-image: url("../../img_v1_3_39/icon_settiing.png");
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    background-size: cover;
+}
+
+.icon-exit {
+    background-image: url("../../img_v1_3_39/icon_exit.png");
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    background-size: cover;
+}
+
+.icon-NFT {
+    background-image: url(../../img_v1_3_39/icon_nft_inactive.png);
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    background-size: cover;
+}
+
+.menu.active {
+    width: 360px;
+}
+
+.gnb-setting {
+    width: 320px;
+    height: 58px;
+}
+
+#header_setting {
+    transform: translateY(138px);
+}
+
+.gnb-exit {
+    width: 320px;
+    height: 58px;
+}
+
+#header_exit {
+    transform: translateY(144px);
+}
+
+.setting {
+    top: 95px;
+}
+
+.menu-focus-box {
+    display: block;
+    width: 320px;
+    height: 58px;
+    border-radius: 12px;
+    background-color: #2841FA;
+    box-sizing: border-box;
+    line-height: 58px;
+    position: fixed;
+    left: 19px;
+    top: 309px;
+    z-index: -1;
+    opacity: 0;
+}
+
+.gnb-setting .menu-guide {
+    position: absolute;
+    left: 75px;
+    top: -9px;
+    width: 70px;
+}
+
+.gnb-exit .menu-guide {
+    position: absolute;
+    left: 75px;
+    top: -9px;
+    width: 70px;
+}
+
+.menu .menu-guide {
+    opacity: 0.65;
+    font-size: 24px;
+    font-family: 'Roboto Light', 'Noto Sans japanese Light', 'Noto Sans KR Light', serif;
+    color: white;
+    letter-spacing: 0px;
+    height: 58px;
+    display: none;
+    vertical-align: middle;
+    line-height: 58px;
+}
+
+.menu .lnb .menu-guide {
+    position: absolute;
+    top: -10px;
+    left: 68px;
+    white-space: nowrap;
+    width: auto;
+}
+
+.menu-guide.active {
+    opacity: 1;
+    font-weight: 700;
+    position: absolute;
+    left: 75px;
+}
+
+.menu.active i {
+    margin-right: 24px;
+    vertical-align: middle;
+}
+
+h1.active {
+    width: 216px;
+    height: 40px;
+    margin: 0 0 163px 20px;
+}
+
+.icon-logo.active {
+    left: -17px;
+    width: 216px;
+    height: 40px;
+    background-image: url("../../img_v1_3_39/patron-logo-big.png");
+}
+
+.icon-home.active {
+    background-image: url("../../img_v1_3_39/icon_home_active.png");
+}
+
+.icon-storage.active {
+    background-image: url("../../img_v1_3_39/icon_storage_active@2x.png");
+}
+
+.icon-search.active {
+    background-image: url("../../img_v1_3_39/icon_search_active@2x.png");
+}
+
+.icon-setting.active {
+    background-image: url("../../img_v1_3_39/icon_setting_active@2x.png");
+}
+
+.icon-exit.active {
+    background-image: url("../../img_v1_3_39/icon_off_active@2x.png");
+}
+
+.icon-NFT.active {
+    background-image: url(../../img_v1_3_39/icon_nft_active.png);
+}
+
+.header li > a {
+    position: relative;
+    left: 0;
+}
+
+.menu h1 {
+    text-align: center;
+}
+
+.exit {
+    top: 95px;
+    margin-top: 5px;
+}

@@ -1,0 +1,57 @@
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <div th:remove="tag" th:replace="common/common-head-script.html :: headScript"></div>
+    <title th:text="'PATRON | ' + ${title}"></title>
+    <link rel="stylesheet" th:href="@{/css_v1_3_39/player/player.css}">
+    <link rel="stylesheet" th:href="@{/css_v1_3_39/player/nft-player.css}">
+</head>
+
+<body>
+<input th:type="hidden" th:value="${loginStatus}" id="login_status">
+<div th:replace="common/login-modal.html"></div>
+<!--로딩 스패너-->
+<div id="main_loading_background" style="display: block;"></div>
+<div class="spinner" style="display: block;">
+    <div class="loading_spinner" style="display: block;"></div>
+</div>
+
+<div class="black-img" tabindex="-1" style="opacity: 1"></div>
+<div class="wrap">
+    <div class="gradiant-box" style="opacity: 1; animation: 0.3s ease 0s 1 normal none running fadein;"></div>
+    <div class="wrap-play" tabindex="-1">
+        <section class="play-info-container" tabindex="-1">
+            <div class="play-info" tabindex="-1">
+                <h1 class="play-info-artworkName" th:text="${title}"></h1>
+                <h2 class="play-info-artistName" th:text="${artist}">조르주 쇠라</h2>
+            </div>
+        </section>
+        <div class="play-buttons" tabindex="-1">
+            <div class="button-area2">
+                <button type="button" id="btn_pause" class="btn-pause focus-element-6">
+                    <i class="icon-play pause inactive"></i>
+                    <span class="btn-text pause-text">일시정지</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <section class="play-back-image" tabindex="-1">
+        <div class="play-image on" tabindex="-1">
+            <video id="nftPlayerVideo" style="width: 1920px; height: 1080px; z-index:100000; display: none"
+                   th:src="${playUrl}" th:autoplay="true" loop>
+            </video>
+        </div>
+    </section>
+</div>
+
+<script th:src="@{/js_v1_3_39/common/common.js}" th:type="'text/javascript'"></script>
+<script th:src="@{/js_v1_3_39/player/nft-player.js}" th:type="'text/javascript'"></script>
+</body>
+
+</html>
+
+
+
+
+
+

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <div th:remove="tag" th:replace="common/common-head-script.html :: headScript"></div>
+    <title>ERROR</title>
+    <style>
+        /********에러페이지 팝업********/
+        html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp,
+        small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article,
+        aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu,
+        nav, output, ruby, section, summary, time, mark, audio, video {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            font-size: 100%;
+            font: inherit;
+            vertical-align: baseline;
+        }
+
+        /* HTML5 display-role reset for older browsers */
+        article, aside, details, figcaption, figure, footer, header, hgroup, menu,
+        nav, section {
+            display: block;
+        }
+
+        body {
+            padding: 0;
+            margin: 0;
+            position: relative;
+            font-family: "Noto Sans KR";
+        }
+
+        *:focus {
+            outline: none;
+        }
+
+        #error {
+            width: 1920px;
+            height: 1080px;
+            background-color: #0A0A0A;
+        }
+
+        .error-modal {
+            position: absolute;
+            width: 600px;
+            height: 308px;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            line-height: 308px;
+            border-radius: 8px;
+            overflow: hidden;
+            border: none;
+            z-index: 999;
+        }
+
+        .error-box {
+            width: 600px;
+            height: 228px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            background-color: #eeeef5;
+        }
+
+        .error-modal .icon-alert {
+            background-image: url("/img_v1_3_39/icon_alert.png");
+            width: 50px;
+            height: 50px;
+            background-size: 100%;
+            background-repeat: no-repeat;
+            display: block;
+            position: absolute;
+            top: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .error-guide {
+            font-size: 34px;
+            font-weight: 700;
+            color: #1d1d1d;
+        }
+
+        .btn-okay-error {
+            width: 600px;
+            height: 80px;
+            background-color: #2841fa;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            color: #fff;
+            line-height: 80px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: 700;
+            border: none;
+            z-index: 999;
+            text-decoration-line: none;
+        }
+
+        /****************************/
+    </style>
+</head>
+<body>
+<input th:type="hidden" th:value="${loginStatus}" id="login_status">
+<div th:replace="common/login-modal.html"></div>
+<div id="error">
+    <div class="error-modal">
+        <div class="error-box">
+            <i class="icon-alert"></i>
+            <p class="error-guide">oops, a temporary error has occurred.</p>
+        </div>
+        <a id="btn_okay_error" class="btn-okay-error">확인</a>
+    </div>
+</div>
+
+
+<script>
+    var btn_okay_error = document.querySelector('.btn-okay-error');
+    btn_okay_error.focus();
+    document.getElementById('btn_okay_error').onclick = function () {
+        if (Cookies.get('language') !== undefined && Cookies.get('language') !== null && Cookies.get('language') !== '') {
+            location.href = '/' + Cookies.get('language') + '/home';
+        } else {
+            Cookies.set('language', 'en');
+            location.href = '/en/setting';
+        }
+    }
+</script>
+</body>
+</html>

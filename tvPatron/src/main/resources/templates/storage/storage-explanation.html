@@ -1,0 +1,78 @@
+<!--저장한 큐레이션-->
+<div class="pro-area" id="saved_curation">
+    <div id="label_container" class="label-container">
+        <div class="explanation-label">
+            <img class="icon-state icon-confirm" src="/img_v1_3_39/icon_confirm_state.png" alt="saved">
+            <span class="library-state" th:text="#{player.saved}">저장함</span>
+        </div>
+        <div class="explanation-guide">
+            <div><span class="curation-size"></span></div>
+            <span class="middle-dot"></span>
+            <span class="curation-duration"></span>
+        </div>
+    </div>
+    <h1 id="saved_curation_title"></h1>
+    <h2>
+        <span class="artist-name"></span>
+        <span class="artists-size"></span>
+    </h2>
+    <div class="pro-info">
+        <p></p>
+    </div>
+</div>
+<!--공개예정 큐레이션-->
+<div class="pro-area coming-soon-pro-area" id="coming_soon">
+    <div class="label-container">
+        <div class="explanation-label">
+            <img class="icon-confirm" src="/img_v1_3_39/icon_confirm_state.png" alt="saved">
+            <span th:text="#{player.saved}">저장함</span>
+        </div>
+        <div class="explanation-guide">
+            <div><span class="curation-size"></span></div>
+            <span class="middle-dot"></span>
+            <span class="curation-duration"></span>
+        </div>
+    </div>
+    <h1 id="coming_soon_title"></h1>
+    <h2><span class="artist-name"></span><span class="artists-size"></span></h2>
+    <div class="pro-info">
+        <p></p>
+    </div>
+</div>
+<!--좋아한 아티스트-->
+<div class="pro-area" id="favorite_artists">
+    <div class="explanation-label">
+        <img class="icon-like-state" src="/img_v1_3_39/icon_like_state.png" alt="like">
+        <span th:text="#{common.liked}">좋아함</span>
+    </div>
+    <h1 id="favorite_artist_name"></h1>
+    <div class="pro-info">
+        <p></p>
+    </div>
+</div>
+<!--좋아한 아트워크-->
+<div class="pro-area" id="favorite_artworks">
+    <div class="explanation-label">
+        <img class="icon-like-state" src="/img_v1_3_39/icon_like_state.png" alt="like">
+        <span th:text="#{common.liked}">좋아함</span>
+    </div>
+    <h1 id="favorite_artwork_title"></h1>
+    <h2><span class="artist-name"></span></h2>
+    <div class="pro-info">
+        <p></p>
+    </div>
+</div>
+<!--감상한 아트워크-->
+<div class="pro-area" id="played_artwork">
+    <div class="explanation-label">
+        <img class="icon-play-state" src="/img_v1_3_39/icon_play_state.png" alt="played">
+        <span th:text="#{home.watched}">감상함</span>
+    </div>
+    <h1 id="played_artwork_title"></h1>
+    <h2><span class="artist-name"></span></h2>
+    <div class="pro-info">
+        <p></p>
+    </div>
+</div>
+<!--아무 작품도 없을 때-->
+<p id="no_content_guide" class="pro-area no-content-guide" th:text="#{storage.empty}"></p>

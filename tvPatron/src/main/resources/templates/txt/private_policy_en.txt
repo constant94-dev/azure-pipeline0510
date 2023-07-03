@@ -1,0 +1,137 @@
+This translation is for informational purposes only. If there is a difference between the Korean version and this translation, the Korean version will take precedence.
+
+Last Revision Date: January 31, 2023.
+
+Nodamen Co., Ltd. (hereinafter referred to as "We") thoroughly complies with domestic personal information protection laws such as the Information and Communication Network Use Promotion and Information Protection Act (hereinafter referred to as the "Service") from planning to termination. It also provides services in compliance with international standards such as OECD's privacy guidelines.
+
+1. Significance of Personal Information Processing Policy
+The company complies with all relevant laws and regulations, including the Personal Information Protection Act and the Information and Communication Network Act, and notices, directives, and guidelines established by state agencies.
+
+1) The personal information processing policy has the following important meanings.
+
+·Transparency provides relevant information, such as what information we collect, how we use it, who we share it with as needed, and when and how we destroy information that has achieved our purpose of use.
+
+·As an information subject, we will tell you what rights users have for their personal information and how they can exercise it. It also provides information on what rights legal representatives (parents, etc.) can exercise to protect the personal information of children under the age of 14. For more information, please check [6. Rights of users and legal representatives and how to exercise them].
+
+2. Personal information collected
+1) The information Nodamen collects from users at the time of membership is as follows.
+
+·When registering as a member, collect 'ID, username, password in e-mail address format' as mandatory items. The selection also collects date of birth, gender, and country information. And if you try to log in with a simple login method, you must or selectively collect information within the scope provided by the API for the service.
+
+2) The personal information collected from users in the process of using the Patron service is as follows.
+
+·In the process of using individual services, applying for events, and applying for prizes, additional personal information may occur only for users of the service. In addition, when collecting personal information, guide and obtain consent from the user on "the items of personal information to be collected, the purpose of collecting and using personal information, and the storage period of personal information."
+
+3) IP addresses, cookies, service usage records, and device information can be generated and collected during the patron service usage process.
+
+·Specifically, i) information about users is generated and stored (collected) in an automated manner during service use, or ii) unique information on the user's device is safely converted and collected to prevent the original value from being verified.
+
+·The collected information may or may not correspond to personal information depending on whether it is linked to personal information.
+
+4) Nodamen collects personal information through the following methods.
+
+·If the user agrees to collect personal information and enters the information directly during the process of signing up for membership and using the service, the personal information is collected.
+
+·During the consultation process through the customer center, the user's personal information can be collected through web pages, mail, faxes, phone calls, etc.
+
+·Personal information can be collected in writing at offline events, seminars, etc.
+
+·Personal information can be provided from external companies or organizations affiliated with Nodamen, and in such cases, it is provided to Nodamen after obtaining consent from the affiliate to provide personal information to the users under the Information and Communication Network Act.
+
+·Generation information such as device information can be automatically generated and collected during the process of using PC web, mobile web/app, and TV app.
+
+3. Use of collected personal information
+1) We use personal information only for the following purposes: member management of Nodamen and all services related to Nodamen (including PC web, mobile web/app, and TV app), service development, provision, and improvement, and establishment of a safe Internet use environment.
+
+·Personal information is used for member management, such as confirmation of intention to sign up for membership, identification of users, and confirmation of intention to withdraw from membership.
+
+·In addition to providing existing services such as content (including advertisements), personal information is used to discover new service elements and improve existing services, such as demographic analysis, service visit and usage history analysis, relationship between users based on personal information and interests.
+
+·We use personal information to protect users and operate services such as restrictions on use of members who violate laws and service terms, prevent and sanction against unauthorized use, prevent account theft and fraud, deliver notifications such as revision of terms and conditions, preserve records for dispute settlement, and handle civil complaints.
+
+·Personal information is used for marketing and promotion purposes, such as providing event information and participation opportunities, and providing advertising information.
+
+·Personal information is used to analyze service usage records and frequency of access, statistics on service use, service analysis, provision of customized services according to statistics, and advertisements.
+
+·In terms of security, privacy, and safety, personal information is used to establish a service use environment that users can use with confidence.
+
+4. Provision and consignment of personal information
+1) In principle, Nodamen does not provide personal information to the outside world without the consent of the user.
+
+·Nodamen does not provide personal information to the outside world without the user's prior consent. However, if the user directly agrees to provide personal information to use the services of external affiliates, and if the obligation to submit personal information occurs in accordance with related laws, personal information is provided only when the risk to the user's life or safety is identified.
+
+5. Destruction of personal information
+1) In principle, Nodamen destroys the user's personal information without delay when withdrawing from the membership.
+
+·However, if the user has obtained separate consent for the period of personal information storage, or if the law imposes an obligation to store information for a certain period of time, the personal information shall be kept safe during that period.
+
+2) The following is the case of obtaining consent from the user when signing up for a member or service regarding the period of personal information storage.
+
+·Prevent unauthorized subscription and use
+- Certified email address: Keep for 6 months from the date of withdrawal
+- Email address of the user who left (encrypted): Keep for 6 months from the date of withdrawal
+
+3) The following are the cases where laws and regulations stipulate the storage of information for a certain period of time, such as the Consumer Protection Act, the Electronic Financial Transactions Act, and the Communications Secret Protection Act in e-commerce. During this period, Nodamen will keep personal information in accordance with the provisions of laws and regulations and will never use this information for any other purpose.
+
+·Act on Consumer Protection in Electronic Commerce, etc.
+- Records of withdrawal of contracts or subscriptions, etc.: kept for five years
+- Records of payment settlement and supply of goods, etc.: five years of storage
+- Records concerning the handling of consumer complaints or disputes: kept for three years
+
+·Electronic Financial Transactions Act
+- Electronic finance records: five years of storage
+
+·Communications Secret Protection Act
+- Login history: 3 months
+
+4) Personal information that has achieved the purpose of collecting and using personal information, such as withdrawal of members, termination of service, and the arrival of the personal information retention period agreed to by users, is destroyed in a way that cannot be reproduced. Information subject to preservation obligations under the Act is also destroyed in a way that cannot be reproduced without delay after the expiration of the period.
+
+·In the case of electronic file types, it is safely deleted using technical methods to prevent recovery and playback, and the output is destroyed by crushing or incinerating.
+
+6. Rights and exercise methods of users and legal representatives
+·Users can view or modify their personal information at any time on the PC web or mobile web under "My Page > Profile Modification" or "My Page > Settings > Password Change".
+
+·Users can withdraw their consent to collect and use personal information at any time through "membership withdrawal".
+
+·If a user requests correction of an error in personal information, the personal information shall not be used or provided until the correction is completed. In addition, if the wrong personal information has already been provided to a third party, we will notify the third party of the result of the correction without delay so that the correction can be made.
+
+·The legal representative (parents, etc.) follows the contents of the "Children's Online Privacy Rules" to protect the personal information of children under the age of 14, and please check the contents at the link.
+
+7. Nodamen's efforts to protect personal information
+1) Nodamen does its best to safely manage users' personal information, and protects personal information beyond the level required by the Information and Communication Network Act and the Personal Information Protection Act.
+
+2) Securely manage your personal information from internal and external security threats.
+
+·In order to prevent the leakage or damage of members' personal information due to hacking or computer viruses, the system is installed in an area with controlled access from the outside. Data is frequently backed up in preparation for damage to personal information, and the latest vaccine program is used to prevent users' personal information or data from being leaked or damaged. Personal information is safely transmitted and received on the network through encrypted communication.
+
+3) We are keeping the number of personal information handlers to a minimum.
+
+·Through regular training for personal information handlers, occasional training for company employees, and campaigns, we constantly emphasize that protection of member personal information is the most important value of Nodamen.
+
+8. Information on the person in charge and the person in charge of personal information protection
+1) Nodamen designates a person in charge of personal information protection as follows to handle inquiries and complaints related to users' personal information.
+
+[Personal Information Protection Manager]
+Name: Lee Won Jun
+Position: CEO
+E-mail: won@nodamen.com
+
+2) If you need to report or consult other personal information infringement, you can contact the institution below.
+
+·Personal Information Infringement Report Center (privacy.kisa.or.kr / 118 without national number)
+
+·Cyber Investigation Division of the Supreme Prosecutors' Office (www.spo.go.kr / 1301 without national number)
+
+·National Police Agency Cybersecurity Bureau (police.go.kr / 182 without station number)
+
+9. Scope of application of this Personal Information Processing Policy
+·This personal information processing policy applies to one of Nodamen's brands, Patron.digital, and related services (including mobile apps, smart TV apps, CTV apps, and IPTV apps), and separate personal information processing policies may be applied to services provided under other brands.
+
+·If personal information is collected from the website of another company linked to the Patron service, this Personal Information Processing Policy does not apply after personal information is provided with your consent.
+
+10. Obligation to notify before amendment
+If the contents of this personal information processing policy are added, deleted, or modified, we will make a prior notice through "Notice" at least 7 days before the revision. However, if a significant change in user rights occurs, such as an item of personal information collected or a change in the purpose of use, it may be notified at least 30 days in advance, and user consent may be obtained again if necessary.
+
+·Announcement date: September 1, 2022
+
+·Enforcement date: September 1, 2022

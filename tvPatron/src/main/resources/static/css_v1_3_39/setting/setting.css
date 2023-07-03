@@ -1,0 +1,522 @@
+
+.header {
+    width: 100%;
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 2;
+}
+
+article {
+    z-index: 1;
+    background-color: #0A0A0A;
+    top: 0;
+}
+
+.btn-inactive-box {
+    box-sizing: border-box;
+    opacity: 0.1;
+    border-radius: 16px;
+    background-color: #fff;
+    position: relative;
+    display: block;
+    margin: 0 auto -66px auto;
+    width: 392px;
+    height: 66px;
+    transform: translatey(-85px);
+}
+
+.setting-menu {
+    position: relative;
+    width: 440px;
+    height: 1080px;
+    left: 0;
+    z-index: 2
+}
+
+.setting-menu::-webkit-scrollbar {
+    display: none;
+}
+
+.setting-menu-box {
+    position: relative;
+    width: 471.5px;
+    height: 100vh;
+    top: 0;
+    left: 160px;
+    border-right: 1px solid #9e9e9e;
+}
+
+.big-title {
+    color: #fff;
+    font-size: 56px;
+    font-weight: 700;
+    margin: 0 0 40px 0;
+}
+
+.setting-contents-box .big-title {
+    font-size: 48px;
+}
+
+.mini-title {
+    color: #fff;
+    opacity: 0.65;
+    font-family: 'Roboto Light', 'Noto Sans japanese Light', 'Noto Sans KR Light', serif;
+    font-size: 22px;
+    margin-bottom: 20px;
+}
+
+
+.setting-menu .btn {
+    background-color: transparent;
+    border: none;
+    font-size: 30px;
+    font-weight: 700;
+    color: #9e9e9e;
+    padding: 0;
+    display: block;
+    width: 440px;
+    height: 77px;
+    line-height: 77px;
+    padding-left: 32px;
+    box-sizing: border-box;
+    text-align: left;
+    position: relative;
+    border-radius: 12px;
+}
+
+.setting-menu .btn:last-child {
+    margin-bottom: 36px;
+}
+
+.setting-menu .btn.active {
+    background-color: #2841fa;
+    color: #fff;
+}
+
+.mid-title1 {
+    font-size: 30px;
+    font-family: 'Roboto Light', 'Noto Sans japanese Light', 'Noto Sans KR Light', serif;
+    color: #fff;
+    white-space: nowrap;
+    opacity: 0.65;
+    margin-right: 20px;
+}
+
+.contents-text {
+    font-size: 24px;
+    font-weight: 300;
+    color: #fff;
+    text-align: justify;
+    line-height: 31px;
+}
+
+.setting-contents {
+    position: absolute;
+    left: 686px;
+    top: 0px;
+    width: 100%;
+}
+
+.setting-contents-simple-layout {
+    min-width: 1200px;
+    max-width: 1200px;
+    height: auto;
+    position: absolute;
+    left: 0;
+    top: 218px;
+}
+
+#device_info li {
+    width: 100%;
+    height: 35px;
+    line-height: 35px;
+    margin-bottom: 16px;
+}
+
+#device_info li > span:nth-child(1) {
+    float: left;
+    display: block;
+    min-width: 150px;
+    height: 35px;
+}
+
+#device_info li > span:nth-child(2) {
+    float: left;
+    display: block;
+    width: auto;
+    height: 35px;
+    color: #fff;
+    font-size: 30px;
+    font-family: 'Roboto Light', 'Noto Sans japanese Light', 'Noto Sans KR Light', serif;
+    max-width: 600px;
+}
+
+#app_device_info li {
+    width: 100%;
+    height: 35px;
+    line-height: 35px;
+    margin-bottom: 75px;
+}
+
+#app_device_info li > span:nth-child(1) {
+    float: left;
+    display: block;
+    min-width: 150px;
+    height: 35px;
+}
+
+#app_device_info li > span:nth-child(2) {
+    float: left;
+    display: block;
+    width: auto;
+    height: 35px;
+    color: #fff;
+    font-size: 30px;
+    font-family: 'Roboto Light', 'Noto Sans japanese Light', 'Noto Sans KR Light', serif;
+    max-width: 1000px;
+}
+
+
+.icon-more {
+    background-image: url("../../img_v1_3_39/icon_more.png");
+    width: 24px;
+    height: 24px;
+    background-size: cover;
+    margin: auto;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 20px;
+    display: none;
+}
+
+.setting-contents-with-image {
+    position: absolute;
+    top: 207px;
+    left: 0px;
+    min-width: 1200px;
+    max-width: 1200px;
+    height: auto;
+}
+
+.big-title-text {
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 12px;
+    height: 66px;
+    line-height: 70px;
+}
+
+.small-title-text {
+    text-align: center;
+    min-height: 45px;
+    margin-bottom: 40px;
+    font-size: 30px;
+    font-family: 'Roboto Light', 'Noto Sans japanese Light', 'Noto Sans KR Light', serif;
+    color: #9e9e9e;
+    line-height: 45px;
+}
+
+.setting-contents-with-image .btn {
+    background-color: rgba(255, 255, 255, 0.25);
+    opacity: 0.4;
+    width: 392px;
+    height: 66px;
+    border-radius: 12px;
+    line-height: 66px;
+    text-align: center;
+    position: relative;
+    display: block;
+    margin: 0 auto 20px auto;
+    box-sizing: border-box;
+    font-family: 'Roboto Light', 'Noto Sans japanese Light', 'Noto Sans KR Light', serif;
+    z-index: 1;
+}
+
+.setting-contents-with-image .btn.active {
+    background-color: #2841fa;
+    opacity: 1;
+    border: none;
+    font-family: 'Roboto Bold', 'Noto Sans japanese', 'Noto Sans KR Bold', serif;;
+}
+
+.setting-contents-with-image .btn.active .contents-text {
+    font-family: 'Roboto Bold', 'Noto Sans japanese', 'Noto Sans KR Bold', serif;;
+}
+
+.icon-check {
+    background-image: url("../../img_v1_3_39/icon_success.png");
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 23px;
+    right: 25px;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    display: none
+}
+
+.icon-check.show {
+    display: block;
+}
+
+.icon-presound {
+    background-image: url("../../img_v1_3_39/icon_presound.png");
+    width: 118px;
+    height: 118px;
+    background-size: cover;
+    margin: auto;
+}
+
+#sound_no_use, #sound_use {
+    position: relative;
+    z-index: 999;
+}
+
+.icon-language {
+    background-image: url("../../img_v1_3_39/icon_language.png");
+    width: 118px;
+    height: 118px;
+    background-size: cover;
+    margin: auto;
+}
+
+.icon-play-delete {
+    background-image: url("../../img_v1_3_39/icon_play_delete.png");
+    width: 118px;
+    height: 118px;
+    background-size: cover;
+    margin: auto;
+}
+
+.icon-search-delete {
+    background-image: url("../../img_v1_3_39/icon_search_delete.png");
+    width: 118px;
+    height: 118px;
+    background-size: cover;
+    margin: auto;
+}
+
+.setting-contents-with-long-text {
+    min-width: 1200px;
+    max-width: 1200px;
+    height: auto;
+    position: absolute;
+    left: 0px;
+    top: 44px;
+}
+
+#terms_of_service,
+#privacy_policy,
+#account_policy {
+    width: 1080px;
+    height: 800px;
+    overflow-y: scroll;
+    word-break: break-all;
+    margin-top: 56px;
+    padding-right: 24px;
+}
+
+
+#terms_of_service::-webkit-scrollbar,
+#privacy_policy::-webkit-scrollbar,
+#account_policy::-webkit-scrollbar {
+    width: 12px;
+    background-color: #424242;
+    border-radius: 16px;
+}
+
+#terms_of_service::-webkit-scrollbar-thumb,
+#privacy_policy::-webkit-scrollbar-thumb,
+#account_policy::-webkit-scrollbar-thumb {
+    width: 40px;
+    border-radius: 12px;
+}
+
+#terms_of_service::-webkit-scrollbar-track,
+#privacy_policy::-webkit-scrollbar-track,
+#account_policy::-webkit-scrollbar-track {
+    background-color: #424242;
+    border-radius: 12px;
+}
+
+
+.menu-container {
+    position: relative;
+    top: 0;
+    left: 0;
+    transition-duration: 0s;
+}
+
+.page-title {
+    position: relative;
+    top: 0;
+    left: 0;
+    background-color: #0A0A0A;
+    z-index: 3;
+    padding-top: 88px;
+    width: 470px;
+}
+
+.icon-setting {
+    background-image: url("../../img_v1_3_39/icon_setting_active@2x.png")
+}
+
+
+body {
+    overflow: hidden;
+}
+
+
+.btn:focus {
+    outline: none;
+}
+
+.category .btn.contents-focus {
+    background-color: #616161;
+    color: #fff;
+}
+
+
+.icon-more-inactive {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 20px;
+}
+
+
+.btn-inactive-box.disnone {
+    opacity: 0;
+}
+
+.section-code {
+    display: block;
+}
+
+.section-code.black {
+    background-color: #0a0a0a;
+}
+
+.timer {
+    display: block;
+}
+
+#device_info span {
+    font-family: 'Noto Sans Regular', serif;
+}
+
+#device_type {
+    width: 988px !important;
+}
+
+#device_info li {
+    width: 100%;
+    height: 70px;
+    line-height: 35px;
+    margin-bottom: 40px;
+}
+
+.icon-customer-service {
+    background-image: url("../../img_v1_3_39/icon-help.png");
+    width: 150px;
+    height: 150px;
+    background-size: cover;
+    margin: auto;
+}
+
+.customer-service-text {
+    letter-spacing: -0.07px;
+}
+
+.customer-service-content-text {
+    color: white;
+}
+
+.icon-logout {
+    background-image: url("../../img_v1_3_39/icon-logout.png");
+    width: 150px;
+    height: 150px;
+    background-size: cover;
+    margin: auto;
+}
+
+.fleft {
+    float: left;
+}
+
+#terms_of_service::-webkit-scrollbar, #privacy_policy::-webkit-scrollbar, #account_policy::-webkit-scrollbar {
+    width: 12px;
+    opacity: 0;
+    display: none;
+}
+
+#terms_of_service::-webkit-scrollbar-thumb, #privacy_policy::-webkit-scrollbar-thumb, #account_policy::-webkit-scrollbar-thumb {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    width: 12px;
+}
+
+#terms_of_service::-webkit-scrollbar-track, #privacy_policy::-webkit-scrollbar-track, #account_policy::-webkit-scrollbar-track {
+    opacity: 0;
+}
+
+.info-modal-scroll-bar {
+    position: absolute;
+    top: 163px;
+    display: block;
+    width: 12px;
+    height: 800px;
+    right: 49px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+}
+
+.info-modal-scroll {
+    position: absolute;
+    top: 0;
+    right: -14px;
+    width: 40px;
+    background-size: 40px 205px;
+    background-color: #2841fa;
+    border-radius: 25px;
+}
+
+.info-modal-scroll::before {
+    display: block;
+    position: absolute;
+    top: 14px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 20px;
+    content: '';
+    background-image: url("../../img_v1_3_39/icon_arrow_up.png");
+    background-size: cover;
+}
+
+.info-modal-scroll::after {
+    display: block;
+    position: absolute;
+    bottom: 14px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 20px;
+    content: '';
+    background-image: url("../../img_v1_3_39/icon_arrow_down.png");
+    background-size: cover;
+}
+
+#app_device_info {
+    display: flex;
+    flex-direction: column;
+}
+
+.setting-detail .qrCode-wrap {
+    position: relative;
+    top: 0;
+}

@@ -1,0 +1,590 @@
+/*===========thumbnail===========*/
+/*보관함 - 내 컬렉션*/
+.my-collection li.hoverTrue:hover .item-border {
+    transition: ease 0.5s 0.5s;
+}
+
+.favorite-artists .item-container .item {
+    height: 271px;
+    width: 216px;
+    display: flex;
+    flex-direction: column;
+    border-radius: unset;
+    margin-right: 40px;
+}
+
+.my-collection .item {
+    height: 720px;
+}
+
+.item-title.active {
+    height: 180px;
+    bottom: 44px;
+    transition: all 0.5s 0.5s ease-in-out;
+}
+
+.my-coming-soon .item a.active .item-border {
+    border-top: 8px solid #fff;
+    border-left: 8px solid #fff;
+    border-right: 8px solid #fff;
+    border-bottom: 40px solid #fff;
+}
+
+.favorite-artists .item a .item-border {
+    position: absolute;
+    z-index: 1;
+    width: 216px;
+    height: 216px;
+    border-radius: 216px
+}
+
+.my-collection .item-border {
+    height: 720px;
+}
+
+.my-collection .item-border.on {
+    height: 720px;
+    border: 8px solid #fff;
+    box-sizing: border-box;
+    border-radius: 16px;
+    width: 1280px;
+    transition: ease 0.44s 0.44s;
+    background-position-x: center;
+}
+
+.my-collection .item.size {
+    width: 1280px;
+    transition: ease 0.5s 0.5s;
+    background-position-x: center;
+    background-size: cover;
+}
+
+.item-title {
+    width: 352px;
+    bottom: 55px;
+    margin-bottom: 4px;
+}
+
+.my-collection .item a {
+    height: 720px;
+}
+
+.favorite-artists .item a {
+    position: relative;
+    width: inherit;
+    height: 216px;
+    border-radius: 216px;
+    margin-bottom: 20px;
+}
+
+.my-collection .item.size {
+    width: 1280px;
+    transition: ease 0.5s 0.5s;
+    background-position-x: center;
+    background-size: cover;
+}
+
+.my-collection .item a.on {
+    width: 1280px;
+    transition: ease 0.5s 0.5s;
+    background-position-x: center;
+    background-size: cover;
+}
+
+.my-collection .item.nothing.size .nothing-guide {
+    width: 500px;
+    transition: all .9s cubic-bezier(1, 0.02, 1, 1);
+}
+
+.favorite-artworks .item a.active {
+    border: 4px solid #fff;
+    box-sizing: border-box
+}
+
+.my-coming-soon .item a.active {
+    background: linear-gradient(180deg, rgba(10, 10, 10, 6e-05) 30%, rgba(10, 10, 10, 0.6) 98.83%);
+    border: none;
+}
+
+.my-coming-soon .item a.active .item-border + .art-title + .artist-title {
+    bottom: 64px;
+}
+
+.item-title.title-no-tags.active {
+    height: 102px;
+}
+
+.favorite-artists .item a img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: inherit;
+    -webkit-filter: grayscale(100%);
+}
+
+.item-title.title-no-tags.active {
+    bottom: 40px;
+    left: 40px;
+}
+
+.item-title.title-no-tags {
+    bottom: 40px;
+    left: 40px;
+    margin-bottom: 0;
+}
+
+.my-collection .item {
+    overflow: hidden;
+}
+
+.item-background-image {
+    width: auto;
+    height: inherit;
+}
+
+.my-coming-soon .item a.active .item-border + .art-title {
+    bottom: 98px;
+}
+
+.my-coming-soon .art-title {
+    bottom: 62px;
+}
+
+.favorite-artists .artist-title {
+    display: flex;
+    align-self: center;
+    position: unset;
+}
+
+/*===========thumbnail===========*/
+body {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #0a0a0a !important;
+}
+
+.header {
+    width: 100%;
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 1000;
+}
+
+.background-color {
+    background-color: transparent;
+}
+
+article {
+    z-index: 2;
+    background: transparent;
+}
+
+.explanation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position-x: center;
+    padding-left: 160px;
+    display: none;
+}
+
+
+.pro-area {
+    display: none;
+    color: white;
+    z-index: 1;
+    opacity: 1;
+    flex-direction: column;
+    position: relative;
+    left: 160px;
+    top: 64px;
+}
+
+.explanation .pro-area {
+    opacity: 1;
+    margin-top: 0;
+    left: 0;
+}
+
+.label-container {
+    top: 64px;
+    left: 160px;
+    display: flex;
+    width: auto;
+    flex-direction: row;
+    position: static;
+}
+
+.middle-dot {
+    width: 4px;
+    height: 4px;
+    background: #fff;
+    opacity: 0.8;
+    border-radius: 4px;
+    display: flex;
+    align-self: center;
+}
+
+.pro-area h1 {
+    display: flex;
+    font-size: 68px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: white;
+    position: relative;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    max-width: 1600px;
+    top: 8px;
+}
+
+.pro-area h2 {
+    display: flex;
+    margin-right: 10px;
+    flex-direction: row;
+    font-size: 52px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: white;
+    margin-bottom: 0;
+    position: relative;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    max-width: 1600px;
+    top: 8px;
+}
+
+.pro-info {
+    width: 840px;
+    height: 136px;
+    position: absolute;
+    padding-top: 24px;
+    top: 185px;
+}
+
+#played_artwork .pro-info,
+#favorite_artworks .pro-info,
+#saved_curation .pro-info,
+.coming-soon-pro-area .pro-info {
+    top: 210px;
+}
+
+#favorite_artists .pro-info {
+    padding-top: 0;
+    top: 152px;
+}
+
+.pro-info p {
+    font-family: 'Roboto Light', 'Noto Sans japanese Light', 'Noto Sans KR Light', serif;
+    letter-spacing: 0;
+    color: white;
+    opacity: 0.6;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    line-height: 34px;
+    padding-top: 0;
+    font-size: 24px;
+}
+
+#favorite_artists .pro-info p {
+    padding-top: 0;
+}
+
+.carousel {
+    z-index: 1000;
+    position: fixed;
+    left: 160px;
+    width: 1920px;
+    top: 88px;
+    height: 992px;
+}
+
+.carousel-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+
+.carousel p {
+    height: 45px;
+}
+
+.title4 {
+    font-size: 30px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 20px;
+    position: relative;
+    display: block;
+}
+
+
+.icon-collection {
+    background-image: url("../../img_v1_3_39/icon_collection.png");
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    background-size: cover;
+    position: absolute;
+    opacity: 0.8;
+    top: 40px;
+    right: 40px;
+}
+
+.category .icon-collection {
+    top: 24px;
+    right: 24px;
+}
+
+
+.carousel.active {
+    left: 416px;
+}
+
+.category {
+    margin-bottom: 40px;
+}
+
+
+.favorite-exhibition {
+    opacity: 0.4;
+}
+
+
+.favorite-artworks {
+    opacity: 0.4;
+}
+
+.nothing {
+    height: inherit;
+    transition: all .3s ease-in-out;
+    position: relative;
+    opacity: 1;
+}
+
+.nothing .nothing-guide {
+    display: block;
+    width: 235px;
+    height: 96px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 30px;
+    font-family: 'Roboto Light', 'Noto Sans japanese Light', 'Noto Sans KR Light', serif;
+    color: #fff;
+    text-align: center;
+    line-height: 96px;
+    opacity: 0.4;
+}
+
+.nothing.active {
+    opacity: 1;
+}
+
+.no-artwork-modal {
+    position: fixed;
+    min-width: 600px;
+    width: auto;
+    height: 308px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    line-height: 308px;
+    border-radius: 8px;
+    overflow: hidden;
+    border: none;
+    display: none;
+    z-index: 999;
+}
+
+.no-artwork-box {
+    min-width: inherit;
+    width: inherit;
+    height: 228px;
+    position: relative;
+    left: 0;
+    top: 0;
+    background-color: #eeeef5;
+}
+
+.icon-alert {
+    background-image: url("../../img_v1_3_39/icon_alert.png");
+    width: 50px;
+    height: 50px;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    display: block;
+    position: absolute;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.alert-guide {
+    font-size: 34px;
+    font-weight: 700;
+    color: #1d1d1d;
+}
+
+.btn-okay {
+    min-width: inherit;
+    width: 100%;
+    height: 80px;
+    background-color: #2841fa;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    color: #fff;
+    line-height: 80px;
+    text-align: center;
+    font-size: 24px;
+    font-weight: 700;
+    border: none;
+}
+
+
+.category .nothing-a {
+    background-image: none;
+}
+
+.explanation.active .d-day {
+    left: 253px;
+}
+
+.pro-area.active {
+    left: 253px;
+}
+
+
+.no-artwork-modal-back {
+    display: none;
+    position: fixed;
+    width: 150%;
+    height: 100%;
+    background-color: black;
+    opacity: 0.4;
+}
+
+.d-day {
+    display: block;
+    position: absolute;
+    z-index: 1;
+    top: 24px;
+    left: 24px;
+    width: auto;
+    height: auto;
+    padding: 8px 12px;
+    background-color: rgba(10, 10, 10, 0.5);
+    border-radius: 100px;
+    font-size: 18px;
+    font-style: normal;
+    font-family: 'Roboto Regular', 'Noto Sans japanese Regular', 'Noto Sans KR Bold', serif;
+    line-height: 20px;
+}
+
+.d-day-active {
+    background-color: #2841FA !important;
+}
+
+
+.bottom-white-guide {
+    opacity: 0;
+}
+
+.bottom-white-guide.active {
+    opacity: 1;
+    position: absolute;
+    bottom: 1px;
+    z-index: 999;
+    width: 100%;
+    height: 40px;
+    color: #1d1d1d;
+    text-align: center;
+    line-height: 40px;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    letter-spacing: 0px;
+    transition: all 0s 0s ease-in-out;
+}
+
+
+.my-coming-soon .artists {
+    position: absolute;
+    left: 24px;
+    bottom: 24px;
+    font-style: normal;
+    line-height: 34px;
+    letter-spacing: 0px;
+    text-align: left;
+    font-size: 20px;
+    font-family: 'Roboto Regular', 'Noto Sans japanese Regular', 'Noto Sans KR Bold', serif;
+    opacity: 0.6;
+}
+
+
+.artist-title.big {
+    opacity: 1;
+    font-size: 24px;
+    font-family: 'Roboto Bold', 'Noto Sans japanese', 'Noto Sans KR Bold', serif;;
+}
+
+
+.my-coming-soon.category a {
+    background: linear-gradient(180deg, rgba(10, 10, 10, 6e-05) 50%, rgba(10, 10, 10, 0.6) 98.83%)
+}
+
+
+.artist-title.active {
+    transition: all 0.5s 0.5s ease-in-out;
+    height: 34px;
+    bottom: 105px;
+    font-size: 52px;
+    font-weight: 700;
+    opacity: 1;
+}
+
+.genie-voice-guide.voice-guide-container {
+    z-index: 99999 !important;
+}
+
+.explanation .artists-size {
+    margin-left: 10px;
+}
+
+.pro-area.no-content-guide {
+    font-size: 68px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    white-space: nowrap;
+}
+
+.icon-storage {
+    background-image: url("../../img_v1_3_39/icon_storage_active@2x.png")
+}
+
+.icon-home {
+    background-image: url("../../img_v1_3_39/icon-Home.png")
+}
+
+
+
+
+
+

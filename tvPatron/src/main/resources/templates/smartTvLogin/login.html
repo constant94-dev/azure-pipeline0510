@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <div th:remove="tag" th:replace="common/common-head-script.html :: headScript"></div>
+    <title>PATRON | Sign in</title>
+    <link rel="stylesheet" th:href="@{/css_v1_3_39/smartTvLogin/login.css}">
+    <link rel="stylesheet" th:href="@{/css_v1_3_39/smartTvLogin/progress.css}">
+</head>
+
+<body>
+<input th:type="hidden" th:value="${loginStatus}" id="login_status">
+<main>
+    <!--logo-->
+    <section class="section-logo first">
+        <img id="patronLogo" th:src="@{/img_v1_3_39/patron-logo-big.png}" alt="patron-logo">
+    </section>
+    <div style="display: none">
+        <span id="deviceId"></span>
+        <span id="deviceName"></span>
+        <span id="provider"></span>
+    </div>
+</main>
+
+<script th:src="@{/js_v1_3_39/nftAppreciation/qrcodeJs.js}"></script>
+<script th:src="@{/js_v1_3_39/smartTvLogin/login.js}"></script>
+<script th:src="@{/js_v1_3_39/smartTvLogin/qrcode.js}"></script>
+<script th:src="@{/js_v1_3_39/smartTvLogin/jquery.qrcode.js}"></script>
+</body>
+
+</html>

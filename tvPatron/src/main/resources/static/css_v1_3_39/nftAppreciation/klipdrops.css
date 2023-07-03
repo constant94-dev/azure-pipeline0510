@@ -1,0 +1,254 @@
+/*header*/
+.icon-search{
+    background-image: url(../../img_v1_3_39/icon_search.png);
+}
+.icon-NFT{
+    background-image: url(../../img_v1_3_39/icon_nft_active.png);
+}
+#wrap{
+    width: 100%;
+    position: fixed;
+    top: 0px;
+    left: 160px;
+    height: 100%;
+    display: block;
+}
+#wrap.active{
+    left:416px;
+}
+.article1,.article2, .article3{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 0;
+    margin: 0;
+}
+.article1{
+    display:none;
+}
+.article1 .title2{
+    position: absolute;
+    top: 240px;
+    left: 0px;
+    width: 1600px;
+    height: 102px;
+    font-size: 58px;
+    margin: 0;
+    text-align: center;
+}
+.article1 .title3 {
+    position: absolute;
+    font-size: 24px;
+    line-height: 36px;
+    font-family: 'Roboto Light', 'Noto Sans japanese Light', 'Noto Sans KR Light', serif;
+    width: 1600px;
+    height: 36px;
+    opacity: 0.65;
+    top: 310px;
+    text-align: center;
+    margin: 0;
+    left: 0;
+    color: white;
+}
+.article2{
+    display:none;
+}
+#nftProgress{
+    position: absolute;
+    top: 0px;
+    left: 50%;
+    transform: translatex(-50%);
+    max-width: 352px;
+    height: 6px;
+    border-radius: 16px;
+    border: none;
+    background-color: #c4c4c4;
+    color: #2841FA;
+    box-sizing: border-box;
+}
+
+#nftProgress{
+   -webkit-appearance: none;
+   -moz-appearance: none;
+   appearance: none;
+   display: block;
+    max-width: 352px;
+    height: 6px;
+    left: 50%;
+    top:0px;
+    transform: translateX(-50%);
+    position: fixed;
+    border-radius: 16px;
+    border: none;
+    background-color: #c4c4c4;
+    color: #2841FA;
+    box-sizing: border-box;
+   }
+progress::-webkit-progress-bar {
+    background-color:#c4c4c4;
+    border-radius:12px;
+}
+progress::-webkit-progress-value {
+    background-color: #2841FA;
+    border-radius: 16px;
+}
+progress::-moz-progress-bar {
+    background-color: #c4c4c4;
+    border-radius: 16px;
+}
+#qrCode {
+    width: 320px!important;
+    height: 320px!important;
+    position: relative;
+    top: 20px;
+    left: 50%;
+    transform: translatex(-50%);
+    opacity: 0; transition: 1.5s
+}
+#qrCode img{
+    width: 320px!important;
+    height: 320px!important;
+    position: relative;
+}
+#nftList {
+    overflow: hidden;
+}
+.gradient-box{
+    background-color: #0A0A0A;
+    background-image:none;
+}
+.title2{
+    color: #fff;
+    margin: 262px auto 40px auto;
+    width: 1361px;
+    font-size: 60px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    white-space: nowrap;
+}
+#article3.title2{
+    left: 0 !important;
+}
+.title2.active{
+    margin: 262px 0 40px 0;
+}
+.article2 .title2{
+    margin: 64px 0 14px 0;
+    left: 0;
+    top: 15px;
+}
+.article3 .title2{
+    margin: 64px 0 14px 0;
+}
+.frame-img{
+    position: absolute;
+    top: 436px;
+    width: 100%;
+    left: 0;
+}
+.frame-img .qr-box{
+    width: 320px;
+    height: 320px;
+    position: relative;
+    top: 0;
+    margin-left: 41%;
+    transform: translatex(-50%);
+    background-color: #fff;
+    border-radius: 20px;
+}
+.breadcrumb{
+    width: 160px;
+    height: 44px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 1;
+    transform: translate(-50%,-50%);
+    background-image: url("../../img_v1_3_39/klipdrops.png");
+    background-size: contain;
+    opacity: 0;
+    transition:0.8s;
+}
+.title5{
+    float: left;
+    font-size:24px;
+    color:#fff;
+    opacity:0.65;
+    line-height:36px;
+    display: inline-block;
+    top: 160px;
+    position: relative;
+}
+.carousel{
+    position:absolute;
+    left:0;
+}
+#text {
+    position: fixed;
+    top: 50px;
+    font-size: 30px;
+    color: white;
+    left: 500px;
+    z-index: 100;
+}
+.result{
+    display:none;
+    z-index:100;
+    position:fixed;
+    top: 537px;
+    left: 50%;
+    transform: translatex(-50%);
+}
+.art-gradbox img {
+    width: inherit;
+    position: absolute;
+    /*top: -50%;*/
+    top: 50%;
+    transform: translateY(-50%);
+}
+.icon-klip {
+    float: left;
+    background-image: url(../../img_v1_3_39/icon_warning.png);
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    background-size: cover;
+    margin-right: 8px;
+    top: 160px;
+    position: relative;
+}
+.loading-slogan{
+    top:26px;
+    padding:0;
+}
+
+.black-img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color: #0A0A0A;
+    opacity: 1;
+    position: fixed;
+    z-index: 10000;
+    top: 0;
+    left: 100px;
+    transition: 2.5s;
+}
+.art-gradbox{
+    background: linear-gradient(180deg, rgba(29, 29, 29, 6e-05) 50%, rgba(29, 29, 29, 0.6) 98.76%);
+}
+
+.art-border {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: 8px solid #fff;
+    opacity: 0;
+    width: 400px;
+    height: 225px;
+    box-sizing: border-box;
+    border-radius: 16px;
+}

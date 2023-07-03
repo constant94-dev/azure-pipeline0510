@@ -1,0 +1,981 @@
+/*===========thumbnail===========*/
+/*홈 - 곧 찾아뵐게요*/
+.coming-soon li.hoverTrue:hover .item-border.coming {
+    z-index: 1;
+    width: inherit;
+}
+
+.coming-soon .item {
+    height: 720px;
+}
+
+.artist-list .item {
+    width: 216px;
+    height: 266px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    margin-right: 40px;
+}
+
+#main_curation .item {
+    flex: none;
+}
+
+.coming-soon .item-title.active {
+    width: 1200px;
+    bottom: 155px;
+    left: 40px;
+}
+
+.item-border.coming {
+    height: 720px;
+}
+
+.item-border.artist {
+    width: 216px;
+    height: 216px;
+    border-radius: 216px;
+    position: absolute;
+    z-index: 1;
+}
+
+.coming-soon .item {
+    transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+}
+
+.coming-soon .item.size {
+    width: 1280px;
+    transition: ease 0.5s 0.5s;
+    background-position-x: center;
+    background-size: cover;
+}
+
+.coming-soon .item a.on {
+    width: 1280px;
+    transition: ease 0.5s 0.5s;
+    background-position-x: center;
+    background-size: cover;
+}
+
+.item.main-curation {
+    overflow: hidden;
+}
+
+#main_curation .item-background-image {
+    width: 100%;
+    height: auto;
+}
+
+.item-title {
+    bottom: 20px;
+    margin-bottom: 0;
+}
+
+.coming-soon .item-title {
+    width: 352px;
+    left: 40px;
+    bottom: 112px;
+}
+
+#main_curation .item-title {
+    max-width: 1200px;
+    font-size: 68px;
+    letter-spacing: 1px;
+    margin-bottom: 0;
+    left: 40px;
+    bottom: 155px;
+    height: 100px;
+    line-height: 100px;
+    display: block;
+}
+
+.artist-list .artist-name {
+    position: static;
+    max-width: 216px;
+    justify-content: center;
+}
+
+.item a.active {
+    border: 8px solid #fff;
+    box-sizing: border-box
+}
+
+.coming-soon .item a.active {
+    height: 720px;
+    border-top: 8px solid #fff;
+    border-left: 8px solid #fff;
+    border-right: 8px solid #fff;
+    border-bottom: 8px solid #fff;
+    box-sizing: border-box
+}
+
+.artist-list .item a.active {
+    width: 216px;
+    height: 300px;
+    border: 8px solid #fff;
+    box-sizing: border-box
+}
+
+#main_curation .item, #main_curation li a {
+    position: relative;
+    width: 1280px;
+    height: inherit;
+    border-radius: 16px;
+}
+
+#main_curation .item.active,
+#main_curation li a.active {
+    border: none;
+}
+
+#main_curation .item-border {
+    display: block;
+    top: 72px;
+    left: 168px;
+    z-index: 1;
+    width: 1280px;
+    height: 720px;
+    border: 8px solid #fff;
+    border-radius: 16px;
+    box-sizing: border-box;
+    opacity: 0;
+}
+
+#main_curation .item-border.active {
+    left: 422px;
+    opacity: 1;
+}
+
+.item.main-curation a {
+    background: linear-gradient(180deg, rgba(10, 10, 10, 6e-05) 50%, rgba(10, 10, 10, 0.6) 99.19%);
+}
+
+#main_curation .title3 .artists-size {
+    max-width: 400px;
+}
+
+.coming-soon .artist-title.active .artist-name-wrap {
+    max-width: 880px;
+    height: auto;
+    margin-right: 14px;
+    display: flex;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.artist-name-wrap {
+    display: inline;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 252px;
+}
+
+.coming-soon .artist-title.active {
+    display: flex;
+    width: 800px;
+    max-width: 880px;
+    font-weight: 700;
+    font-size: 52px;
+    bottom: 78px;
+    left: 40px;
+    height: 78px;
+    line-height: 78px;
+    letter-spacing: -0.30000001192092896px;
+    transition: all 0.5s 0.5s ease-in-out;
+}
+
+.coming-soon .artist-title {
+    display: flex;
+    bottom: 78px;
+    left: 40px;
+    font-size: 24px;
+    font-family: 'Roboto Light', 'Noto Sans japanese Light', 'Noto Sans KR Light', serif;
+    opacity: 1;
+}
+
+/*===========thumbnail===========*/
+
+
+.header {
+    width: 100%;
+    display: block;
+    left: 0;
+    top: 0;
+    position: fixed;
+    z-index: 3;
+}
+
+.btn-go-back {
+    border: none;
+    background-color: transparent;
+    outline: transparent !important;
+}
+
+article {
+    z-index: 1;
+}
+
+.explanation {
+    left: 0;
+    position: absolute;
+    top: 64px;
+    width: 100%;
+    height: 845px;
+    background-size: cover;
+    background-position-x: center;
+}
+
+.explanation.active {
+    left: 1px;
+}
+
+.coming-soon .item a {
+    height: 720px;
+}
+
+.icon-collection {
+    background-image: url("../../img_v1_3_39/icon_collection.png");
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    background-size: cover;
+    position: absolute;
+    opacity: 0.8;
+    top: 40px;
+    right: 40px;
+}
+
+#main_curation .icon-collection {
+    top: 40px;
+    right: 40px;
+
+}
+
+
+.curation-info {
+    position: absolute;
+    left: 20px;
+    bottom: 20px;
+    opacity: 0;
+}
+
+#main_curation .curation-info {
+    opacity: 1;
+    display: flex;
+    flex-direction: row;
+    left: 40px;
+    bottom: 40px;
+}
+
+.curation-info .artwork-count {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.2);
+    width: auto;
+    padding: 3px 12px 3px 0;
+    border-radius: 100px;
+    font-family: 'Roboto Regular', 'Noto Sans KR Regular', 'sans-serif';
+    margin-left: 16px;
+    font-size: 16px;
+    color: #fff;
+    opacity: 1;
+    line-height: 24px;
+    height: 24px;
+}
+
+.middle-dot {
+    width: 4px;
+    height: 4px;
+    background: #fff;
+    opacity: 0.8;
+    border-radius: 4px;
+    display: flex;
+    align-self: center;
+}
+
+
+.pro-area {
+    flex-direction: column;
+    display: none;
+    color: white;
+    position: absolute;
+    left: 0;
+    top: 7px;
+    z-index: 1;
+    opacity: 1;
+}
+
+
+.pro-area h1 {
+    display: flex;
+    font-size: 68px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: white;
+    position: relative;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    max-width: 1600px;
+    top: 8px;
+}
+
+.pro-area h2 {
+    display: flex;
+    margin-right: 10px;
+    flex-direction: row;
+    font-size: 52px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: white;
+    margin-bottom: 0;
+    position: relative;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    max-width: 1600px;
+    top: 8px;
+}
+
+.pro-info {
+    position: absolute;
+    padding-top: 24px;
+    width: 840px;
+    height: 136px;
+    top: 211px;
+}
+
+.pro-info p {
+    font-size: 24px;
+    font-family: 'Roboto Light', 'Noto Sans japanese Light', 'Noto Sans KR Light', serif;
+    letter-spacing: 0px;
+    color: white;
+    opacity: 0.6;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    line-height: 34px;
+    padding-top: 0;
+}
+
+.label-container {
+    top: 64px;
+    left: 160px;
+    display: flex;
+    width: auto;
+    flex-direction: row;
+    position: static;
+}
+
+.carousel {
+    position: absolute;
+    left: 0;
+    top: 885px;
+    height: 184px;
+    width: 1920px;
+    z-index: 1000;
+}
+
+.carousel-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.title4 {
+    font-size: 30px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 20px;
+    position: relative;
+    display: block;
+}
+
+.theme1 .title4,
+.theme2 .title4,
+.theme3 .title4,
+.theme4 .title4,
+.theme5 .title4 {
+    margin-bottom: 4px;
+}
+
+.carousel p {
+    height: 45px;
+}
+
+.coming-soon {
+    position: relative;
+    margin-top: 40px;
+}
+
+
+.coming-soon li {
+    position: relative;
+}
+
+.artist-list a {
+    width: 216px;
+    height: 216px;
+    border-radius: 216px;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 16px;
+}
+
+.disnone {
+    display: none;
+}
+
+
+#wrap.active {
+    left: 416px;
+}
+
+.carousel.active {
+    left: 0px;
+}
+
+body {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+
+.title3 {
+    font-size: 52px;
+    font-family: 'Roboto Bold', 'Noto Sans japanese', 'Noto Sans KR Bold', serif;;
+    color: #fff;
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+    white-space: nowrap;
+    width: 1200px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+
+.artwork-count {
+    display: inline-block;
+    opacity: 0.45;
+}
+
+.artwork-count > span {
+    background: transparent;
+    font-size: 20px;
+    font-family: 'Roboto Regular', 'Noto Sans japanese Regular', 'Noto Sans KR Bold', serif;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.new-artworks,
+.favorite-artworks,
+.theme1,
+.theme2,
+.coming-soon,
+.theme3,
+.theme4,
+.theme5 {
+    position: relative;
+    margin-top: 40px;
+}
+
+
+.coming-soon .d-day {
+    display: block;
+    position: absolute;
+    z-index: 1;
+    top: 40px;
+    left: 40px;
+    width: auto;
+    height: auto;
+    padding: 8px 12px;
+    background-color: rgba(10, 10, 10, 0.5);
+    border-radius: 100px;
+    font-size: 18px;
+    font-style: normal;
+    font-family: 'Roboto Regular', 'Noto Sans japanese Regular', 'Noto Sans KR Bold', serif;
+    line-height: 20px;
+}
+
+
+.bottom-white-guide {
+    opacity: 0;
+}
+
+.bottom-white-guide.active {
+    opacity: 1;
+    width: 100%;
+    height: 48px;
+    color: #1d1d1d;
+    text-align: center;
+    line-height: 48px;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    letter-spacing: -0.30000001192092896px;
+    transition: all 0.5s 0.5s ease-in-out;
+}
+
+.artist-list {
+    margin-top: 40px;
+}
+
+
+.category a.btn-go-search {
+    position: static;
+    display: inline-flex;
+    margin-top: 32px;
+    width: auto;
+    height: auto;
+    border-radius: 16px;
+    font-size: 24px;
+    text-align: center;
+    color: #fff;
+    line-height: 68px;
+    padding: 0 34px;
+    background: rgba(255, 255, 255, 0.3);
+    color: rgba(255, 255, 255, 0.6);
+    font-family: 'Roboto Bold', 'Noto Sans japanese', 'Noto Sans KR Bold', serif;;
+}
+
+.icon-go-search {
+    background-image: url("../../img_v1_3_39/icon_search.png");
+    width: 40px;
+    height: 40px;
+    background-size: cover;
+    align-self: center;
+}
+
+.btn-go-search .icon-go-search {
+    display: inline-block;
+}
+
+.search-guide-text {
+    height: auto;
+}
+
+.category a.btn-go-search.active {
+    background-color: #2841fa;
+    border: none;
+    color: #fff;
+    opacity: 1;
+    font-weight: 700;
+}
+
+.btn-go-search.active .search-guide-text {
+    opacity: 1;
+}
+
+.btn-go-search .icon-go-search.active {
+    background-image: url("../../img_v1_3_39/icon_search_achive@2x.png");
+}
+
+
+.pro-area.active {
+    left: 0;
+}
+
+
+#wrap {
+    width: 100%;
+    position: fixed;
+    top: 54px;
+    left: 160px;
+    height: 100%;
+    display: block;
+}
+
+.pro-artist-info {
+    top: 138px;
+    width: 840px;
+    height: 136px;
+    position: absolute;
+    padding-top: 20px;
+}
+
+.pro-artist-info p {
+    font-size: 24px;
+    font-family: 'Roboto Light', 'Noto Sans japanese Light', 'Noto Sans KR Light', serif;
+    letter-spacing: 0px;
+    color: white;
+    opacity: 0.6;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    line-height: 34px;
+}
+
+#main_curation {
+    height: 788px;
+    position: relative;
+}
+
+#main_curation .title3 {
+    position: absolute;
+    top: unset;
+    width: 1200px;
+    display: flex;
+    flex-direction: row;
+    align-content: space-between;
+    bottom: 78px;
+    left: 40px;
+    margin-bottom: 0;
+}
+
+#main_curation .title3 span {
+    min-width: 0;
+}
+
+#main_curation .title3 .representative-artist {
+    display: flex;
+    flex-direction: row;
+    max-width: 1200px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    margin-right: 10px;
+}
+
+#main_curation .curation-info .artwork-count,
+#main_curation .curation-info .middle-dot,
+#main_curation .curation-info .duration-time {
+    margin-right: 8px;
+}
+
+
+.curation-info .artwork-count,
+.curation-info .duration-time {
+    margin-left: 0;
+    background: transparent;
+    font-size: 20px;
+    font-family: 'Roboto Regular', 'Noto Sans japanese Regular', 'Noto Sans KR Bold', serif;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+
+#main_curation.active {
+    padding-left: 422px;
+}
+
+.carousel-index {
+    width: auto;
+    height: 27px;
+    display: inline-block;
+    position: absolute;
+    bottom: 40px;
+    right: 40px;
+    padding: 6px 12px;
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 100px;
+    color: #fff;
+    font-size: 18px;
+    line-height: 25px;
+    text-align: center;
+    letter-spacing: 1px;
+}
+
+
+#main_curation li:nth-child(n+1) a .item-title,
+#main_curation li:nth-child(n+1) a .title3,
+#main_curation li:nth-child(n+1) a .curation-info {
+    opacity: 0;
+    transition: all .3s ease-in-out 0s;
+}
+
+#main_curation.disnone {
+    display: none;
+}
+
+
+.start-pop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    background-color: #0A0A0A;
+    z-index: 9999;
+}
+
+.start-pop-wrap {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 55.555555vh;
+    height: 44.44444vh;
+    display: block;
+    background-color: #eeeef5;
+    border-radius: 0.72072vh;
+    padding: 4.6296vh 5.55555vh 0 5.55555vh;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.start-pop-icon {
+    margin-bottom: 2.2222vh;
+}
+
+.start-pop-head {
+    color: #1d1d1d;
+    font-size: 2.5vh;
+    font-family: 'Roboto Bold', 'Noto Sans japanese', 'Noto Sans KR Bold', serif;;
+}
+
+
+.start-pop-bns {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 7.408vh;
+}
+
+.start-pop-bns > li {
+    width: 50%;
+    height: 100%;
+}
+
+.start-pop-bns > li button {
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    color: #616161;
+}
+
+.start-pop-bns > li button:focus {
+    border: 1px solid #2841fa;
+    background-color: #2841fa;
+    color: #fff;
+    font-family: 'Roboto Bold', 'Noto Sans japanese', 'Noto Sans KR Bold', serif;;
+}
+
+
+#first_enter_pop .start-pop-wrap {
+    width: 74.074074vh;
+    height: 39.44444444vh;
+}
+
+
+#first_enter_pop.service-update-popup .start-pop-wrap {
+    width: 1000px;
+    height: 717px;
+    padding: 60px 42px;
+    border-radius: 16px;
+}
+
+#first_enter_pop.service-update-popup .start-pop-head {
+    font-weight: 700;
+    font-size: 38px;
+    line-height: 55px;
+    letter-spacing: 1px;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+
+.focus-obj {
+    font-family: 'Roboto Light', 'Noto Sans japanese Light', 'Noto Sans KR Light', serif;
+    font-size: 24px;
+    line-height: 35px;
+    letter-spacing: 1px;
+    border: none;
+    font-family: 'Roboto Regular', 'Noto Sans japanese Regular', 'Noto Sans KR Bold', serif;
+}
+
+.fleft {
+    float: left;
+}
+
+
+.ad-pop.start-pop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    background: rgba(10, 10, 10, 0.6);
+    z-index: 9999;
+}
+
+.ad-pop .start-pop-wrap {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 1200px;
+    height: 580px;
+    display: block;
+    background-color: transparent;
+    border-radius: 0.72072vh;
+    box-sizing: border-box;
+    overflow: hidden;
+    padding: 0
+}
+
+.ad-pop .start-pop-icon {
+    margin-bottom: 0;
+}
+
+.ad-pop .start-pop-head {
+    position: relative;
+    left: 0;
+    width: inherit;
+    height: inherit;
+    color: #1d1d1d;
+    font-size: 2.5vh;
+    font-family: 'Roboto Bold', 'Noto Sans japanese', 'Noto Sans KR Bold', serif;;
+}
+
+.event-img {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 0;
+    width: inherit;
+    height: auto;
+}
+
+.ad-pop .start-pop-bns {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 7.408vh;
+}
+
+.ad-pop .start-pop-bns > li {
+    width: 50%;
+    height: 100%;
+}
+
+.ad-pop .start-pop-bns > li .focus-obj {
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    color: #616161;
+    line-height: 80px;
+    text-align: center;
+}
+
+.ad-pop .start-pop-bns > li .focus-obj:focus {
+    border: 1px solid #2841fa;
+    background-color: #2841fa;
+    color: #fff;
+    font-family: 'Roboto Bold', 'Noto Sans japanese', 'Noto Sans KR Bold', serif;;
+}
+
+.ad-pop .focus-obj {
+    font-family: 'Roboto Light', 'Noto Sans japanese Light', 'Noto Sans KR Light', serif;
+    font-size: 24px;
+    line-height: 35px;
+    letter-spacing: 1px;
+    border: none;
+    font-family: 'Roboto Regular', 'Noto Sans japanese Regular', 'Noto Sans KR Bold', serif;
+}
+
+
+.artist-list .more-artist {
+    width: 216px;
+    height: 300px;
+    margin-right: 20px;
+    position: relative;
+    background-size: cover;
+}
+
+.artist-list a.btn-more-artist {
+    width: 216px;
+    font-size: 24px;
+    font-weight: 700;
+    text-align: center;
+    background-color: #1f1f1f;
+}
+
+.icon-go-back-inactive {
+    background-image: url("../../img_v1_3_39/icon_goback_inactive.png");
+    width: 80px;
+    height: 80px;
+    display: block;
+    background-size: cover;
+    position: absolute;
+    left: 68px;
+    top: 68px;
+}
+
+.btn-more-artist span {
+    width: 100%;
+    color: #fff;
+    font-size: 24px;
+    text-align: center;
+    opacity: 1;
+    position: absolute;
+    top: 179px;
+    left: 50%;
+    transform: translatex(-50%);
+}
+
+
+.carousel .title5 {
+    font-size: 18px;
+    height: 27px;
+    color: rgba(245, 245, 245, 0.65);
+}
+
+
+main {
+    position: relative;
+    z-index: 2;
+}
+
+.title5 {
+    display: none;
+}
+
+.background-color {
+    background-color: transparent;
+}
+
+.add-to-collection-button {
+    display: flex;
+    right: 40px;
+    bottom: 40px;
+    position: absolute;
+    padding: 16px 32px;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 35px;
+    text-align: center;
+    background: #FFFFFF;
+    border-radius: 16px;
+    font-family: 'Roboto Regular', 'Noto Sans japanese Regular', 'Noto Sans KR Bold', serif;
+}
+
+.curation-info.flex-content {
+    display: flex;
+    flex-direction: row;
+    bottom: 40px;
+    opacity: 1;
+    left: 40px;
+}
+
+.curation-info.flex-content .artwork-count,
+.curation-info.flex-content .middle-dot,
+.curation-info.flex-content .duration-time {
+    margin-right: 8px;
+}
+
+
+.icon-check-black {
+    transform: translateY(8px);
+}
+

@@ -1,0 +1,527 @@
+<div class="wrap-carousel">
+    <section class="carousel" id="carousel">
+        <div id="carousel_container" class="carousel-container">
+            <!--이어지는 감상 목록-->
+            <div class="next-list cate" th:if="${subsequentWatchingList.size() != 0}">
+                <p th:text="#{player.playNext}" class="list-title">다음 작품</p>
+                <div class="item-container">
+                    <ul class="item-box next-list-container">
+                        <!--일반 플레이어-->
+                        <li th:if="${myCollection == null}" class="item item-box-li hoverTrue"
+                            th:each="subsequentArtwork,index : ${subsequentWatchingList}"
+                            th:style="'background-image: url(\'' + ${subsequentArtwork.getContentsThumbnail().getDefaultImg()} + '\')'">
+                            <a class="item-box-a" th:value="'/player?art_id='+${subsequentArtwork.getId()}"
+                               th:data-id="${index.index + 1}">
+                                <div class="item-border"></div>
+                            </a>
+                            <span class="art-title" th:each="detail : ${subsequentArtwork.getArtworkDetails()}"
+                                  th:if="${detail.getLanguage().equals(language)}"
+                                  th:text="${detail.getArtworkName()}"></span>
+                            <span class="artist-title">
+                                     <span>
+                                        <span class="artist-name"
+                                              th:each="detail : ${subsequentArtwork.getArtist().getArtistDetails()}"
+                                              th:if="${detail.getLanguage().equals(language)}"
+                                              th:text="${detail.getArtistName()}"></span>
+                                        </span>
+                                    </span>
+                                </span>
+                        </li>
+                        <!--콜렉션 플레이어-->
+                        <li th:if="${myCollection != null}" class="item item-box-li hoverTrue"
+                            th:each="subsequentArtwork, index : ${subsequentWatchingList}"
+                            th:style="'background-image: url(\'' + ${subsequentArtwork.getContentsThumbnail().getDefaultImg()} + '\')'">
+                            <a class="item-box-a"
+                               th:value="'/player?art_id='+${subsequentArtwork.getId()}+'&myCollection='+${myCollection}">
+                                <div class="item-border"></div>
+                            </a>
+                            <span class="art-title" th:each="detail : ${subsequentArtwork.getArtworkDetails()}"
+                                  th:if="${detail.getLanguage().equals(language)}"
+                                  th:text="${detail.getArtworkName()}"></span>
+                            <span class="artist-title">
+                                     <span>
+                                        <span class="artist-name"
+                                              th:each="detail : ${subsequentArtwork.getArtist().getArtistDetails()}"
+                                              th:if="${detail.getLanguage().equals(language)}"
+                                              th:text="${detail.getArtistName()}"></span>
+                                    </span>
+                                </span>
+                        </li>
+                        <li class="item fakeli">
+                            <a href="javascript:void(0)" class="fake" style="opacity: 0"><span></span></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!--참여 아티스트-->
+            <div id="other_artists" class="other-artists cate" th:if="${myCollection == null}">
+                <p class="list-title" th:text="#{player.artists}">참여 아티스트</p>
+                <div class="item-container">
+                    <ul class="item-box artist" th:if="${exhibition == null}">
+                        <li class="item hoverTrue">
+                            <a th:href="'/' + ${language} + '/artist?artist_id=' + ${artwork.getArtist().getId()}"
+                               th:style="'background-image: url(\'' + ${artwork.getArtist().getProfileImg()} + '\')'"
+                               class="">
+                                <div class="item-border"></div>
+                            </a>
+                            <span class="artist-name" th:each="detail : ${artwork.getArtist.getArtistDetails()}"
+                                  th:if="${detail.getLanguage().equals(language)}" th:text="${detail.getArtistName()}">권혜조</span>
+                        </li>
+                        <li class="item">
+                            <a href="javascript:void(0)" class="btn-fake" style="opacity: 0" tabindex="-1"><span></span></a>
+                        </li>
+                    </ul>
+                    <ul class="item-box artist" th:if="${exhibition != null}">
+                        <li class="item hoverTrue" th:each="artist : ${exhibition.getArtistExhibitions()}">
+                            <a th:href="'/' + ${language} + '/artist?artist_id=' + ${artist.getArtist().getId()}">
+                                <div class="item-border"></div>
+                                <img th:if="${artistStat.index != null}" class="artist-img" th:src="@{${artist.getArtist().getProfileImg()}}">
+                                <img th:if="${artistStat.index == null}" class="artist-img" th:src="'https://stpatron001.blob.core.windows.net/container-patron-renewal/no_img_artist.png'">
+                            </a>
+                            <span class="artist-name" th:each="detail : ${artist.getArtist.getArtistDetails()}"
+                                  th:if="${detail.getLanguage().equals(language)}" th:text="${detail.getArtistName()}">권혜조</span>
+                        </li>
+                        <li class="item">
+                            <a href="javascript:void(0)" class="btn-fake" style="opacity: 0" tabindex="-1"><span></span></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!--000 인기 아트워크-->
+            <div id="recommended_artworks" class="recommended-artworks cate"
+                 th:unless="${artist != null || myCollection != null}">
+                <p class="list-title">
+                    <span id="now_playing_artist"></span>
+                    <span th:text="#{player.recommendedArtwork}">인기 아트워크</span></p>
+                <div class="item-container">
+                    <ul class="item-box">
+                        <li class="item hoverTrue" style="background-image: url();">
+                            <a href="" tabindex="-1">
+                                <div class="item-border"></div>
+                            </a>
+                            <span class="art-title "></span>
+                            <span class="art-artist"></span>
+                        </li>
+                        <li class="item hoverTrue" style="background-image: url();">
+                            <a href="" tabindex="-1">
+                                <div class="item-border"></div>
+                            </a>
+                            <span class="art-title "></span>
+                            <span class="art-artist"></span>
+                        </li>
+                        <li class="item hoverTrue" style="background-image: url();">
+                            <a href="" tabindex="-1">
+                                <div class="item-border"></div>
+                            </a>
+                            <span class="art-title "></span>
+                            <span class="art-artist"></span>
+                        </li>
+                        <li class="item hoverTrue" style="background-image: url();">
+                            <a href="" tabindex="-1">
+                                <div class="item-border"></div>
+                            </a>
+                            <span class="art-title "></span>
+                            <span class="art-artist"></span>
+                        </li>
+                        <li class="item hoverTrue" style="background-image: url();">
+                            <a href="" tabindex="-1">
+                                <div class="item-border"></div>
+                            </a>
+                            <span class="art-title "></span>
+                            <span class="art-artist"></span>
+                        </li>
+                        <li class="item hoverTrue" style="background-image: url();">
+                            <a href="" tabindex="-1">
+                                <div class="item-border"></div>
+                            </a>
+                            <span class="art-title "></span>
+                            <span class="art-artist"></span>
+                        </li>
+                        <li class="item hoverTrue" style="background-image: url();">
+                            <a href="" tabindex="-1">
+                                <div class="item-border"></div>
+                            </a>
+                            <span class="art-title "></span>
+                            <span class="art-artist"></span>
+                        </li>
+                        <li class="item hoverTrue" style="background-image: url();">
+                            <a href="" tabindex="-1">
+                                <div class="item-border"></div>
+                            </a>
+                            <span class="art-title "></span>
+                            <span class="art-artist"></span>
+                        </li>
+                        <li class="item hoverTrue" style="background-image: url();">
+                            <a href="" tabindex="-1">
+                                <div class="item-border"></div>
+                            </a>
+                            <span class="art-title "></span>
+                            <span class="art-artist"></span>
+                        </li>
+                        <li class="item hoverTrue" style="background-image: url();">
+                            <a href="" tabindex="-1">
+                                <div class="item-border"></div>
+                            </a>
+                            <span class="art-title "></span>
+                            <span class="art-artist"></span>
+                        </li>
+                        <li class="item hoverTrue" style="background-image: url();">
+                            <a href="" tabindex="-1">
+                                <div class="item-border"></div>
+                            </a>
+                            <span class="art-title "></span>
+                            <span class="art-artist"></span>
+                        </li>
+                        <li class="item hoverTrue" style="background-image: url();">
+                            <a href="" tabindex="-1">
+                                <div class="item-border"></div>
+                            </a>
+                            <span class="art-title "></span>
+                            <span class="art-artist"></span>
+                        </li>
+                        <li class="item hoverTrue" style="background-image: url();">
+                            <a href="" tabindex="-1">
+                                <div class="item-border"></div>
+                            </a>
+                            <span class="art-title "></span>
+                            <span class="art-artist"></span>
+                        </li>
+                        <li class="item hoverTrue" style="background-image: url();">
+                            <a href="" tabindex="-1">
+                                <div class="item-border"></div>
+                            </a>
+                            <span class="art-title "></span>
+                            <span class="art-artist"></span>
+                        </li>
+                        <li class="item hoverTrue" style="background-image: url();">
+                            <a href="" tabindex="-1">
+                                <div class="item-border"></div>
+                            </a>
+                            <span class="art-title "></span>
+                            <span class="art-artist"></span>
+                        </li>
+                        <li class="item disnone">
+                            <a href="javascript:void(0)" class="btn-fake" style="opacity: 0" tabindex="-1"><span></span></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!--추천 큐레이션-->
+            <div id="other_curation" class="cate" th:if="${myCollection == null}">
+                <p th:text="#{player.exhibitionsInclude}" class="list-title">추천 큐레이션</p>
+                <div class="item-container">
+                    <ul class="item-box">
+                        <li class="item hoverTrue" style="background-image: url();">
+                            <a href="">
+                                <div class="item-border"></div>
+                            </a>
+                            <i class="icon-list-collection"></i>
+                            <span class="art-title "></span>
+                            <span class="art-artist">
+                                <span class="other-item-artist-name"></span>
+                                <span class="other-artists-count">
+                                </span>
+                            </span>
+                        </li>
+                        <li class="item hoverTrue" style="background-image: url();">
+                            <a href="">
+                                <div class="item-border"></div>
+                            </a>
+                            <i class="icon-list-collection"></i>
+                            <span class="art-title "></span>
+                            <span class="art-artist">
+                                <span class="other-item-artist-name"></span>
+                                <span class="other-artists-count">
+
+                                </span>
+                            </span>
+                        </li>
+                        <li class="item hoverTrue" style="background-image: url();">
+                            <a href="">
+                                <div class="item-border"></div>
+                            </a>
+                            <i class="icon-list-collection"></i>
+                            <span class="art-title "></span>
+                            <span class="art-artist">
+                                <span class="other-item-artist-name"></span>
+                                <span class="other-artists-count">
+
+                                </span>
+                            </span>
+                        </li>
+                        <li class="item hoverTrue" style="background-image: url();">
+                            <a href="">
+                                <div class="item-border"></div>
+                            </a>
+                            <i class="icon-list-collection"></i>
+                            <span class="art-title "></span>
+                            <span class="art-artist">
+                                <span class="other-item-artist-name"></span>
+                                <span class="other-artists-count">
+
+                                </span>
+                            </span>
+                        </li>
+                        <li class="item hoverTrue" style="background-image: url();">
+                            <a href="">
+                                <div class="item-border"></div>
+                            </a>
+                            <i class="icon-list-collection"></i>
+                            <span class="art-title "></span>
+                            <span class="art-artist">
+                                <span class="other-item-artist-name"></span>
+                                <span class="other-artists-count">
+
+                                </span>
+                            </span>
+                        </li>
+                        <li class="item hoverTrue" style="background-image: url();">
+                            <a href="">
+                                <div class="item-border"></div>
+                            </a>
+                            <i class="icon-list-collection"></i>
+                            <span class="art-title "></span>
+                            <span class="art-artist">
+                                <span class="other-item-artist-name"></span>
+                                <span class="other-artists-count">
+
+                                </span>
+                            </span>
+                        </li>
+                        <li class="item hoverTrue" style="background-image: url();">
+                            <a href="">
+                                <div class="item-border"></div>
+                            </a>
+                            <i class="icon-list-collection"></i>
+                            <span class="art-title "></span>
+                            <span class="art-artist">
+                                <span class="other-item-artist-name"></span>
+                                <span class="other-artists-count">
+
+                                </span>
+                            </span>
+                        </li>
+                        <li class="item hoverTrue" style="background-image: url();">
+                            <a href="">
+                                <div class="item-border"></div>
+                            </a>
+                            <i class="icon-list-collection"></i>
+                            <span class="art-title "></span>
+                            <span class="art-artist">
+                                <span class="other-item-artist-name"></span>
+                                <span class="other-artists-count">
+
+                                </span>
+                            </span>
+                        </li>
+                        <li class="item hoverTrue" style="background-image: url();">
+                            <a href="">
+                                <div class="item-border"></div>
+                            </a>
+                            <i class="icon-list-collection"></i>
+                            <span class="art-title "></span>
+                            <span class="art-artist">
+                                <span class="other-item-artist-name"></span>
+                                <span class="other-artists-count">
+
+                                </span>
+                            </span>
+                        </li>
+                        <li class="item hoverTrue" style="background-image: url();">
+                            <a href="">
+                                <div class="item-border"></div>
+                            </a>
+                            <i class="icon-list-collection"></i>
+                            <span class="art-title "></span>
+                            <span class="art-artist">
+                                <span class="other-item-artist-name"></span>
+                                <span class="other-artists-count">
+
+                                </span>
+                            </span>
+                        </li>
+                        <li class="item hoverTrue" style="background-image: url();">
+                            <a href="">
+                                <div class="item-border"></div>
+                            </a>
+                            <i class="icon-list-collection"></i>
+                            <span class="art-title "></span>
+                            <span class="art-artist">
+                                <span class="other-item-artist-name"></span>
+                                <span class="other-artists-count">
+
+                                </span>
+                            </span>
+                        </li>
+                        <li class="item hoverTrue" style="background-image: url();">
+                            <a href="">
+                                <div class="item-border"></div>
+                            </a>
+                            <i class="icon-list-collection"></i>
+                            <span class="art-title "></span>
+                            <span class="art-artist">
+                                <span class="other-item-artist-name"></span>
+                                <span class="other-artists-count">
+
+                                </span>
+                            </span>
+                        </li>
+                        <li class="item hoverTrue" style="background-image: url();">
+                            <a href="">
+                                <div class="item-border"></div>
+                            </a>
+                            <i class="icon-list-collection"></i>
+                            <span class="art-title "></span>
+                            <span class="art-artist">
+                                <span class="other-item-artist-name"></span>
+                                <span class="other-artists-count">
+
+                                </span>
+                            </span>
+                        </li>
+                        <li class="item hoverTrue" style="background-image: url();">
+                            <a href="">
+                                <div class="item-border"></div>
+                            </a>
+                            <i class="icon-list-collection"></i>
+                            <span class="art-title "></span>
+                            <span class="art-artist">
+                                <span class="other-item-artist-name"></span>
+                                <span class="other-artists-count">
+
+                                </span>
+                            </span>
+                        </li>
+                        <li class="item hoverTrue" style="background-image: url();">
+                            <a href="">
+                                <div class="item-border"></div>
+                            </a>
+                            <i class="icon-list-collection"></i>
+                            <span class="art-title "></span>
+                            <span class="art-artist">
+                                <span class="other-item-artist-name"></span>
+                                <span class="other-artists-count">
+
+                                </span>
+                            </span>
+                        </li>
+                        <li class="item disnone">
+                            <a href="javascript:void(0)" class="btn-fake" style="opacity: 0"><span></span></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!--비슷한 카테고리-->
+            <div id="recommended_categories" class="recommended-categories cate" th:if="${myCollection == null}">
+                <p class="list-title" th:text="#{player.similarCategory}">비슷한 카테고리</p>
+                <div class="item-container">
+                    <ul class="item-box">
+                        <li class="item hoverTrue">
+                            <a href="" tabindex="-1" class="">
+                                <span class="art-artist keyword"></span>
+                            </a>
+                        </li>
+                        <li class="item hoverTrue">
+                            <a href="" tabindex="-1" class="">
+                                <span class="art-artist keyword"></span>
+                            </a>
+                        </li>
+                        <li class="item hoverTrue">
+                            <a href="" tabindex="-1" class="">
+                                <span class="art-artist keyword"></span>
+                            </a>
+                        </li>
+                        <li class="item hoverTrue">
+                            <a href="" tabindex="-1" class="">
+                                <span class="art-artist keyword"></span>
+                            </a>
+                        </li>
+                        <li class="item hoverTrue">
+                            <a href="" tabindex="-1" class="">
+                                <span class="art-artist keyword"></span>
+                            </a>
+                        </li>
+                        <li class="item hoverTrue">
+                            <a href="" tabindex="-1" class="">
+                                <span class="art-artist keyword"></span>
+                            </a>
+                        </li>
+                        <li class="item hoverTrue">
+                            <a href="" tabindex="-1" class="">
+                                <span class="art-artist keyword"></span>
+                            </a>
+                        </li>
+                        <li class="item hoverTrue">
+                            <a href="" tabindex="-1" class="">
+                                <span class="art-artist keyword"></span>
+                            </a>
+                        </li>
+                        <li class="item hoverTrue">
+                            <a href="" tabindex="-1" class="">
+                                <span class="art-artist keyword"></span>
+                            </a>
+                        </li>
+                        <li class="item hoverTrue">
+                            <a href="" tabindex="-1" class="">
+                                <span class="art-artist keyword"></span>
+                            </a>
+                        </li>
+                        <li class="item hoverTrue">
+                            <a href="" tabindex="-1" class="">
+                                <span class="art-artist keyword"></span>
+                            </a>
+                        </li>
+                        <li class="item hoverTrue">
+                            <a href="" tabindex="-1" class="">
+                                <span class="art-artist keyword"></span>
+                            </a>
+                        </li>
+                        <li class="item hoverTrue">
+                            <a href="" tabindex="-1" class="">
+                                <span class="art-artist keyword"></span>
+                            </a>
+                        </li>
+                        <li class="item hoverTrue">
+                            <a href="" tabindex="-1" class="">
+                                <span class="art-artist keyword"></span>
+                            </a>
+                        </li>
+                        <li class="item hoverTrue">
+                            <a href="" tabindex="-1" class="">
+                                <span class="art-artist keyword"></span>
+                            </a>
+                        </li>
+                        <li class="item disnone">
+                            <a href="javascript:void(0)" class="btn-fake" style="opacity: 0" tabindex="-1"><span></span></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="buttons cate" tabindex="-1">
+                <ul class="buttons-container">
+                    <li th:if="${myCollection == null}">
+                        <a id="btn_go_top" class="btn-go-top">
+                            <i class="icon-up"></i>
+                            <span th:text="#{player.toTheTop}">맨 위로</span>
+                            <div class="btn-inactive-box"></div>
+                        </a>
+                    </li>
+                    <li>
+                        <a th:href="'/' + ${language} + '/search'" class="btn-search">
+                            <i class="icon-search"></i>
+                            <span th:text="#{player.explore}">검색</span>
+                            <div class="btn-inactive-box"></div>
+                        </a>
+                    </li>
+                    <li>
+                        <a th:href="'/' + ${language} + '/home'" class="btn-home">
+                            <i class="icon-home"></i>
+                            <span th:text="#{player.home}">홈</span>
+                            <div class="btn-inactive-box"></div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+</div>

@@ -1,0 +1,15 @@
+.wrap-play {
+    top: 580px;
+    position: relative;
+}
+.black-img {
+    opacity: 1;
+}
+.play-buttons {
+    top: 228px;
+}
+#btn_pause {
+    left: 50%;
+    position: absolute;
+    transform: translateX(-50%);
+}

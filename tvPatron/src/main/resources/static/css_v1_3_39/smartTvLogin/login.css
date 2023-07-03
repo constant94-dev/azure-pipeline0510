@@ -1,0 +1,245 @@
+.login-header {
+    position: absolute;
+    z-index: 100;
+}
+
+.login-header .btn-go-back {
+    width: 76px;
+    height: 76px;
+}
+
+.section-logo {
+    position: relative;
+    height: 100vh;
+}
+
+.section-logo.first {
+    background: #0a0a0a;
+}
+
+#patronLogo {
+    position: absolute;
+    width: 298px;
+    height: 56px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.btn-go-back {
+    width: 76px;
+    height: 76px;
+    position: absolute;
+    left: 26px;
+    top: 97px;
+}
+
+.icon-before-sentence {
+    font-style: normal;
+    font-family: 'Roboto Light', 'Noto Sans japanese Light', 'Noto Sans KR Light', serif;
+    font-size: 22px;
+    line-height: 34px;
+    text-align: center;
+    letter-spacing: 0px;
+    color: #FFFFFF;
+    position: static;
+    width: auto;
+    white-space: nowrap;
+}
+
+.section-qrcode {
+    display: block;
+    position: relative;
+    height: 100vh;
+}
+
+#qrCode img {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 20px;
+}
+
+.qrCode-sentence {
+    width: 1400px;
+    height: 66px;
+    font-family: 'Roboto Regular', 'Noto Sans japanese Regular', 'Noto Sans KR Bold', serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 58px;
+    line-height: 66px;
+    text-align: center;
+    letter-spacing: 1px;
+    color: #FFFFFF;
+    position: absolute;
+    top: 240px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.qrCode-sub-sentence {
+    width: 1400px;
+    height: 41px;
+    font-family: 'Roboto Regular', 'Noto Sans japanese Regular', 'Noto Sans KR Bold', serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 41px;
+    text-align: center;
+    letter-spacing: 0px;
+    color: #FFFFFF;
+    position: absolute;
+    top: 318px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.qrCode-wrap {
+    position: absolute;
+    top: 410px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 20px;
+    background: white;
+    border-radius: 24px;
+    height: 320px;
+    width: 320px;
+    box-sizing: border-box;
+}
+
+.section-code {
+    display: none;
+    position: relative;
+    height: 100vh;
+}
+
+.code-sentence {
+    width: 1600px;
+    position: absolute;
+    font-family: 'Roboto Regular', 'Noto Sans japanese Regular', 'Noto Sans KR Bold', serif;
+    top: 240px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-style: normal;
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 66px;
+    text-align: center;
+    letter-spacing: 1px;
+    color: #FFFFFF;
+}
+
+.code-sentence strong {
+    font-weight: 700;
+}
+
+.code {
+    position: absolute;
+    font-family: 'Roboto Bold', serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 120px;
+    line-height: 168px;
+    text-align: center;
+    letter-spacing: 6px;
+    color: #FFFFFF;
+    top: 444px;
+    left: 1028px;
+}
+
+.timer {
+    position: absolute;
+    width: 740px;
+    height: 41px;
+    left: 1028px;
+    top: 600px;
+    margin-top: 12px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.timer-circle {
+    margin-right: 7px;
+}
+
+.timer-sentence {
+    font-family: 'Roboto Regular', 'Noto Sans japanese Regular', 'Noto Sans KR Bold', serif;
+    font-style: normal;
+    font-size: 28px;
+    line-height: 41px;
+    text-align: center;
+    letter-spacing: 0px;
+    color: #C4C4C4;
+}
+
+.login-guide {
+    position: absolute;
+    width: 818px;
+    height: auto;
+    left: 152px;
+    top: 406px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    padding: 40px;
+    box-sizing: border-box;
+}
+
+.login-guide-title {
+    font-family: 'Roboto Regular', 'Noto Sans japanese Regular', 'Noto Sans KR Bold', serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 54px;
+    letter-spacing: 0px;
+    color: #FFFFFF;
+}
+
+.login-guide-text {
+    font-style: normal;
+    font-family: 'Roboto Light', 'Noto Sans japanese Light', 'Noto Sans KR Light', serif;
+    font-size: 28px;
+    line-height: 54px;
+    letter-spacing: 0px;
+    color: #FFFFFF;
+}
+
+body.login #main, body.login header, body.login article, body.login .wrap {
+    filter: blur(30px);
+    -webkit-filter: blur(30px);
+    transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+}
+
+#qr_login_modal {
+    display: none;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    background: rgba(10, 10, 10, 0.5);
+}
+
+#btn_login_close img {
+    width: inherit;
+    height: inherit;
+}
+
+#qr_login_modal .buttons-container {
+    position: absolute;
+    top: 90px;
+    left: 26px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 76px;
+    height: auto;
+}
+
+#qr_login_modal .btn-go-back {
+    position: unset;
+    padding: 0;
+    margin-bottom: 10px;
+}

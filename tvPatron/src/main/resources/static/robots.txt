@@ -1,0 +1,14 @@
+# This robots.txt file controls crawling of URLs under https://tvpatron.com.
+# All crawlers are disallowed to crawl files in the "includes" directory, such
+# as .css, .js, but Google needs them for rendering, so Googlebot is allowed
+# to crawl them.
+
+User-agent: *
+Disallow: /
+
+User-agent: *
+Disallow: /*.png$
+Disallow: /*.jpg$
+Disallow: /*.jpeg$
+Disallow: /*.gif$
+
